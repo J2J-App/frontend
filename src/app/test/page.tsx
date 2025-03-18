@@ -1,8 +1,10 @@
 import React from 'react';
-import Input from '@/components/input-Single/input.tsx';
+import InputT from '@/components/Input-TextArea/Input';
+import Input from '@/components/Input-Single/Input';
 
 export default function Test() {
     return <div>
+        <InputT holder="hello"/>
         <Input holder="hello"/>
     </div>
 }

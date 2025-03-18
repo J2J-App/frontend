@@ -1,0 +1,45 @@
+.textT {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgba(15, 15, 15, 255);
+    border: none;
+    padding-left: 12px;
+    position: relative;
+    color: white;
+    z-index: 1;
+}
+
+.textT::placeholder {
+    color: rgba(76, 76, 76, 255);
+}
+
+.textT:hover {
+    background-color: rgba(20, 20, 20, 255);
+}
+
+.textT:hover::placeholder {
+    color: rgba(78, 78, 78, 255);
+}
+
+.textT:focus {
+    outline: none;
+}
+
+.text-containerT {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    height: 40px;
+    width: 182px;
+}
+
+.text-containerT::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 34px;
+    background: linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    border-radius: 8px;
+}

@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import './Input.css'
+import './Input.css';
 
 export default function Input({holder} : {holder: string}) {
   console.log(holder)
