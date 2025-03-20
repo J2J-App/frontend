@@ -16,6 +16,7 @@
   background: rgb(65, 59, 59);
   transition: .5s;
   border: 3px solid rgb(121, 56, 56);
+  border-radius: 35px;
   box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 
@@ -30,11 +31,7 @@
 
 .switch input {display: none;}
 
-.slider.round{
-  border-radius: 35px;
-}
-
-.slider.round:before{
+.slider:before{
   width: 35px;
   height: 35px;
   border-radius: 50px;
@@ -45,6 +42,21 @@ input:checked + .slider:before{
   background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
 }
 
-.slider:hover{
-  background-color: black;
+.slider:after{
+  position: absolute;
+  content: "";
+  top: 2.5px;
+  margin-left: 48px;
+  width: 41px;
+  height: 41px;
+  border-radius: 50px;
+  opacity: 0;
+  background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%); 
+  filter: blur(20px);
+  transition: opacity 0.5s ease 0ms;
+}
+
+input:checked + .slider:after{
+  transition-delay: 150ms;
+  opacity: 1;
 }
