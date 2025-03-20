@@ -1,8 +1,8 @@
 .switch{
   position: relative;
   display: block;
-  width: 90px;
-  height: 50px;
+  width: 36px;
+  height: 20px;
   margin-bottom: 30px;
 }
 
@@ -13,50 +13,73 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgb(65, 59, 59);
+  background : rgba(26, 26, 26, 1);
+  border-style : Solid;
+  border-color : #3B3B3B;
+  border-width : 1px;
   transition: .5s;
-  border: 3px solid rgb(121, 56, 56);
-  border-radius: 35px;
+  border-radius: 10vmax;
   box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 
 .slider:before{
   position: absolute;
   content: "";
-  top: 5px;
-  background-color: rgba(175,175,175);
-  transition: 0.5s;
-  margin-left: 4px;
-}
-
-.switch input {display: none;}
-
-.slider:before{
-  width: 35px;
-  height: 35px;
+  top: 2px;
+  left: 2px;
+  background-color: #616161;
+  background-image: linear-gradient(60deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  background-position-x: 20px;
+  background-repeat: no-repeat;
+  transition: transform 0.5s cubic-bezier(0.87, 0, 0.13, 1),
+  background-position-x 0.5s cubic-bezier(0.87, 0, 0.13, 1) .1s,
+  background-color 0.3s ease .2s;
+  width: 14px;
+  height: 14px;
   border-radius: 50px;
 }
 
-input:checked + .slider:before{
-  transform: translateX(42px);
-  background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+.switch .checked {display: none;}
+
+.switch:hover .slider {
+  background : rgb(47, 47, 47);
+  border-style : Solid;
+  border-color : rgba(69, 69, 69, 1);
+  border-width : 1px;
+}
+
+.switch:active .slider {
+  background : rgb(14, 14, 14);
+  border-style : Solid;
+  border-color : rgba(69, 69, 69, 1);
+  border-width : 1px;
+}
+
+.checked:checked + .slider:before{
+  transform: translateX(16px);
+  background-color: rgba(195, 84, 255, 1);
+  background-position-x: 0;
+  transition: transform 0.5s cubic-bezier(0.87, 0, 0.13, 1),
+  background-position-x 0.5s cubic-bezier(0.87, 0, 0.13, 1) .2s,
+  background-color 0.3s ease .5s;
 }
 
 .slider:after{
   position: absolute;
   content: "";
-  top: 2.5px;
-  margin-left: 48px;
-  width: 41px;
-  height: 41px;
+  top: 0;
+  pointer-events: none;
+  left: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50px;
   opacity: 0;
-  background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%); 
-  filter: blur(20px);
+  background : linear-gradient(60deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  filter: blur(6px);
   transition: opacity 0.5s ease 0ms;
 }
 
-input:checked + .slider:after{
+.checked:checked + .slider:after{
   transition-delay: 150ms;
   opacity: 1;
 }

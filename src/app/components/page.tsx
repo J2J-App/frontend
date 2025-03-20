@@ -3,7 +3,7 @@ import "./styles.css"
 
 import TextArea from '@/components/Inputs/TextArea/textarea.tsx';
 import SingleInput from '@/components/Inputs/SingleInput/single-Input.tsx';
-import Switch from '@/components/Switch/switch.js';
+import Switch from '@/components/Switch/switch.tsx';
 
 
 export default function Components() {
