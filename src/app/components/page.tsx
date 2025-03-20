@@ -3,7 +3,7 @@ import "./styles.css"
 
 import TextArea from '@/components/Inputs/TextArea/textarea.tsx';
 import SingleInput from '@/components/Inputs/SingleInput/single-Input.tsx';
-
+import Switch from '@/components/Switch/switch.js';
 
 
 export default function Components() {
@@ -28,10 +28,14 @@ export default function Components() {
         <h3>
             Text Area
         </h3>
-        <TextArea holder="hello" height={1}/>
+        <TextArea holder="hello" height={2}/>
         <h3>
             Single Input
         </h3>
         <SingleInput holder="hello" />
+        <h3>
+            Switch
+        </h3>
+        <Switch/>
     </div>
 }
