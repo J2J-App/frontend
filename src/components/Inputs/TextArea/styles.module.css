@@ -1,4 +1,4 @@
-.textT {
+.text {
     border-radius: 6px;
     background-color: #0F0F0F;
     padding: 8px 12px;
@@ -9,7 +9,7 @@
     resize: none;
 }
 
-.textT::placeholder{
+.text::placeholder{
     color: rgb(105, 105, 105);
     transition: all .2s ease ;
     font-family: 'Roboto', sans-serif;
@@ -18,39 +18,39 @@
     font-size: 14px;
 }
 
-.textT:hover{
+.text:hover{
     background-color: #141414;
     border: 1px solid #454545
 }
 
-.textT:active {
+.text:active {
     background-color: #303030 !important;
     border: 1px solid #454545
 }
 
-.textT:hover::placeholder{
+.text:hover::placeholder{
     color:rgba(78,78,78,255);
 }
 
-.textT:focus {
+.text:focus {
     outline: none;
     background-color: #1e1e1e;
     border: 1px solid #505050
 }
-.textT:focus + .outline {
+.text:focus + .outline {
     content: "";
     outline: 1px solid #2B2B2B;
 }
 
 
-.textContainerT {
+.textContainer {
     position: relative;
     display: inline-block;
     height: fit-content;
     width: fit-content;
 }
 
-.textContainerT::after {
+.textContainer::after {
     content: "";
     position: absolute;
     left: 0;

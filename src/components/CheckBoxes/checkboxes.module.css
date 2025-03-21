@@ -1,0 +1,91 @@
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    gap: 8px;
+}
+
+.label {
+    color: #dadada;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    font-size: 14px;
+}
+
+.checkboxWrapper {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+/* Hide the default checkbox */
+.checkboxWrapper input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+/* Custom checkbox */
+.checkboxWrapper .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #0F0F0F;
+    border: 1px solid #282828;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+/* Hover state */
+.checkboxWrapper:hover .checkbox {
+    background-color: #141414;
+    border-color: #454545;
+}
+
+/* Focus state */
+.checkboxWrapper input[type="checkbox"]:focus + .checkbox {
+    outline: 1px solid #2B2B2B;
+}
+
+/* Active state */
+.checkboxWrapper input[type="checkbox"]:active + .checkbox {
+    background-color: #1e1e1e;
+}
+
+/* Checked state */
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox {
+    background-color: #141414;
+    border-color: #454545;
+}
+
+/* Checkmark (using ::after pseudo-element) */
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px; 
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    /* background-image: url('path-to-your-checkmark.svg'); */
+    background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+}
+
+/* added glowing effect (using ::before pseudo-element)*/
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox::before{
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 20px;
+    height: 10px;
+    filter: blur(6px);
+    background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+}
