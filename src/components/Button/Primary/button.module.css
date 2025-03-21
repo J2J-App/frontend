@@ -1,25 +1,87 @@
 .button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    background-color: #f0f0f0; /* Normal state background */
-    color: #333; /* Normal state text color */
-  }
-  
-  /* Hover state */
-  .button:hover {
-    background-color: #e0e0e0;
-    color: #000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Active state */
-  .button:active {
-    background-color: #d0d0d0;
-    color: #000;
-    transform: scale(0.98);
-  }
-  
+  color: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: 0px;
+  background: #0F0F0F;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  letter-spacing: .5px;
+  font-family: Roboto;
+  resize: none;
+}
+
+.buttonContainer {
+  position: relative;
+  display: inline-block;
+  height: fit-content;
+  width: fit-content;
+  resize: none;
+}
+
+/* added border to buttonContainer ( ussing after pseudo element ) to create a border around the button */
+.buttonContainer::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background: linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+/* for hover */
+.button:hover::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  border-radius: 10px;
+  z-index: -2;
+  filter: blur(13px);
+}
+
+/* for active */
+.button:active::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  border-radius: 10px;
+  z-index: -2;
+  filter: blur(13px);
+}
+
+.buttonContainer:active:after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background: linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.button:active {
+  color: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: 0px;
+  background: #0F0F0F;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  letter-spacing: .5px;
+  font-family: Roboto;
+  resize: none;
+  opacity: 0.5;
+}
