@@ -3,10 +3,23 @@
 import React from 'react';
 import styles from './style.module.css';
 
-export default function SingleInput({holder, width} : {holder: string, width?: number}) {
+// added props so that we can add required props to the component
+
+export default function SingleInput({
+  holder, 
+  width, 
+  ...props
+} : {holder: string, width?: number}) 
+{
   return (
     <div className={styles.border}>
-        <input type="text" className={styles.text} placeholder={holder} style={{width: width ? `${width}px` : '100%'}} />
+        <input 
+          type="text" 
+          className={styles.text} 
+          placeholder={holder} 
+          {...props}
+          style={{width: width ? `${width}px` : '100%'}} 
+        />
         <div className={styles.outline}></div>
     </div>
   );

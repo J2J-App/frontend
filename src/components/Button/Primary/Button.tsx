@@ -8,21 +8,29 @@ type ButtonProps = {
   onClick: () => void;
   variant?: 'primary';
   width?: number;
+  hieght?: number;
 };
 
 export default function Button({
   text,
   onClick,
   variant,
-  width
+  width,
+  hieght
 }: ButtonProps) {
   return (
-    <button 
-      onClick={onClick} 
-      className={`${styles.button} ${variant ? styles[variant] : ''}`}
-      style={{ width: width ? `${width}px` : '100%' }}
+    <div 
+    className={styles.buttonContainer}
+    style={{ 
+      width: width ? `${width}px` : '90px', 
+      height: hieght ? `${hieght}px` : '45px'}}
     >
-      {text}
-    </button>
+      <button 
+        onClick={onClick}
+        className={`${styles.button} ${variant ? styles[variant] : ''}`}
+      >
+        {text}
+      </button>
+    </div>
   );
 }
