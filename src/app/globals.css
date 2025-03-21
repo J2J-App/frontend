@@ -44,3 +44,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.text::placeholder, .text {
+  font-family: 'Roboto', sans-serif;
+}

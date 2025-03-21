@@ -1,14 +1,32 @@
-import styles from './Switch.module.css';
+"use client"
 
-export default function Switch({checked=false}: {
-    checked?: boolean;
-}){
-  return (
-    <div>
-        <label className={`${styles.switch}`}>
-            <input className={`${styles.checked}`} defaultChecked={checked} type='checkbox'/>
-            <span className={`${styles.slider} ${styles.round}`}></span>
-        </label>
-    </div>
-  );
+import React from 'react';
+import styles from './switch.module.css';
+
+type SwitchProps = {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
 };
+
+export default function Switch({ 
+  checked = false, 
+  onChange, 
+}: SwitchProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e.target.checked);
+    }
+  };
+
+  return (
+    <label className={styles.switch}>
+        <input 
+          className={styles.checked}
+          type='checkbox'
+          checked={checked}
+          onChange={handleChange}
+        />
+        <span className={styles.slider}></span>
+    </label>
+  );
+}
