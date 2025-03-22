@@ -2,6 +2,8 @@
 
 import React from 'react';
 import styles from './pagination.module.css';
+import Image from 'next/image';
+import arrowDown from '@/public/arrow.svg';
 
 type PaginationProps = {
   currentPage: number;
@@ -53,9 +55,9 @@ export default function Pagination({
         className={styles.navButton}
         aria-label="Previous page"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <div className={styles.arrowContainer}>
+            <Image src={arrowDown} alt="arrow-left" width={24} height={16} className={styles.arrowLeft}/>
+        </div>
         <span>Previous</span>
       </button>
       
@@ -85,9 +87,9 @@ export default function Pagination({
         aria-label="Next page"
       >
         <span>Next</span>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <div className={styles.arrowContainer}>
+            <Image src={arrowDown} alt="arrow-right" width={24} height={16} className={styles.arrowRight}/>
+        </div>
       </button>
     </div>
   );

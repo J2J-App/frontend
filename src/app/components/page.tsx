@@ -149,6 +149,7 @@ export default function Components() {
                         options={options} 
                         onChange={handleChange} 
                         placeholder="Select"
+                        lastOption='Item 3'
                     />
                 </div>
             )
@@ -185,7 +186,7 @@ export default function Components() {
             </h1>
             
             {/* Display current components */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', flexGrow: 1 }}>
                 {currentComponents.map((component, index) => (
                     <div key={index}>
                         {component.content}
@@ -194,7 +195,7 @@ export default function Components() {
             </div>
             
             {/* Pagination control */}
-            <div style={{ }}>
+            <div>
                 <Pagination 
                     currentPage={currentPage} 
                     totalPages={totalPages} 

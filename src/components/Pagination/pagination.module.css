@@ -13,7 +13,7 @@
     gap: 8px;
     padding: 8px 16px;
     background: transparent;
-    color: #8A8A8A;
+    color: #fff;
     border: none;
     cursor: pointer;
     transition: color 0.3s;
@@ -37,7 +37,7 @@
     align-items: center;
     justify-content: center;
     background: transparent;
-    color: #8A8A8A;
+    color: #fff;
     font-size: 16px;
     font-weight: 500;
     border: none;
@@ -50,8 +50,9 @@
     color: #fff;
 }
 
+/* the background colour needs to go in this l */
 .pageButton.active {
-    background: linear-gradient(60deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    background: black;
     color: #fff;
     position: relative;
     border-radius: 8px;
@@ -65,9 +66,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 10px;
-    opacity: 0.5;
-    background: linear-gradient(60deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
-    filter: blur(4px);
+    background: linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
     z-index: -1;
 }
 
@@ -77,4 +76,12 @@
     align-items: center;
     justify-content: center;
     width: 24px;
+}
+
+.arrowLeft{
+    transform: rotate(90deg);
+}
+
+.arrowRight{
+    transform: rotate(270deg);
 }
