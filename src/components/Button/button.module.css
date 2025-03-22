@@ -4,13 +4,13 @@
   width: 100%;
   border-radius: 10px;
   border: 0px;
-  background: #0F0F0F;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   letter-spacing: .5px;
   font-family: Roboto;
   resize: none;
 }
+
 
 .buttonContainer {
   position: relative;
@@ -20,8 +20,12 @@
   resize: none;
 }
 
+/* CSS FOR PRIMARY BUTTON */
+.Primary.button{
+  background: #0F0F0F;
+}
 /* added border to buttonContainer ( ussing after pseudo element ) to create a border around the button */
-.buttonContainer::after {
+.Primary.buttonContainer::after {
   content: "";
   position: absolute;
   left: -1px;
@@ -34,7 +38,7 @@
 }
 
 /* for hover */
-.button:hover::after{
+.Primary.button:hover::after {
   content: "";
   position: absolute;
   left: 0;
@@ -48,7 +52,7 @@
 }
 
 /* for active */
-.button:active::after {
+.Primary.button:active::after {
   content: "";
   position: absolute;
   width: 0%;
@@ -58,7 +62,7 @@
   filter: blur(13px);
 }
 
-.buttonContainer:active:after {
+.Primary.buttonContainer:active:after {
   content: "";
   position: absolute;
   left: -1px;
@@ -71,7 +75,7 @@
   opacity: 0.5;
 }
 
-.button:active {
+.Primary.button:active {
   color: white;
   height: 100%;
   width: 100%;
@@ -81,7 +85,9 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   letter-spacing: .5px;
-  font-family: Roboto;
   resize: none;
   opacity: 0.5;
 }
+
+
+/* CSS FOR SECONDARY BUTTON */

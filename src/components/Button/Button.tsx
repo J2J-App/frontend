@@ -6,9 +6,9 @@ import styles from './button.module.css';
 type ButtonProps = {
   text: string;
   onClick: () => void;
-  variant?: 'primary';
+  variant?: 'Primary' | 'Secondary';
   width?: number;
-  hieght?: number;
+  height?: number;
 };
 
 export default function Button({
@@ -16,14 +16,15 @@ export default function Button({
   onClick,
   variant,
   width,
-  hieght
+  height
 }: ButtonProps) {
   return (
     <div 
-    className={styles.buttonContainer}
-    style={{ 
-      width: width ? `${width}px` : '90px', 
-      height: hieght ? `${hieght}px` : '45px'}}
+      className={`${styles.buttonContainer} ${variant ? styles[variant] : ''}`}
+      style={{ 
+        width: width ? `${width}px` : '90px', 
+        height: height ? `${height}px` : '45px'
+      }}
     >
       <button 
         onClick={onClick}
