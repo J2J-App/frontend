@@ -69,7 +69,7 @@ export default function Pagination({
         aria-label="Previous page"
       >
         <div className={styles.arrowContainer}>
-            <Image src={arrowDown} alt="arrow-left" width={24} height={16} className={styles.arrowLeft}/>
+            <Image src={arrowDown} alt="arrow-left" fill className={styles.arrowLeft}/>
         </div>
         <span>Previous</span>
       </button>
@@ -87,7 +87,12 @@ export default function Pagination({
               className={`${styles.pageButton} ${isCurrentPage ? styles.active : ''}`}
               aria-current={isCurrentPage ? "page" : undefined}
             >
-              {page}
+
+              <span style={{
+                  zIndex: "4"
+              }}>
+                  {page}
+              </span>
             </button>
           </React.Fragment>
         );
@@ -102,7 +107,7 @@ export default function Pagination({
       >
         <span>Next</span>
         <div className={styles.arrowContainer}>
-            <Image src={arrowDown} alt="arrow-right" width={24} height={16} className={styles.arrowRight}/>
+            <Image fill={true} src={arrowDown} alt="arrow-right" className={styles.arrowRight}/>
         </div>
       </button>
       </Link>

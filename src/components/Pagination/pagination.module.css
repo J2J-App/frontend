@@ -3,24 +3,34 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+
     margin: 20px 0;
+}
+
+.navButton:hover:not(:disabled) {
+    color: #fff;
+    background: #131313;
+    border: 1px solid #1f1f1f;
+}
+
+.navButton:active:not(:disabled) {
+    color: #e8e8e8;
+    background: #000000;
+    border: 1px solid #131313;
 }
 
 .navButton {
     display: flex;
     align-items: center;
+    border-radius: 8px;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 10px;
     background: transparent;
     color: #fff;
-    border: none;
     cursor: pointer;
-    transition: color 0.3s;
+    border: 1px solid transparent;
     font-size: 16px;
-}
-
-.navButton:hover:not(:disabled) {
-    color: #fff;
+    transition: all 0.2s ease;
 }
 
 .navButton:disabled {
@@ -29,59 +39,88 @@
 }
 
 .pageButton {
+    position: relative;
     width: 40px;
     height: 40px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
+    background-color: transparent;
     color: #fff;
     font-size: 16px;
     border: none;
+    overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s ease;
+    background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    background-position-y: 150px;
+    background-repeat: no-repeat;
+    transition: background-position-y 0.6s cubic-bezier(0.87, 0, 0.13, 1),
+    background-color 0.2s ease;
 }
-
+.arrowContainer {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    .arrowLeft, .arrowRight {
+        object-position: center;
+        object-fit: contain;
+    }
+}
 .pageButton:hover:not(.active) {
-    background: rgba(59, 59, 59, 0.5);
+    background-color: rgba(59, 59, 59, 0.5);
     color: #fff;
 }
 
 /* the background colour needs to go in this l */
 .pageButton.active {
     color: #fff;
-    position: relative;
     border-radius: 8px;
-    position: relative;
-    overflow: hidden;
+    font-weight: 900;
+    background-position-y: 0;
 }
 
-.pageButton.active::after{
+.pageButton::after{
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -50%;
+    bottom: -150%;
     transform: translateX(-50%);
     border-radius: 3px;
     width: 120%;
     height: 100%;
     background: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
-    filter: blur(15px);
-    z-index: -1;
+    filter: blur(8px);
+    z-index: 1;
+    opacity: 0;
     transition: all .3s ease-in-out;
 }
 
-.pageButton.active::before {
+.pageButton.active::after{
+    opacity: 0.5;
+    bottom: -50%;
+}
+
+
+.pageButton::before {
     content: "";
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 10px;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border-radius: 7px;
     background: black;
-    z-index: -1;
+    z-index: 1;
+    transition: all .3s ease;
+}
+
+.pageButton:hover::before {
+    background: #131313;
+}
+
+.pageButton:active::before {
+    background: #000000;
 }
 
 .ellipsis {
@@ -94,10 +133,8 @@
 
 .arrowLeft{
     transform: rotate(90deg);
-    margin-top:2px ;
 }
 
 .arrowRight{
     transform: scaleY(-1) rotate(-90deg);
-    margin-top:4px ;
 }

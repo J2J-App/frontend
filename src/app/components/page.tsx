@@ -93,6 +93,26 @@ export default function Components() {    const router = useRouter();
                         width={90}
                         onClick={() => console.log('Button Clicked')}
                     />
+                    <Button
+                        text="Click Me"
+                        variant='Outline'
+                        width={90}
+                        onClick={() => console.log('Button Clicked')}
+                    />
+                    <Button
+                        text="Click Me"
+                        variant='Danger'
+                        width={90}
+                        onClick={() => console.log('Button Clicked')}
+                    />
+                    <Button
+                        text="Click Me"
+                        variant='Link'
+                        width={90}
+                        to="https://github.com"
+                        newTab={true}
+                        onClick={() => console.log('Button Clicked')}
+                    />
                 </div>
             )
         },

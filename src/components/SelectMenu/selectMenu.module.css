@@ -11,11 +11,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0F0F0F;
-    border: 1px solid #282828;
+    background: rgba(15, 15, 15, 1);
+    border-style: Solid;
+    border-color: rgb(45, 45, 45);
+    border-width: 1px;
     border-radius: 7px;
-    padding: 4px 6px;
-    padding-left: 8px;
+    padding: 4px 6px 4px 12px;
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 14px;
@@ -23,90 +24,167 @@
     letter-spacing: -0.5px;
 }
 
+.selectButton .arrowContainer {
+    width: 28px;
+    height: 28px;
+    background: rgba(23, 23, 23, 1);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selectButton:hover .arrowContainer {
+    background: rgba(28, 28, 28, 1);
+}
+
 /* Hover state */
 .selectButton:hover {
-    background-color: #141414;
+    background: rgba(23, 23, 23, 1);
+    border-style: Solid;
+    border-color: #242424;
+    border-color: rgba(36, 36, 36, 1);
+    border-width: 1px;
+}
+
+.selectButton:active {
+    background-color: #000000 !important;
     border-color: #454545;
 }
 
 /* Active/open state */
 .selectButton.active {
-    background-color: #1e1e1e;
-    border-color: #505050;
+    background: rgba(23, 23, 23, 1);
+    border-style: Solid;
+    border-color: #242424;
+    border-color: rgba(36, 36, 36, 1);
+    border-width: 1px;
 }
 
-/* Focus state */
-.selectButton.focus {
-    outline: 1px solid #2B2B2B;
+.selectButton .rotate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.selectButton.active .rotate {
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 
 .dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px); /* Small gap between button and dropdown */
     left: 0;
     width: 100%;
-    background-color: #1e1e1e;
+    border-style: Solid;
+    border-color: rgba(38, 38, 38, 1);
+    border-width: 1px;
+    background: rgba(20, 20, 20, 1);
     border-radius: 7px;
     z-index: 1;
+    overflow: hidden;
+
+    /* Animation properties */
+    transition: height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    height: 0;
+    transform: translateY(-10px);
+    transform-origin: top center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dropdownContent {
     max-height: 126px;
     overflow-y: auto;
 }
 
 .option {
-    padding: 10px 9px;
+    padding: 10px 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
     font-size: 14px;
     font-weight: 300;
-    border-bottom:1px solid #505050 ;
+    border-bottom: 1px solid rgba(38, 38, 38, 1);
+}
+
+.option:active {
+    background: #0c0c0c !important;
+}
+
+.option:hover {
+    background: rgba(35, 35, 35, 1);
 }
 
 .option.selected {
     font-weight: 600;
-    background-color: #3a3a3a;
+    background: #1F1F1F;
 }
 
-.option.selected:first-child{
-    border-top-right-radius:6px ;
-    border-top-left-radius:6px ;
+.option.selected:first-child {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
 }
 
-.option.selected:last-child{
-    border-bottom-right-radius:6px ;
-    border-bottom-left-radius:6px ;
+.option.selected:last-child {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
-.dropdown::-webkit-scrollbar {
+.dropdownContent::-webkit-scrollbar {
     width: 0px;
 }
 
-.dropdown::-webkit-scrollbar-track {
+.dropdownContent::-webkit-scrollbar-track {
     background: #1e1e1e;
 }
 
-.dropdown::-webkit-scrollbar-thumb {
+.dropdownContent::-webkit-scrollbar-thumb {
     background: #3a3a3a;
     border-radius: 3px;
 }
 
-.dropdown::-webkit-scrollbar-thumb:hover {
+.dropdownContent::-webkit-scrollbar-thumb:hover {
     background: #505050;
-}
-
-.rotate{
-    transform: scaleY(-1);
-}
-
-.arrowContainer{
-    width: 28px;
-    height: 28px;
-    background-color: rgba(59, 59, 59, 0.5);
-    border-radius: 6px;
-    margin: auto;
-    padding-left: 6.5px;
-    padding-top: 6px;
 }
 
 .option:last-child {
     border-bottom: none;
+}
+
+/* Focus state */
+.selectButton.focus {
+    border-color: rgba(55, 55, 55, 1);
+    box-shadow: 0 0 0 1px rgba(55, 55, 55, 0.5);
+}
+
+/* Animation states */
+.dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Keyframes for subtle bounce effect */
+@keyframes dropdownBounce {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    70% {
+        transform: translateY(2px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Additional animation class that can be applied */
+.animate-dropdown-open {
+    animation: dropdownBounce 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }

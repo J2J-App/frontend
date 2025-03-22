@@ -13,10 +13,10 @@ export default function SingleInput({
 {
   return (
     <div className={styles.border}>
-        <input 
-          type="text" 
-          className={styles.text} 
-          placeholder={holder} 
+        <input
+          type="text"
+          className={styles.text}
+          placeholder={holder}
           {...props}
           style={{width: width ? `${width}px` : '100%'}} 
         />
