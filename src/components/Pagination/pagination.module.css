@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-family: sans-serif;
     margin: 20px 0;
 }
 
@@ -39,7 +38,6 @@
     background: transparent;
     color: #fff;
     font-size: 16px;
-    font-weight: 500;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -52,13 +50,29 @@
 
 /* the background colour needs to go in this l */
 .pageButton.active {
-    background: black;
     color: #fff;
     position: relative;
     border-radius: 8px;
+    position: relative;
+    overflow: hidden;
 }
 
-.pageButton.active::after {
+.pageButton.active::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    filter: blur(15px);
+    z-index: -1;
+    transition: all .3s ease-in-out;
+}
+
+.pageButton.active::before {
     content: "";
     position: absolute;
     top: -2px;
@@ -66,7 +80,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 10px;
-    background: linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    background: black;
     z-index: -1;
 }
 

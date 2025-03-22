@@ -7,6 +7,8 @@
     position: relative;
     transition: all .2s ease ;
     resize: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
 }
 
 .text::placeholder{

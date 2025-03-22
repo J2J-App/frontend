@@ -2,6 +2,8 @@
 
 import React from 'react';
 import styles from './checkboxes.module.css';
+import Image from "next/image";
+import checkmark from "@/public/checkmark.svg"
 
 type CheckBoxesProps = {
   checked?: boolean;
@@ -31,6 +33,8 @@ export default function Checkbox({
                     onChange={handleChange}
                 />
                 <div className={styles.checkbox}></div>
+                <Image className={styles.checkmark} src={checkmark} alt={"Checkmark"} width={10}/>
+
             </div>
         </label>
     );

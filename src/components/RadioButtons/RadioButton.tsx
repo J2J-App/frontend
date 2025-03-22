@@ -43,9 +43,7 @@ export default function RadioButton({
       />
       <span className={`
         ${styles.radioButton} 
-        ${isHovered ? styles.hover : ''} 
         ${checked ? styles.selected : ''} 
-        ${isFocused ? styles.focus : ''}
       `}></span>
       <span className={styles.radioLabel}>{label}</span>
     </label>

@@ -39,53 +39,69 @@
     background-color: #0F0F0F;
     border: 1px solid #282828;
     border-radius: 4px;
+    overflow: clip;
+    z-index: -5;
     transition: all 0.2s ease;
+
 }
 
 /* Hover state */
 .checkboxWrapper:hover .checkbox {
-    background-color: #141414;
+    background-color: #1c1c1c;
     border-color: #454545;
 }
 
-/* Focus state */
-.checkboxWrapper input[type="checkbox"]:focus + .checkbox {
-    outline: 1px solid #2B2B2B;
+.checkboxWrapper input[type="checkbox"] + .checkbox + .checkmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all .3s cubic-bezier(0.87, 0, 0.13, 1);;
+    z-index: 5;
+}
+
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox + .checkmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all .2s ease;
+    z-index: 5;
 }
 
 /* Active state */
 .checkboxWrapper input[type="checkbox"]:active + .checkbox {
-    background-color: #1e1e1e;
+    background-color: #000000;
 }
 
 /* Checked state */
 .checkboxWrapper input[type="checkbox"]:checked + .checkbox {
-    background-color: #141414;
+    background-color: #0c0c0c;
     border-color: #454545;
 }
 
 /* Checkmark (using ::after pseudo-element) */
-.checkboxWrapper input[type="checkbox"]:checked + .checkbox::after {
+.checkboxWrapper input[type="checkbox"] + .checkbox::after {
     content: "";
     position: absolute;
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px; 
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    /* background-image: url('path-to-your-checkmark.svg'); */
-    background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    left: 50%;
+    bottom: -50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+    width: 120%;
+    height: 100%;
+    background : linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    filter: blur(4px);
+    opacity: 0;
+    z-index: 1;
+    transition: all .3s ease-in-out;
 }
 
-/* added glowing effect (using ::before pseudo-element)*/
-.checkboxWrapper input[type="checkbox"]:checked + .checkbox::before{
-    content: "";
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 20px;
-    height: 10px;
-    filter: blur(6px);
-    background : linear-gradient(90deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox::after {
+    opacity: 0.9;
+
+}
+.checkboxWrapper input[type="checkbox"]:active + .checkbox::after {
+    opacity: 0.5;
+
 }

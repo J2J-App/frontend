@@ -4,8 +4,8 @@ import React from 'react';
 import styles from './switch.module.css';
 
 type SwitchProps = {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
 };
 
 export default function Switch({ 
