@@ -1,7 +1,8 @@
 "use client"
 
 import React from 'react';
-import "./styles.css"
+import "./styles.css";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import Button from '@/components/Button/Button';
 import TextArea from '@/components/Inputs/TextArea/textarea';
@@ -12,7 +13,9 @@ import Checkbox from '@/components/CheckBoxes/CheckBoxes';
 import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
 
-export default function Components() {
+export default function Components() {    const router = useRouter();
+    const searchParams = useSearchParams();
+
     // For switch components
     const [isSwitchChecked, setIsSwitchChecked] = React.useState(false);
     
@@ -24,6 +27,12 @@ export default function Components() {
 
     // For pagination
     const [currentPage, setCurrentPage] = React.useState(1);
+
+    React.useEffect(() => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('page', currentPage.toString());
+        router.push(`?${params.toString()}`, { scroll: false });
+    }, [currentPage, router, searchParams]);
 
     const radioOptions = [
         { label: 'DTU', value: 'DTU' },
@@ -149,7 +158,6 @@ export default function Components() {
                         options={options} 
                         onChange={handleChange} 
                         placeholder="Select"
-                        lastOption='Item 3'
                     />
                 </div>
             )
