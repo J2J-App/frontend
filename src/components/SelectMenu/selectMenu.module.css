@@ -48,7 +48,8 @@
     background-color: #1e1e1e;
     border-radius: 7px;
     z-index: 1;
-    max-height: 200px;
+    max-height: 126px;
+    overflow-y: auto;
 }
 
 .option {
@@ -76,7 +77,7 @@
 }
 
 .dropdown::-webkit-scrollbar {
-    width: 6px;
+    width: 0px;
 }
 
 .dropdown::-webkit-scrollbar-track {
@@ -93,7 +94,7 @@
 }
 
 .rotate{
-    transform: rotate(180deg);
+    transform: scaleY(-1);
 }
 
 .arrowContainer{

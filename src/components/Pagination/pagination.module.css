@@ -80,8 +80,10 @@
 
 .arrowLeft{
     transform: rotate(90deg);
+    margin-top:2px ;
 }
 
 .arrowRight{
-    transform: rotate(270deg);
+    transform: scaleY(-1) rotate(-90deg);
+    margin-top:4px ;
 }
