@@ -93,20 +93,16 @@ export default function SelectMenu({
             <div 
                 className={`${styles.selectButton} ${isOpen ? styles.active : ''} ${isFocused ? styles.focus : ''}`}
                 onClick={toggleDropdown}
-                style={{
-                    borderBottomLeftRadius: isOpen ? 0 : 6,
-                    borderBottomRightRadius: isOpen ? 0 : 6
-                }}
             >
                 <span>{selectedOption ? selectedOption.label : placeholder}</span>
                 <span className={`${styles.arrowOuterContainer} ${isOpen ? styles.up : styles.down}`}>
                     {isOpen ? (
                         <div className={styles.arrowContainer}>
-                            <Image src={arrowDown} alt="arrow-up" width={16} height={16} className={styles.arrow}/>
+                            <Image src={arrowDown} alt="arrow-up" width={16} height={16} className={styles.rotate}/>
                         </div>
                     ) : (
                         <div className={styles.arrowContainer}>
-                            <Image src={arrowDown} alt="arrow-up" width={16} height={16} className={styles.rotate}/>
+                            <Image src={arrowDown} alt="arrow-up" width={16} height={16} className={styles.arrow}/>
                         </div>
                     )}
                 </span>
