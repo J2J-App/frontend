@@ -1,0 +1,9 @@
+.content{
+    width:fit-content;
+    height:fit-content;
+    background-color: rgba(26, 26, 26, 1);
+    margin: auto;
+    padding: 24px;
+    border-radius: 8px;
+    filter: blur(0px);
+}

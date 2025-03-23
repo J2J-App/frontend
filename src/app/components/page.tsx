@@ -15,6 +15,7 @@ import Pagination from '@/components/Pagination/pagination';
 import Combobox from '@/components/Combobox/Combobox';
 import Accordion from '@/components/Accordion/Accordion';
 import Tabs from '@/components/Tabs/Tabs';
+import Dialog from '@/components/DialogBox/DialogBox';
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -30,6 +31,9 @@ export default function Components() {    const router = useRouter();
 
     // For pagination
     const [currentPage, setCurrentPage] = React.useState(1);
+
+    // For dialog box
+    const [isDialogOpen, setIsDialogOpen] = React.useState(false)
 
     React.useEffect(() => {
         const params = new URLSearchParams(searchParams.toString());
@@ -107,6 +111,14 @@ export default function Components() {    const router = useRouter();
         setCurrentPage(page);
         console.log(`Page changed to ${page}`);
     };
+
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false)
+    }
+
+    const handleOpenDialog = () => {
+        setIsDialogOpen(true)
+    }
 
     // Define all components
     const allComponents = [
@@ -257,6 +269,37 @@ export default function Components() {    const router = useRouter();
                     />
                 </div>
             )
+        },
+        {
+            title: "Dialog Box",
+            content: (
+                <div key="dialogbox">
+                    <h3>Dialog Box</h3>
+                    <button 
+                        onClick={handleOpenDialog}>
+                            Open Dialog Box
+                    </button>
+                    <Dialog
+                     isOpen={isDialogOpen} 
+                     >
+                        <p style={{
+                            color : "white",
+                            fontSize : "16px",
+                            textAlign : "center",
+                            marginBottom : "20px",
+                        }}>
+                            This is a dialog box
+                        </p>
+                        <Button 
+                            text="Close Dialog Box" 
+                            onClick={handleCloseDialog}
+                            variant='Primary'
+                            width={120}
+                            height={45}
+                        />
+                    </Dialog>
+                </div>
+            )
         }
     ];
 
@@ -303,7 +346,8 @@ export default function Components() {    const router = useRouter();
                 <Pagination 
                     currentPage={currentPage} 
                     totalPages={totalPages} 
-                    onPageChange={handlePageChange} 
+                    onPageChange={handlePageChange}
+                    showEllipsis={true}
                 />
             </div>
         </div>
