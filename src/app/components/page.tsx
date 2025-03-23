@@ -12,6 +12,7 @@ import RadioGroup from '@/components/RadioButtons/RadioGroup';
 import Checkbox from '@/components/CheckBoxes/CheckBoxes';
 import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
+import Combobox from '@/components/Combobox/Combobox';
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -187,6 +188,20 @@ export default function Components() {    const router = useRouter();
                 </div>
             )
         },
+        {
+            title:"Combobox",
+            content: (
+                <div key="combobox">
+                    <h3>Combobox</h3>
+                    <Combobox
+                        options={options}
+                        placeholder="Select"
+                        searchable={true}
+                        multiSelect={true}
+                    />
+                </div>
+            )
+        }
     ];
 
     // Calculate pagination data

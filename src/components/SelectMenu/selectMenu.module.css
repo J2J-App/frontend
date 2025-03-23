@@ -140,19 +140,6 @@
     width: 0px;
 }
 
-.dropdownContent::-webkit-scrollbar-track {
-    background: #1e1e1e;
-}
-
-.dropdownContent::-webkit-scrollbar-thumb {
-    background: #3a3a3a;
-    border-radius: 3px;
-}
-
-.dropdownContent::-webkit-scrollbar-thumb:hover {
-    background: #505050;
-}
-
 .option:last-child {
     border-bottom: none;
 }

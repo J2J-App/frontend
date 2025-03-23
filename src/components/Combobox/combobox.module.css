@@ -1,0 +1,182 @@
+ .comboboxContainer {
+    position: relative;
+    width: 250px;
+    font-family: 'Roboto', sans-serif;
+    color: #dadada;
+    user-select: none;
+}
+
+.comboboxButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:rgba(28, 28, 28, 1);
+    border-style: solid;
+    border-color: rgb(45, 45, 45);
+    border-width: 1px;
+    border-radius: 7px;
+    height: 42px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+.displayText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 15, 15, 1);
+    border-style: Solid;
+    border-color: rgb(45, 45, 45);
+    border-width: 1px;
+    border-radius: 7px;
+    padding: 4px 6px 4px 12px;
+    height: 41px;
+    width: 220px;
+}
+
+.displayText:hover {
+    background: rgba(23, 23, 23, 1);
+    border-style: Solid;
+    border-color: #242424;
+    border-color: rgba(36, 36, 36, 1);
+    border-width: 1px;
+}
+
+.displayText:active {
+    background-color: #000000 !important;
+    border-color: #454545;
+}
+
+.displayText.active {
+    background: rgba(23, 23, 23, 1);
+    border-style: Solid;
+    border-color: #242424;
+    border-color: rgba(36, 36, 36, 1);
+    border-width: 1px;
+}
+
+
+.comboboxButton .arrowContainer {
+    width: 34px;
+    height: 34px;
+    background:rgba(28, 28, 28, 1);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 5px); 
+    left: 0;
+    width: 100%;
+    border-style: solid;
+    border-color: rgba(38, 38, 38, 1);
+    border-width: 1px;
+    background: rgba(20, 20, 20, 1);
+    border-radius: 7px;
+    z-index: 10;
+    overflow: hidden;
+    transition: height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    height: 0;
+    transform: translateY(-10px);
+    transform-origin: top center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.option {
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(38, 38, 38, 1);
+    position: relative;
+}
+
+.dropdownContent {
+    max-height: 126px;
+    overflow-y: auto;
+}
+
+.dropdownContent::-webkit-scrollbar {
+    width: 0px;
+}
+
+.option:last-child {
+    border-bottom: none;
+}
+
+.searchWrapper {
+    padding: 6px;
+    background: rgba(26, 26, 26, 1);
+    border-bottom: 1px solid rgba(35, 35, 35, 1);
+}
+
+.searchContainer {
+    display: flex;
+    border-radius: 6px;
+    align-items: center;
+    background: rgba(15, 15, 15, 1);
+}
+
+.searchInput {
+    padding: 8px 10px;
+    background: rgba(15, 15, 15, 1);
+    border: 1px solid rgba(15, 15, 15, 1);
+    border-radius: 5px;
+    color: #dadada;
+    font-size: 14px;
+    outline: none;
+}
+
+.searchIconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(30, 30, 30, 1);
+    border-radius: 6px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 6px;
+    margin-left: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.option:hover {
+    background: rgba(35, 35, 35, 1);
+}
+
+.noResults {
+    padding: 10px 12px;
+    color: #777;
+    font-style: italic;
+    text-align: center;
+}
+
+.option.selected {
+    font-weight: 600;
+    background: #1F1F1F;
+}
+
+.option.selected::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    width: 3px;
+    top:6px;
+    height: 24px;
+    border-radius: 6px;
+    background: linear-gradient(0deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
+}
