@@ -14,6 +14,7 @@ import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
 import Combobox from '@/components/Combobox/Combobox';
 import Accordion from '@/components/Accordion/Accordion';
+import Tabs from '@/components/Tabs/Tabs';
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -53,6 +54,37 @@ export default function Components() {    const router = useRouter();
         { label: 'Item 7', value: 'item7' },
         { label: 'Item 8', value: 'item8' },
     ];
+
+    const tabsData = [
+        {
+          label: "Round 1",
+          content: <div>Content for Round 1</div>
+        },
+        {
+          label: "Round 2",
+          content: <div>Content for Round 2</div>
+        },
+        {
+          label: "Round 3",
+          content: <div>Content for Round 3</div>
+        },
+        {
+          label: "Round 4",
+          content: <div>Content for Round 4</div>
+        },
+        {
+          label: "Round 5",
+          content: <div>Content for Round 5</div>
+        },
+        {
+            label: "Spot Round",
+            content: <div>Content for Spot Round</div>
+        },
+        {
+            label : "Upgradation Round",
+            content: <div>Content for Upgradation Round</div>
+        }
+      ];
 
     const handleChange = (value: string) => {
         console.log(value);
@@ -211,6 +243,17 @@ export default function Components() {    const router = useRouter();
                     <Accordion
                         title="Expendible Data"
                         content="Lapis, dolor, amet, consectetur, adipiscing, elit, sed, do, eiusmod, tempor, incididunt, ut, labore, et, dolore, magna, aliqua. Ut, enim, ad, minim, veniam, quis, nostrud, exercitation, ullamco, laboris, nisi, ut, aliquip, ex, ea, commodo, consequat, duis, aute, irure, dolor, in, reprehenderit, in, voluptate, velit, esse, cillum, dolore, eu, fugiat, nulla, pariatur, excepteur, sint, occaecat, cupidatat, non, proident, sunt, in, culpa, qui, officia, deserunt, mollit, anim, id, est, laborum."
+                    />
+                </div>
+            )
+        },
+        {
+            title: "Tabs",
+            content: (
+                <div key="tabs">
+                    <h3>Tabs</h3>
+                    <Tabs 
+                        tabs={tabsData} 
                     />
                 </div>
             )

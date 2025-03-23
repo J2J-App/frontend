@@ -1,0 +1,68 @@
+.tabs{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tabContent {
+    color: #fff;
+    margin-top: 12px;
+    padding: 8px;
+    border-radius: 6px;
+    background: rgba(37, 37, 37, 1);
+}
+
+.tabLabels {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 6px;
+    width: auto;
+    padding: 8px;
+    background: rgba(37, 37, 37, 1);
+    z-index: -10;
+}
+
+.tabLabel {
+    position: relative;
+    background: transparent;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    padding-left:12px ;
+    padding-right: 12px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    z-index: 1;
+}
+
+.active{
+    background:linear-gradient(90deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
+}
+
+.active::after{
+    content: "";
+    position: absolute;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    top: 1px;
+    left: 1px;
+    background: rgba(37, 37, 37, 1);
+    border-radius: 3px;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.labelText{
+    font-size: 14px;
+    color: #fff;
+}
+
+.tabLabel.active .labelText{
+    font-weight: 500;
+}
+
+/* white glowing effect */
+/* 
+.tabLabel.active {
+    box-shadow: 0 0 4px white;
+}
+ */
