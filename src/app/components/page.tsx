@@ -13,6 +13,7 @@ import Checkbox from '@/components/CheckBoxes/CheckBoxes';
 import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
 import Combobox from '@/components/Combobox/Combobox';
+import Accordion from '@/components/Accordion/Accordion';
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -198,6 +199,18 @@ export default function Components() {    const router = useRouter();
                         placeholder="Select"
                         searchable={true}
                         multiSelect={true}
+                    />
+                </div>
+            )
+        },
+        {
+            title: "Accordion",
+            content: (
+                <div key="accordion">
+                    <h3>Accordion</h3>
+                    <Accordion
+                        title="Expendible Data"
+                        content="Lapis, dolor, amet, consectetur, adipiscing, elit, sed, do, eiusmod, tempor, incididunt, ut, labore, et, dolore, magna, aliqua. Ut, enim, ad, minim, veniam, quis, nostrud, exercitation, ullamco, laboris, nisi, ut, aliquip, ex, ea, commodo, consequat, duis, aute, irure, dolor, in, reprehenderit, in, voluptate, velit, esse, cillum, dolore, eu, fugiat, nulla, pariatur, excepteur, sint, occaecat, cupidatat, non, proident, sunt, in, culpa, qui, officia, deserunt, mollit, anim, id, est, laborum."
                     />
                 </div>
             )

@@ -1,0 +1,50 @@
+.accordionTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleText{
+    font-size: small;
+    color: #fff;
+    font-weight: 500;
+    padding-left: 2px;
+}
+
+.accodionContainer{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-bottom: rgba(37,37,37,1) 3px solid;
+}
+
+.arrowContainer{
+    width: 30px;
+    height: 20px;
+    background: rgba(37, 37, 37, 1);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.contentText{
+    color: grey;
+    font-size: 10px;
+    padding-top: 12px;
+    padding-left: 2px;
+}
+
+.accordionTitle .arrow {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.accordionTitle.active .arrow {
+    transform: translate(-50%, -50%) rotate(180deg);
+}
