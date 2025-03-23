@@ -1,3 +1,4 @@
+import {Suspense} from "react";
 
 export default function Layout({ children }: {
     children: React.ReactNode;
@@ -9,6 +10,8 @@ export default function Layout({ children }: {
         alignItems: 'center',
         justifyContent: 'center',
     }}>
-        {children}
+        <Suspense fallback={null}>
+            {children}
+        </Suspense>
     </div>
 }

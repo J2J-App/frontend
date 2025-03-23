@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, {Suspense} from 'react';
 import "./styles.css";
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -330,43 +330,43 @@ export default function Components() {    const router = useRouter();
     const currentComponents = allComponents.slice(indexOfFirstComponent, indexOfLastComponent);
 
     return (
-        <div style={{
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            maxWidth: '800px',
-            flexDirection: 'column',
-            gap: '20px',
-            padding: '20px',
-        }}>
-            <h1 style={{
-                fontSize: '24px',
-                fontWeight: 'bold',
-                color: 'white',
-                width: '100%',
-                marginBottom: '20px',
+            <div style={{
+                width: '100vw',
+                height: '100vh',
+                display: 'flex',
+                maxWidth: '800px',
+                flexDirection: 'column',
+                gap: '20px',
+                padding: '20px',
             }}>
-                Components (Page {currentPage} of {totalPages})
-            </h1>
-            
-            {/* Display current components */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', flexGrow: 1 }}>
-                {currentComponents.map((component, index) => (
-                    <div key={index}>
-                        {component.content}
-                    </div>
-                ))}
+                <h1 style={{
+                    fontSize: '24px',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    width: '100%',
+                    marginBottom: '20px',
+                }}>
+                    Components (Page {currentPage} of {totalPages})
+                </h1>
+
+                {/* Display current components */}
+                <div style={{display: 'flex', flexDirection: 'column', gap: '30px', flexGrow: 1}}>
+                    {currentComponents.map((component, index) => (
+                        <div key={index}>
+                            {component.content}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Pagination control */}
+                <div>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                        showEllipsis={true}
+                    />
+                </div>
             </div>
-            
-            {/* Pagination control */}
-            <div>
-                <Pagination 
-                    currentPage={currentPage} 
-                    totalPages={totalPages} 
-                    onPageChange={handlePageChange}
-                    showEllipsis={true}
-                />
-            </div>
-        </div>
     );
 }

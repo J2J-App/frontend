@@ -72,7 +72,7 @@
                 .tileContent {
                     display: flex;
                     flex-direction: column;
-                    align-items: end;
+                    align-items: flex-end;
                 }
             }
             .tile3 {
@@ -85,7 +85,7 @@
                 .tileContent {
                     display: flex;
                     flex-direction: column-reverse;
-                    align-items: end;
+                    align-items: flex-end;
                 }
             }
         }
