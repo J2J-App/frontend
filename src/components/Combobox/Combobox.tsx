@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './combobox.module.css';
 import Image from 'next/image';
 import arrow from '@/public/arrows2.svg';
@@ -21,13 +21,13 @@ type ComboboxProps = {
 };
 
 export default function Combobox({
-    options,
-    defaultValue = [],
-    onChange,
-    placeholder = "Select a University...",
-    searchable = true,
-    multiSelect = true
-}: ComboboxProps) {
+                                     options,
+                                     defaultValue = [],
+                                     onChange,
+                                     placeholder = "Select a University...",
+                                     searchable = true,
+                                     multiSelect = true
+                                 }: ComboboxProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>(
@@ -36,39 +36,52 @@ export default function Combobox({
     const [searchTerm, setSearchTerm] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState(options);
-    
+
     const comboboxRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const isInitialAnimation = useRef(true);
 
-    useEffect(() => {
-        if (searchTerm) {
-            setFilteredOptions(
-                options.filter(option => 
-                    option.label.toLowerCase().includes(searchTerm.toLowerCase())
-                )
+    // Filter options without triggering re-renders
+    const filterOptions = useCallback((term: string) => {
+        if (term) {
+            return options.filter(option =>
+                option.label.toLowerCase().includes(term.toLowerCase())
             );
-        } else {
-            setFilteredOptions(options);
         }
-    }, [searchTerm, options]);
+        return options;
+    }, [options]);
+
+    // Update filtered options without triggering animation
+    useEffect(() => {
+        if (isOpen) {
+            const newFilteredOptions = filterOptions(searchTerm);
+            setFilteredOptions(newFilteredOptions);
+
+            // Only adjust height after the initial animation
+            if (!isInitialAnimation.current && dropdownRef.current) {
+                // Set height to auto immediately for content changes
+                dropdownRef.current.style.height = 'auto';
+            }
+        }
+    }, [searchTerm, isOpen, filterOptions]);
 
     const handleOptionClick = (option: ComboboxOption) => {
         if (multiSelect) {
             setSelectedOptions(prev => {
                 const isSelected = prev.some(item => item.value === option.value);
-                
+
                 const newSelection = isSelected
                     ? prev.filter(item => item.value !== option.value)
                     : [...prev, option];
-                
+
                 if (onChange) {
                     onChange(newSelection.map(opt => opt.value));
                 }
-                
+
                 return newSelection;
             });
-            
+
             // Focus back on the input if searchable
             if (searchable && inputRef.current) {
                 inputRef.current.focus();
@@ -96,7 +109,12 @@ export default function Combobox({
     const openDropdown = () => {
         setIsAnimating(true);
         setIsOpen(true);
-        
+        isInitialAnimation.current = true;
+
+        // Reset search when opening
+        setSearchTerm('');
+        setFilteredOptions(options);
+
         // Focus on input if searchable
         setTimeout(() => {
             if (searchable && inputRef.current) {
@@ -125,7 +143,7 @@ export default function Combobox({
 
     // Set initial height when dropdown opens
     useEffect(() => {
-        if (isOpen && dropdownRef.current) {
+        if (isOpen && dropdownRef.current && isInitialAnimation.current) {
             // Start with height 0
             dropdownRef.current.style.height = '0';
             dropdownRef.current.style.opacity = '0';
@@ -144,10 +162,11 @@ export default function Combobox({
                 if (dropdownRef.current) {
                     dropdownRef.current.style.height = 'auto';
                     setIsAnimating(false);
+                    isInitialAnimation.current = false;
                 }
             }, 300); // Match this with your CSS transition duration
         }
-    }, [isOpen, filteredOptions]);
+    }, [isOpen]);
 
     // Close dropdown when clicking outside
     useEffect(() => {

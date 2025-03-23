@@ -1,0 +1,75 @@
+.uniCardContainer {
+    width: 300px;
+    height: 450px;
+    overflow: hidden;
+    background : rgba(15, 15, 15, 1);
+    border-style : Solid;
+    border-color : #212121;
+    border-width : 1px;
+    border-radius: 10px;
+    position: relative;
+    .imageContainer {
+        position: relative;
+        height: 200px;
+        .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+    .contentContainer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 150px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .name {
+            font-family: "Impact", serif;
+            letter-spacing : -1px;
+            color : rgba(159, 159, 159, 0.2);
+            font-size: 100px;
+        }
+        .desc {
+            font-size: 16px;
+            color: white;
+            padding: 0 30px;
+            font-weight: 200;
+            text-align: center;
+        }
+        .info {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-direction: row;
+            .infoBox {
+                display: flex;
+
+                gap: 10px;
+                .infoText {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.cls-1 {
+    fill: none;
+}
+
+.cls2 {
+    clip-path: url(#clippath);
+}

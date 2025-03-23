@@ -28,12 +28,9 @@
     justify-content: space-between;
     align-items: center;
     background: rgba(15, 15, 15, 1);
-    border-style: Solid;
-    border-color: rgb(45, 45, 45);
-    border-width: 1px;
-    border-radius: 7px;
+    border-radius: 6px;
     padding: 4px 6px 4px 12px;
-    height: 41px;
+    height: 40px;
     width: 220px;
 }
 

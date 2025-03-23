@@ -4,6 +4,9 @@ import React from 'react';
 import "./styles.css";
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import nsut from "@/public/nsut.jpg";
+import nsut_icon from "@/public/nsuticon.png";
+
 import Button from '@/components/Button/Button';
 import TextArea from '@/components/Inputs/TextArea/textarea';
 import SingleInput from '@/components/Inputs/SingleInput/singleInput';
@@ -14,6 +17,8 @@ import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
 import Combobox from '@/components/Combobox/Combobox';
 import Accordion from '@/components/Accordion/Accordion';
+import UniCard from "@/components/cards/uni/uni-card.tsx";
+import PlacementCard from "@/components/cards/placement/placement.tsx";
 import Tabs from '@/components/Tabs/Tabs';
 import Dialog from '@/components/DialogBox/DialogBox';
 
@@ -260,12 +265,24 @@ export default function Components() {    const router = useRouter();
             )
         },
         {
+            title: "Cards",
+            content: (
+                <div key="cards" style={{
+                    display: "flex",
+                    gap: "10px",
+                }}>
+                    <UniCard name="NSUT" description="An absolute shithole of incompetant admins, fuckall teachers and perverted students." background={nsut.src} icon={nsut_icon.src} location={"Dwarka Mor"} nirf="57" />
+                    <PlacementCard course="CSE" background={nsut.src} name={"NSUT"} icon={nsut_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
+                </div>
+            )
+        },
+        {
             title: "Tabs",
             content: (
                 <div key="tabs">
                     <h3>Tabs</h3>
-                    <Tabs 
-                        tabs={tabsData} 
+                    <Tabs
+                        tabs={tabsData}
                     />
                 </div>
             )
@@ -275,12 +292,12 @@ export default function Components() {    const router = useRouter();
             content: (
                 <div key="dialogbox">
                     <h3>Dialog Box</h3>
-                    <button 
+                    <button
                         onClick={handleOpenDialog}>
                             Open Dialog Box
                     </button>
                     <Dialog
-                     isOpen={isDialogOpen} 
+                     isOpen={isDialogOpen}
                      >
                         <p style={{
                             color : "white",
@@ -290,8 +307,8 @@ export default function Components() {    const router = useRouter();
                         }}>
                             This is a dialog box
                         </p>
-                        <Button 
-                            text="Close Dialog Box" 
+                        <Button
+                            text="Close Dialog Box"
                             onClick={handleCloseDialog}
                             variant='Primary'
                             width={120}

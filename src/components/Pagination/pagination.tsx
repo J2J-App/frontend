@@ -19,7 +19,7 @@ export default function Pagination({
   currentPage = 1, 
   totalPages = 5, 
   onPageChange,
-  showEllipsis = false,
+  showEllipsis = true,
   urlParam = 'page'
 }: PaginationProps) {
   const searchParams = useSearchParams()
