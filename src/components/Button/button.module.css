@@ -13,7 +13,6 @@
   background-color: transparent;
 }
 
-
 .buttonContainer {
   display: inline-block;
   height: fit-content;
@@ -32,6 +31,7 @@
 .Primary.buttonContainer {
   background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
 }
+
 .Primary.buttonContainer::after {
   content: "";
   position: absolute;

@@ -21,6 +21,7 @@ import UniCard from "@/components/cards/Uni/uni-card.tsx";
 import PlacementCard from "@/components/cards/placement/placement.tsx";
 import Tabs from '@/components/Tabs/Tabs';
 import Dialog from '@/components/DialogBox/DialogBox';
+import Badge from '@/components/Badges/Badges';
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -300,6 +301,7 @@ export default function Components() {    const router = useRouter();
                         onClick={handleOpenDialog} />
                     <Dialog
                      isOpen={isDialogOpen}
+                     onClose={handleCloseDialog}
                      >
                         <h1 style={{
                             color : "white",
@@ -324,6 +326,18 @@ export default function Components() {    const router = useRouter();
                             />
                         </div>
                     </Dialog>
+                </div>
+            )
+        },
+        {
+            title:"Badges",
+            content: (
+                <div key="badges" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <h3>Badges</h3>
+                    <Badge text="Fancy" varient="fancy" width={90} />
+                    <Badge text="Outline" varient="outline" width={90} />
+                    <Badge text="Default" varient="default" width={90} />
+                    <Badge text="Danger" varient="danger" width={90} />
                 </div>
             )
         }
