@@ -1,4 +1,4 @@
-import styles from "./uniCard.module.css";
+import styles from "./uni-card.module.css";
 import Image from "next/image";
 import locationIcon from "@/public/locationicon.svg"
 import nirficon from "@/public/nirficon.svg"

@@ -17,8 +17,8 @@ import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
 import Combobox from '@/components/Combobox/Combobox';
 import Accordion from '@/components/Accordion/Accordion';
-import UniCard from "@/components/Cards/Uni/UniCard";
-import PlacementCard from "@/components/Cards/Placement/Placement";
+import UniCard from "@/components/cards/Uni/uni-card.tsx";
+import PlacementCard from "@/components/cards/placement/placement.tsx";
 import Tabs from '@/components/Tabs/Tabs';
 import Dialog from '@/components/DialogBox/DialogBox';
 
@@ -260,6 +260,7 @@ export default function Components() {    const router = useRouter();
                     <Accordion
                         title="Expendible Data"
                         content="Lapis, dolor, amet, consectetur, adipiscing, elit, sed, do, eiusmod, tempor, incididunt, ut, labore, et, dolore, magna, aliqua. Ut, enim, ad, minim, veniam, quis, nostrud, exercitation, ullamco, laboris, nisi, ut, aliquip, ex, ea, commodo, consequat, duis, aute, irure, dolor, in, reprehenderit, in, voluptate, velit, esse, cillum, dolore, eu, fugiat, nulla, pariatur, excepteur, sint, occaecat, cupidatat, non, proident, sunt, in, culpa, qui, officia, deserunt, mollit, anim, id, est, laborum."
+                        width={"100%"}
                     />
                 </div>
             )
@@ -292,28 +293,36 @@ export default function Components() {    const router = useRouter();
             content: (
                 <div key="dialogbox">
                     <h3>Dialog Box</h3>
-                    <button
-                        onClick={handleOpenDialog}>
-                            Open Dialog Box
-                    </button>
+                    <Button text="Open Dialog Box"
+                            variant="Primary"
+                            height={40}
+                            width={150}
+                        onClick={handleOpenDialog} />
                     <Dialog
                      isOpen={isDialogOpen}
                      >
-                        <p style={{
+                        <h1 style={{
                             color : "white",
-                            fontSize : "16px",
-                            textAlign : "center",
-                            marginBottom : "20px",
+                            fontSize : "20px",
+                            fontWeight: "900",
+                            marginBottom : "10px",
                         }}>
                             This is a dialog box
-                        </p>
-                        <Button
-                            text="Close Dialog Box"
-                            onClick={handleCloseDialog}
-                            variant='Primary'
-                            width={120}
-                            height={45}
-                        />
+                        </h1>
+                        <UniCard name="NSUT" description="An absolute shithole of incompetant admins, fuckall teachers and perverted students." background={nsut.src} icon={nsut_icon.src} location={"Dwarka Mor"} nirf="57" />
+                        <div style={{
+                            width: "fit-content",
+                            marginLeft: "auto",
+                            marginTop: "10px",
+                        }}>
+                            <Button
+                                text="Close"
+                                onClick={handleCloseDialog}
+                                variant='Danger'
+                                width={70}
+                                height={35}
+                            />
+                        </div>
                     </Dialog>
                 </div>
             )

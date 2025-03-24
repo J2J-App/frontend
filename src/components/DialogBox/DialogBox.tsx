@@ -6,14 +6,14 @@ import styles from './dialogBox.module.css'
 type DialogProps = {
   isOpen: boolean
   children: ReactNode
-  onClose: () => void
+  onClose?: () => void
 }
 
-export default function Dialog({ 
-  isOpen, 
-  children,
-  onClose, 
-}: DialogProps) {
+export default function Dialog({
+                                 isOpen,
+                                 children,
+                                 onClose,
+                               }: DialogProps) {
   const [shouldRender, setShouldRender] = useState(isOpen)
 
   useEffect(() => {
@@ -28,15 +28,15 @@ export default function Dialog({
   if (!shouldRender) return null
 
   return (
-    <div className={styles.backdrop} onClick={onClose}>
-      <div 
-        className={`${styles.dialog} ${isOpen ? styles.open : styles.closing}`}
-        onClick={e => e.stopPropagation()}
-      >
-        <div className={styles.content}>
-          {children}
+      <div className={`${styles.backdrop} ${isOpen ? styles.open : styles.closing}`} onClick={onClose}>
+        <div
+            className={`${styles.dialog} ${isOpen ? styles.open : styles.closing}`}
+            onClick={e => e.stopPropagation()}
+        >
+          <div className={styles.content}>
+            {children}
+          </div>
         </div>
       </div>
-    </div>
   )
 }

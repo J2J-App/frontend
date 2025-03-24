@@ -1,25 +1,32 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import styles from "./accordion.module.css"
 import Image from 'next/image'
 import arrow from "@/public/arrow.svg"
 
 type AccordionProps = {
-  title: string;
-  content: string;
-  height?: number;
-  width?: number;
+    title: string;
+    content: string;
+    height?: string;
+    width?: string;
 }
 
-export default function Accordion(
-    {
-        title,
-        content,
-        height,
-        width
-    }: AccordionProps){
+export default function Accordion({
+                                      title,
+                                      content,
+                                      height,
+                                      width
+                                  }: AccordionProps) {
     const [isOpen, setIsOpen] = useState(false)
+    const contentRef = useRef<HTMLDivElement>(null)
+    const [contentHeight, setContentHeight] = useState(0)
+
+    useEffect(() => {
+        if (contentRef.current) {
+            setContentHeight(contentRef.current.scrollHeight)
+        }
+    }, [content])
 
     const toggleAccordion = () => {
         setIsOpen(!isOpen)
@@ -27,19 +34,25 @@ export default function Accordion(
 
     return (
         <div className={styles.accodionContainer}
-        style={{
-            height : height ? `${height}px` : 'auto',
-            width : width ? `${width}px` : '200px'
-        }}>
-            <div className={`${styles.accordionTitle} ${isOpen ? styles.active : ''} `} onClick={toggleAccordion}>
+             style={{
+                 height : height ? `${height}` : 'auto',
+                 width : width ? `${width}` : '200px'
+             }}>
+            <div className={`${styles.accordionTitle} ${isOpen ? styles.active : ''}`} onClick={toggleAccordion}>
                 <span className={styles.titleText}>{title}</span>
                 <div className={styles.arrowContainer}>
                     <Image src={arrow} alt="arrow" className={styles.arrow} />
                 </div>
             </div>
-            {isOpen && <div className={styles.contentText}>
-                {content}
-            </div>}
+            <div
+                ref={contentRef}
+                className={`${styles.contentWrapper} ${isOpen ? styles.open : ''}`}
+                style={{ maxHeight: isOpen ? `${contentHeight}px` : '0' }}
+            >
+                <div className={styles.contentText}>
+                    {content}
+                </div>
+            </div>
         </div>
     )
 }

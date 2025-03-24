@@ -42,7 +42,7 @@
   background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
   z-index: -2;
   opacity: 0;
-  filter: blur(5px);
+  filter: blur(20px);
   transition: all 0.2s ease-in-out;
 }
 .Primary.buttonContainer:active::after {
@@ -80,7 +80,7 @@
   width: 80%;
   height: 100%;
   background: linear-gradient(90deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
-  filter: blur(12px);
+  filter: blur(20px);
   z-index: 1;
   opacity: .7;
   transition: all .3s ease-in-out;
