@@ -1,7 +1,7 @@
 "use client"
 
 import React, { ReactNode, useEffect, useState } from 'react'
-import styles from './dialogBox.module.css'
+import styles from './dialog-box.module.css'
 
 type DialogProps = {
   isOpen: boolean

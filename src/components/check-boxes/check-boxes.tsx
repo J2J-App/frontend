@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import styles from './checkboxes.module.css';
+import styles from './check-boxes.module.css';
 import Image from "next/image";
 import checkmark from "@/public/checkmark.svg"
 

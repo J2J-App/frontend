@@ -7,21 +7,21 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import nsut from "@/public/nsut.jpg";
 import nsut_icon from "@/public/nsuticon.png";
 
-import Button from '@/components/Button/Button';
+import Button from '@/components/buttons/button.tsx';
 import TextArea from '@/components/Inputs/TextArea/textarea';
 import SingleInput from '@/components/Inputs/SingleInput/singleInput';
-import Switch from '@/components/Switch/switch';
-import RadioGroup from '@/components/RadioButtons/RadioGroup';
-import Checkbox from '@/components/CheckBoxes/CheckBoxes';
-import SelectMenu from '@/components/SelectMenu/SelectMenu';
-import Pagination from '@/components/Pagination/pagination';
-import Combobox from '@/components/Combobox/Combobox';
-import Accordion from '@/components/Accordion/Accordion';
+import Switch from '@/components/switch/switch';
+import RadioGroup from '@/components/radio-buttons/radio-group.tsx';
+import Checkbox from '@/components/check-boxes/check-boxes.tsx';
+import SelectMenu from '@/components/select-menus/select-menu.tsx';
+import Pagination from '@/components/pagination/pagination';
+import Combobox from '@/components/combobox/combobox.tsx';
+import Accordion from '@/components/accordion/accordion.tsx';
 import UniCard from "@/components/cards/Uni/uni-card.tsx";
 import PlacementCard from "@/components/cards/placement/placement.tsx";
-import Tabs from '@/components/Tabs/Tabs';
-import Dialog from '@/components/DialogBox/DialogBox';
-import Badge from '@/components/Badges/Badges';
+import Tabs from '@/components/tabs/tabs.tsx';
+import Dialog from '@/components/dialog-box/dialog-box.tsx';
+import Badge from '@/components/badges/badges';
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -137,25 +137,25 @@ export default function Components() {    const router = useRouter();
                         text="Click Me"
                         variant='Primary'
                         width={90}
-                        onClick={() => console.log('Button Clicked')}
+                        onClick={() => console.log('buttons Clicked')}
                     />
                     <Button
                         text="Click Me"
                         variant='Secondary'
                         width={90}
-                        onClick={() => console.log('Button Clicked')}
+                        onClick={() => console.log('buttons Clicked')}
                     />
                     <Button
                         text="Click Me"
                         variant='Outline'
                         width={90}
-                        onClick={() => console.log('Button Clicked')}
+                        onClick={() => console.log('buttons Clicked')}
                     />
                     <Button
                         text="Click Me"
                         variant='Danger'
                         width={90}
-                        onClick={() => console.log('Button Clicked')}
+                        onClick={() => console.log('buttons Clicked')}
                     />
                     <Button
                         text="Click Me"
@@ -163,7 +163,7 @@ export default function Components() {    const router = useRouter();
                         width={90}
                         to="https://github.com"
                         newTab={true}
-                        onClick={() => console.log('Button Clicked')}
+                        onClick={() => console.log('buttons Clicked')}
                     />
                 </div>
             )
@@ -187,7 +187,7 @@ export default function Components() {    const router = useRouter();
             )
         },
         {
-            title: "Switch",
+            title: "switch",
             content: (
                 <div key="switch">
                     <h3>Switch</h3>
@@ -240,7 +240,7 @@ export default function Components() {    const router = useRouter();
             )
         },
         {
-            title:"Combobox",
+            title:"combobox",
             content: (
                 <div key="combobox">
                     <h3>Combobox</h3>
@@ -254,7 +254,7 @@ export default function Components() {    const router = useRouter();
             )
         },
         {
-            title: "Accordion",
+            title: "accordion",
             content: (
                 <div key="accordion">
                     <h3>Accordion</h3>
@@ -279,7 +279,7 @@ export default function Components() {    const router = useRouter();
             )
         },
         {
-            title: "Tabs",
+            title: "tabs",
             content: (
                 <div key="tabs">
                     <h3>Tabs</h3>
@@ -381,7 +381,7 @@ export default function Components() {    const router = useRouter();
                     ))}
                 </div>
 
-                {/* Pagination control */}
+                {/* pagination control */}
                 <div>
                     <Pagination
                         currentPage={currentPage}

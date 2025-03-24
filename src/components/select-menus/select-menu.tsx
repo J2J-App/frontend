@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react';
-import styles from './selectMenu.module.css';
+import styles from './select-menu.module.css';
 import Image from 'next/image';
 import arrowDown from '@/public/arrow.svg';
 

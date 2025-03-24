@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import styles from './RadioButton.module.css';
+import styles from './radio-button.module.css';
 
 type RadioButtonProps = {
   label: string;
