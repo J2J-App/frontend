@@ -17,8 +17,8 @@ import SelectMenu from '@/components/SelectMenu/SelectMenu';
 import Pagination from '@/components/Pagination/pagination';
 import Combobox from '@/components/Combobox/Combobox';
 import Accordion from '@/components/Accordion/Accordion';
-import UniCard from "@/components/cards/uni/uni-card.tsx";
-import PlacementCard from "@/components/cards/placement/placement.tsx";
+import UniCard from "@/components/Cards/Uni/UniCard";
+import PlacementCard from "@/components/Cards/Placement/Placement";
 import Tabs from '@/components/Tabs/Tabs';
 import Dialog from '@/components/DialogBox/DialogBox';
 
