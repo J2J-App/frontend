@@ -155,6 +155,10 @@
     background: rgba(35, 35, 35, 1);
 }
 
+ .option:active {
+     background: rgb(0, 0, 0) !important;
+ }
+
 .noResults {
     padding: 10px 12px;
     color: #777;
@@ -167,13 +171,18 @@
     background: #1F1F1F;
 }
 
-.option.selected::after {
+.option::after {
     content: '';
     position: absolute;
     right: 10px;
     width: 3px;
     top:6px;
-    height: 24px;
+    height: 0;
     border-radius: 6px;
     background: linear-gradient(0deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
+    transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.option.selected::after {
+    height: 24px;
 }

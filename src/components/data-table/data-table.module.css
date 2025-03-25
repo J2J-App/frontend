@@ -1,0 +1,97 @@
+.dataTable {
+    background : rgba(15, 15, 15, 1);
+    border-style : Solid;
+    border-color : rgba(33, 33, 33, 1);
+    border-width : 1px;
+    border-radius : 8px;
+    width: fit-content;
+    overflow-y: visible;
+    .header{
+        background : rgba(23, 23, 23, 1);
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        .hash {
+            background : rgba(15, 15, 15, 1);
+            border-style : Solid;
+            width : 42px;
+            height : 42px;
+            border-color : rgba(54, 54, 54, 1);
+            border-width : 1px;
+            border-radius : 7px;
+            color: white;
+            font-weight: 100;
+            font-style: italic;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    }
+    .content{
+        .dataCard {
+            height: 60px;
+            border-top: 1px solid #1f1f1f;
+            display: flex;
+            flex-direction: row;
+            .index {
+                width: 58px;
+                height: 60px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                font-weight: 100;
+                color: white;
+            }
+            .clgData {
+                width: calc(100% - 50px);
+                height: 100%;
+                display: grid;
+                grid-template-columns : repeat(3, 1fr);
+                .iconHolder {
+                    display: flex;
+                    flex-direction: row;
+                    margin: 0 14px;
+                    justify-content: start;
+                    align-items: center;
+                    gap: 12px;
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 600;
+                    .icon {
+                        background-color: white;
+                        border-radius: 5px;
+                        overflow: hidden;
+                        position: relative;
+                        width: 30px;
+                        height: 30px;
+                        object-fit: contain;
+                        object-position: center;
+                        box-shadow: 0 0 20px rgba(255, 255, 255, 0.32);
+                    }
+                }
+                .courseHolder {
+                    display: flex;
+                    font-size: 14px;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: start;
+                    color: white;
+                    margin: 0 14px;
+                }
+                .rankHolder {
+                    display: flex;
+                    font-size: 14px;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: start;
+                    color: white;
+                    margin: 0 14px;
+                }
+            }
+        }
+    }
+}

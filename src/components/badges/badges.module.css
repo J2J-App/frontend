@@ -2,14 +2,12 @@
     color: #fff;
     padding: 6px 14px;
     text-align: center;
-    border-radius: 10px;
-    position: relative;
-    display: inline-block;
     height: fit-content;
     width: fit-content;
     resize: none;
-    border-radius: 8px;
+    border-radius: 4px;
     position: relative;
+    font-size: 10px;
     transition: all 0.2s ease;
     background-color: transparent;
 }
@@ -39,21 +37,8 @@
     z-index: 2;
 }
 
-.fancy.badgeContainer::after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    z-index: -2;
-    opacity: 0;
-    filter: blur(5px);
-}
-
 .fancy.badgeContainer {
     position: relative;
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,18 +47,17 @@
     border: none;
     overflow: hidden;
     background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
-    background-position-y: 150px;
 }
 
 .fancy.badgeContainer::after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -50%;
+    bottom: 0;
     transform: translateX(-50%);
     border-radius: 3px;
     width: 80%;
-    height: 100%;
+    height: 50%;
     background: linear-gradient(90deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
     filter: blur(12px);
     z-index: 1;
@@ -87,7 +71,7 @@
     left: 1px;
     right: 1px;
     bottom: 1px;
-    border-radius: 7px;
+    border-radius: 4px;
     background: black;
     z-index: 1;
     transition: all .3s ease;

@@ -1,11 +1,11 @@
 "use client"
 
-import React, {Suspense} from 'react';
+import React from 'react';
 import "./styles.css";
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import nsut from "@/public/nsut.jpg";
-import nsut_icon from "@/public/nsuticon.png";
+import nsut_icon from "@/public/icons/uni/nsut_icon.png";
 
 import Button from '@/components/buttons/button.tsx';
 import TextArea from '@/components/Inputs/TextArea/textarea';
@@ -22,6 +22,7 @@ import PlacementCard from "@/components/cards/placement/placement.tsx";
 import Tabs from '@/components/tabs/tabs.tsx';
 import Dialog from '@/components/dialog-box/dialog-box.tsx';
 import Badge from '@/components/badges/badges';
+import DataTable from "@/components/data-table/data-table.tsx";
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -334,10 +335,82 @@ export default function Components() {    const router = useRouter();
             content: (
                 <div key="badges" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     <h3>Badges</h3>
-                    <Badge text="Fancy" varient="fancy" width={90} />
-                    <Badge text="Outline" varient="outline" width={90} />
-                    <Badge text="Default" varient="default" width={90} />
-                    <Badge text="Danger" varient="danger" width={90} />
+                    <Badge text="Fancy" varient="fancy" width={60} />
+                    <Badge text="Outline" varient="outline" width={60} />
+                    <Badge text="Default" varient="default" width={60} />
+                    <Badge text="Danger" varient="danger" width={60} />
+                </div>
+            )
+        },
+        {
+            title:"Data Tables",
+            content: (
+                <div key="data-tables">
+                    <DataTable
+                        data={[
+                            {
+                                "uni": "DTU",
+                                "course": "CSE",
+                                "rank": 1200,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "NSUT",
+                                "course": "IT",
+                                "rank": 2100,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "IIIT-D",
+                                "course": "CSAI",
+                                "rank": 900,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "IGDTUW",
+                                "course": "ECE",
+                                "rank": 7500,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "DTU",
+                                "course": "ME",
+                                "rank": 15000,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "NSUT",
+                                "course": "ECE",
+                                "rank": 6500,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "IIIT-D",
+                                "course": "CSE",
+                                "rank": 1300,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "IGDTUW",
+                                "course": "IT",
+                                "rank": 5600,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "DTU",
+                                "course": "BT",
+                                "rank": 28000,
+                                "round": "2"
+                            },
+                            {
+                                "uni": "NSUT",
+                                "course": "CSAI",
+                                "rank": 2500,
+                                "round": "2"
+                            }
+                        ]
+                        }
+                    />
                 </div>
             )
         }
@@ -357,7 +430,7 @@ export default function Components() {    const router = useRouter();
                 width: '100vw',
                 height: '100vh',
                 display: 'flex',
-                maxWidth: '800px',
+                maxWidth: '1200px',
                 flexDirection: 'column',
                 gap: '20px',
                 padding: '20px',

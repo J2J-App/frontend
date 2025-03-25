@@ -18,8 +18,8 @@ export default function RadioButton({
   checked, 
   onChange 
 }: RadioButtonProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
+  const [, setIsHovered] = useState(false);
+  const [, setIsFocused] = useState(false);
 
   const handleChange = () => {
     onChange(value);
