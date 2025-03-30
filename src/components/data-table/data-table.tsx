@@ -11,9 +11,9 @@ import igdtuw_icon from "@/public/icons/uni/igdtuw_icon.png";
 import RangeSelector from "@/components/rank-selector/rank-selector.tsx";
 
 type UniData = {
-    uni: string,
-    course: string,
-    rank: number,
+    college: string,
+    branch: string,
+    jee_rank: number,
     round: string
 };
 
@@ -23,7 +23,7 @@ type DataTable = {
 
 export default function DataTable({ data }: DataTable) {
     const [uniList, setUniList] = useState<string[]>([]);
-    const [courseList, setCourseList] = useState<string[]>([]);
+    const [branchList, setBranchList] = useState<string[]>([]);
     const [filterData, setFilterData] = useState<UniData[]>(data);
     const [range, setRange] = useState<{
         max: number | null;
@@ -34,53 +34,53 @@ export default function DataTable({ data }: DataTable) {
     });
 
     const icons = [
-        { uni: "nsut", src: nsut_icon.src },
-        { uni: "iiit-d", src: iiitd_icon.src },
-        { uni: "igdtuw", src: igdtuw_icon.src },
-        { uni: "dtu", src: dtu_icon.src }
+        { college: "nsut", src: nsut_icon.src },
+        { college: "iiit-d", src: iiitd_icon.src },
+        { college: "igdtuw", src: igdtuw_icon.src },
+        { college: "dtu", src: dtu_icon.src }
     ];
 
     useEffect(() => {
         let filtered = data;
 
         if (uniList.length > 0) {
-            filtered = filtered.filter(item => uniList.includes(item.uni.toLowerCase().replace(/\s+/g, "-")));
+            filtered = filtered.filter(item => uniList.includes(item.college.toLowerCase().replace(/\s+/g, "-")));
         }
 
-        if (courseList.length > 0) {
-            filtered = filtered.filter(item => courseList.includes(item.course.toLowerCase().replace(/\s+/g, "-")));
+        if (branchList.length > 0) {
+            filtered = filtered.filter(item => branchList.includes(item.branch.toLowerCase().replace(/\s+/g, "-")));
         }
 
         if (range.min !== null || range.max !== null) {
             filtered = filtered.filter(item => {
                 if (range.min !== null && range.max !== null) {
-                    return item.rank >= range.min && item.rank <= range.max;
+                    return item.jee_rank >= range.min && item.jee_rank <= range.max;
                 }
                 if (range.min !== null && range.max === null) {
-                    return item.rank >= range.min;
+                    return item.jee_rank >= range.min;
                 }
                 if (range.min === null && range.max !== null) {
-                    return item.rank <= range.max;
+                    return item.jee_rank <= range.max;
                 }
                 return true;
             });
         }
 
         setFilterData(filtered);
-    }, [uniList, courseList, range, data]);
+    }, [uniList, branchList, range, data]);
 
     function getUniqueUniversities(data: UniData[]) {
-        const uniqueUnis = Array.from(new Set(data.map(entry => entry.uni)));
+        const uniqueUnis = Array.from(new Set(data.map(entry => entry.college)));
         return uniqueUnis.map(uni => ({ value: uni.toLowerCase().replace(/\s+/g, "-"), label: uni }));
     }
 
-    function getUniqueCourses(data: UniData[]) {
-        const uniqueCourses = Array.from(new Set(data.map(entry => entry.course)));
-        return uniqueCourses.map(course => ({ value: course.toLowerCase().replace(/\s+/g, "-"), label: course }));
+    function getUniqueBranches(data: UniData[]) {
+        const uniqueBranches = Array.from(new Set(data.map(entry => entry.branch)));
+        return uniqueBranches.map(branch => ({ value: branch.toLowerCase().replace(/\s+/g, "-"), label: branch }));
     }
 
     const uniOptions = getUniqueUniversities(data);
-    const courseOptions = getUniqueCourses(data);
+    const branchOptions = getUniqueBranches(data);
 
 
     console.log(range)
@@ -93,7 +93,7 @@ export default function DataTable({ data }: DataTable) {
                     <Combobox onChange={setUniList} options={uniOptions} multiSelect={true} placeholder="University" />
                 </div>
                 <div>
-                    <Combobox onChange={setCourseList} options={courseOptions} multiSelect={true} placeholder="Course" />
+                    <Combobox onChange={setBranchList} options={branchOptions} multiSelect={true} placeholder="Branch" />
                 </div>
                 <div>
                     <RangeSelector onChange={(val) => setRange(val)} />
@@ -109,15 +109,15 @@ export default function DataTable({ data }: DataTable) {
                                     <Image
                                         style={{ objectFit: "contain", objectPosition: "center" }}
                                         quality={100}
-                                        src={icons.find(i => i.uni === item.uni.toLowerCase())?.src || ""}
-                                        alt={item.uni}
+                                        src={icons.find(i => i.college === item.college.toLowerCase())?.src || ""}
+                                        alt={item.college}
                                         fill={true}
                                     />
                                 </div>
-                                {item.uni}
+                                {item.college}
                             </div>
-                            <div className={styles.courseHolder}>{item.course}</div>
-                            <div className={styles.rankHolder}>{item.rank}</div>
+                            <div className={styles.branchHolder}>{item.branch}</div>
+                            <div className={styles.rankHolder}>{item.jee_rank}</div>
                         </div>
                     </div>
                 ))}

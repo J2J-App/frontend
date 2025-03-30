@@ -18,8 +18,8 @@ export default function SingleInput({
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // If type is number, prevent non-numeric input
         if (type === 'number') {
-            // Remove any non-digit characters (except for negative sign and decimal point)
-            const numericValue = e.target.value.replace(/[^0-9.-]/g, '');
+            // Remove any non-digit characters (except for decimal point)
+            const numericValue = e.target.value.replace(/[^0-9.]/g, '');
 
             // Only update if the value is a valid number or empty
             if (numericValue === '' || !isNaN(Number(numericValue))) {

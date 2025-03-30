@@ -2,8 +2,7 @@
     margin:auto;
     margin-top: 160px;
     width: 75%;
-    height: calc(100vh - 320px);
-    overflow: hidden;
+    height: fit-content;
     padding: 20px;
     background-color: rgba(50,50,50,1);
     border-radius: 10px;

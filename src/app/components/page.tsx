@@ -363,63 +363,63 @@ export default function Components() {    const router = useRouter();
                     <DataTable
                         data={[
                             {
-                                "uni": "DTU",
-                                "course": "CSE",
-                                "rank": 1200,
+                                "college": "DTU",
+                                "branch": "CSE",
+                                "jee_rank": 1200,
                                 "round": "2"
                             },
                             {
-                                "uni": "NSUT",
-                                "course": "IT",
-                                "rank": 2100,
+                                "college": "NSUT",
+                                "branch": "IT",
+                                "jee_rank": 2100,
                                 "round": "2"
                             },
                             {
-                                "uni": "IIIT-D",
-                                "course": "CSAI",
-                                "rank": 900,
+                                "college": "IIIT-D",
+                                "branch": "CSAI",
+                                "jee_rank": 900,
                                 "round": "2"
                             },
                             {
-                                "uni": "IGDTUW",
-                                "course": "ECE",
-                                "rank": 7500,
+                                "college": "IGDTUW",
+                                "branch": "ECE",
+                                "jee_rank": 7500,
                                 "round": "2"
                             },
                             {
-                                "uni": "DTU",
-                                "course": "ME",
-                                "rank": 15000,
+                                "college": "DTU",
+                                "branch": "ME",
+                                "jee_rank": 15000,
                                 "round": "2"
                             },
                             {
-                                "uni": "NSUT",
-                                "course": "ECE",
-                                "rank": 6500,
+                                "college": "NSUT",
+                                "branch": "ECE",
+                                "jee_rank": 6500,
                                 "round": "2"
                             },
                             {
-                                "uni": "IIIT-D",
-                                "course": "CSE",
-                                "rank": 1300,
+                                "college": "IIIT-D",
+                                "branch": "CSE",
+                                "jee_rank": 1300,
                                 "round": "2"
                             },
                             {
-                                "uni": "IGDTUW",
-                                "course": "IT",
-                                "rank": 5600,
+                                "college": "IGDTUW",
+                                "branch": "IT",
+                                "jee_rank": 5600,
                                 "round": "2"
                             },
                             {
-                                "uni": "DTU",
-                                "course": "BT",
-                                "rank": 28000,
+                                "college": "DTU",
+                                "branch": "BT",
+                                "jee_rank": 28000,
                                 "round": "2"
                             },
                             {
-                                "uni": "NSUT",
-                                "course": "CSAI",
-                                "rank": 2500,
+                                "college": "NSUT",
+                                "branch": "CSAI",
+                                "jee_rank": 2500,
                                 "round": "2"
                             }
                         ]
