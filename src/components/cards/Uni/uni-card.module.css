@@ -1,5 +1,5 @@
 .uniCardContainer {
-    width: 300px;
+    width: 340px;
     height: 450px;
     overflow: hidden;
     background : rgba(15, 15, 15, 1);
@@ -28,8 +28,8 @@
         flex-direction: column;
         align-items: center;
         .name {
-            font-family: "Impact", serif;
-            letter-spacing : -1px;
+            font-family: "Impact", serif !important; 
+            letter-spacing : -1px ;
             color : rgba(159, 159, 159, 0.2);
             font-size: 100px;
         }
@@ -37,7 +37,7 @@
             font-size: 16px;
             color: white;
             padding: 0 30px;
-            font-weight: 200;
+            font-weight: 200 ;
             text-align: center;
         }
         .info {

@@ -1,0 +1,156 @@
+{
+    "colleges": [
+      {
+        "name": "Indira Gandhi Delhi Technical University for Women",
+        "mode_of_admission": {
+          "jee_main_required": true,
+          "counseling": "JAC Delhi",
+          "eligibility": {
+            "general": "60% in PCM",
+            "obc_ncl": "55% in PCM",
+            "defence": "55% in PCM",
+            "sc_st_pwd": "50% in PCM"
+          }
+        },
+        "fees": {
+          "institute_fee": {
+            "caution_money": 5000,
+            "one_time_fees": 2000,
+            "per_annum_fees": 137500,
+            "total": 144500
+          },
+          "hostel_fee": {
+            "caution_money": 5000,
+            "hostel_charges": 97000,
+            "mess_charges": 44500,
+            "total": 146500
+          }
+        }
+      },
+      {
+        "name": "Netaji Subhas University of Technology, Delhi",
+        "mode_of_admission": {
+          "jee_main_required": true,
+          "counseling": "JAC Delhi",
+          "eligibility": {
+            "general": "60% in PCM",
+            "obc_ncl": "55% in PCM",
+            "defence": "55% in PCM",
+            "sc_st_pwd": "50% in PCM"
+          }
+        },
+        "fees": {
+          "institute_fee": {
+            "tuition_fee": 77000,
+            "university_fee": 97850,
+            "other_fees": 65150,
+            "total": 240000
+          },
+          "hostel_fee": {
+            "hostel_charges": {
+              "boys_1_seater_non_ac": 36000,
+              "boys_2_seater_non_ac": 34000,
+              "girls_3_seater_non_ac": 33000,
+              "girls_4_seater_ac": 38000
+            },
+            "mess_advance": 23000
+          }
+        }
+      },
+      {
+        "name": "Indraprastha Institute of Information Technology, Delhi",
+        "mode_of_admission": {
+          "jee_main_required": true,
+          "counseling": "JAC Delhi",
+          "eligibility": {
+            "general": "70% aggregate, 70% in Mathematics",
+            "obc_ncl": "65% aggregate, 70% in Mathematics",
+            "defence_pwd": "65% aggregate, 70% in Mathematics",
+            "sc_st": "60% aggregate, 70% in Mathematics"
+          }
+        },
+        "fees": {
+          "institute_fee": {
+            "caution_money": 10000,
+            "one_time_fees": 2000,
+            "tuition_fee": 225000,
+            "total": 237000
+          },
+          "hostel_fee": {
+            "caution_money": 10000,
+            "seat_rent": 34000,
+            "mess_advance": 10000,
+            "total": 54000
+          }
+        }
+      },
+      {
+        "name": "Delhi Technological University",
+        "mode_of_admission": {
+          "jee_main_required": true,
+          "counseling": "JAC Delhi",
+          "eligibility": {
+            "general": "60% in PCM",
+            "obc_ncl": "55% in PCM",
+            "defence": "55% in PCM",
+            "sc_st_pwd": "50% in PCM"
+          }
+        },
+        "fees": {
+          "institute_fee": {
+            "tuition_fee": 155000,
+            "other_fees": 81700,
+            "total": 236700
+          },
+          "hostel_fee": {
+            "hostel_charges": {
+              "3_seater_non_ac": 52000,
+              "2_seater_non_ac": 56000,
+              "1_seater_non_ac": 60000,
+              "3_seater_ac": 72000
+            },
+            "mess_charges": 34800
+          }
+        }
+      },
+      {
+        "name": "Netaji Subhas University of Technology (East Campus)",
+        "mode_of_admission": {
+          "jee_main_required": true,
+          "counseling": "JAC Delhi",
+          "eligibility": {
+            "general": "60% in PCM",
+            "obc_ncl": "55% in PCM",
+            "defence": "55% in PCM",
+            "sc_st_pwd": "50% in PCM"
+          }
+        },
+        "fees": {
+          "tuition_fee": 77000,
+          "university_fee": 97850,
+          "other_fees": 65150,
+          "total": 240000
+        }
+      },
+      {
+        "name": "Netaji Subhas University of Technology (West Campus)",
+        "mode_of_admission": {
+          "jee_main_required": true,
+          "counseling": "JAC Delhi",
+          "eligibility": {
+            "general": "60% in PCM",
+            "obc_ncl": "55% in PCM",
+            "defence": "55% in PCM",
+            "sc_st_pwd": "50% in PCM"
+          }
+        },
+        "fees": {
+          "tuition_fee": 77000,
+          "university_fee": 97850,
+          "other_fees": 65150,
+          "total": 240000
+        }
+      }
+    ]
+  }
+  

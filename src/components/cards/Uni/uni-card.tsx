@@ -47,7 +47,9 @@ export default function UniCard({ name, icon, background, description, location,
                 borderRadius: "10px",
                 transform: "translateX(-50%)",
                 boxShadow: "0px 0px 40px white",
-            }} src={icon} alt={"Uni Icon"} width={68} height={68} quality={100} />
+                backgroundColor: "white",
+            }} src={icon} alt={"Uni Icon"} width={68} height={68} quality={100} 
+            />
         </div>
         <div className={styles.contentContainer}>
             <span className={styles.name}>
