@@ -16,6 +16,7 @@
     }
 }
 
+
 .navBar {
     position: fixed;
     top: 50px;
@@ -23,8 +24,8 @@
     transform: translateX(-50%);
     display: block;
     width: 100%;
-    padding: 0 28px;
-    max-width: 1400px;
+    padding: 0 88px;
+    max-width: 1600px;
     overflow: hidden;
     z-index: 20000;
     .leftBox {
@@ -48,7 +49,6 @@
     }
     .leftBox:active {
         opacity: 0.7;
-        transform: scale(0.8);
     }
     .centerBox {
         display: flex;
@@ -122,11 +122,151 @@
         animation: nav-bar-animation .7s cubic-bezier(0.87, 0, 0.13, 1) .6s forwards;
 
     }
+    .rightBox.mob {
+        display: none;
+    }
     .rightBox:hover {
         background-color: rgba(56, 56, 56, 0.61);
     }
     .rightBox:active {
         opacity: 0.7;
-        transform: scale(0.8);
+    }
+    .mobileLinkBox {
+        display: none;
+    }
+    .mobileBg {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .navBar {
+        padding: 0 20px;
+        top: 20px;
+        .rightBox {
+            display: none;
+        }
+        .rightBox.mob {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            .menuIcon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+            .crossIcon {
+                position: absolute;
+                top: 50%;
+                left: 150%;
+                transform: translate(-50%, -50%);
+                transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+        }
+        .rightBox.mob.menuActive {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            .menuIcon {
+                left: -150%;
+            }
+            .crossIcon {
+                left: 50%;
+            }
+        }
+        .centerBox {
+            display: none;
+        }
+        .mobileLinkBox {
+            display: block;
+            width: 100%;
+            height: 0px;
+            padding: 28px;
+            border-radius: 10px;
+            margin-top: 60px;
+            border: 1px solid rgba(44, 44, 44, 0.43);
+            background-color: rgba(35, 35, 35, 0.61);
+            backdrop-filter: blur(20px);
+            transform-origin: top right;
+            transform: scale(0);
+            transition: all 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+            .linkList {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                .link {
+                    font-family: "Roboto", sans-serif;
+                    color: white;
+                    text-decoration: none;
+                    font-size: 24px;
+                    font-weight: 200;
+                    border-radius: 6px;
+                    position: relative;
+                    width: fit-content;
+                    transition: all 0.2s ease;
+                }
+                .link::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 0;
+                    filter: blur(20px);
+                    background : linear-gradient(90deg, rgba(224, 166, 255, 1) 0%, rgba(143, 158, 246, 1) 50%, rgba(133, 255, 208, 1) 100%);
+                    width: 100%;
+                    height: 10px;
+                    opacity: 0;
+                    transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+                }
+                .link:active {
+                    opacity: 0.5;
+                }
+                .link.active:after {
+                    opacity: 1;
+                }
+                .link.active {
+                    font-weight: 800;
+                    letter-spacing: -1px;
+                }
+            }
+            .discordIcon {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #282828;
+                transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+            .discordIcon:active {
+                opacity: 0.8;
+                transform: scale(0.9);
+            }
+        }
+        .mobileLinkBox.activeMd {
+            transform: scale(1);
+            height: 240px;
+        }
+    }
+    .mobileBg {
+        z-index: 1000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.68);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+    }
+    .mobileBg.open {
+        opacity: 1;
+        pointer-events: auto;
+
     }
 }
