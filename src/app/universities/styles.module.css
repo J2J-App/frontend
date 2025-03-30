@@ -1,6 +1,6 @@
 .container{
     padding: 20px;
-    perspective: 1000px;
+    perspective: 800px;
     width: fit-content;
     height: fit-content;
 }

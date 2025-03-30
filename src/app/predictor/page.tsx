@@ -10,7 +10,9 @@ export default function Page() {
 
 
     return (
-        <div className={Styles.container}>
+        <div style={{
+            marginTop: "120px",
+        }} className={Styles.container}>
         <SingleInput 
             holder='Rank'
         />

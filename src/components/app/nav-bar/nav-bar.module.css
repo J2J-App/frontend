@@ -26,6 +26,7 @@
     padding: 0 28px;
     max-width: 1400px;
     overflow: hidden;
+    z-index: 20000;
     .leftBox {
         color: white;
         float: left;

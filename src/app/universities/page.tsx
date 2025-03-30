@@ -7,7 +7,9 @@ import Link from "next/link";
 
 export default function Page() {
     return (
-        <div className={Styles.page}> 
+        <div style={{
+            marginTop: "120px",
+        }} className={Styles.page}>
             <div className={Styles.container}>
                 <Link href={"/nsut"}>
                     <div className={Styles.cardContainer}>
