@@ -1,5 +1,5 @@
-import UniCard from "@/components/Cards/Uni/uni-card";
-import PlacementCard from "@/components/Cards/Placement/Placement";
+import UniCard from "@/components/cards/Uni/uni-card.tsx";
+import PlacementCard from "@/components/cards/placement/placement.tsx";
 import nsut from "@/public/nsut.jpg";
 import nsut_icon from "@/public/icons/uni/nsut_icon.png";
 import dtu from "@/public/dtu.jpg";
