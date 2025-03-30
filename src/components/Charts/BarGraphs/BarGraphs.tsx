@@ -87,7 +87,6 @@ export default function GradientBarChart({
           x: {
             grid: {
               display: false,
-              drawBorder: false,
             },
             ticks: {
               display: showLabels,
@@ -105,7 +104,6 @@ export default function GradientBarChart({
             max: maxValue,
             grid: {
               color: "rgba(255, 255, 255, 0.1)",
-              drawBorder: false,
             },
             border: {
               display: false,

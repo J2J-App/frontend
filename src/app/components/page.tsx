@@ -23,6 +23,7 @@ import Tabs from '@/components/tabs/tabs.tsx';
 import Dialog from '@/components/dialog-box/dialog-box.tsx';
 import Badge from '@/components/badges/badges';
 import DataTable from "@/components/data-table/data-table.tsx";
+import GradientBarChart from "@/components/Charts/BarGraphs/BarGraphs.tsx";
 
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
@@ -95,8 +96,12 @@ export default function Components() {    const router = useRouter();
             label : "Upgradation Round",
             content: <div>Content for Upgradation Round</div>
         }
-      ];
+    ];
 
+    // For bar graphs
+    const monthlyData = [55, 25, 35, 20, 85, 45, 70]
+    const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+  
     const handleChange = (value: string) => {
         console.log(value);
     };
@@ -270,13 +275,19 @@ export default function Components() {    const router = useRouter();
         {
             title: "Cards",
             content: (
-                <div key="cards" style={{
-                    display: "flex",
-                    gap: "10px",
-                }}>
-                    <UniCard name="NSUT" description="An absolute shithole of incompetant admins, fuckall teachers and perverted students." background={nsut.src} icon={nsut_icon.src} location={"Dwarka Mor"} nirf="57" />
-                    <PlacementCard course="CSE" background={nsut.src} name={"NSUT"} icon={nsut_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
-                </div>
+                <>
+                    <h3 style={{paddingBottom:"12px"}}>Cards</h3>
+                    <div key="cards" 
+                    style={{
+                        display: "flex",
+                        gap: "10px",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}>
+                        <UniCard name="NSUT" description="An absolute shithole of incompetant admins, fuckall teachers and perverted students." background={nsut.src} icon={nsut_icon.src} location={"Dwarka Mor"} nirf="57" />
+                        <PlacementCard course="CSE" background={nsut.src} name={"NSUT"} icon={nsut_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
+                    </div>
+                </>
             )
         },
         {
@@ -346,6 +357,9 @@ export default function Components() {    const router = useRouter();
             title:"Data Tables",
             content: (
                 <div key="data-tables">
+                    <h3 style={{
+                        paddingBottom: "12px",
+                    }}>Data Tables</h3>
                     <DataTable
                         data={[
                             {
@@ -411,6 +425,15 @@ export default function Components() {    const router = useRouter();
                         ]
                         }
                     />
+                </div>
+            )
+        },
+        {
+            title: "bar graphs",
+            content : (
+                <div>
+                    <h3 style={{paddingBottom : "12px"}}>Bar Graphs</h3>
+                    <GradientBarChart data={monthlyData} labels={monthLabels} showLabels={true}/>
                 </div>
             )
         }
