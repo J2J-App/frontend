@@ -1,0 +1,32 @@
+.container{
+    padding: 20px;
+    perspective: 1000px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.cardContainer{
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    width: 300px;
+    height: 450px;
+}
+
+.front, .back{
+    position: absolute;
+    width: 300px;
+    height: 450px;
+    backface-visibility: hidden;
+}
+
+.front{
+    transform: rotateY(0deg);
+}
+
+.back{
+    transform: rotateY(180deg);
+}
+
+.container:hover .cardContainer{
+    transform: rotateY(180deg);
+}
