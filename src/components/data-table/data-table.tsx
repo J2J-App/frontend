@@ -1,7 +1,7 @@
 "use client"
 import styles from "./data-table.module.css"
 import Combobox from "@/components/combobox/combobox.tsx";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import dtu_icon from "@/public/icons/uni/dtu_icon.png";
@@ -9,6 +9,7 @@ import nsut_icon from "@/public/icons/uni/nsut_icon.png";
 import iiitd_icon from "@/public/icons/uni/iiitd_icon.jpg";
 import igdtuw_icon from "@/public/icons/uni/igdtuw_icon.png";
 import RangeSelector from "@/components/rank-selector/rank-selector.tsx";
+import Pagination from "@/components/pagination/pagination.tsx";
 
 type UniData = {
     college: string,
@@ -25,6 +26,8 @@ export default function DataTable({ data }: DataTable) {
     const [uniList, setUniList] = useState<string[]>([]);
     const [branchList, setBranchList] = useState<string[]>([]);
     const [filterData, setFilterData] = useState<UniData[]>(data);
+    const [currentPage, setCurrentPage] = useState(1);
+
     const [range, setRange] = useState<{
         max: number | null;
         min: number | null;
@@ -82,46 +85,80 @@ export default function DataTable({ data }: DataTable) {
     const uniOptions = getUniqueUniversities(data);
     const branchOptions = getUniqueBranches(data);
 
+    // Calculate pagination data
+    const componentsPerPage = 10 ;
+    const totalPages = Math.ceil(filterData.length / componentsPerPage);
 
-    console.log(range)
+    // Get current components
+    const indexOfLastComponent = currentPage * componentsPerPage;
+    const indexOfFirstComponent = indexOfLastComponent - componentsPerPage;
+    const currentComponents = filterData.slice(indexOfFirstComponent, indexOfLastComponent);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        console.log(`Page changed to ${page}`);
+    };
 
     return (
-        <div className={styles.dataTable}>
-            <div className={styles.header}>
-                <div className={styles.hash}>#</div>
-                <div>
-                    <Combobox onChange={setUniList} options={uniOptions} multiSelect={true} placeholder="University" />
-                </div>
-                <div>
-                    <Combobox onChange={setBranchList} options={branchOptions} multiSelect={true} placeholder="Branch" />
-                </div>
-                <div>
-                    <RangeSelector onChange={(val) => setRange(val)} />
-                </div>
-            </div>
-            <div className={styles.content}>
-                {filterData.map((item, index) => (
-                    <div className={styles.dataCard} key={index}>
-                        <div className={styles.index}>{index + 1}</div>
-                        <div className={styles.clgData}>
-                            <div className={styles.iconHolder}>
-                                <div className={styles.icon}>
-                                    <Image
-                                        style={{ objectFit: "contain", objectPosition: "center" }}
-                                        quality={100}
-                                        src={icons.find(i => i.college === item.college.toLowerCase())?.src || ""}
-                                        alt={item.college}
-                                        fill={true}
-                                    />
-                                </div>
-                                {item.college}
-                            </div>
-                            <div className={styles.branchHolder}>{item.branch}</div>
-                            <div className={styles.rankHolder}>{item.jee_rank}</div>
+        <>
+            <div className={styles.dataTable}>
+                <div className={styles.header}>
+                    <div className={styles.hash}>#</div>
+                    <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(3, 1fr)",
+                        width: "100%",
+                    }}>
+                        <div style={{
+                            marginLeft: "12px",
+                        }}>
+                            <Combobox onChange={setUniList} options={uniOptions} multiSelect={true}
+                                      placeholder="University"/>
+                        </div>
+                        <div style={{
+                            marginLeft: "10px",
+                        }}>
+                            <Combobox onChange={setBranchList} options={branchOptions} multiSelect={true}
+                                      placeholder="Branch"/>
+                        </div>
+                        <div style={{
+                            marginLeft: "10px",
+                        }}>
+                            <RangeSelector onChange={(val) => setRange(val)}/>
                         </div>
                     </div>
-                ))}
+
+                </div>
+                <div className={styles.content}>
+                    {currentComponents.map((item, index) => (
+                        <div className={styles.dataCard} key={index}>
+                            <div className={styles.index}>{index + 1}</div>
+                            <div className={styles.clgData}>
+                                <div className={styles.iconHolder}>
+                                    <div className={styles.icon}>
+                                        <Image
+                                            style={{objectFit: "contain", objectPosition: "center"}}
+                                            quality={100}
+                                            src={icons.find(i => i.college === item.college.toLowerCase())?.src || ""}
+                                            alt={item.college}
+                                            fill={true}
+                                        />
+                                    </div>
+                                    {item.college}
+                                </div>
+                                <div className={styles.branchHolder}>{item.branch}</div>
+                                <div className={styles.rankHolder}>{item.jee_rank}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                showEllipsis={true}
+            />
+        </>
     );
 }

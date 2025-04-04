@@ -1,6 +1,6 @@
  .comboboxContainer {
     position: relative;
-    width: 250px;
+    width: 100%;
     font-family: 'Roboto', sans-serif;
     color: #dadada;
     user-select: none;
@@ -31,7 +31,7 @@
     border-radius: 6px;
     padding: 4px 6px 4px 12px;
     height: 40px;
-    width: 220px;
+    width: calc(100% - 30px);
 }
 
 .displayText:hover {

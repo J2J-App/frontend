@@ -4,7 +4,8 @@
     border-color : rgba(33, 33, 33, 1);
     border-width : 1px;
     border-radius : 8px;
-    width: fit-content;
+    max-width: 820px;
+    width: 100%;
     overflow-y: visible;
     .header{
         background : rgba(23, 23, 23, 1);
