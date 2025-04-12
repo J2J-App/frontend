@@ -9,13 +9,21 @@ type Tab = {
 }
 
 type TabsProps = {
-  tabs: Tab[]
+  tabs: Tab[],
+    activeIndex: number,
+    setActiveIndex: any
 }   
 
 export default function Tabs({
-    tabs
+    tabs,
+    activeIndex,
+    setActiveIndex
 }: TabsProps) {
-    const [activeIndex, setActiveIndex] = React.useState(0)
+    console.log(tabs);
+
+    if (tabs.length === 0) {
+        return <div>No data available</div>
+    }
     return (
         <div className={styles.tabs}>
             <div className={styles.tabLabels}>

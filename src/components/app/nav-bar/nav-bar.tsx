@@ -16,9 +16,12 @@ export default function NavBar() {
     function checkUrl(url: string): boolean {
         return path.startsWith(url)
     }
+    function handleClick() {
+        setIsOpen(false)
+    }
     return (<>
             <div className={styles.navBar}>
-                <Link href={"/"} className={styles.leftBox}>
+                <Link href={"/"} className={path === "/" ? styles.leftBox + " " + styles.active : styles.leftBox}>
                     <Image src={icon} alt={"Logo"} width={40} height={40} style={{
                         borderRadius: "8px",
                     }}/>
@@ -45,11 +48,11 @@ export default function NavBar() {
                 <div className={isOpen ? `${styles.mobileLinkBox} ${styles.activeMd}` : `${styles.mobileLinkBox}`}>
                     <div className={styles.linkList}>
                         <Link className={checkUrl("/predictor") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/predictor">Predictor</Link>
+                              href="/predictor" onClick={handleClick}>Predictor</Link>
                         <Link className={checkUrl("/universities") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/universities">Universities</Link>
+                              href="/universities" onClick={handleClick}>Universities</Link>
                         <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/compare">Compare</Link>
+                              href="/compare" onClick={handleClick}>Compare</Link>
                     </div>
                     <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.discordIcon}>
                         <Image style={{

@@ -32,6 +32,14 @@
     padding: 4px 6px 4px 12px;
     height: 40px;
     width: calc(100% - 30px);
+    .dspTxt {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1; /* Show 3 lines max */
+        overflow: hidden;
+        min-width: 0;          /* Required for flex */
+        width: 100%;           /* Fill parent space */
+    }
 }
 
 .displayText:hover {
@@ -176,13 +184,15 @@
     position: absolute;
     right: 10px;
     width: 3px;
-    top:6px;
-    height: 0;
+    top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    height: calc(100% - 20px);
     border-radius: 6px;
+    transform-origin: top center;
     background: linear-gradient(0deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
     transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
 .option.selected::after {
-    height: 24px;
+    transform: translateY(-50%) scaleY(1);
 }

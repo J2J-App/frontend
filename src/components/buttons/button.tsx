@@ -12,6 +12,7 @@ type ButtonProps = {
   height?: number;
   to?: string;
   newTab?: boolean;
+  disabled?: boolean;
 };
 
 export default function Button({
@@ -20,13 +21,16 @@ export default function Button({
   variant,
   width,
   height, to, newTab,
+    disabled
 }: ButtonProps) {
   return (
     <div 
       className={`${styles.buttonContainer} ${variant ? styles[variant] : ''}`}
       style={{ 
         width: width ? `${width}px` : '90px', 
-        height: height ? `${height}px` : '35px'
+        height: height ? `${height}px` : '35px',
+        pointerEvents: disabled ? 'none' : 'auto',
+        opacity: disabled ? 0.5 : 1,
       }}
     >
       {variant!="Link" ? <button

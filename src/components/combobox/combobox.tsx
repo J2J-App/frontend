@@ -67,34 +67,31 @@ export default function Combobox({
     }, [searchTerm, isOpen, filterOptions]);
 
     const handleOptionClick = (option: ComboboxOption) => {
+        // Calculate new selection first
+        const newSelection = multiSelect
+            ? selectedOptions.some(item => item.value === option.value)
+                ? selectedOptions.filter(item => item.value !== option.value)
+                : [...selectedOptions, option]
+            : [option];
+
+        // Update local state
+        setSelectedOptions(newSelection);
+
+        // Propagate changes to parent
+        if (onChange) {
+            onChange(newSelection.map(opt => opt.value));
+        }
+
+        // Handle focus and dropdown state
         if (multiSelect) {
-            setSelectedOptions(prev => {
-                const isSelected = prev.some(item => item.value === option.value);
-
-                const newSelection = isSelected
-                    ? prev.filter(item => item.value !== option.value)
-                    : [...prev, option];
-
-                if (onChange) {
-                    onChange(newSelection.map(opt => opt.value));
-                }
-
-                return newSelection;
-            });
-
-            // Focus back on the input if searchable
             if (searchable && inputRef.current) {
                 inputRef.current.focus();
             }
         } else {
-            // Single selection mode
-            setSelectedOptions([option]);
-            if (onChange) {
-                onChange([option.value]);
-            }
             closeDropdown();
         }
     };
+
 
     const toggleDropdown = () => {
         if (isAnimating) return;
@@ -232,7 +229,11 @@ export default function Combobox({
                 className={`${styles.comboboxButton} ${isOpen ? styles.active : ''} ${isFocused ? styles.focus : ''}`}
                 onClick={toggleDropdown}
             >
-                <span className={styles.displayText}>{getDisplayValue()}</span>
+                <span className={styles.displayText}>
+                    <span className={styles.dspTxt}>
+                        {getDisplayValue()}
+                    </span>
+                </span>
                 <div className={styles.arrowContainer}>
                     <Image
                         src={arrow}

@@ -20,7 +20,7 @@
         z-index: 20;
         padding: 16px;
         border-radius: 8px;
-        backdrop-filter: blur(30px);
+        backdrop-filter: blur(10px);
         border: solid 1px rgba(134, 134, 134, 0.22);
         background-color: rgba(35, 35, 35, 0.4);
     }
@@ -40,4 +40,31 @@
     z-index: 23;
     gap: 5px;
     position: relative;
+}
+
+.headContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+    flex-direction: row;
+    margin-top: 80px;
+}
+
+@media (max-width: 900px) {
+    .headContainer {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 675px) {
+    .headContainer {
+        flex-direction: column;
+    }
+    .heading, .container {
+        max-width: unset;
+    }
 }

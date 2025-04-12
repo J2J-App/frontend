@@ -8,7 +8,9 @@
     margin-top: 12px;
     padding: 8px;
     border-radius: 6px;
-    background: rgba(37, 37, 37, 1);
+    margin-bottom: 100px;
+
+    background: rgb(17, 17, 17);
 }
 
 .tabLabels {
@@ -18,10 +20,13 @@
     border-radius: 6px;
     width: auto;
     padding: 14px;
-
     background: rgb(24, 24, 24);
     z-index: -10;
     overflow-x: scroll;
+}
+
+.tabLabels::-webkit-scrollbar {
+    display: none;
 }
 
 .tabLabel {

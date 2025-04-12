@@ -5,7 +5,7 @@ import styles from './select-menu.module.css';
 import Image from 'next/image';
 import arrowDown from '@/public/arrow.svg';
 
-type SelectOption = {
+export type SelectOption = {
     value: string;
     label: string;
 };

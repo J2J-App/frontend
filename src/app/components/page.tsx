@@ -28,6 +28,8 @@ import GradientBarChart from "@/components/Charts/BarGraphs/BarGraphs.tsx";
 export default function Components() {    const router = useRouter();
     const searchParams = useSearchParams();
 
+    const [tabIndex, setTabIndex] = React.useState<number>(0);
+
     // For switch components
     const [isSwitchChecked, setIsSwitchChecked] = React.useState(false);
     
@@ -296,6 +298,8 @@ export default function Components() {    const router = useRouter();
                 <div key="tabs">
                     <h3>Tabs</h3>
                     <Tabs
+                        activeIndex={tabIndex}
+                        setActiveIndex={setTabIndex}
                         tabs={tabsData}
                     />
                 </div>
@@ -366,61 +370,51 @@ export default function Components() {    const router = useRouter();
                                 "college": "DTU",
                                 "branch": "CSE",
                                 "jee_rank": 1200,
-                                "round": "2"
                             },
                             {
                                 "college": "NSUT",
                                 "branch": "IT",
                                 "jee_rank": 2100,
-                                "round": "2"
                             },
                             {
                                 "college": "IIIT-D",
                                 "branch": "CSAI",
                                 "jee_rank": 900,
-                                "round": "2"
                             },
                             {
                                 "college": "IGDTUW",
                                 "branch": "ECE",
                                 "jee_rank": 7500,
-                                "round": "2"
                             },
                             {
                                 "college": "DTU",
                                 "branch": "ME",
                                 "jee_rank": 15000,
-                                "round": "2"
                             },
                             {
                                 "college": "NSUT",
                                 "branch": "ECE",
                                 "jee_rank": 6500,
-                                "round": "2"
                             },
                             {
                                 "college": "IIIT-D",
                                 "branch": "CSE",
                                 "jee_rank": 1300,
-                                "round": "2"
                             },
                             {
                                 "college": "IGDTUW",
                                 "branch": "IT",
                                 "jee_rank": 5600,
-                                "round": "2"
                             },
                             {
                                 "college": "DTU",
                                 "branch": "BT",
                                 "jee_rank": 28000,
-                                "round": "2"
                             },
                             {
                                 "college": "NSUT",
                                 "branch": "CSAI",
                                 "jee_rank": 2500,
-                                "round": "2"
                             }
                         ]
                         }
