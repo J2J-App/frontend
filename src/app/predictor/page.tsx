@@ -16,7 +16,7 @@ import Loader from "@/components/loader/loader.tsx";
 function transformData(input: any[]) {
     const normalizedRounds: any = {
         "U1": "Upgradation 1",
-        "U2": "Upgradation 1",
+        "U2": "Upgradation 2",
         "S": "Spot Round 1",
         "s2": "Spot Round 2",
     };
@@ -71,7 +71,7 @@ function SortedTable({ data }: { data: any[] }) {
     const res = transformData(data);
     const [tab, setTab] = React.useState<number>(0);
     const [year, setYear] = React.useState<number>(2024);
-
+    console.log(res)
     const handleYearChange = (year: string) => {
         const selectedYear = res.find((item) => item.year.toString() === year);
         if (selectedYear) {
