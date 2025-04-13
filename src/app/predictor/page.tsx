@@ -240,6 +240,19 @@ export default function Page() {
                     }
                 );
 
+                const response02 = await fetch(
+                    "https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/postRank",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            rank: rank,
+                        }),
+                    }
+                );
+
                 clearTimeout(timeoutId);
 
                 if (!response.ok) {
