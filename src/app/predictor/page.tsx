@@ -321,7 +321,7 @@ export default function Page() {
             padding: "0 20px",
             marginTop:"80px",
             gap: "18px",
-            height: "calc(100vh - 80px)",
+            minHeight: "calc(100vh - 80px)",
             overflow: "visible"
         }}>
             <div className={Styles.headContainer}>
@@ -415,7 +415,6 @@ export default function Page() {
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <ErrorMessages />

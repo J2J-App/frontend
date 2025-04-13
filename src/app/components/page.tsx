@@ -470,8 +470,6 @@ export default function Components() {    const router = useRouter();
                         </div>
                     ))}
                 </div>
-
-                {/* pagination control */}
                 <div>
                     <Pagination
                         currentPage={currentPage}
