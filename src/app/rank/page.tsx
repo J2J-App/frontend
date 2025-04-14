@@ -7,6 +7,7 @@ import Styles from './styles.module.css';
 import Image from "next/image";
 import headingbg from "@/public/backgrounds/rank/bgheading.jpg";
 import SelectMenu from "@/components/select-menus/select-menu.tsx";
+import Loader from "@/components/loader/loader.tsx";
 
 export default function Page() {
     const [rank, setRank] = useState<string>('');
@@ -14,6 +15,7 @@ export default function Page() {
     const [upperBound, setUpperBound] = useState<null | number>(null);
     const [lowerBound, setLowerBound] = useState<null | number>(null);
     const [typeOfData, setTypeOfData] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [reqPercentile, setReqPercentile] = useState<number | null>(null);
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setRank(e.target.value);
@@ -28,6 +30,7 @@ export default function Page() {
         }
 
         try {
+            setIsLoading(true);
             const response = await fetch('https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getRank', {
                 method: 'POST',
                 headers: {
@@ -37,10 +40,13 @@ export default function Page() {
             });
 
             if (!response.ok) {
+                setIsLoading(false);
                 throw new Error(`Server responded with status ${response.status}`);
             }
 
             const dataObtained : any = await response.json();
+            setIsLoading(false);
+
             setTypeOfData(dataObtained.data?.type);
             setReqPercentile(dataObtained.data?.requested_percentile || dataObtained.data?.data.percentile);
             if(dataObtained.data?.type === "range"){
@@ -115,6 +121,8 @@ export default function Page() {
                             type="number"
                         />
                         <Button
+                            disabled={isLoading}
+                            width={100}
                             text={'Calculate'}
                             variant={'Primary'}
                             onClick={handleSubmit}
@@ -122,7 +130,7 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-
+            {isLoading && <Loader />}
             {(result !== null || (lowerBound !== null && upperBound !== null)) && (
                 <div className={Styles.results}>
                     {typeOfData === "range" ? (

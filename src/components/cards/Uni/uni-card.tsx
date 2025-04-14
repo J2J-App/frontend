@@ -58,12 +58,7 @@ export default function UniCard({ name, icon, background, description, location,
             <p className={styles.desc}>
                 {description}
             </p>
-            <div style={{
-                width: '45%',
-                marginTop: "15px",
-                borderTop: '2px dotted #8c8c8c',
-                height: '2px',
-            }}></div>
+
             <div className={styles.info}>
                 <div className={styles.infoBox}>
                     <Image src={locationIcon} alt={"Location Icon"} width={40} height={40}/>

@@ -19,10 +19,10 @@ export default function Page() {
             marginTop: "120px",
         }} className={Styles.page}>
             <div className={Styles.container}>
-                <Link href={"/nsut"}>
+                <Link href={"/universities/nsut"}>
                     <div className={Styles.cardContainer}>
                         <div className={Styles.front}>
-                            <UniCard name="NSUT" description="Premier tech university known for innovation and strong alumni network." background={nsut.src} icon={nsut_icon.src} location={"Dwarka, Delhi"} nirf="57" />
+                            <UniCard name="NSUT" description="Premier tech university known for innovation and strong alumni network." background={nsut.src} icon={nsut_icon.src} location={"Dwarka"} nirf="57" />
                         </div>
                         <div className={Styles.back}>
                             <PlacementCard course="Over All" background={nsut.src} name={"NSUT"} icon={nsut_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
@@ -31,10 +31,10 @@ export default function Page() {
                 </Link>
             </div>
             <div className={Styles.container}>
-                <Link href={"/dtu"}>
+                <Link href={"/universities/dtu"}>
                     <div className={Styles.cardContainer}>
                         <div className={Styles.front}>
-                            <UniCard name="DTU" description="One of India's top engineering colleges with a legacy of excellence." background={dtu.src} icon={dtu_icon.src} location={"Rohini, Delhi"} nirf="27" />
+                            <UniCard name="DTU" description="One of India's top engineering colleges with a legacy of excellence." background={dtu.src} icon={dtu_icon.src} location={"Rohini"} nirf="27" />
                         </div>
                         <div className={Styles.back}>
                             <PlacementCard course="Over All" background={dtu.src} name={"DTU"} icon={dtu_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
@@ -43,10 +43,10 @@ export default function Page() {
                 </Link>
             </div>
             <div className={Styles.container}>
-                <Link href={"/iiitd"}>
+                <Link href={"/universities/iiitd"}>
                     <div className={Styles.cardContainer}>
                         <div className={Styles.front}>
-                            <UniCard name="IIIT-D" description="Known for cutting-edge research and tech-focused programs." background={iiid.src} icon={iiid_icon.src} location={"Okhla, Delhi"} nirf="87" />
+                            <UniCard name="IIIT-D" description="Known for cutting-edge research and tech-focused programs." background={iiid.src} icon={iiid_icon.src} location={"Okhla"} nirf="87" />
                         </div>
                         <div className={Styles.back}>
                             <PlacementCard course="Over All" background={iiid.src} name={"IIIT-D"} icon={iiid_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
@@ -55,10 +55,10 @@ export default function Page() {
                 </Link>
             </div>
             <div className={Styles.container}>
-                <Link href={"/igdtuw"}>
+                <Link href={"/universities/igdtuw"}>
                     <div className={Styles.cardContainer}>
                         <div className={Styles.front}>
-                            <UniCard name="IGDTU" description="Premier women's engineering university in Delhi." background={igdtuw.src} icon={igdtuw_icon.src} location={"Kashmere Gate, Delhi"} nirf=">150" />
+                            <UniCard name="IGDTU" description="Premier women's engineering university in Delhi." background={igdtuw.src} icon={igdtuw_icon.src} location={"Kashmere Gate"} nirf=">150" />
                         </div>
                         <div className={Styles.back}>
                             <PlacementCard course="Over All" background={igdtuw.src} name={"IGDTUW"} icon={igdtuw_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
@@ -67,10 +67,10 @@ export default function Page() {
                 </Link>
             </div>
             <div className={Styles.container}>
-                <Link href={"/nsutw"}>
+                <Link href={"/universities/nsutw"}>
                     <div className={Styles.cardContainer}>
                         <div className={Styles.front}>
-                            <UniCard name="NSUTW" description="NSUT's West campus focused on tech and innovation." background={nsutw.src} icon={nsut_icon.src} location={"Jaffarpur, Delhi"} nirf="57" />
+                            <UniCard name="NSUTW" description="NSUT's West campus focused on tech and innovation." background={nsutw.src} icon={nsut_icon.src} location={"Jaffarpur"} nirf="57" />
                         </div>
                         <div className={Styles.back}>
                             <PlacementCard course="Over All" background={nsutw.src} name={"NSUT West"} icon={nsut_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
@@ -79,10 +79,10 @@ export default function Page() {
                 </Link>
             </div>
             <div className={Styles.container}>
-                <Link href={"/nsute"}>
+                <Link href={"/universities/nsute"}>
                     <div className={Styles.cardContainer}>
                         <div className={Styles.front}>
-                            <UniCard name="NSUTE" description="Expanding NSUT's excellence in engineering education." background={nsute.src} icon={nsut_icon.src} location={"Geeta Colony, Delhi"} nirf="57" />
+                            <UniCard name="NSUTE" description="Expanding NSUT's excellence in engineering education." background={nsute.src} icon={nsut_icon.src} location={"Geeta Colony"} nirf="57" />
                         </div>
                         <div className={Styles.back}>
                             <PlacementCard course="Over All" background={nsute.src} name={"NSUT East"} icon={nsut_icon.src} max="62 LPA" min="7 LPA" avg="14 LPA" median="21 LPA" />
