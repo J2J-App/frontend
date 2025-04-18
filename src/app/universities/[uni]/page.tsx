@@ -30,7 +30,7 @@ export default async function Page({
     }
 
     const { data } = await uniDataRes.json();
-
+    console.log(data)
     const currentUniData = data[uni];
 
     const iconMap: { [key: string]: string } = {

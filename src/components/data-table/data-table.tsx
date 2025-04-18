@@ -20,10 +20,11 @@ type UniData = {
 };
 
 type DataTable = {
-    data: UniData[]
+    data: UniData[],
+    pgup?: boolean,
 };
 
-export default function DataTable({ data }: DataTable) {
+export default function DataTable({ data, pgup = false }: DataTable) {
     const [uniList, setUniList] = useState<string[]>([]);
     const [branchList, setBranchList] = useState<string[]>([]);
     const [filterData, setFilterData] = useState<UniData[]>(data);
@@ -212,7 +213,9 @@ export default function DataTable({ data }: DataTable) {
             </div>
             <div style={{
                 position: "fixed",
-                bottom: "10px",
+                bottom: pgup ? "80px" : "10px",
+                width: "100%",
+                maxWidth: "368px",
                 border: "1px solid rgba(255, 255, 255, 0.10)",
                 left: "50%",
                 transform: "translateX(-50%)",

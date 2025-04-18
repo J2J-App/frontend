@@ -10,7 +10,9 @@ export default function Layout({children}: {
     const router = useRouter();
 
     return <div>
-        {children}
+        <div>
+            {children}
+        </div>
         <BottomNav />
     </div>
 }
