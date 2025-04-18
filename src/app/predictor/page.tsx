@@ -135,48 +135,64 @@ function SortedTable({ data }: { data: any[] }) {
 
 export default function Page() {
     const [rank, setRank] = React.useState<number | string | null>("");
-    const [region, setRegion] = React.useState<string>("Delhi");
-    const [category, setCategory] = React.useState<string>("General");
-    const [subCategory, setSubCategory] = React.useState<string>(" ");
+    const [region, setRegion] = React.useState<string | null>(localStorage.getItem("region"));
+    const [category, setCategory] = React.useState<string | null>(localStorage.getItem("category"));
+    const [subCategory, setSubCategory] = React.useState<string | null>(localStorage.getItem("subCategory"));
     const [result, setResult] = React.useState<any[]>([]);
 
-    // Enhanced error handling states
     const [errors, setErrors] = React.useState<string[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [apiError, setApiError] = React.useState<string | null>(null);
 
+    // Only run this on the client
+    React.useEffect(() => {
+        if (typeof window !== "undefined") {
+            const savedRank = localStorage.getItem("rank");
+            const savedRegion = localStorage.getItem("region");
+            const savedCategory = localStorage.getItem("category");
+            const savedSubCategory = localStorage.getItem("subCategory");
+            const savedResult = localStorage.getItem("result");
+
+            if (savedRank) setRank(savedRank);
+            if (savedRegion) setRegion(savedRegion);
+            if (savedCategory) setCategory(savedCategory);
+            if (savedSubCategory) setSubCategory(savedSubCategory);
+            if (savedResult) setResult(JSON.parse(savedResult));
+        }
+    }, []);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        // Clear previous errors when user makes changes
         setErrors([]);
         setApiError(null);
 
-        if (!isNaN(Number(value)) && !value.includes(' ')) {
+        if (!isNaN(Number(value)) && !value.includes(" ")) {
             setRank(value ? parseInt(value) : "");
+            localStorage.setItem("rank", value);
         }
         setResult([]);
-    }
+    };
 
     const handleOnChangeOfRegion = (value: string) => {
         setRegion(value);
+        localStorage.setItem("region", value);
         setResult([]);
-        // Clear errors on field change
         setErrors([]);
         setApiError(null);
     };
 
     const handleOnChangeOfCategory = (value: string) => {
         setCategory(value);
+        localStorage.setItem("category", value);
         setResult([]);
-        // Clear errors on field change
         setErrors([]);
         setApiError(null);
-    }
+    };
 
     function handleChangeSubCategory(value: string) {
         setSubCategory(value);
+        localStorage.setItem("subCategory", value);
         setResult([]);
-        // Clear errors on field change
         setErrors([]);
         setApiError(null);
     }
@@ -184,6 +200,11 @@ export default function Page() {
     function handleClear() {
         setResult([]);
         setRank("");
+        localStorage.removeItem("rank");
+        localStorage.removeItem("region");
+        localStorage.removeItem("category");
+        localStorage.removeItem("subCategory");
+        localStorage.removeItem("result");
         setErrors([]);
         setApiError(null);
     }
@@ -280,6 +301,7 @@ export default function Page() {
                     setApiError("Unexpected data format received from server");
                 } else {
                     setResult(dataObtained.data);
+                    localStorage.setItem("result", JSON.stringify(dataObtained.data));
                 }
             }
         } catch (err: any) {
@@ -379,8 +401,9 @@ export default function Page() {
                                     {value: "Delhi", label: "Delhi"},
                                     {value: "Outside Delhi", label: "Outside Delhi"},
                                 ]}
-                                defaultValue="Delhi"
+                                defaultValue={region}
                                 onChange={handleOnChangeOfRegion}
+                                placeholder="Region"
                             />
                             <SelectMenu
                                 options={[
@@ -390,7 +413,8 @@ export default function Page() {
                                     {value: "ST", label: "ST"},
                                 ]}
                                 onChange={handleOnChangeOfCategory}
-                                defaultValue="General"
+                                defaultValue={category}
+                                placeholder="Category"
                             />
 
                             <SelectMenu
@@ -401,7 +425,8 @@ export default function Page() {
                                     {value: "Defence", label: "Defence"}
                                 ]}
                                 onChange={handleChangeSubCategory}
-                                defaultValue=" "
+                                defaultValue={subCategory}
+                                placeholder="Sub Category"
                             />
                         </div>
 

@@ -12,7 +12,7 @@ export type SelectOption = {
 
 type SelectMenuProps = {
     options: SelectOption[];
-    defaultValue?: string;
+    defaultValue?: string | null;
     onChange?: (value: string) => void;
     placeholder?: string;
 };
