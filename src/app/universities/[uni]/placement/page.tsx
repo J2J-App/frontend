@@ -2,6 +2,9 @@ import styles from "./page.module.css";
 import TabsPlacement from "@/app/universities/[uni]/placement/tabs-placement.tsx";
 import {MdWarning} from "react-icons/md";
 
+export const dynamic = "force-static";
+export const fetchCache = "force-cache";
+
 export default async function Page({
                                        params,
                                    }: {
