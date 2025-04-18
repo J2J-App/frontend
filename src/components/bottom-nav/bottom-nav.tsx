@@ -3,7 +3,6 @@ import styles from "./bottom-nav.module.css";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {MdArrowBack, MdAutoGraph, MdChair, MdHome, MdMoney,} from "react-icons/md";
-import {ImOffice} from "react-icons/im";
 
 export default function BottomNav() {
     const pathname = usePathname();

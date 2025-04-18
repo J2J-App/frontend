@@ -1,19 +1,4 @@
 import styles from "./page.module.css";
-import Image from "next/image";
-
-//import bgs
-import dtu_bg from "@/public/backgrounds/colleges/dtu.jpg";
-import nsut_bg from "@/public/backgrounds/colleges/nsut.jpg";
-import iiitd_bg from "@/public/backgrounds/colleges/iiitd.jpg";
-import igdtuw_bg from "@/public/backgrounds/colleges/igdtuw.jpg";
-import nsutw_bg from "@/public/backgrounds/colleges/nsutw.jpg";
-import nsute_bg from "@/public/backgrounds/colleges/nsute.jpg";
-
-//icon
-import nsut from "@/public/icons/uni/nsut_icon.png";
-import dtu from "@/public/icons/uni/dtu_icon.png";
-import iiitd from "@/public/icons/uni/iiitd_icon.jpg";
-import igdtuw from "@/public/icons/uni/igdtuw_icon.png";
 
 export default async function Page({
     params,
@@ -33,33 +18,6 @@ export default async function Page({
     console.log(data)
     const currentUniData = data[uni];
 
-    const iconMap: { [key: string]: string } = {
-        "nsut": nsut.src,
-        "nsutw": nsut.src,
-        "nsute": nsut.src,
-        "dtu": dtu.src,
-        "igdtuw": igdtuw.src,
-        "iiitd": iiitd.src,
-    };
-
-    const bgMap: { [key: string]: string } = {
-        "nsut": nsut_bg.src,
-        "nsutw": nsutw_bg.src,
-        "nsute": nsute_bg.src,
-        "dtu": dtu_bg.src,
-        "igdtuw": igdtuw_bg.src,
-        "iiitd": iiitd_bg.src,
-    };
-
-    const nameMap: { [key: string]: string }  = {
-        "nsut": "NSUT",
-        "nsutw": "NSUT WEST",
-        "nsute": "NSUT EAST",
-        "dtu": "DTU",
-        "igdtuw": "IGDTUW",
-        "iiitd": "IIIT-D",
-    }
-
     const formatLabel = (key: string): string => {
         let label = key.replace(/_/g, ' ');
 
@@ -75,49 +33,7 @@ export default async function Page({
             .join(' ');
     };
 
-    return <div style={{
-        margin: "10px 0",
-        padding: "0 20px",
-        marginTop: "120px",
-        marginBottom: "90px"
-    }}>
-        <div className={styles.headContainer}>
-            <div className={styles.background}>
-                <Image style={{
-                    objectFit: "cover",
-                    objectPosition: "bottom",
-                    borderRadius: "18px",
-                    filter: "blur(25px)",
-                    transform: "scale(1, 1)",
-                }} fill={true} src={bgMap[uni]} alt={uni} />
-                <Image style={{
-                    objectFit: "cover",
-                    objectPosition: "bottom",
-                    borderRadius: "18px",
-                }} fill={true} src={bgMap[uni]} alt={uni} />
-            </div>
-            <div className={styles.headText}>
-                <div className={styles.icon}>
-                    <Image fill={true} src={iconMap[uni]} alt={uni} />
-                </div>
-                <h1 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    fontWeight: "900",
-                    fontSize: "24px",
-                    fontFamily: "'Roboto', sans-serif",
-                }}>
-                    {nameMap[uni]}
-                    <span style={{
-                        fontWeight: "300",
-                        fontSize: "16px",
-                        fontFamily: "'Roboto', sans-serif",
-                        color: "#989898",
-                    }}>
-                        {currentUniData.full_name}
-                    </span>
-                </h1>
-            </div>
+    return <div className={styles.headContainer}>
             <div className={styles.content}>
                 <div className={styles.contentContainer}>
                     <h2 className={styles.h2}>
@@ -227,7 +143,7 @@ export default async function Page({
                                             borderBottom: "1px solid #000000"
                                         }}
                                     >
-                                        <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
+                                        <span style={{ fontWeight: 500 }}>{key}</span>
                                         <span>₹{value.toLocaleString()}</span>
                                     </div>
                                 ))}
@@ -237,5 +153,4 @@ export default async function Page({
                 </div>
             </div>
         </div>
-    </div>
 }
