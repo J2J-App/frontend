@@ -85,7 +85,7 @@ export default function Combobox({
         // Handle focus and dropdown state
         if (multiSelect) {
             if (searchable && inputRef.current) {
-                inputRef.current.focus();
+                inputRef.current;
             }
         } else {
             closeDropdown();
