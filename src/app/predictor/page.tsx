@@ -240,7 +240,7 @@ export default function Page() {
                     }
                 );
 
-                const response02 = await fetch(
+                await fetch(
                     "https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/postRank",
                     {
                         method: "POST",
@@ -275,7 +275,7 @@ export default function Page() {
 
                 // Handle empty results
                 if (dataObtained.data && dataObtained.data.length === 0) {
-                    setApiError("No branches found matching your criteria. Try different parameters.");
+                    setApiError("No branches found matching your criteria");
                 } else if (!dataObtained.data) {
                     setApiError("Unexpected data format received from server");
                 } else {
@@ -326,7 +326,8 @@ export default function Page() {
         );
     };
 
-    return (<div style={{
+    return (
+    <div style={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "start",
