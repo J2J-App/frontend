@@ -8,7 +8,7 @@ import Loader from "@/components/loader/loader.tsx";
 import Tabs from "@/components/tabs/tabs.tsx";
 import { SelectOption } from "@/components/select-menus/select-menu.tsx";
 import {usePathname} from "next/navigation";
-export const fetchCache = 'only-cache';
+export const dynamic = "force-static";
 
 function transformData(input: any[]) {
     const normalizedRounds: any = {
