@@ -115,7 +115,7 @@ export default function Combobox({
         // Focus on input if searchable
         setTimeout(() => {
             if (searchable && inputRef.current) {
-                inputRef.current.focus();
+                inputRef.current;
             }
         }, 10);
     };
