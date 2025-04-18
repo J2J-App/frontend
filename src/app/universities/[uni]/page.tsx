@@ -108,7 +108,9 @@ export default async function Page({
                             </span>
                             <div>
                             {currentUniData.fees["B.Tech"] === null ? <>null</> : <>
-                                {Object.entries(currentUniData.fees["B.Tech"]).map(([key, value]: [string,any]) => (
+                                {Object.entries(currentUniData.fees["B.Tech"]).filter(([k,v]: [string, any]) => {
+                                    return !k.startsWith("Additional Fees")
+                                }).map(([key, value]: [string,any]) => (
                                     <div
                                         key={key}
                                         style={{
@@ -121,6 +123,36 @@ export default async function Page({
                                     >
                                         <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
                                         <span>₹{value.toLocaleString()}</span>
+                                    </div>
+                                ))}
+                                {Object.entries(currentUniData.fees["B.Tech"]).filter(([k,v]: [string, any]) => {
+                                    return k.startsWith("Additional Fees")
+                                }).map(([key, value]: [string,any]) => (
+                                    <div
+                                        key={key}
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                            flexDirection: "column",
+                                            padding: "8px 0",
+                                        }}
+                                    >
+                                        <span style={{ fontWeight: 900, marginBottom: "10px" }}>{formatLabel(key)}</span>
+                                        <span>{Object.entries(value).map(([key, value]: [string,any]) => (
+                                            <div
+                                                key={key}
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "space-between",
+                                                    marginBottom: 8,
+                                                    padding: "8px 0",
+                                                    borderBottom: "1px solid #000000"
+                                                }}
+                                            >
+                                                <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
+                                                <span>₹{value.toLocaleString()}</span>
+                                            </div>
+                                        ))}</span>
                                     </div>
                                 ))}
                             </> }

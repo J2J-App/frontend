@@ -17,6 +17,7 @@ type UniData = {
     college: string,
     branch: string,
     jee_rank: number,
+    is_bonus?: boolean,
 };
 
 type DataTable = {
@@ -98,7 +99,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
     const indexOfLastComponent = currentPage * componentsPerPage;
     const indexOfFirstComponent = indexOfLastComponent - componentsPerPage;
     const currentComponents = filterData.slice(indexOfFirstComponent, indexOfLastComponent);
-
+    console.log(currentComponents)
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
         console.log(`Page changed to ${page}`);
@@ -190,7 +191,14 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                     {item.branch}
                                 </div>
                                 <div className={styles.rankHolder}>
-                                    {item.jee_rank}
+                                    {item.jee_rank} {item.is_bonus ? <span style={{
+                                        backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
+                                        WebkitBackgroundClip: "text",
+                                        WebkitTextFillColor: "transparent",
+                                        fontWeight: "600",
+                                    fontSize: "11px",
+                                   marginLeft: "15px",
+                                }}>Bonus</span> : null}
                                 </div>
                                 <div className={styles.rankHolder + " " + styles.mobile}>
                                     Rank
@@ -203,7 +211,14 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                         marginLeft: "5px",
                                         fontWeight: "300",
                                     }}>
-                                        {item.jee_rank}
+                                        {item.jee_rank} {item.is_bonus ? <span style={{
+                                        backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
+                                        WebkitBackgroundClip: "text",
+                                        WebkitTextFillColor: "transparent",
+                                        fontWeight: "600",
+                                        fontSize: "11px",
+                                        marginLeft: "15px",
+                                    }}>Bonus</span> : null}
                                     </span>
                                 </div>
                             </div>

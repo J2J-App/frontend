@@ -17,8 +17,10 @@ const round = M_PLUS_Rounded_1c({
 });
 
 export const metadata: Metadata = {
-  title: "J2J",
+    title: "J2J",
+    description: "The no-bullshit tool for JAC counselling"
 };
+
 
 export default function RootLayout({
   children,

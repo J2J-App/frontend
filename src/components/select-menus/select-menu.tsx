@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useState, useRef, useEffect, use} from 'react';
 import styles from './select-menu.module.css';
 import Image from 'next/image';
 import arrowDown from '@/public/arrow.svg';
@@ -28,6 +28,12 @@ export default function SelectMenu({
     const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
         defaultValue ? options.find(option => option.value === defaultValue) || null : null
     );
+    useEffect(() => {
+        if (defaultValue) {
+            const foundOption = options.find(option => option.value === defaultValue);
+            setSelectedOption(foundOption || null);
+        }
+    }, [defaultValue]);
     const [isFocused, setIsFocused] = useState(false);
     const selectRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);

@@ -24,8 +24,9 @@ function transformData(input: any[]) {
         college: string;
         branch: string;
         jee_rank: number;
+        is_bonus?: boolean
     }) => {
-        const { year, round, college, branch, jee_rank } = entry;
+        const { year, round, college, branch, jee_rank, is_bonus } = entry;
 
         // Skip invalid entries
         if (!year || !round || !college || !branch || !jee_rank) return;
@@ -42,6 +43,7 @@ function transformData(input: any[]) {
             uni: college,
             branch,
             jee_rank,
+            is_bonus: is_bonus || false,
         });
     });
 
@@ -176,6 +178,7 @@ const CutoffPage = () => {
                         {value: " ", label: "None"},
                         {value: "PWD", label: "PWD"},
                         {value: "Girl Candidate", label: "Single Girl Candidate"},
+                        {value: "SGC", label: "Single Girl Child"},
                         {value: "Defence", label: "Defence"}
                     ]} // Add your sub-category options
                     onChange={setSubCategory}

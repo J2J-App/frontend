@@ -8,7 +8,9 @@ export default function Layout({children}: {
 }   ) {
     const params = useParams();
 
-    return <div>
+    return <div style={{
+        padding: "0 18px",
+    }}>
         <div
         style={{
             marginTop: "140px",

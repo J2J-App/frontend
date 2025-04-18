@@ -29,8 +29,9 @@ function transformData(input: any[]) {
         college: string;
         branch: string;
         jee_rank: number;
+        is_bonus?: boolean
     }) => {
-        const { year, round, college, branch, jee_rank } = entry;
+        const { year, round, college, branch, jee_rank, is_bonus } = entry;
 
         // Skip invalid entries
         if (!year || !round || !college || !branch || !jee_rank) return;
@@ -47,6 +48,7 @@ function transformData(input: any[]) {
             uni: college,
             branch,
             jee_rank,
+            is_bonus: is_bonus || false,
         });
     });
 
@@ -135,9 +137,10 @@ function SortedTable({ data }: { data: any[] }) {
 
 export default function Page() {
     const [rank, setRank] = React.useState<number | string | null>("");
-    const [region, setRegion] = React.useState<string | null>(localStorage.getItem("region"));
-    const [category, setCategory] = React.useState<string | null>(localStorage.getItem("category"));
-    const [subCategory, setSubCategory] = React.useState<string | null>(localStorage.getItem("subCategory"));
+    const [region, setRegion] = React.useState<string | null>(null);
+    const [category, setCategory] = React.useState<string | null>(null);
+    const [subCategory, setSubCategory] = React.useState<string | null>(null);
+
     const [result, setResult] = React.useState<any[]>([]);
 
     const [errors, setErrors] = React.useState<string[]>([]);
@@ -160,6 +163,7 @@ export default function Page() {
             if (savedResult) setResult(JSON.parse(savedResult));
         }
     }, []);
+    console.log(rank, region, category, subCategory);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -421,7 +425,8 @@ export default function Page() {
                                 options={[
                                     {value: " ", label: "None"},
                                     {value: "PWD", label: "PWD"},
-                                    {value: "Girl Candidate", label: "Single Girl Candidate"},
+                                    {value: "Girl Candidate", label: "Girl Candidate"},
+                                    {value: "SGC", label: "Single Girl Child"},
                                     {value: "Defence", label: "Defence"}
                                 ]}
                                 onChange={handleChangeSubCategory}

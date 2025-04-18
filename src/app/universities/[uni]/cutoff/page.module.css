@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
     margin-top: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    padding: 20px -18px;
+
 }

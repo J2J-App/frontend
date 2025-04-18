@@ -35,8 +35,8 @@ export default async function Page({
 
     return <div style={{
         margin: "10px 0",
-        padding: "0 20px",
-        marginTop: "120px",
+        padding: "0",
+        marginTop: "25px",
         marginBottom: "90px"
     }}>
         <div className={styles.headContainer}>
