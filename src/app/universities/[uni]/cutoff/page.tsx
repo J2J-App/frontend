@@ -8,6 +8,8 @@ import Loader from "@/components/loader/loader.tsx";
 import Tabs from "@/components/tabs/tabs.tsx";
 import { SelectOption } from "@/components/select-menus/select-menu.tsx";
 import {usePathname} from "next/navigation";
+export const fetchCache = 'default-cache';
+
 function transformData(input: any[]) {
     const normalizedRounds: any = {
         "U1": "Upgradation 1",
@@ -63,6 +65,8 @@ function transformData(input: any[]) {
         })
         .sort((a, b) => b.year - a.year); // Descending by year
 }
+
+
 const CutoffPage = () => {
     const uni = usePathname().split("/")[2]
     const [region, setRegion] = React.useState("");
