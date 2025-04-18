@@ -76,8 +76,10 @@ export default async function Page({
     };
 
     return <div style={{
-        margin: "120px 0",
+        margin: "10px 0",
         padding: "0 20px",
+        marginTop: "120px",
+        marginBottom: "90px"
     }}>
         <div className={styles.headContainer}>
             <div className={styles.background}>
@@ -196,7 +198,7 @@ export default async function Page({
                         <span>
                             Hostel Fees (Per Semester)
                         </span>
-                        <p>
+                        <div>
                             {currentUniData.hostel_fees === null ? "No Hostel Available" : typeof currentUniData.hostel_fees === "number" ? currentUniData.hostel_fees + " INR" : <>
                                 {Object.entries(currentUniData.hostel_fees).map(([key, value]: [string,any]) => (
                                     <div
@@ -214,7 +216,7 @@ export default async function Page({
                                     </div>
                                 ))}
                             </> }
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

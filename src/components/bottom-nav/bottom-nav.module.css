@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 10px;
     left: 50%;
-    width: 100%;
+    width: fit-content;
     max-width: 380px;
     color: white;
     border: 1px solid rgba(161, 161, 161, 0.12);
@@ -14,8 +14,7 @@
 }
 
 .links {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
     gap: 4px;
 }
 
@@ -27,6 +26,7 @@
     justify-content: center;
     align-items: center;
     gap: 0px;
+    width: 75px;
     text-decoration: none;
     color: #b4b4b4;
     border-radius: 9px;

@@ -2,7 +2,7 @@
 import styles from "./bottom-nav.module.css";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
-import {MdAutoGraph, MdChair, MdHome, MdMoney,} from "react-icons/md";
+import {MdArrowBack, MdAutoGraph, MdChair, MdHome, MdMoney,} from "react-icons/md";
 import {ImOffice} from "react-icons/im";
 
 export default function BottomNav() {
@@ -31,6 +31,17 @@ export default function BottomNav() {
 
     return <div className={styles.bottomNavContainer}>
         <div className={styles.links}>
+            <Link style={{
+                width: "40px"
+            }} className={styles.link} href={"/universities"}>
+                <div>
+                    <div style={{
+                        fontSize: "22px",
+                    }}>
+                        <MdArrowBack />
+                    </div>
+                </div>
+            </Link>
             <ButtonLink link={""} text={"Home"} icon={<MdHome />} />
             <ButtonLink link={"/cutoff"} text={"Cut Offs"} icon={<MdAutoGraph />} />
             <ButtonLink link={"/placement"} text={"Placement"} icon={<MdMoney />} />
