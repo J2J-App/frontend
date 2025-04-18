@@ -188,11 +188,27 @@ export default async function Page({
                         marginBottom: "12px",
                     }} className={styles.catg}>
                             <span>
-                                Fees (Per Semester)
+                                Fees (Per Year)
                             </span>
-                        <p>
-                            ₹{currentUniData.fees.toLocaleString()}
-                        </p>
+                            <div>
+                            {currentUniData.fees["B.Tech"] === null ? <>null</> : <>
+                                {Object.entries(currentUniData.fees["B.Tech"]).map(([key, value]: [string,any]) => (
+                                    <div
+                                        key={key}
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                            marginBottom: 8,
+                                            padding: "8px 0",
+                                            borderBottom: "1px solid #000000"
+                                        }}
+                                    >
+                                        <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
+                                        <span>₹{value.toLocaleString()}</span>
+                                    </div>
+                                ))}
+                            </> }
+                        </div>
                     </div>
                     <div className={styles.catg}>
                         <span>
