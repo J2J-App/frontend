@@ -4,7 +4,7 @@ import React from 'react';
 import "./styles.css";
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import nsut from "@/public/nsut.jpg";
+import nsut from "@/public/backgrounds/colleges/nsut.jpg";
 import nsut_icon from "@/public/icons/uni/nsut_icon.png";
 
 import Button from '@/components/buttons/button.tsx';
