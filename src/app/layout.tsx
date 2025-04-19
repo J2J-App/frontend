@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, M_PLUS_Rounded_1c } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/app/nav-bar/nav-bar.tsx";
+import { Analytics } from "@vercel/analytics/react"
 
 
 const roboto = Roboto({
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className + " " + round.className}>
+        <Analytics />
         <NavBar />
         <div>
             {children}
