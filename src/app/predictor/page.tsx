@@ -395,7 +395,7 @@ export default function Page() {
                     }}>
                         <SingleInput
                             value={`${rank}`}
-                            holder="Rank"
+                            holder="CRL Rank"
                             type="number"
                             onChange={handleChange}
                         />
