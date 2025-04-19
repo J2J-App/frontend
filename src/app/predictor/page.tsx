@@ -101,27 +101,34 @@ function SortedTable({ data }: { data: any[] }) {
             zIndex: -1
         }}>
             <Tabs setActiveIndex={setTab} activeIndex={tab} tabs={res.filter(r => r.year === year).pop()?.ranks.sort((a, b) => {
-                // Extract the prefix and number from the round name
-                const getRoundPriority = (round: string) => {
-                    if (round.startsWith("Round")) return { type: "R", number: parseInt(round.split(" ")[1], 10) };
-                    if (round.startsWith("Upgradation")) return { type: "U", number: parseInt(round.split(" ")[1], 10) };
-                    if (round.startsWith("Spot Round")) return { type: "S", number: parseInt(round.split(" ")[2], 10) };
-                    return { type: "", number: 0 }; // Default case for unknown rounds
-                };
-
-                const priorityMap: {
-                    [key: string]: number;
-                } = { R: 1, U: 2, S: 3 }; // Define the priority order
-
-                const roundA = getRoundPriority(a.round);
-                const roundB = getRoundPriority(b.round);
-
-                // Compare by type priority first
-                if (priorityMap[roundA.type] !== priorityMap[roundB.type]) {
-                    return priorityMap[roundA.type] - priorityMap[roundB.type];
-                }
-
-                return roundA.number - roundB.number;
+                    const getRoundPriority = (round: any) => {
+                        // Handle Round 1-5 with priorities 1-5
+                        if (round.startsWith("Round")) {
+                            const number = parseInt(round.split(" ")[1], 10);
+                            if (number >= 1 && number <= 5) {
+                                return { type: "R", number: number, priority: number };
+                            }
+                        }
+                        
+                        // Handle specific cases with explicit priorities
+                        if (round === "Upgradation 1") return { type: "U", number: 1, priority: 6 };
+                        if (round === "Spot Round 1") return { type: "S", number: 1, priority: 7 };
+                        if (round === "Upgradation 2") return { type: "U", number: 2, priority: 8 };
+                        
+                        // Default case for any unknown rounds
+                        return { type: "", number: 0, priority: 100 };
+                    };
+                
+                    const roundA = getRoundPriority(a.round);
+                    const roundB = getRoundPriority(b.round);
+                
+                    // Compare by explicit priority first
+                    if (roundA.priority !== roundB.priority) {
+                        return roundA.priority - roundB.priority;
+                    }
+                
+                    // If same priority, compare by number
+                    return roundA.number - roundB.number;
             }).map((d: any) => {
                 return {
                     label: d.round,
