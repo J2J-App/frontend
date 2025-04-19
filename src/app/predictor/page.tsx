@@ -407,7 +407,7 @@ export default function Page() {
                                 ]}
                                 defaultValue={region}
                                 onChange={handleOnChangeOfRegion}
-                                placeholder="Region"
+                                placeholder="Domicile"
                             />
                             <SelectMenu
                                 options={[
