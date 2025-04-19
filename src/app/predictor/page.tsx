@@ -415,6 +415,7 @@ export default function Page() {
                                     {value: "OBC", label: "OBC"},
                                     {value: "SC", label: "SC"},
                                     {value: "ST", label: "ST"},
+                                    {value: "EWS", label: "EWS"},
                                 ]}
                                 onChange={handleOnChangeOfCategory}
                                 defaultValue={category}
