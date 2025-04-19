@@ -170,6 +170,7 @@ const CutoffPage = () => {
                         {value: "OBC", label: "OBC"},
                         {value: "SC", label: "SC"},
                         {value: "ST", label: "ST"},
+                        {value: "EWS", label: "EWS"},
                     ]} // Add your category options
                     onChange={setCategory}
                     defaultValue={"General"}
