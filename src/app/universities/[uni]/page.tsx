@@ -8,7 +8,7 @@ export default async function Page({
     const { uni } = await params;
 
     //fetch uni data
-    const uniDataRes = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getCollegeData")
+    const uniDataRes = await fetch("https://api.anmolcreates.tech/api/v1/getCollegeData")
 
     if (!uniDataRes.ok) {
         throw new Error("Failed to fetch data");

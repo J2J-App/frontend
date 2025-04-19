@@ -93,7 +93,7 @@ const CutoffPage = () => {
             const timeoutId = setTimeout(() => controller.abort(), 30000);
 
             const response = await fetch(
-                "https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getBranches",
+                "https://api.anmolcreates.tech/api/v1/getBranches",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

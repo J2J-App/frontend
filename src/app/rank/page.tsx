@@ -31,7 +31,7 @@ export default function Page() {
 
         try {
             setIsLoading(true);
-            const response = await fetch('https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getRank', {
+            const response = await fetch('https://api.anmolcreates.tech/api/v1/getRank', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
