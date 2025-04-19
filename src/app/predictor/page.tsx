@@ -250,7 +250,7 @@ export default function Page() {
                 const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
                 const response = await fetch(
-                    "https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getBranches",
+                    "https://api.anmolcreates.tech/api/v1/getBranches",
                     {
                         method: "POST",
                         headers: {
@@ -266,7 +266,7 @@ export default function Page() {
                 );
 
                 await fetch(
-                    "https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/postRank",
+                    "https://api.anmolcreates.tech/api/v1/postRank",
                     {
                         method: "POST",
                         headers: {

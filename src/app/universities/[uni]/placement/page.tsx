@@ -13,7 +13,7 @@ export default async function Page({
     const { uni } = await params;
 
 
-    const data_2024 = await (await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getPlacement",{
+    const data_2024 = await (await fetch("https://api.anmolcreates.tech/api/v1/getPlacement",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export default async function Page({
             year: 2024,
         }),
     })).json()
-    const data_2023 = await (await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getPlacement",{
+    const data_2023 = await (await fetch("https://api.anmolcreates.tech/api/v1/getPlacement",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export default async function Page({
             year: 2023,
         }),
     })).json()
-    const data_2022 = await (await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getPlacement",{
+    const data_2022 = await (await fetch("https://api.anmolcreates.tech/api/v1/getPlacement",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",

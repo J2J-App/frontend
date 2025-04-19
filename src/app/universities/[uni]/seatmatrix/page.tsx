@@ -7,11 +7,11 @@ export default async function Page({
 }) {
     const { uni } = await params;
 
-    const uniSeatMatrixData = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getSeatMatrix")
+    const uniSeatMatrixData = await fetch("https://api.anmolcreates.tech/api/v1/getSeatMatrix")
 
-    const categoryFullForm = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getSeatMatrix/categorydescription")
+    const categoryFullForm = await fetch("https://api.anmolcreates.tech/api/v1/getSeatMatrix/categorydescription")
 
-    const uniTotalSeats = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getSeatMatrix/totalseats")
+    const uniTotalSeats = await fetch("https://api.anmolcreates.tech/api/v1/getSeatMatrix/totalseats")
 
     if (!uniSeatMatrixData.ok) {
         throw new Error("Failed to fetch data");

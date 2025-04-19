@@ -27,7 +27,7 @@ export default function Page() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getCollegeBranches");
+                const response = await fetch("https://api.anmolcreates.tech/api/v1/getCollegeBranches");
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
@@ -140,7 +140,7 @@ export default function Page() {
             // First college/branch fetch
             let response1, data1;
             try {
-                response1 = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getPlacementByBranch", {
+                response1 = await fetch("https://api.anmolcreates.tech/api/v1/getPlacementByBranch", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -167,7 +167,7 @@ export default function Page() {
             // Second college/branch fetch
             let response2, data2;
             try {
-                response2 = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getPlacementByBranch", {
+                response2 = await fetch("https://api.anmolcreates.tech/api/v1/getPlacementByBranch", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
