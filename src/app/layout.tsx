@@ -3,7 +3,7 @@ import { Roboto, M_PLUS_Rounded_1c } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/app/nav-bar/nav-bar.tsx";
 import { Analytics } from "@vercel/analytics/react"
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className + " " + round.className}>
         <Analytics />
+        <SpeedInsights />
         <NavBar />
         <div>
             {children}
