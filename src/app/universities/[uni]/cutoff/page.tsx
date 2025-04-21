@@ -182,7 +182,7 @@ const CutoffPage = () => {
                         {value: " ", label: "None"},
                         {value: "PWD", label: "PWD"},
                         {value: "Girl Candidate", label: "Girl Candidate (Only in NSUT)"},
-                        {value: "SGC", label: "Single Girl Child"},
+                        {value: "SGC", label: "Single Girl Child (Only in DTU and IGDTUW)"},
                         {value: "Defence", label: "Defence"}
                     ]} // Add your sub-category options
                     onChange={setSubCategory}
