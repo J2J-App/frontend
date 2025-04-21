@@ -181,7 +181,7 @@ const CutoffPage = () => {
                     options={[
                         {value: " ", label: "None"},
                         {value: "PWD", label: "PWD"},
-                        {value: "Girl Candidate", label: "Girl Candidate"},
+                        {value: "Girl Candidate", label: "Girl Candidate (Only in NSUT)"},
                         {value: "SGC", label: "Single Girl Child"},
                         {value: "Defence", label: "Defence"}
                     ]} // Add your sub-category options
