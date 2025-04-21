@@ -434,7 +434,7 @@ export default function Page() {
                                     {value: " ", label: "None"},
                                     {value: "PWD", label: "PWD"},
                                     {value: "Girl Candidate", label: "Girl Candidate (Only in NSUT)"},
-                                    {value: "SGC", label: "Single Girl Child"},
+                                    {value: "SGC", label: "Single Girl Child (Only in IGDTUW & DTU)"},
                                     {value: "Defence", label: "Defence"}
                                 ]}
                                 onChange={handleChangeSubCategory}
