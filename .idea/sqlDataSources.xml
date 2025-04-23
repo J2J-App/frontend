@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="54e53ee2-90b5-4157-82d9-6a68422cb1dd" name="neon Mapping">
+      <data-sources db="82ea239b-b7fe-4eed-95f5-b71ac8ccbbff" ddl="f310186a-7a65-4c70-a98e-0dd597603a71" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="f310186a-7a65-4c70-a98e-0dd597603a71" />
+          <option name="name" value="neon (DDL)" />
+          <option name="dbmsName" value="POSTGRES" />
+          <option name="parent" value="82ea239b-b7fe-4eed-95f5-b71ac8ccbbff" />
+          <option name="urls">
+            <array />
+          </option>
+          <option name="outLayout" value="File per object by schema.groovy" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
