@@ -30,10 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className + " " + round.className}>
-        <Analytics />
-        <SpeedInsights />
-        <NavBar />
+    <head>
+        <script defer src="https://cloud.umami.is/script.js"
+                data-website-id="0a1d5446-18c9-41be-a368-21c9eb0ddee9"></script>
+    </head>
+    <body className={roboto.className + " " + round.className}>
+    <Analytics/>
+    <SpeedInsights/>
+    <NavBar />
         <div>
             {children}
         </div>
