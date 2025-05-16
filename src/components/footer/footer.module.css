@@ -1,0 +1,124 @@
+.footerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+    overflow: hidden;
+    margin-top: 100px;
+    background-color: rgba(31, 31, 31, 0.66);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+    height: 400px;
+    width: 100vw;
+    position: relative;
+}
+
+.footerHead {
+    line-height: .9;
+    position: absolute;
+    left: 80px;
+    top: 40px;
+    font-family: "Impact", sans-serif;
+    font-size: 13vw;
+    color: #141414;
+    opacity: .4;
+    text-shadow:
+            1px 1px 0 #ffffff,
+            -1px -1px 0 #ffffff,
+            1px -1px 0 #ffffff,
+            -1px 1px 0 #ffffff;
+    font-weight: 800;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.footerContent {
+    position: absolute;
+    right: 80px;
+    bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.7fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.gridCon {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    text-align: right;
+    z-index: 20;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+    color: rgba(255, 255, 255, 0.66);
+}
+
+.link:active {
+    color: rgba(143, 143, 143, 0.99);
+}
+
+.lowerCon {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+@media only screen and (max-width: 808px) {
+    .footerContainer {
+        height: 450px;
+    }
+
+    .footerHead {
+        font-size: 19.5vw;
+        left: 50%;
+        top: 20px;
+        transform: translateX(-50%);
+    }
+    .footerContent {
+        right: 20px;
+        width: calc(100vw - 20px);
+        bottom: 20px;
+    }
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .gridCon, .link {
+        text-align: left;
+    }
+
+    .gridCon {
+        padding: 0 20px;
+    }
+
+    .link {
+        font-size: 16px;
+    }
+
+    .lowerCon {
+        margin-top: 10px;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 5px;
+    }
+}

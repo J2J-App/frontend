@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "@/components/app/nav-bar/nav-bar.tsx";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Footer from "@/components/footer/footer.tsx";
+import FooterWrapper from "@/components/footer/footer-wrapper.tsx";
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -31,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     <head>
-        <script defer src="https://cloud.umami.is/script.js"
+        <script async={true} defer={true} src="https://cloud.umami.is/script.js"
                 data-website-id="0a1d5446-18c9-41be-a368-21c9eb0ddee9"></script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6258466000437582"
      crossOrigin="anonymous"></script>
@@ -43,6 +45,9 @@ export default function RootLayout({
         <div>
             {children}
         </div>
+        <FooterWrapper>
+            <Footer />
+        </FooterWrapper>
       </body>
     </html>
   );

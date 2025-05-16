@@ -32,7 +32,7 @@ export default async function Page({
     const currentUniSeatData = seatData[uni];
     const currentTotalSeatsData = totalSeatsData[uni.toUpperCase()];
     const categoryFullFormData = categoryData.category_descriptions;
-
+    console.log(currentUniSeatData,currentTotalSeatsData,categoryFullFormData)
     return <div style={{
         margin: "10px 0",
         padding: "0",

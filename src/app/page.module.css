@@ -140,7 +140,7 @@
         left: 0;
         width: 50%;
         height: 2px;
-        background : linear-gradient(90deg, rgba(224, 166, 255, 1) 0%, rgba(143, 158, 246, 1) 50%, rgba(133, 255, 208, 1) 100%);
+        background : linear-gradient(90deg, rgb(216, 159, 248) 0%, rgba(143, 158, 246, 1) 50%, rgb(124, 232, 190) 100%);
         transition: all 0.2s ease;
         z-index: -1;
       }
@@ -175,6 +175,464 @@
   }
 }
 
+.sepLine {
+  position: relative;
+  width: 30px;
+  margin: 120px 0 50px 0;
+  height: 35vh;
+  background : linear-gradient(180deg, rgb(0, 0, 0) 0%,rgb(216, 159, 248) 33%, rgba(143, 158, 246, 1) 66%, rgb(124, 232, 190) 100%);
+  border-radius: 15px;
+}
+
+.sepLine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 12px;
+  z-index: -1;
+  height: 100%;
+  filter: blur(45px);
+  background : linear-gradient(180deg, rgb(0, 0, 0) 0%,rgb(216, 159, 248) 33%, rgba(143, 158, 246, 1) 66%, rgb(124, 232, 190) 100%);
+
+}
+
+.sepLine::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 1vmax;
+  z-index: -1;
+  filter: blur(80px);
+  background : rgba(124, 232, 190, 0.84)
+
+}
+.extraContent {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100vw;
+  height: fit-content;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  align-items: center;
+}
+
+.extraContent::before{
+  position: absolute;
+  content: "";
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 25px;
+  filter: blur(80px);
+  background : linear-gradient(90deg,black 0% , rgba(224, 166, 255, 1) 25%, rgba(143, 158, 246, 1) 50%, rgba(133, 255, 208, 1) 75%, black 100%);
+  z-index: 20;
+}
+
+.extraContent::after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 50%;
+  border-radius: 1vmax;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background : linear-gradient(90deg,black 0% , rgb(74, 56, 84) 25%, rgb(68, 76, 117) 50%, rgb(67, 122, 101) 75%, black 100%);
+  z-index: 20;
+}
+
+.conContainer {
+  margin-top: -10px;
+  width: 100vw;
+  max-width: 1000px;
+  .heading {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 32px;
+    position: relative;
+    margin: 6px 20px;
+  }
+}
+
+
+
+.counsellingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 12px 20px;
+
+}
+
+.counselling {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background-color: rgba(31, 31, 31, 0.73);
+  padding: 10px 20px;
+  color: white;
+  font-weight: 600;
+  border: 1px solid rgba(72, 72, 72, 0.36);
+  gap: 20px;
+  .icons {
+    background: rgb(255, 255, 255);
+    width: 45px;
+    height: 45px;
+    border-radius: 9px;
+    overflow: clip;
+    position: relative;
+  }
+}
+
+
+.toolHeader {
+  position: relative;
+  text-align: right;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  font-size: 80px;
+  padding: 60px 20px 0 20px;
+  width: 100vw;
+  max-width: 1000px;
+  z-index: -2;
+}
+
+
+
+.toolContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 500px;
+  padding: 20px;
+  margin-top: -120px;
+  width: 100vw;
+  max-width: 1000px;
+}
+
+.toolContainer::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 15%;
+  right: -12px;
+  width: 100%;
+  height: 100px;
+  filter: blur(20px);
+  background: black;
+}
+
+.toolName, .toolName1 {
+  color: white;
+  transition: all 0.6s cubic-bezier(0.87, 0, 0.13, 1);;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  position: absolute;
+  font-size: 24px;
+  border-radius: 12px;
+  padding: 24px 40px;
+  line-height: 1;
+  backdrop-filter: blur(40px) brightness(0.5);
+  z-index: 20;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+.topTool {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 40%;
+  width: 100%;
+  position: relative;
+  transition: all .2s ease;
+
+}
+.leftContainer {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 100%;
+  width: 60%;
+  position: relative;
+  transition: all .2s ease;
+}
+
+.leftContainer::after, .topTool::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(40, 40, 40, 0.57);
+  transition: all 0.6s cubic-bezier(0.87, 0, 0.13, 1);;
+
+}
+
+.leftContainer:hover::after, .topTool:hover::after {
+  top: 0;
+}
+
+.leftContainer:hover .toolName {
+  backdrop-filter: blur(0px) brightness(1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 48px;
+  border: 1px solid rgba(157, 157, 157, 0);
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.topTool:hover .toolName {
+  backdrop-filter: blur(0px) brightness(1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 48px;
+  border: 1px solid rgba(157, 157, 157, 0);
+  top: 50% !important;
+  right: 50% !important;
+  transform: translate(50%, -50%) !important;
+}
+
+.topTool:hover .toolName1 {
+  backdrop-filter: blur(0px) brightness(1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 48px;
+  border: 1px solid rgba(157, 157, 157, 0);
+  bottom: 50% !important;
+  right: 50% !important;
+  transform: translate(50%,50%) !important;
+}
+
+.leftContainer:active, .topTool:active {
+  transform: scale(0.9);
+}
+
+.rightContainer {
+  height: 100%;
+  width: 40%;
+  position: relative;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.comparisonHead {
+  margin-top: 120px;
+  position: relative;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  height: 550px;
+  font-size: 52px;
+  padding: 60px 20px 0 20px;
+  width: 100vw;
+  max-width: 1000px;
+}
+
+.compTable {
+  overflow: hidden;
+  display: grid;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(131, 131, 131, 0.2);
+  background: rgba(14, 14, 14, 0.77);
+  margin-top: -300px;
+  width: calc(100vw - 40px);
+  max-width: 960px;
+  grid-template-columns: .8fr 1fr 1fr;
+  grid-template-rows: repeat(7, 1fr);
+  .head {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    line-height: 1.2;
+    align-content: center;
+    font-size: 16px;
+    padding: 20px 25px;
+    text-align: left;
+    color: white;
+    background : rgba(66, 66, 66, 0.18);
+  }
+  .param {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    align-content: center;
+    line-height: 1.2;
+    font-size: 16px;
+    padding: 20px 25px;
+    text-align: left;
+    color: white;
+  }
+  .nm {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    line-height: 1.4;
+    font-size: 14px;
+    align-content: center;
+    padding: 20px 25px;
+    text-align: left;
+    color: white;
+  }
+}
+
+.compTable :nth-child(2n), .compTable :nth-child(2n + 1):not(:first-child) {
+  border-left: 1px solid rgba(131, 131, 131, 0.2)
+}
+
+.compTable :not(:nth-last-child(-n+3)) {
+  border-bottom: 1px solid rgba(131, 131, 131, 0.2);
+}
+
+.aboutTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-direction: row-reverse;
+  margin-top: 120px;
+  width: calc(100vw - 40px);
+  max-width: 960px;
+}
+
+.leftC, .rightC {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leftC {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 18px;
+}
+
+.rightC {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  font-size: 72px;
+  text-align: right;
+  justify-content: flex-start;
+}
+
+.linkOut {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.linkOut:hover {
+  opacity: 0.8;
+}
+.linkOut:active {
+  transform: scale(0.9);
+}
+
+.faqs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    margin-top: 40px;
+    width: calc(100vw - 40px);
+    max-width: 960px;
+}
+
+.contactHead {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-top: 120px;
+  margin-bottom: 50px;
+  width: calc(100vw - 40px);
+  max-width: 960px;
+  position: relative;
+  height: calc(100vh - 130px);
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(131, 131, 131, 0.63);
+}
+
+.contactText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 25px;
+  text-align: center;
+  display: flex;
+  z-index: 20;
+
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contactLink {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  color: white;
+  border-radius: 12px;
+  border: 1px solid rgba(131, 131, 131, 0.2);
+  background-color: rgb(19, 19, 19);
+  padding: 14px 20px;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.contactLink:hover {
+    transform: scale(1.1) rotate(-2deg);
+}
+
+.contactLink:active {
+  transform: scale(.9) rotate(4deg);
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 950px) {
+  .comparisonHead {
+    margin-top: 200px;
+  }
+  .comparisonHead>h2 {
+    margin-top: -150px !important;
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .contentContainer {
     padding: 10px;
@@ -182,6 +640,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .toolHeader {
+    font-size: 70px;
+    text-align: center;
+    padding: 20px 20px 0 20px;
+    background: -webkit-linear-gradient(#eee 60%, #0e0e0e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .toolContainer {
+    margin-top: 0;
+    flex-direction: column;
+    gap: 10px;
+    height: 900px;
+  }
+  .leftContainer {
+    width: 100%;
+    height: 50%;
+  }
+  .rightContainer {
+    width: 100%;
+    height: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .topTool {
+    width: 100%;
+    height: 50%;
   }
   .page {
     .desktop {
@@ -220,4 +707,66 @@
     }
   }
 
+}
+
+@media only screen and (max-width: 740px) {
+
+}
+
+@media only screen and (max-width: 670px) {
+  .toolHeader {
+    font-size: 50px;
+    padding: 20px 20px 0 20px;
+
+  }
+  .comparisonHead {
+    display: flex;
+    justify-content: center;
+  }
+
+  .comparisonHead>h2 {
+    font-size: 55px;
+    max-width: 550px;
+    margin-top: -120px !important;
+  }
+
+  .compTable {
+    grid-template-columns: 0.4fr 1fr 1fr;
+    .head, .nm, .param {
+      align-content: center;
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+
+    .head {
+
+    }
+    .param {
+
+    }
+    .nm {
+
+    }
+  }
+  .aboutTop {
+    flex-direction: column-reverse;
+    gap: 20px;
+    margin-top: 80px;
+    width: calc(100vw - 40px);
+    max-width: 960px;
+  }
+  .rightC {
+    font-family: "Roboto", sans-serif;
+    font-size: 50px;
+    text-align: left;
+  }
+  .leftC, .rightC {
+    width: 100%;
+  }
+  .contactText {
+    .head1 {
+        font-size: 30px;
+      width: 400px;
+    }
+  }
 }
