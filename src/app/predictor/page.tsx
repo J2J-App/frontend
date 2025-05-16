@@ -297,7 +297,7 @@ export default function Page() {
                     } else if (response.status === 429) {
                         throw new Error("Too many requests. Please try again later.");
                     } else if (response.status >= 500) {
-                        throw new Error("Server error. Please try again later.");
+                        throw new Error("Fill all the fields correctly");
                     } else {
                         throw new Error(`Server responded with status ${response.status}`);
                     }
