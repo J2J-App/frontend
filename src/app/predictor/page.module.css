@@ -1,0 +1,69 @@
+.counsellingsContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.content {
+    color: white;
+    text-align: center;
+    width: calc(100vw - 40px);
+    max-width: 550px;
+    .head {
+        font-size: 30px;
+        font-weight: 900;
+        margin-bottom: 2px;
+    }
+    .desc {
+        font-size: 14px;
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+}
+
+.counsellingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.counselling {
+    user-select: none;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(31, 31, 31, 0.73);
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    border: 1px solid rgba(72, 72, 72, 0.36);
+    gap: 20px;
+    transition: all 0.2s ease-out;
+    .icons {
+        background: rgb(255, 255, 255);
+        width: 45px;
+        height: 45px;
+        border-radius: 9px;
+        overflow: clip;
+        position: relative;
+    }
+}
+
+.counselling:hover {
+    background-color: rgba(37, 37, 37, 0.93);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.36);
+}
+
+.counselling:active {
+    background-color: rgba(21, 21, 21, 0.93);
+    cursor: pointer;
+    border: 1px solid rgba(42, 42, 42, 0.36);
+    transform: scale(0.95);
+}
