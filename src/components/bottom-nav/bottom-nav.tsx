@@ -14,7 +14,6 @@ export default function BottomNav() {
         icon: any
     }) {
         const href = `/${path[1]}/${path[2]}${link}`
-        console.log(href,pathname)
         return <Link href={href}>
             <div className={pathname === href ? styles.active + " " + styles.link : styles.link}>
                 <div style={{

@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import styles from "./footer.module.css";
 import Image from "next/image";
@@ -62,7 +61,7 @@ export default function Footer() {
                         <Link className={styles.link} href={"/site-map"}>
                             Site Map
                         </Link>
-                        <a className={styles.link} href={"mailto:admin@jeepedia.in"} target={"_blank"}>
+                        <a className={styles.link} href={"mailto:jeepedia.in@gmail.com"} target={"_blank"}>
                             Mail
                         </a>
                         <a className={styles.link} href={"https://discord.gg/Z8s9JECw4C"} target={"_blank"}>

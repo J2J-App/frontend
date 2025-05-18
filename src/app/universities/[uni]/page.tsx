@@ -7,8 +7,17 @@ export default async function Page({
 }) {
     const { uni } = await params;
 
-    //fetch uni data
-    const uniDataRes = await fetch("https://api.anmolcreates.tech/api/v1/getCollegeData")
+    const uniDataRes = await fetch(
+    "http://localhost:4000/api/v2/about",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            college: uni,
+        }),
+    })
 
     if (!uniDataRes.ok) {
         throw new Error("Failed to fetch data");
@@ -40,7 +49,7 @@ export default async function Page({
                         Mode of Admission
                     </h2>
                     <p>
-                        {currentUniData.mode_of_admission}
+                        {currentUniData.mode_of_admission.mode_of_admission}
                     </p>
                 </div>
                 <div className={styles.contentContainer}>
@@ -107,8 +116,8 @@ export default async function Page({
                                 Fees (Per Year)
                             </span>
                             <div>
-                            {currentUniData.fees["B.Tech"] === null ? <>null</> : <>
-                                {Object.entries(currentUniData.fees["B.Tech"]).filter(([k,v]: [string, any]) => {
+                            {currentUniData.fee_structure["institute_fee"] === null ? <>null</> : <>
+                                {Object.entries(currentUniData.fee_structure["institute_fee"]).filter(([k,v]: [string, any]) => {
                                     return !k.startsWith("Additional Fees")
                                 }).map(([key, value]: [string,any]) => (
                                     <div
@@ -122,10 +131,10 @@ export default async function Page({
                                         }}
                                     >
                                         <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
-                                        <span>₹{value.toLocaleString()}</span>
+                                        <span>{value.toLocaleString()}</span>
                                     </div>
                                 ))}
-                                {Object.entries(currentUniData.fees["B.Tech"]).filter(([k,v]: [string, any]) => {
+                                {Object.entries(currentUniData.fee_structure["institute_fee"]).filter(([k,v]: [string, any]) => {
                                     return k.startsWith("Additional Fees")
                                 }).map(([key, value]: [string,any]) => (
                                     <div
@@ -150,7 +159,7 @@ export default async function Page({
                                                 }}
                                             >
                                                 <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
-                                                <span>₹{value.toLocaleString()}</span>
+                                                <span>{value.toLocaleString()}</span>
                                             </div>
                                         ))}</span>
                                     </div>
@@ -163,8 +172,8 @@ export default async function Page({
                             Hostel Fees (Per Semester)
                         </span>
                         <div>
-                            {currentUniData.hostel_fees === null ? "No Hostel Available" : typeof currentUniData.hostel_fees === "number" ? currentUniData.hostel_fees + " INR" : <>
-                                {Object.entries(currentUniData.hostel_fees).map(([key, value]: [string,any]) => (
+                            {currentUniData.fee_structure["hostel_fee"] === null ? "No Hostel Available" : typeof currentUniData.fee_structure["hostel_fee"] === "number" ? currentUniData.fee_structure["hostel_fee"] + " INR" : <>
+                                {Object.entries(currentUniData.fee_structure["hostel_fee"]).map(([key, value]: [string,any]) => (
                                     <div
                                         key={key}
                                         style={{
@@ -176,7 +185,7 @@ export default async function Page({
                                         }}
                                     >
                                         <span style={{ fontWeight: 500 }}>{key}</span>
-                                        <span>₹{value.toLocaleString()}</span>
+                                        <span>{value.toLocaleString()}</span>
                                     </div>
                                 ))}
                             </> }

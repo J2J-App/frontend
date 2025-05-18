@@ -3,20 +3,6 @@ import { useEffect, useState } from "react";
 import styles from "./upper-nav.module.css";
 import Image from "next/image";
 
-// background images
-import dtu_bg from "@/public/backgrounds/colleges/dtu.jpg";
-import nsut_bg from "@/public/backgrounds/colleges/nsut.jpg";
-import iiitd_bg from "@/public/backgrounds/colleges/iiitd.jpg";
-import igdtuw_bg from "@/public/backgrounds/colleges/igdtuw.jpg";
-import nsutw_bg from "@/public/backgrounds/colleges/nsutw.jpg";
-import nsute_bg from "@/public/backgrounds/colleges/nsute.jpg";
-
-// icons
-import nsut from "@/public/icons/uni/nsut_icon.png";
-import dtu from "@/public/icons/uni/dtu_icon.png";
-import iiitd from "@/public/icons/uni/iiitd_icon.jpg";
-import igdtuw from "@/public/icons/uni/igdtuw_icon.png";
-
 export default function UpperNav({ params }: { params: { uni: string } }) {
     const { uni } = params;
 
@@ -25,7 +11,17 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const res = await fetch("https://integrated-bambi-anmolworks-132395f3.koyeb.app/api/v1/getCollegeData");
+                const res = await fetch(
+                "http://localhost:4000/api/v2/about",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        college: uni,
+                    }),
+                })
                 if (!res.ok) throw new Error("Failed to fetch data");
                 const json = await res.json();
                 setCurrentUniData(json.data[uni]);
@@ -36,26 +32,8 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
         fetchData();
     }, [uni]);
 
-    const iconMap: { [key: string]: string } = {
-        nsut: nsut.src,
-        nsutw: nsut.src,
-        nsute: nsut.src,
-        dtu: dtu.src,
-        igdtuw: igdtuw.src,
-        iiitd: iiitd.src,
-    };
-
-    const bgMap: { [key: string]: string } = {
-        nsut: nsut_bg.src,
-        nsutw: nsutw_bg.src,
-        nsute: nsute_bg.src,
-        dtu: dtu_bg.src,
-        igdtuw: igdtuw_bg.src,
-        iiitd: iiitd_bg.src,
-    };
-
     const nameMap: { [key: string]: string } = {
-        nsut: "NSUT",
+        "nsut-delhi": "NSUT",
         nsutw: "NSUT WEST",
         nsute: "NSUT EAST",
         dtu: "DTU",
@@ -79,7 +57,7 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
                         transform: "scale(1, 1)",
                     }}
                     fill
-                    src={bgMap[uni]}
+                    src={currentUniData.photos["college-pic"]}
                     alt={uni}
                 />
                 <Image
@@ -89,14 +67,14 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
                         borderRadius: "18px",
                     }}
                     fill
-                    src={bgMap[uni]}
+                    src={currentUniData.photos["college-pic"]}
                     alt={uni}
                 />
             </div>
 
             <div className={styles.headText}>
                 <div className={styles.icon}>
-                    <Image fill src={iconMap[uni]} alt={uni} />
+                    <Image fill src={currentUniData.photos["logo"]} alt={uni} />
                 </div>
                 <h1
                     style={{
@@ -116,7 +94,17 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
                             color: "#989898",
                         }}
                     >
-                        {currentUniData.full_name}
+                        {currentUniData.overview["Institute Name"]}
+                    </span>
+                    <span
+                        style={{
+                            fontWeight: "300",
+                            fontSize: "16px",
+                            fontFamily: "'Roboto', sans-serif",
+                            color: "#989898",
+                        }}
+                    >
+                        Established in {currentUniData.overview["Established"]}
                     </span>
                 </h1>
             </div>

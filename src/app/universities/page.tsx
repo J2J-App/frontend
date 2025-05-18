@@ -33,7 +33,7 @@ export default function Page() {
                 marginTop: "10px",
             }} className={Styles.page}>
                 <div className={Styles.container}>
-                    <Link href={"/universities/nsut"}>
+                    <Link href={"/universities/nsut-delhi"}>
                         <div className={Styles.cardContainer}>
                             <div className={Styles.front}>
                                 <UniCard name="NSUT" description="Premier tech university known for innovation and strong alumni network." background={nsut.src} icon={nsut_icon.src} location={"Dwarka"} nirf="57" />
@@ -45,7 +45,7 @@ export default function Page() {
                     </Link>
                 </div>
                 <div className={Styles.container}>
-                    <Link href={"/universities/dtu"}>
+                    <Link href={"/universities/dtu-delhi"}>
                         <div className={Styles.cardContainer}>
                             <div className={Styles.front}>
                                 <UniCard name="DTU" description="One of India's top engineering colleges with a legacy of excellence." background={dtu.src} icon={dtu_icon.src} location={"Rohini"} nirf="27" />
@@ -57,7 +57,7 @@ export default function Page() {
                     </Link>
                 </div>
                 <div className={Styles.container}>
-                    <Link href={"/universities/iiitd"}>
+                    <Link href={"/universities/iiit-delhi"}>
                         <div className={Styles.cardContainer}>
                             <div className={Styles.front}>
                                 <UniCard name="IIIT-D" description="Known for cutting-edge research and tech-focused programs." background={iiid.src} icon={iiid_icon.src} location={"Okhla"} nirf="87" />
@@ -69,7 +69,7 @@ export default function Page() {
                     </Link>
                 </div>
                 <div className={Styles.container}>
-                    <Link href={"/universities/igdtuw"}>
+                    <Link href={"/universities/igdtuw-delhi"}>
                         <div className={Styles.cardContainer}>
                             <div className={Styles.front}>
                                 <UniCard name="IGDTU" description="Premier women's engineering university in Delhi." background={igdtuw.src} icon={igdtuw_icon.src} location={"Kashmere Gate"} nirf=">150" />
@@ -81,7 +81,7 @@ export default function Page() {
                     </Link>
                 </div>
                 <div className={Styles.container}>
-                    <Link href={"/universities/nsutw"}>
+                    <Link href={"/universities/nsut-delhi-west-campus"}>
                         <div className={Styles.cardContainer}>
                             <div className={Styles.front}>
                                 <UniCard name="NSUTW" description="NSUT's West campus focused on tech and innovation." background={nsutw.src} icon={nsut_icon.src} location={"Jaffarpur"} nirf="57" />
@@ -93,7 +93,7 @@ export default function Page() {
                     </Link>
                 </div>
                 <div className={Styles.container}>
-                    <Link href={"/universities/nsute"}>
+                    <Link href={"/universities/nsut-delhi-east-campus"}>
                         <div className={Styles.cardContainer}>
                             <div className={Styles.front}>
                                 <UniCard name="NSUTE" description="Expanding NSUT's excellence in engineering education." background={nsute.src} icon={nsut_icon.src} location={"Geeta Colony"} nirf="57" />
