@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useReducer} from "react";
 import SingleInput from "@/components/Inputs/SingleInput/singleInput.tsx";
 import Styles from "./styles.module.css";
 import SelectMenu from '@/components/select-menus/select-menu.tsx';
@@ -12,6 +12,10 @@ import Tabs from "@/components/tabs/tabs.tsx";
 
 import {SelectOption} from "@/components/select-menus/select-menu.tsx";
 import Loader from "@/components/loader/loader.tsx";
+import {useParams, useRouter} from "next/navigation";
+import {counsellings} from "@/app/predictor/counsellings.ts";
+import Switch from "@/components/switch/switch.tsx";
+import Checkbox from "@/components/check-boxes/check-boxes.tsx";
 
 function transformData(input: any[]) {
     const normalizedRounds: any = {
@@ -73,7 +77,6 @@ function SortedTable({ data }: { data: any[] }) {
     const res = transformData(data);
     const [tab, setTab] = React.useState<number>(0);
     const [year, setYear] = React.useState<number>(2024);
-    console.log(res)
     const handleYearChange = (year: string) => {
         const selectedYear = res.find((item) => item.year.toString() === year);
         if (selectedYear) {
@@ -143,10 +146,24 @@ function SortedTable({ data }: { data: any[] }) {
 }
 
 export default function Page() {
-    const [rank, setRank] = React.useState<number | string | null>("");
+    const {counselling}: {
+        counselling: string
+    } = useParams();
+    const currentCounselling = counsellings.filter(e => e.link == counselling).pop();
+    const ranks: string[] | undefined = currentCounselling?.ranks;
+    const [resetKey, setResetKey] = React.useState(0);
+    const [mainsCRLRank, setMainsCRLRank] = React.useState<number | string | null>("");
+    const [mainsCATRank, setMainsCATRank] = React.useState<number | string | null>("");
+    const [advCATRank, setAdvCATRank] = React.useState<number | string | null>("");
+
+    const [advEnabled, setAdvEnabled] = React.useState<boolean>(false);
+
     const [region, setRegion] = React.useState<string | null>(null);
     const [category, setCategory] = React.useState<string | null>(null);
     const [subCategory, setSubCategory] = React.useState<string | null>(null);
+    const [sepCategory, setSepCategory] = React.useState<boolean>(false);
+
+    const [gender, setGender] = React.useState<string | null>(null);
 
     const [result, setResult] = React.useState<any[]>([]);
 
@@ -154,36 +171,78 @@ export default function Page() {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [apiError, setApiError] = React.useState<string | null>(null);
 
+
+
     // Only run this on the client
     React.useEffect(() => {
         if (typeof window !== "undefined") {
-            const savedRank = localStorage.getItem("rank");
+            const savedMARank = localStorage.getItem("mains_crl_rank");
+            const savedMCRank = localStorage.getItem("mains_cat_rank");
+            const savedACRank = localStorage.getItem("adv_cat_rank");
+            const enabledAdv = localStorage.getItem("adv_enabled");
+
             const savedRegion = localStorage.getItem("region");
             const savedCategory = localStorage.getItem("category");
             const savedSubCategory = localStorage.getItem("subCategory");
             const savedResult = localStorage.getItem("result");
 
-            if (savedRank) setRank(savedRank);
+            const savedGender = localStorage.getItem("gender");
+
+            const savedSepCategory = localStorage.getItem(counselling+"_sepcat");
+
+            if (savedMARank) setMainsCRLRank(savedMARank);
+            if (savedMCRank) setMainsCATRank(savedMCRank);
+            if (savedACRank) setAdvCATRank(savedACRank);
+            if (enabledAdv) setAdvEnabled(enabledAdv === "true");
             if (savedRegion) setRegion(savedRegion);
-            if (savedCategory) setCategory(savedCategory);
+            if (savedCategory) setCategory(savedCategory == "OBC-NCL" && counselling=="jac" ? "OBC" : savedCategory);
             if (savedSubCategory) setSubCategory(savedSubCategory);
             if (savedResult) setResult(JSON.parse(savedResult));
+            if (savedGender) setGender(savedGender);
+            if (savedSepCategory) setSepCategory(savedSepCategory == "true");
+
+            if (savedSepCategory=="true") {
+                const currentCategory = localStorage.getItem(counselling+"_category");
+                const currentSubCategory = localStorage.getItem(counselling+"_subCategory");
+                if (currentCategory) setCategory(currentCategory == "OBC-NCL" && counselling=="jac" ? "OBC" : currentCategory);
+                if (currentSubCategory) setSubCategory(currentSubCategory);
+            }
         }
     }, []);
-    console.log(rank, region, category, subCategory);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleMAChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setErrors([]);
         setApiError(null);
 
         if (!isNaN(Number(value)) && !value.includes(" ")) {
-            setRank(value ? parseInt(value) : "");
-            localStorage.setItem("rank", value);
+            setMainsCRLRank(value ? parseInt(value) : "");
+            localStorage.setItem("mains_crl_rank", value);
         }
         setResult([]);
     };
+    const handleMCChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setErrors([]);
+        setApiError(null);
 
+        if (!isNaN(Number(value)) && !value.includes(" ")) {
+            setMainsCATRank(value ? parseInt(value) : "");
+            localStorage.setItem("mains_cat_rank", value);
+        }
+        setResult([]);
+    };
+    const handleACChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setErrors([]);
+        setApiError(null);
+
+        if (!isNaN(Number(value)) && !value.includes(" ")) {
+            setAdvCATRank(value ? parseInt(value) : "");
+            localStorage.setItem("adv_cat_rank", value);
+        }
+        setResult([]);
+    };
     const handleOnChangeOfRegion = (value: string) => {
         setRegion(value);
         localStorage.setItem("region", value);
@@ -193,16 +252,32 @@ export default function Page() {
     };
 
     const handleOnChangeOfCategory = (value: string) => {
-        setCategory(value);
-        localStorage.setItem("category", value);
+        if (sepCategory) {
+            setCategory(value);
+            localStorage.setItem(counselling+"_category", value);
+        } else {
+            localStorage.setItem("category", value);
+        }
         setResult([]);
         setErrors([]);
         setApiError(null);
     };
 
     function handleChangeSubCategory(value: string) {
+        if (sepCategory) {
+            setSubCategory(value);
+            localStorage.setItem(counselling+"_subCategory", value);
+        } else {
+            localStorage.setItem("subCategory", value);
+        }
+        setResult([]);
+        setErrors([]);
+        setApiError(null);
+    }
+
+    function handleGenderChange(value: string) {
         setSubCategory(value);
-        localStorage.setItem("subCategory", value);
+        localStorage.setItem("gender", value);
         setResult([]);
         setErrors([]);
         setApiError(null);
@@ -210,26 +285,43 @@ export default function Page() {
 
     function handleClear() {
         setResult([]);
-        setRank("");
-        localStorage.removeItem("rank");
+        setAdvCATRank("");
+        setMainsCATRank("");
+        setMainsCRLRank("");
+        setAdvEnabled(false);
+        setRegion(null);
+        setSepCategory(false);
+        setCategory(null);
+        setSubCategory(null);
+        setGender(null);
+        setErrors([]);
+        setApiError(null);
+        setResetKey(prev => prev + 1);
+
+        localStorage.removeItem("mains_crl_rank");
+        localStorage.removeItem("mains_cat_rank");
+        localStorage.removeItem("adv_cat_rank");
+        localStorage.removeItem("adv_enabled");
         localStorage.removeItem("region");
         localStorage.removeItem("category");
         localStorage.removeItem("subCategory");
         localStorage.removeItem("result");
-        setErrors([]);
-        setApiError(null);
+        localStorage.removeItem("gender");
+        localStorage.removeItem(counselling+"_sepcat");
+        localStorage.removeItem(counselling+"_category");
+        localStorage.removeItem(counselling+"_subCategory");
     }
 
     // Validate form before submission
-    const validateForm = (): boolean => {
+    const validateForm = (rankVal: string): boolean => {
         const newErrors: string[] = [];
 
         // Validate rank
-        if (rank === "" || rank === null) {
+        if (rankVal === "" || rankVal === null) {
             newErrors.push("Please enter a valid rank");
-        } else if (Number(rank) <= 0) {
+        } else if (Number(rankVal) <= 0) {
             newErrors.push("Rank must be greater than 0");
-        } else if (Number(rank) > 3000000) { // Assuming a reasonable max rank
+        } else if (Number(rankVal) > 3000000) { // Assuming a reasonable max rank
             newErrors.push("Rank seems too high. Please verify your input");
         }
 
@@ -280,7 +372,7 @@ export default function Page() {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            rank: rank,
+                            rank: mainsCRLRank,
                         }),
                     }
                 );
@@ -359,6 +451,29 @@ export default function Page() {
         );
     };
 
+    const rankInputsMap: {
+        [key: string]: {
+            value: number | string | null;
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+            placeholder: string;
+        };
+    } = {
+        "MA": {
+            value: mainsCRLRank,
+            onChange: handleMAChange,
+            placeholder: "Mains CRL Rank",
+        },
+        "MC": {
+            value: mainsCATRank,
+            onChange: handleMCChange,
+            placeholder: "Mains Category Rank",
+        },
+        "AC": {
+            value: advCATRank,
+            onChange: handleACChange,
+            placeholder: "Advanced Category Rank",
+        }
+    }
     return (
     <div style={{
             display: "flex",
@@ -366,7 +481,6 @@ export default function Page() {
             justifyContent: "start",
             alignItems: "center",
             padding: "0 20px",
-            marginTop:"80px",
             gap: "18px",
             minHeight: "calc(100vh - 80px)",
             overflow: "visible"
@@ -400,46 +514,116 @@ export default function Page() {
                     <div style={{
                         width: "100%",
                     }}>
-                        <SingleInput
-                            value={`${rank}`}
-                            holder="CRL Rank"
-                            type="number"
-                            onChange={handleChange}
-                        />
+                        <p className={Styles.headers}>
+                            Ranks
+                        </p>
+                        <div className={Styles.rankInputs}>
+                            {
+                            ranks && ranks.map((rank, index) => {
+                                    const r = rankInputsMap[rank];
+                                    if (rank == "AC"){
+                                        return (<div key={index} style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: "10px"
+                                        }}>
+                                            {<SingleInput
+                                                enabled={advEnabled}
+                                                holder={r.placeholder}
+                                                value={r.value || ""}
+                                                onChange={r.onChange}
+                                                type={"number"}
+                                            />}
+                                            <Checkbox  checked={advEnabled} onChange={(c) => {
+                                                setAdvEnabled(c)
+                                                localStorage.setItem("adv_enabled", c.toString());
+                                            }} />
+
+                                        </div>)
+                                    } else {
+                                        return (
+                                            <SingleInput
+                                                key={index}
+                                                holder={r.placeholder}
+                                                value={r.value || ""}
+                                                onChange={r.onChange}
+                                                type={"number"}
+                                            />
+                                        )
+                                    }
+                                })
+                            }
+                        </div>
                         <div className={Styles.inputContainer}>
+                            <p className={Styles.headers}>
+                                Domicile
+                            </p>
                             <SelectMenu
-                                options={[
-                                    {value: "Delhi", label: "Delhi"},
-                                    {value: "Outside Delhi", label: "Outside Delhi"},
-                                ]}
-                                defaultValue={region}
+                                key={`region-${resetKey}`}
+                                options={currentCounselling?.regions || []}
+                                defaultValue={(currentCounselling?.regions.some(e => e.value == region) || region == null) ? region : "ox"}
                                 onChange={handleOnChangeOfRegion}
                                 placeholder="Domicile"
                             />
+                            <p className={Styles.headers}>
+                                Categories
+                            </p>
                             <SelectMenu
-                                options={[
-                                    {value: "General", label: "General"},
-                                    {value: "OBC", label: "OBC"},
-                                    {value: "SC", label: "SC"},
-                                    {value: "ST", label: "ST"},
-                                    {value: "EWS", label: "EWS"},
-                                ]}
+                                key={`category-${resetKey}`}
+                                options={currentCounselling?.categories || []}
                                 onChange={handleOnChangeOfCategory}
                                 defaultValue={category}
                                 placeholder="Category"
                             />
 
                             <SelectMenu
-                                options={[
-                                    {value: " ", label: "None"},
-                                    {value: "PWD", label: "PWD"},
-                                    {value: "Girl Candidate", label: "Girl Candidate"},
-                                    {value: "SGC", label: "Single Girl Child"},
-                                    {value: "Defence", label: "Defence"}
-                                ]}
+                                key={`subcat-${resetKey}`}
+
+                                options={currentCounselling?.subCategories || []}
                                 onChange={handleChangeSubCategory}
-                                defaultValue={subCategory}
+                                defaultValue={currentCounselling?.subCategories.some(e => e.value == subCategory) ? subCategory : " "}
                                 placeholder="Sub Category"
+                            />
+
+                            <Checkbox label={"Use unique categories for this counselling "} checked={sepCategory} onChange={(c) => {
+                                if (c) {
+                                    const currentCategory = localStorage.getItem(counselling+"_category");
+                                    const currentSubCategory = localStorage.getItem(counselling+"_subCategory");
+                                    if (currentCategory) setCategory(currentCategory == "OBC-NCL" && counselling=="jac" ? "OBC" : currentCategory);
+                                    if (currentSubCategory) setSubCategory(currentSubCategory);
+                                } else {
+                                    const savedCategory = localStorage.getItem("category");
+                                    const savedSubCategory = localStorage.getItem("subCategory");
+
+                                    if (savedCategory) setCategory(savedCategory == "OBC-NCL" && counselling=="jac" ? "OBC" : savedCategory);
+                                    if (savedSubCategory) setSubCategory(savedSubCategory);
+                                }
+
+                                setSepCategory(c)
+                                localStorage.setItem(counselling+"_sepcat", c.toString());
+                            }} />
+                            <div style={{
+                                marginTop: 5
+                            }}></div>
+                            <p className={Styles.headers}>
+                                Gender
+                            </p>
+                            <SelectMenu
+                                key={`gender-${resetKey}`}
+
+                                options={[
+                                    {
+                                        value: "M",
+                                        label: "Male"
+                                    },
+                                    {
+                                        value: "F",
+                                        label: "Female"
+                                    }
+                                ]}
+                                onChange={handleGenderChange}
+                                defaultValue={gender}
+                                placeholder="Gender"
                             />
                         </div>
 
@@ -451,7 +635,7 @@ export default function Page() {
                             display: "flex",
                             gap: "15px",
                         }}>
-                            <Button
+                        <Button
                                 text={"Submit"}
                                 onClick={handleSubmit}
                                 variant="Primary"

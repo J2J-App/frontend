@@ -24,7 +24,6 @@ export default function Checkbox({
 
     return (
         <label className={styles.checkboxContainer}>
-            {label && <span className={styles.label}>{label}</span>}
             <div className={styles.checkboxWrapper}>
                 <input
                     type="checkbox"
@@ -36,6 +35,8 @@ export default function Checkbox({
                 <Image className={styles.checkmark} src={checkmark} alt={"Checkmark"} width={10}/>
 
             </div>
+            {label && <span className={styles.label}>{label}</span>}
+
         </label>
     );
 }

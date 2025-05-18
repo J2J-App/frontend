@@ -5,11 +5,12 @@
     padding: 20px 40px;
     overflow: hidden;
     margin-top: 100px;
-    background-color: rgba(31, 31, 31, 0.66);
+    background-color: rgb(24, 24, 24);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     color: white;
     height: 400px;
+    z-index: 50000;
     width: 100vw;
     position: relative;
 }
