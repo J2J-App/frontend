@@ -10,7 +10,7 @@
     border-top-right-radius: 20px;
     color: white;
     height: 400px;
-    z-index: 50000;
+    z-index: 900;
     width: 100vw;
     position: relative;
 }
