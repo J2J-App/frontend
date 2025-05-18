@@ -12,7 +12,7 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
         async function fetchData() {
             try {
                 const res = await fetch(
-                "http://localhost:4000/api/v2/about",
+                "https://api.anmolcreates.tech/api/v2/about",
                 {
                     method: "POST",
                     headers: {
@@ -73,7 +73,10 @@ export default function UpperNav({ params }: { params: { uni: string } }) {
             </div>
 
             <div className={styles.headText}>
-                <div className={styles.icon}>
+                <div className={styles.icon}
+                    style={{
+                        backgroundColor: "White",
+                    }}>
                     <Image fill src={currentUniData.photos["logo"]} alt={uni} />
                 </div>
                 <h1
