@@ -4,7 +4,9 @@ import Image from "next/image";
 import icon from "@/public/icons/navbar/j2jicon.png"
 
 export default function Footer() {
-
+    //TODO:
+    // 1. Fix on mobile
+    // 2. Fix Z-Index
     return (
         <div className={styles.footerContainer}>
             <h3 className={styles.footerHead}>

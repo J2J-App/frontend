@@ -27,17 +27,17 @@ export const counsellings: {
     "description": "Joint Admission Counselling",
     "ranks": ["MA"],
     "categories": [
-        {value: "General", label: "General"},
+        {value: "GEN", label: "General"},
         {value: "OBC", label: "OBC"},
         {value: "SC", label: "SC"},
         {value: "ST", label: "ST"},
         {value: "EWS", label: "EWS"},
     ],
     "subCategories": [
-        {value: " ", label: "None"},
+        {value: "NONE", label: "None"},
         {value: "PWD", label: "PWD"},
-        {value: "Girl Candidate", label: "Girl Candidate"},
-        {value: "SGC", label: "Single Girl Child"},
+        {value: "GC", label: "Girl Candidate"},
+        {value: "SNG", label: "Single Girl Child"},
         {value: "Defence", label: "Defence"}
     ],
     "regions": [
@@ -52,7 +52,7 @@ export const counsellings: {
     "description": "Joint Seat Allocation Authority",
     "ranks": ["MC", "AC"],
     "categories": [
-        {value: "General", label: "General"},
+        {value: "GENERAL", label: "General"},
         {value: "OBC", label: "OBC"},
         {value: "OBC-NCL", label: "OBC-NCL"},
         {value: "SC", label: "SC"},
