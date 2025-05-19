@@ -29,6 +29,8 @@ const fetchPredictorData = async ({
                                       subCategory,
                                       gender,
                                       year,
+                                      typesList,
+                                      currentType,
                                       setIsLoading,
                                       setApiError,
                                       setResult
@@ -43,6 +45,8 @@ const fetchPredictorData = async ({
     subCategory: string | null;
     gender: string | null;
     year: string;
+    typesList: string[];
+    currentType: string | null;
     setIsLoading: any;
     setApiError: any;
     setResult: any;
@@ -74,7 +78,7 @@ const fetchPredictorData = async ({
         if (counselling === "jac") {
             if (mainsCRLRank && region && category && subCategory) {
                 response = await fetch(
-                    "http://api.anmolcreates.tech/api/v2/cutoff/predictor",
+                    "https://api.anmolcreates.tech/api/v2/cutoff/predictor",
                     {
                         method: "POST",
                         headers: {
@@ -86,7 +90,7 @@ const fetchPredictorData = async ({
                             domicile: region,
                             category: `${category}`,
                             subcategory: `${subCategory}`,
-                            year: year,
+                            year: Number(year),
                             gender: `${gender}`,
                         }),
                         signal: controller.signal
@@ -94,8 +98,51 @@ const fetchPredictorData = async ({
                 );
             }
         }
-        // Add JOSAA counselling request here if needed
-        // else if (counselling === "josaa") { ... }
+        else if (counselling === "josaa") {
+            if (mainsCATRank && region && category && subCategory && currentType !== "IIT") {
+                response = await fetch(
+                    "https://api.anmolcreates.tech/api/v2/cutoff/predictor",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            counselling: counselling.toUpperCase(),
+                            rank: mainsCATRank,
+                            domicile: region,
+                            category: `${category}`,
+                            subcategory: `${subCategory}`,
+                            year: Number(year),
+                            gender: `${gender}`,
+                            college_type: `${currentType}`
+                        }),
+                        signal: controller.signal
+                    }
+                );
+            } else {
+                response = await fetch(
+                    "https://api.anmolcreates.tech/api/v2/cutoff/predictor",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            counselling: counselling.toUpperCase(),
+                            adv_rank: advCATRank,
+                            domicile: region,
+                            category: `${category}`,
+                            subcategory: `${subCategory}`,
+                            year: Number(year),
+                            gender: `${gender}`,
+                            college_type: `${currentType}`
+                        }),
+                        signal: controller.signal
+                    }
+                );
+            }
+        }
 
         if (response) {
             // Optional analytics call
@@ -196,7 +243,10 @@ function transformData(input: {
     round: number;
     college: string;
     branch: string;
-    rank: number;
+    icon: string;
+    rank?: number;
+    opening?: number;
+    closing?: number;
     is_bonus?: boolean;
 }[], year: string | number){
     const result: any = {};
@@ -205,31 +255,56 @@ function transformData(input: {
         console.error("Expected array input in transformData but got:", input);
         return [];
     }
+    if (input[0].rank) {
+        input.forEach((entry) => {
+            if (!entry) return;
+            const { round, college, branch, rank, icon,  is_bonus } = entry;
 
-    input.forEach((entry) => {
-        if (!entry) return;
+            // Skip invalid entries
+            if (!round || !college || !branch || !rank) return;
 
-        const { round, college, branch, rank, is_bonus } = entry;
+            if (!result[year]) result[year] = {};
 
-        // Skip invalid entries
-        if (!round || !college || !branch || !rank) return;
+            const roundLabel = `Round ${round}`;
 
-        if (!result[year]) result[year] = {};
+            if (!result[year][roundLabel]) {
+                result[year][roundLabel] = [];
+            }
 
-        const roundLabel = `Round ${round}`;
-
-        if (!result[year][roundLabel]) {
-            result[year][roundLabel] = [];
-        }
-
-        result[year][roundLabel].push({
-            uni: college,
-            branch,
-            rank,
-            is_bonus: is_bonus || false,
+            result[year][roundLabel].push({
+                uni: college,
+                branch,
+                rank,
+                icon,
+                is_bonus: is_bonus || false,
+            });
         });
-    });
+    } else if(input[0].opening) {
+        input.forEach((entry) => {
+            if (!entry) return;
+            const { round, college, branch, opening, closing, icon } = entry;
 
+            // Skip invalid entries
+            if (!round || !college || !branch || opening === undefined || closing === undefined) return;
+
+            if (!result[year]) result[year] = {};
+
+            const roundLabel = `Round ${round}`;
+
+            if (!result[year][roundLabel]) {
+                result[year][roundLabel] = [];
+            }
+
+            result[year][roundLabel].push({
+                uni: college,
+                branch,
+                opening,
+                closing,
+                icon,
+            });
+        });
+    }
+    console.log("middle:", result)
     // Format final structure
     return Object.entries(result)
         .map(([yearKey, roundsObj]: any) => {
@@ -255,7 +330,7 @@ function SortedTable({ data, year, setYear, fetchForYear, isLoading }: {
     isLoading: boolean;
 }) {
     const [tab, setTab] = React.useState(0);
-
+    console.log("pre transform:", data)
     // Handle year change with data fetching
     const handleYearChange = async (selectedYear: string) => {
         setYear(selectedYear);
@@ -274,7 +349,7 @@ function SortedTable({ data, year, setYear, fetchForYear, isLoading }: {
 
         return transformData(data[year], year);
     }, [data, year]);
-
+    console.log("transformer:", transformedData)
     const yearRanks = transformedData.length > 0
         ? transformedData.find(r => r.year.toString() === year)?.ranks || []
         : [];
@@ -390,7 +465,8 @@ export default function Page() {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [apiError, setApiError] = React.useState<string | null>(null);
     const [year, setYear] = React.useState<string>("2024");
-
+    const [collegeType , setCollegeType] = React.useState<string | null>(null);
+    const [typesList, setTypesList] = React.useState<string[]>([]);
     // Load saved state from localStorage
     React.useEffect(() => {
         if (typeof window !== "undefined") {
@@ -405,6 +481,9 @@ export default function Page() {
             const savedGender = localStorage.getItem("gender");
             const savedSepCategory = localStorage.getItem(counselling+"_sepcat");
 
+            const savedTypes = localStorage.getItem(counselling+"_types");
+            const savedType = localStorage.getItem(counselling+"_collegeType");
+
             // Load counselling-specific values if using separate categories
             if (savedMARank) setMainsCRLRank(savedMARank);
             if (savedMCRank) setMainsCATRank(savedMCRank);
@@ -415,6 +494,19 @@ export default function Page() {
             if (savedSubCategory) setSubCategory(savedSubCategory);
             if (savedGender) setGender(savedGender);
             if (savedSepCategory) setSepCategory(savedSepCategory == "true");
+            if (savedTypes) {
+                const parsedTypes = JSON.parse(savedTypes);
+                setTypesList(parsedTypes);
+            }
+            if (savedType) setCollegeType(savedType);
+            if (!savedType && !savedTypes) {
+                if(currentCounselling?.types) {
+                    setCollegeType(currentCounselling?.types[0]);
+                    setTypesList(currentCounselling?.types);
+                    localStorage.setItem(counselling+"_types", JSON.stringify(currentCounselling?.types));
+                    localStorage.setItem(counselling+"_collegeType", currentCounselling?.types[0]);
+                }
+            }
 
             if (savedSepCategory=="true") {
                 const currentCategory = localStorage.getItem(counselling+"_category");
@@ -435,6 +527,9 @@ export default function Page() {
             } catch (e) {
                 console.error("Error loading saved results:", e);
             }
+
+            // Load college types
+
         }
     }, [counselling]);
 
@@ -593,6 +688,8 @@ export default function Page() {
             subCategory,
             gender,
             year,
+            typesList,
+            currentType: collegeType,
             setIsLoading,
             setApiError,
             setResult
@@ -612,6 +709,8 @@ export default function Page() {
             subCategory,
             gender,
             year: selectedYear,
+            typesList,
+            currentType: collegeType,
             setIsLoading,
             setApiError,
             setResult

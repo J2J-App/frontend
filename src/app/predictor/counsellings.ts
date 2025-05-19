@@ -52,7 +52,7 @@ export const counsellings: {
     "description": "Joint Seat Allocation Authority",
     "ranks": ["MC", "AC"],
     "categories": [
-        {value: "GENERAL", label: "General"},
+        {value: "GEN", label: "General"},
         {value: "OBC", label: "OBC"},
         {value: "OBC-NCL", label: "OBC-NCL"},
         {value: "SC", label: "SC"},
@@ -60,7 +60,7 @@ export const counsellings: {
         {value: "EWS", label: "EWS"},
     ],
     "subCategories": [
-        {value: " ", label: "None"},
+        {value: "NONE", label: "None"},
         {value: "PWD", label: "PWD"}
     ],
     "regions": [
@@ -97,6 +97,6 @@ export const counsellings: {
         { "value": "ap", "label": "Andhra Pradesh" }
     ],
     "types": [
-        "IIIT", "IIT", "NIT", "GFTI"
+        "NIT","IIIT","GFTI","IIT"
     ]
 }]

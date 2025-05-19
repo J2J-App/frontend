@@ -16,7 +16,10 @@ import Dialog from "@/components/dialog-box/dialog-box.tsx";
 type UniData = {
     college: string,
     branch: string,
+    icon: string,
     rank: number,
+    opening: number,
+    closing: number,
     is_bonus?: boolean,
 };
 
@@ -58,16 +61,6 @@ export default function DataTable({ data, pgup = false }: DataTable) {
         min: null
     });
 
-    const icons = [
-        { college: "nsut", src: nsut_icon.src },
-        { college: "iiitd", src: iiitd_icon.src },
-        { college: "igdtuw", src: igdtuw_icon.src },
-        { college: "dtu", src: dtu_icon.src },
-        { college: "nsut-west", src: nsut_icon.src },
-        { college: "nsut-east", src: nsut_icon.src },
-
-    ];
-
     useEffect(() => {
         let filtered = data;
 
@@ -82,18 +75,17 @@ export default function DataTable({ data, pgup = false }: DataTable) {
         if (range.min !== null || range.max !== null) {
             filtered = filtered.filter(item => {
                 if (range.min !== null && range.max !== null) {
-                    return item.rank >= range.min && item.rank <= range.max;
+                    return (item.rank || item.closing) >= range.min && (item.rank || item.closing) <= range.max;
                 }
                 if (range.min !== null && range.max === null) {
-                    return item.rank >= range.min;
+                    return (item.rank || item.closing) >= range.min;
                 }
                 if (range.min === null && range.max !== null) {
-                    return item.rank <= range.max;
+                    return (item.rank || item.closing) <= range.max;
                 }
                 return true;
             });
         }
-
         setFilterData(filtered);
     }, [uniList, branchList, range, data]);
 
@@ -199,7 +191,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                         <Image
                                             style={{objectFit: "contain", objectPosition: "center"}}
                                             quality={100}
-                                            src={icons.find(i => i.college === item.college.toLowerCase())?.src || ""}
+                                            src={item.icon}
                                             alt={item.college}
                                             fill={true}
                                         />
@@ -210,7 +202,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                     {item.branch}
                                 </div>
                                 <div className={styles.rankHolder}>
-                                    {item.rank} {item.is_bonus ? <span style={{
+                                    {item.rank || item.closing} {item.is_bonus ? <span style={{
                                         backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent",
@@ -220,7 +212,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                 }}>Bonus</span> : null}
                                 </div>
                                 <div className={styles.rankHolder + " " + styles.mobile}>
-                                    Rank
+                                    Closing Rank
                                     <span style={{
                                         background: "#0e0e0e",
                                         width: "100%",
@@ -230,7 +222,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                         marginLeft: "5px",
                                         fontWeight: "300",
                                     }}>
-                                        {item.rank} {item.is_bonus ? <span style={{
+                                        {item.rank || item.closing} {item.is_bonus ? <span style={{
                                         backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent",
