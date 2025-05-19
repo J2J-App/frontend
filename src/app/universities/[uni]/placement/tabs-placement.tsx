@@ -19,6 +19,13 @@ function PlacementCard({
     mid: number | undefined;
     percent: number;
 }) {
+    console.log("Branch:", branch);
+    console.log("Registered:", reg);
+    console.log("Placed:", placed);
+    console.log("Average:", avg);
+    console.log("Median:", mid);
+    console.log("Percent:", percent);
+
     return (
         <div
             style={{
@@ -45,11 +52,14 @@ function PlacementCard({
                     <div className={styles.left}>
                         <div className={styles.node}>
                             <h4 className={styles.nodeHead}>Registered</h4>
-                            <p className={styles.nodeData}>{reg}</p>
+                            <p className={styles.nodeData}>{
+                            reg ? reg : "NA"}</p>
                         </div>
                         <div className={styles.node}>
                             <h4 className={styles.nodeHead}>Placed</h4>
-                            <p className={styles.nodeData}>{placed}</p>
+                            <p className={styles.nodeData}>{
+                            placed ? placed : "NA"}
+                            </p>
                         </div>
                     </div>
                     <div className={styles.right}>
@@ -62,7 +72,7 @@ function PlacementCard({
                                 borderRadius: "4px",
                             }}
                         >
-                            {typeof percent === "number"
+                            {percent
                                 ? `${percent.toString().slice(0, 4)}%`
                                 : "NA"}
                         </p>
@@ -110,10 +120,10 @@ export default function TabsPlacement({ data }: { data: any }) {
                             <PlacementCard
                                 avg={item.avg}
                                 branch={item.branch}
-                                mid={item.mid}
-                                percent={item.percent}
+                                mid={item.medium}
+                                percent={item.percent_placed}
                                 placed={item.placed}
-                                reg={item.reg}
+                                reg={item.registered}
                             />
                         </div>
                     ))}
