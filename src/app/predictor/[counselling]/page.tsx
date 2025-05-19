@@ -74,7 +74,7 @@ const fetchPredictorData = async ({
         if (counselling === "jac") {
             if (mainsCRLRank && region && category && subCategory) {
                 response = await fetch(
-                    "http://localhost:5500/api/v2/cutoff/predictor",
+                    "http://api.anmolcreates.tech/api/v2/cutoff/predictor",
                     {
                         method: "POST",
                         headers: {

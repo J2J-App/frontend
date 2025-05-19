@@ -88,10 +88,10 @@ return (
       <div className={styles.contentContainer}>
         <h2 className={styles.h2}>Fee Structure</h2>
         <div style={{ marginBottom: "12px" }} className={styles.catg}>
-          <span>Fees (Per Year)</span>
+          <span>Fees</span>
           <div>
-            {currentUniData.fee_structure ? (
-              Object.entries(currentUniData.fee_structure).map(([key, value]) => (
+            {currentUniData.fee_structure["institute_fee"] ? (
+              Object.entries(currentUniData.fee_structure["institute_fee"]).map(([key, value]) => (
                 <div
                   key={key}
                   style={{
@@ -111,13 +111,57 @@ return (
                 </div>
               ))
             ) : (
-              <div>No data Available</div>
+              Object.entries(currentUniData.fee_structure).map(([key, value]) => (
+                <div
+                  key={key}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: 8,
+                    padding: "8px 0",
+                    borderBottom: "1px solid #000000",
+                  }}
+                >
+                  <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
+                  <span>
+                    {typeof value === "number"
+                      ? value.toLocaleString()
+                      : String(value)}
+                  </span>
+                </div>
+              ))
             )}
           </div>
         </div>
-      </div>
+      
+      {currentUniData.fee_structure["hostel_fee"] ? (
+          <div style={{ marginBottom: "12px" }} className={styles.catg}>
+            <span>Hostel Fees</span>
+            <div>
+              {Object.entries(currentUniData.fee_structure["hostel_fee"]).map(([key, value]) => (
+                <div
+                  key={key}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: 8,
+                    padding: "8px 0",
+                    borderBottom: "1px solid #000000",
+                  }}
+                >
+                  <span style={{ fontWeight: 500 }}>{formatLabel(key)}</span>
+                  <span>
+                    {typeof value === "number"
+                      ? value.toLocaleString()
+                      : String(value)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+      ) : null}
+    </div>
     </div>
   </div>
 );
-
 }
