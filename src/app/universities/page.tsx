@@ -45,7 +45,7 @@ export default function Page() {
         "nit-nagpur", "nit-nagaland", "nit-manipur",
 
         // JAC
-        "dtu-delhi", "nsut-delhi-west-campus", "nsut-delhi-east-campus", "nsut-delhI", "igdtuw-delhi", "iiit-delhi",
+        "nsut-delhi","dtu-delhi", "nsut-delhi-west-campus", "nsut-delhi-east-campus", "nsut-delhI", "igdtuw-delhi", "iiit-delhi",
 
         // IIITs
         "iiit-guwahati", "iiitm-gwalior", "iiit-kota", "iiit-surat", "iiit-sonepat", "iiit-una", "iiit-sri-city",

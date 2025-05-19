@@ -2,8 +2,10 @@
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import SelectMenu from "@/components/select-menus/select-menu.tsx";
+import Combobox from "@/components/combobox/combobox";
 import Button from "@/components/buttons/button.tsx";
 import Loader from "@/components/loader/loader.tsx";
+
 type DataType = {
     data: {
         year: string;
@@ -68,103 +70,101 @@ export default function Page() {
     }, [firstUni]);
 
     useEffect(() => {
-        if (!secondUni) return;
-
-        const fetchData02 = async () => {
+        const fetchBranchData = async (college: string, setter: (data: DataType) => void) => {
             try {
                 const response = await fetch(
                     "https://api.anmolcreates.tech/api/v2/about/placement-branches",
                     {
                         method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ college: secondUni }),
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ college }),
                     }
                 );
-
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-
+                if (!response.ok) throw new Error("Network error");
                 const result: DataType = await response.json();
-                setData02(result);
+                setter(result);
             } catch (error) {
-                console.error("Error fetching data02:", error);
+                console.error(`Error fetching data for ${college}:`, error);
             }
         };
 
-        fetchData02();
-    }, [secondUni]);
+        if (firstUni) fetchBranchData(firstUni, setData01);
+        if (secondUni) fetchBranchData(secondUni, setData02);
+    }, [firstUni, secondUni]);
+
 
     function DataCard({ data }: { data: any }) {
         console.log(data);
         return (
-            <>
-                <div
-                    style={{
-                        backgroundColor: "#131313",
-                        borderRadius: "10px",
-                        width: "100%",
-                        border: "1px solid rgba(161, 161, 161, 0.12)",
-                    }}
-                >
-                    <div className={styles.headerCard}>
-                        <h3>{data.name}</h3>•{" "}
-                        <p
-                            style={{
-                                padding: "5px 10px",
-                                fontSize: "14px",
-                                borderRadius: "4px",
-                                background: "#131313",
-                            }}
-                        >
-                            {data.branch}
-                        </p>
-                    </div>
-                    <div className={styles.contentCard}>
-                        <div className={styles.regPlaced}>
-                            <div className={styles.left}>
-                                <div className={styles.node}>
-                                    <h4 className={styles.nodeHead}>Registered</h4>
-                                    <p className={styles.nodeData}>{data.data.registered ? data.data.registered : "NA"}</p>
-                                </div>
-                                <div className={styles.node}>
-                                    <h4 className={styles.nodeHead}>Placed</h4>
-                                    <p className={styles.nodeData}>{data.data.placed ? data.data.placed : "NA"}</p>
-                                </div>
+            <div
+                style={{
+                    backgroundColor: "#131313",
+                    borderRadius: "10px",
+                    width: "100%",
+                    border: "1px solid rgba(161, 161, 161, 0.12)",
+                }}
+            >
+                <div className={styles.headerCard}>
+                    <h3>{data.name}</h3>•{" "}
+                    <p
+                        style={{
+                            padding: "5px 10px",
+                            fontSize: "14px",
+                            borderRadius: "4px",
+                            background: "#131313",
+                        }}
+                    >
+                        {data.branch}
+                    </p>
+                </div>
+                <div className={styles.contentCard}>
+                    <div className={styles.regPlaced}>
+                        <div className={styles.left}>
+                            <div className={styles.node}>
+                                <h4 className={styles.nodeHead}>Registered</h4>
+                                <p className={styles.nodeData}>
+                                    {data.data.registered ? data.data.registered : "NA"}
+                                </p>
                             </div>
-                            <div className={styles.right}>
-                                <p
-                                    style={{
-                                        fontSize: "32px",
-                                        fontWeight: "600",
-                                        color: "#ffffff",
-                                        padding: "5px 10px",
-                                        borderRadius: "4px",
-                                    }}
-                                >
-                                    {data.data.percent_placed ? `${data.data.percent_placed.toString().slice(0, 4)}%` : "NA"}
+                            <div className={styles.node}>
+                                <h4 className={styles.nodeHead}>Placed</h4>
+                                <p className={styles.nodeData}>
+                                    {data.data.placed ? data.data.placed : "NA"}
                                 </p>
                             </div>
                         </div>
-                        <div className={styles.packages}>
-                            <div className={styles.node}>
-                                <h4 className={styles.nodeHead}>Average</h4>
-                                <p className={styles.nodeData}>
-                                    {data.data.avg ? `${data.data.avg} LPA` : "NA"}
-                                </p>
-                            </div>
-                            <div className={styles.node}>
-                                <h4 className={styles.nodeHead}>Median</h4>
-                                <p className={styles.nodeData}>
-                                    {data.data.medium ? `${data.data.medium} LPA` : "NA"}
-                                </p>
-                            </div>
+                        <div className={styles.right}>
+                            <p
+                                style={{
+                                    fontSize: "32px",
+                                    fontWeight: "600",
+                                    color: "#ffffff",
+                                    padding: "5px 10px",
+                                    borderRadius: "4px",
+                                }}
+                            >
+                                {data.data.percent_placed
+                                    ? `${data.data.percent_placed.toString().slice(0, 4)}%`
+                                    : "NA"}
+                            </p>
+                        </div>
+                    </div>
+                    <div className={styles.packages}>
+                        <div className={styles.node}>
+                            <h4 className={styles.nodeHead}>Average</h4>
+                            <p className={styles.nodeData}>
+                                {data.data.avg ? `₹${data.data.avg} LPA` : "NA"}
+                            </p>
+                        </div>
+                        <div className={styles.node}>
+                            <h4 className={styles.nodeHead}>Median</h4>
+                            <p className={styles.nodeData}>
+                                {data.data.medium ? `₹${data.data.medium} LPA` : "NA"}
+                            </p>
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 
@@ -257,12 +257,12 @@ export default function Page() {
             // Construct result object
             const data = {
                 first: {
-                    name: firstUni,
+                    name: collegeMap[firstUni] || firstUni,
                     branch: firstBranch,
                     data: data1.data,
                 },
                 second: {
-                    name: secondUni,
+                    name: collegeMap[secondUni] || secondUni,
                     branch: secondBranch,
                     data: data2.data,
                 },
@@ -343,6 +343,7 @@ export default function Page() {
             {!isLoading && !results && (
                 <div className={styles.compareContainer}>
                     <SelectMenu
+                        key="year-select"
                         options={[
                             {
                                 value: "2024",
@@ -372,88 +373,102 @@ export default function Page() {
                             >
                                 Left
                             </h4>
-                            <SelectMenu
-                                options={[
-                                    { value: "nit-jalandhar", label: "NIT Jalandhar" },
-                                    { value: "nit-allahabad", label: "MNNIT Allahabad" },
+                            <Combobox
+                                multiSelect={false}
+                                key="first-uni-select"
+                               options={[
+                                    // Popular IITs
+                                    { value: "iit-bombay", label: "IIT Bombay" },
+                                    { value: "iit-delhi", label: "IIT Delhi" },
+                                    { value: "iit-kanpur", label: "IIT Kanpur" },
+                                    { value: "iit-kharagpur", label: "IIT Kharagpur" },
+                                    { value: "iit-roorkee", label: "IIT Roorkee" },
+                                    { value: "iit-guwahati", label: "IIT Guwahati" },
+                                    { value: "iit-hyderabad", label: "IIT Hyderabad" },
+
+                                    // Top NITs
+                                    { value: "nit-trichy", label: "NIT Trichy" },
+                                    { value: "nit-surathkal", label: "NIT Surathkal" },
+                                    { value: "nit-warangal", label: "NIT Warangal" },
                                     { value: "nit-calicut", label: "NIT Calicut" },
+                                    { value: "nit-allahabad", label: "MNNIT Allahabad" },
+                                    { value: "nit-jamshedpur", label: "NIT Jamshedpur" },
+                                    { value: "nit-kurukshetra", label: "NIT Kurukshetra" },
                                     { value: "nit-delhi", label: "NIT Delhi" },
+
+                                    // Top IIITs
+                                    { value: "iiit-hyderabad", label: "IIIT Hyderabad" }, // Add if missing
+                                    {value:  "iiit-bangalore", label: "IIIT Bangalore"},
+                                    { value: "iiit-delhi", label: "IIIT Delhi" },
+                                    { value: "iiit-allahabad", label: "IIIT Allahabad" },
+                                    { value: "iiitm-gwalior", label: "IIITM Gwalior" },
+
+                                    // DTU/NSUT/Other popular
+                                    { value: "dtu-delhi", label: "DTU Delhi" },
+                                    { value: "nsut-delhi", label: "NSUT Delhi" },
+                                    { value: "nsut-delhi-west-campus", label: "NSUT Delhi (West Campus)" },
+                                    { value: "nsut-delhi-east-campus", label: "NSUT Delhi (East Campus)" },
+                                    { value: "pec-chandigarh", label: "PEC Chandigarh" },
+                                    { value: "iiest-shibpur", label: "IIEST Shibpur" },
+                                    { value: "bit-mesra", label: "BIT Mesra" },
+
+                                    // --- Remaining in alphabetical order ---
+                                    { value: "bit-patna", label: "BIT Patna" },
+                                    { value: "iit-bhilai", label: "IIT Bhilai" },
+                                    { value: "iit-dharwad", label: "IIT Dharwad" },
+                                    { value: "iit-gandhinagar", label: "IIT Gandhinagar" },
+                                    { value: "iit-goa", label: "IIT Goa" },
+                                    { value: "iit-indore", label: "IIT Indore" },
+                                    { value: "iit-jammu", label: "IIT Jammu" },
+                                    { value: "iit-jodhpur", label: "IIT Jodhpur" },
+                                    { value: "iit-mandi", label: "IIT Mandi" },
+                                    { value: "iit-palakkad", label: "IIT Palakkad" },
+                                    { value: "iit-patna", label: "IIT Patna" },
+                                    { value: "iit-ropar", label: "IIT Ropar" },
+                                    { value: "iit-tirupati", label: "IIT Tirupati" },
+                                    { value: "iit-ism-dhanbad", label: "IIT (ISM) Dhanbad" },
+                                    { value: "igdtuw-delhi", label: "IGDTUW Delhi" },
+                                    { value: "iiit-guwahati", label: "IIIT Guwahati" },
+                                    { value: "iiit-kalyani", label: "IIIT Kalyani" },
+                                    { value: "iiit-kota", label: "IIIT Kota" },
+                                    { value: "iiit-manipur", label: "IIIT Manipur" },
+                                    { value: "iiit-nagpur", label: "IIIT Nagpur" },
+                                    { value: "iiit-pune", label: "IIIT Pune" },
+                                    { value: "iiit-ranchi", label: "IIIT Ranchi" },
+                                    { value: "iiit-sonepat", label: "IIIT Sonepat" },
+                                    { value: "iiit-sri-city", label: "IIIT Sri City" },
+                                    { value: "iiit-surat", label: "IIIT Surat" },
+                                    { value: "iiit-trichy", label: "IIIT Trichy" },
+                                    { value: "iiit-una", label: "IIIT Una" },
+                                    { value: "iiitdm-jabalpur", label: "IIITDM Jabalpur" },
+                                    { value: "iiitdm-kancheepuram", label: "IIITDM Kancheepuram" },
+                                    { value: "iiitdm-kurnool", label: "IIITDM Kurnool" },
+                                    { value: "nit-arunachal-pradesh", label: "NIT Arunachal Pradesh" },
                                     { value: "nit-durgapur", label: "NIT Durgapur" },
                                     { value: "nit-goa", label: "NIT Goa" },
                                     { value: "nit-hamirpur", label: "NIT Hamirpur" },
-                                    { value: "nit-surathkal", label: "NIT Surathkal" },
+                                    { value: "nit-jalandhar", label: "NIT Jalandhar" },
                                     { value: "nit-meghalaya", label: "NIT Meghalaya" },
+                                    { value: "nit-mizoram", label: "NIT Mizoram" },
+                                    { value: "nit-nagpur", label: "VNIT Nagpur" },
                                     { value: "nit-patna", label: "NIT Patna" },
                                     { value: "nit-puducherry", label: "NIT Puducherry" },
                                     { value: "nit-raipur", label: "NIT Raipur" },
                                     { value: "nit-sikkim", label: "NIT Sikkim" },
-                                    { value: "nit-arunachal-pradesh", label: "NIT Arunachal Pradesh" },
-                                    { value: "nit-jamshedpur", label: "NIT Jamshedpur" },
-                                    { value: "nit-kurukshetra", label: "NIT Kurukshetra" },
-                                    { value: "nit-mizoram", label: "NIT Mizoram" },
                                     { value: "nit-silchar", label: "NIT Silchar" },
                                     { value: "nit-srinagar", label: "NIT Srinagar" },
-                                    { value: "nit-trichy", label: "NIT Trichy" },
-                                    { value: "nit-uttarakhand", label: "NIT Uttarakhand" },
-                                    { value: "nit-warangal", label: "NIT Warangal" },
                                     { value: "nit-surat", label: "SVNIT Surat" },
-                                    { value: "nit-nagpur", label: "VNIT Nagpur" },
-                                    { value: "iit-bombay", label: "IIT Bombay" },
-                                    { value: "iit-mandi", label: "IIT Mandi" },
-                                    { value: "iit-delhi", label: "IIT Delhi" },
-                                    { value: "iit-indore", label: "IIT Indore" },
-                                    { value: "iit-kharagpur", label: "IIT Kharagpur" },
-                                    { value: "iit-hyderabad", label: "IIT Hyderabad" },
-                                    { value: "iit-jodhpur", label: "IIT Jodhpur" },
-                                    { value: "iit-kanpur", label: "IIT Kanpur" },
-                                    { value: "iit-gandhinagar", label: "IIT Gandhinagar" },
-                                    { value: "iit-patna", label: "IIT Patna" },
-                                    { value: "iit-roorkee", label: "IIT Roorkee" },
-                                    { value: "iit-ism-dhanbad", label: "IIT (ISM) Dhanbad" },
-                                    { value: "iit-ropar", label: "IIT Ropar" },
-                                    { value: "iit-guwahati", label: "IIT Guwahati" },
-                                    { value: "iit-bhilai", label: "IIT Bhilai" },
-                                    { value: "iit-goa", label: "IIT Goa" },
-                                    { value: "iit-palakkad", label: "IIT Palakkad" },
-                                    { value: "iit-tirupati", label: "IIT Tirupati" },
-                                    { value: "iit-jammu", label: "IIT Jammu" },
-                                    { value: "iit-dharwad", label: "IIT Dharwad" },
-                                    { value: "iiit-guwahati", label: "IIIT Guwahati" },
-                                    { value: "iiitm-gwalior", label: "IIITM Gwalior" },
-                                    { value: "iiit-kota", label: "IIIT Kota" },
-                                    { value: "iiit-surat", label: "IIIT Surat" },
-                                    { value: "iiit-sonepat", label: "IIIT Sonepat" },
-                                    { value: "iiit-una", label: "IIIT Una" },
-                                    { value: "iiit-sri-city", label: "IIIT Sri City" },
-                                    { value: "iiit-allahabad", label: "IIIT Allahabad" },
-                                    { value: "iiitdm-kancheepuram", label: "IIITDM Kancheepuram" },
-                                    { value: "iiitdm-jabalpur", label: "IIITDM Jabalpur" },
-                                    { value: "iiit-manipur", label: "IIIT Manipur" },
-                                    { value: "iiit-trichy", label: "IIIT Trichy" },
-                                    { value: "iiit-dharwad", label: "IIIT Dharwad" },
-                                    { value: "iiitdm-kurnool", label: "IIITDM Kurnool" },
-                                    { value: "iiit-ranchi", label: "IIIT Ranchi" },
-                                    { value: "iiit-nagpur", label: "IIIT Nagpur" },
-                                    { value: "iiit-pune", label: "IIIT Pune" },
-                                    { value: "iiit-kalyani", label: "IIIT Kalyani" },
-                                    { value: "bit-mesra", label: "BIT Mesra" },
-                                    { value: "bit-patna", label: "BIT Patna" },
-                                    { value: "pec-chandigarh", label: "PEC Chandigarh" },
-                                    { value: "iiest-shibpur", label: "IIEST Shibpur" },
-                                    { value: "tssot-silchar", label: "TSSOT Silchar" },
+                                    { value: "nit-uttarakhand", label: "NIT Uttarakhand" },
                                     { value: "soe-tezpur", label: "SoE Tezpur University" },
-                                    { value: "dtu-delhi", label: "DTU Delhi" },
-                                    { value: "nsut-delhi-west-campus", label: "NSUT Delhi (West Campus)" },
-                                    { value: "nsut-delhi-east-campus", label: "NSUT Delhi (East Campus)" },
-                                    { value: "nsut-delhi", label: "NSUT Delhi" },
-                                    { value: "igdtuw-delhi", label: "IGDTUW Delhi" },
-                                    { value: "iiit-delhi", label: "IIIT Delhi" },
-                                ]}
+                                    { value: "tssot-silchar", label: "TSSOT Silchar" }
+                                    ]}
+
                                 placeholder={"University..."}
-                                onChange={handleChange01}
+                                onChange={(v) => setFirstUni(Array.isArray(v) ? v[0] : v)}
                             />
                             {firstUni && (
                                 <SelectMenu
+                                    key={`first-branch-select-${firstUni}-${year}`}
                                     options={
                                         data01?.data[year]?.map((branch) => ({
                                             value: branch,
@@ -474,89 +489,101 @@ export default function Page() {
                             >
                                 Right
                             </h4>
-                            <SelectMenu
-                                options={[
-                                    { value: "nit-jalandhar", label: "NIT Jalandhar" },
-                                    { value: "nit-allahabad", label: "MNNIT Allahabad" },
-                                    { value: "nit-agartala", label: "NIT Agartala" },
+                            <Combobox
+                                multiSelect={false}
+                                key="second-uni-select"
+                                    options={[
+                                    // Popular IITs
+                                    { value: "iit-bombay", label: "IIT Bombay" },
+                                    { value: "iit-delhi", label: "IIT Delhi" },
+                                    { value: "iit-kanpur", label: "IIT Kanpur" },
+                                    { value: "iit-kharagpur", label: "IIT Kharagpur" },
+                                    { value: "iit-roorkee", label: "IIT Roorkee" },
+                                    { value: "iit-guwahati", label: "IIT Guwahati" },
+                                    { value: "iit-hyderabad", label: "IIT Hyderabad" },
+
+                                    // Top NITs
+                                    { value: "nit-trichy", label: "NIT Trichy" },
+                                    { value: "nit-surathkal", label: "NIT Surathkal" },
+                                    { value: "nit-warangal", label: "NIT Warangal" },
                                     { value: "nit-calicut", label: "NIT Calicut" },
+                                    { value: "nit-allahabad", label: "MNNIT Allahabad" },
+                                    { value: "nit-jamshedpur", label: "NIT Jamshedpur" },
+                                    { value: "nit-kurukshetra", label: "NIT Kurukshetra" },
                                     { value: "nit-delhi", label: "NIT Delhi" },
+
+                                    // Top IIITs
+                                    { value: "iiit-hyderabad", label: "IIIT Hyderabad" }, // Add if missing
+                                    {value:  "iiit-banglore", label: "IIIT Bangalore"},
+                                    { value: "iiit-delhi", label: "IIIT Delhi" },
+                                    { value: "iiit-allahabad", label: "IIIT Allahabad" },
+                                    { value: "iiitm-gwalior", label: "IIITM Gwalior" },
+
+                                    // DTU/NSUT/Other popular
+                                    { value: "dtu-delhi", label: "DTU Delhi" },
+                                    { value: "nsut-delhi", label: "NSUT Delhi" },
+                                    { value: "nsut-delhi-west-campus", label: "NSUT Delhi (West Campus)" },
+                                    { value: "nsut-delhi-east-campus", label: "NSUT Delhi (East Campus)" },
+                                    { value: "pec-chandigarh", label: "PEC Chandigarh" },
+                                    { value: "iiest-shibpur", label: "IIEST Shibpur" },
+                                    { value: "bit-mesra", label: "BIT Mesra" },
+
+                                    // --- Remaining in alphabetical order ---
+                                    { value: "bit-patna", label: "BIT Patna" },
+                                    { value: "iit-bhilai", label: "IIT Bhilai" },
+                                    { value: "iit-dharwad", label: "IIT Dharwad" },
+                                    { value: "iit-gandhinagar", label: "IIT Gandhinagar" },
+                                    { value: "iit-goa", label: "IIT Goa" },
+                                    { value: "iit-indore", label: "IIT Indore" },
+                                    { value: "iit-jammu", label: "IIT Jammu" },
+                                    { value: "iit-jodhpur", label: "IIT Jodhpur" },
+                                    { value: "iit-mandi", label: "IIT Mandi" },
+                                    { value: "iit-palakkad", label: "IIT Palakkad" },
+                                    { value: "iit-patna", label: "IIT Patna" },
+                                    { value: "iit-ropar", label: "IIT Ropar" },
+                                    { value: "iit-tirupati", label: "IIT Tirupati" },
+                                    { value: "iit-ism-dhanbad", label: "IIT (ISM) Dhanbad" },
+                                    { value: "igdtuw-delhi", label: "IGDTUW Delhi" },
+                                    { value: "iiit-guwahati", label: "IIIT Guwahati" },
+                                    { value: "iiit-kalyani", label: "IIIT Kalyani" },
+                                    { value: "iiit-kota", label: "IIIT Kota" },
+                                    { value: "iiit-manipur", label: "IIIT Manipur" },
+                                    { value: "iiit-nagpur", label: "IIIT Nagpur" },
+                                    { value: "iiit-pune", label: "IIIT Pune" },
+                                    { value: "iiit-ranchi", label: "IIIT Ranchi" },
+                                    { value: "iiit-sonepat", label: "IIIT Sonepat" },
+                                    { value: "iiit-sri-city", label: "IIIT Sri City" },
+                                    { value: "iiit-surat", label: "IIIT Surat" },
+                                    { value: "iiit-trichy", label: "IIIT Trichy" },
+                                    { value: "iiit-una", label: "IIIT Una" },
+                                    { value: "iiitdm-jabalpur", label: "IIITDM Jabalpur" },
+                                    { value: "iiitdm-kancheepuram", label: "IIITDM Kancheepuram" },
+                                    { value: "iiitdm-kurnool", label: "IIITDM Kurnool" },
+                                    { value: "nit-arunachal-pradesh", label: "NIT Arunachal Pradesh" },
                                     { value: "nit-durgapur", label: "NIT Durgapur" },
                                     { value: "nit-goa", label: "NIT Goa" },
                                     { value: "nit-hamirpur", label: "NIT Hamirpur" },
-                                    { value: "nit-surathkal", label: "NIT Surathkal" },
+                                    { value: "nit-jalandhar", label: "NIT Jalandhar" },
                                     { value: "nit-meghalaya", label: "NIT Meghalaya" },
+                                    { value: "nit-mizoram", label: "NIT Mizoram" },
+                                    { value: "nit-nagpur", label: "VNIT Nagpur" },
                                     { value: "nit-patna", label: "NIT Patna" },
                                     { value: "nit-puducherry", label: "NIT Puducherry" },
                                     { value: "nit-raipur", label: "NIT Raipur" },
                                     { value: "nit-sikkim", label: "NIT Sikkim" },
-                                    { value: "nit-arunachal-pradesh", label: "NIT Arunachal Pradesh" },
-                                    { value: "nit-jamshedpur", label: "NIT Jamshedpur" },
-                                    { value: "nit-kurukshetra", label: "NIT Kurukshetra" },
-                                    { value: "nit-mizoram", label: "NIT Mizoram" },
                                     { value: "nit-silchar", label: "NIT Silchar" },
                                     { value: "nit-srinagar", label: "NIT Srinagar" },
-                                    { value: "nit-trichy", label: "NIT Trichy" },
-                                    { value: "nit-uttarakhand", label: "NIT Uttarakhand" },
-                                    { value: "nit-warangal", label: "NIT Warangal" },
                                     { value: "nit-surat", label: "SVNIT Surat" },
-                                    { value: "nit-nagpur", label: "VNIT Nagpur" },
-                                    { value: "iit-bombay", label: "IIT Bombay" },
-                                    { value: "iit-mandi", label: "IIT Mandi" },
-                                    { value: "iit-delhi", label: "IIT Delhi" },
-                                    { value: "iit-indore", label: "IIT Indore" },
-                                    { value: "iit-kharagpur", label: "IIT Kharagpur" },
-                                    { value: "iit-hyderabad", label: "IIT Hyderabad" },
-                                    { value: "iit-jodhpur", label: "IIT Jodhpur" },
-                                    { value: "iit-kanpur", label: "IIT Kanpur" },
-                                    { value: "iit-gandhinagar", label: "IIT Gandhinagar" },
-                                    { value: "iit-patna", label: "IIT Patna" },
-                                    { value: "iit-roorkee", label: "IIT Roorkee" },
-                                    { value: "iit-ism-dhanbad", label: "IIT (ISM) Dhanbad" },
-                                    { value: "iit-ropar", label: "IIT Ropar" },
-                                    { value: "iit-guwahati", label: "IIT Guwahati" },
-                                    { value: "iit-bhilai", label: "IIT Bhilai" },
-                                    { value: "iit-goa", label: "IIT Goa" },
-                                    { value: "iit-palakkad", label: "IIT Palakkad" },
-                                    { value: "iit-tirupati", label: "IIT Tirupati" },
-                                    { value: "iit-jammu", label: "IIT Jammu" },
-                                    { value: "iit-dharwad", label: "IIT Dharwad" },
-                                    { value: "iiit-guwahati", label: "IIIT Guwahati" },
-                                    { value: "iiitm-gwalior", label: "IIITM Gwalior" },
-                                    { value: "iiit-kota", label: "IIIT Kota" },
-                                    { value: "iiit-surat", label: "IIIT Surat" },
-                                    { value: "iiit-sonepat", label: "IIIT Sonepat" },
-                                    { value: "iiit-una", label: "IIIT Una" },
-                                    { value: "iiit-sri-city", label: "IIIT Sri City" },
-                                    { value: "iiit-allahabad", label: "IIIT Allahabad" },
-                                    { value: "iiitdm-kancheepuram", label: "IIITDM Kancheepuram" },
-                                    { value: "iiitdm-jabalpur", label: "IIITDM Jabalpur" },
-                                    { value: "iiit-manipur", label: "IIIT Manipur" },
-                                    { value: "iiit-trichy", label: "IIIT Trichy" },
-                                    { value: "iiit-dharwad", label: "IIIT Dharwad" },
-                                    { value: "iiitdm-kurnool", label: "IIITDM Kurnool" },
-                                    { value: "iiit-ranchi", label: "IIIT Ranchi" },
-                                    { value: "iiit-nagpur", label: "IIIT Nagpur" },
-                                    { value: "iiit-pune", label: "IIIT Pune" },
-                                    { value: "iiit-kalyani", label: "IIIT Kalyani" },
-                                    { value: "bit-mesra", label: "BIT Mesra" },
-                                    { value: "bit-patna", label: "BIT Patna" },
-                                    { value: "pec-chandigarh", label: "PEC Chandigarh" },
-                                    { value: "iiest-shibpur", label: "IIEST Shibpur" },
-                                    { value: "tssot-silchar", label: "TSSOT Silchar" },
+                                    { value: "nit-uttarakhand", label: "NIT Uttarakhand" },
                                     { value: "soe-tezpur", label: "SoE Tezpur University" },
-                                    { value: "dtu-delhi", label: "DTU Delhi" },
-                                    { value: "nsut-delhi-west-campus", label: "NSUT Delhi (West Campus)" },
-                                    { value: "nsut-delhi-east-campus", label: "NSUT Delhi (East Campus)" },
-                                    { value: "nsut-delhi", label: "NSUT Delhi" },
-                                    { value: "igdtuw-delhi", label: "IGDTUW Delhi" },
-                                    { value: "iiit-delhi", label: "IIIT Delhi" },
+                                    { value: "tssot-silchar", label: "TSSOT Silchar" }
                                 ]}
                                 placeholder={"University..."}
-                                onChange={handleChange02}
+                                onChange={(v) => setSecondUni(Array.isArray(v) ? v[0] : v)}
                             />
                             {secondUni && (
                                 <SelectMenu
+                                    key={`second-branch-select-${secondUni}-${year}`}
                                     options={
                                         data02?.data[year]?.map((branch) => ({
                                             value: branch,
