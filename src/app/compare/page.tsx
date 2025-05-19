@@ -127,11 +127,11 @@ export default function Page() {
                             <div className={styles.left}>
                                 <div className={styles.node}>
                                     <h4 className={styles.nodeHead}>Registered</h4>
-                                    <p className={styles.nodeData}>{data.data.registered}</p>
+                                    <p className={styles.nodeData}>{data.data.registered ? data.data.registered : "NA"}</p>
                                 </div>
                                 <div className={styles.node}>
                                     <h4 className={styles.nodeHead}>Placed</h4>
-                                    <p className={styles.nodeData}>{data.data.placed}</p>
+                                    <p className={styles.nodeData}>{data.data.placed ? data.data.placed : "NA"}</p>
                                 </div>
                             </div>
                             <div className={styles.right}>
@@ -144,7 +144,7 @@ export default function Page() {
                                         borderRadius: "4px",
                                     }}
                                 >
-                                    {data.data.percent_placed.toString().slice(0, 4)}%
+                                    {data.data.percent_placed ? `${data.data.percent_placed.toString().slice(0, 4)}%` : "NA"}
                                 </p>
                             </div>
                         </div>
