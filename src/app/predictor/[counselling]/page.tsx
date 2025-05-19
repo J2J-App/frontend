@@ -467,6 +467,7 @@ export default function Page() {
     const [year, setYear] = React.useState<string>("2024");
     const [collegeType , setCollegeType] = React.useState<string | null>(null);
     const [typesList, setTypesList] = React.useState<string[]>([]);
+    const [activeIndex, setActiveIndex] = React.useState<number>(0);
     // Load saved state from localStorage
     React.useEffect(() => {
         if (typeof window !== "undefined") {
@@ -497,6 +498,7 @@ export default function Page() {
             if (savedTypes) {
                 const parsedTypes = JSON.parse(savedTypes);
                 setTypesList(parsedTypes);
+                setActiveIndex(parsedTypes.indexOf(savedType));
             }
             if (savedType) setCollegeType(savedType);
             if (!savedType && !savedTypes) {
@@ -533,6 +535,16 @@ export default function Page() {
         }
     }, [counselling]);
 
+
+    function clearResults() {
+        setResult({
+            "2024": [],
+            "2023": [],
+            "2022": []
+        });
+        localStorage.removeItem(counselling+"_result");
+    }
+
     // Input handlers
     const handleMAChange = (e: any) => {
         const value = e.target.value;
@@ -543,6 +555,7 @@ export default function Page() {
             setMainsCRLRank(value ? value : "");
             localStorage.setItem("mains_crl_rank", value);
         }
+        clearResults();
     };
 
     const handleMCChange = (e: any) => {
@@ -554,6 +567,7 @@ export default function Page() {
             setMainsCATRank(value ? value : "");
             localStorage.setItem("mains_cat_rank", value);
         }
+        clearResults();
     };
 
     const handleACChange = (e: any) => {
@@ -565,6 +579,7 @@ export default function Page() {
             setAdvCATRank(value ? value : "");
             localStorage.setItem("adv_cat_rank", value);
         }
+        clearResults();
     };
 
     // Other form handlers
@@ -573,6 +588,7 @@ export default function Page() {
         localStorage.setItem("region", value);
         setErrors([]);
         setApiError(null);
+        clearResults();
     };
 
     const handleOnChangeOfCategory = (value: string) => {
@@ -584,6 +600,7 @@ export default function Page() {
         }
         setErrors([]);
         setApiError(null);
+        clearResults();
     };
 
     const handleChangeSubCategory = (value: string) => {
@@ -595,6 +612,7 @@ export default function Page() {
         }
         setErrors([]);
         setApiError(null);
+        clearResults();
     };
 
     const handleGenderChange = (value: string) => {
@@ -602,6 +620,7 @@ export default function Page() {
         localStorage.setItem("gender", value);
         setErrors([]);
         setApiError(null);
+        clearResults();
     };
 
     const handleClear = () => {
@@ -715,6 +734,53 @@ export default function Page() {
             setApiError,
             setResult
         });
+    };
+
+    const handleTypeChange = async (index: number) => {
+        const selectedType = typesList[index];
+        console.log("selt:",selectedType)
+        if (selectedType === collegeType) return;
+        if (selectedType === "IIT" && !advEnabled) {
+            setErrors(["Please enable Advanced Category Rank to fetch IIT data"]);
+            return;
+        }
+
+        setResult({
+            "2024": [],
+            "2023": [],
+            "2022": []
+        });
+
+        // Update state using functional update to avoid stale closure
+        setCollegeType(prevType => {
+            localStorage.setItem(`${counselling}_collegeType`, selectedType);
+            return selectedType;
+        });
+
+        // Fetch data using the selectedType directly, not relying on state
+        try {
+            await fetchPredictorData({
+                counselling,
+                mainsCRLRank,
+                mainsCATRank,
+                advCATRank,
+                advEnabled,
+                region,
+                category,
+                subCategory,
+                gender,
+                year,
+                typesList,
+                currentType: selectedType,  // Use selectedType directly
+                setIsLoading,
+                setApiError,
+                setResult
+            });
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+        setActiveIndex(index);
+
     };
 
     // Error message display component
@@ -945,9 +1011,27 @@ export default function Page() {
             <ErrorMessages />
 
             {/* Only show loader here if no results are being displayed yet */}
+
+            {hasData && typesList && typesList.length > 0 && (
+                <div className={Styles.uniHead}>
+                    {typesList.map((type, index) => {
+                        return (
+                            <button
+                                key={type}
+                                onClick={() => {
+                                    handleTypeChange(index);
+                                }}
+                                className={index === activeIndex ? (Styles.activeType + " " + Styles.typeButton) : Styles.typeButton}
+                            >
+                                {type}
+                            </button>
+                        )
+                    })}
+                </div>
+            )}
+
             {isLoading && !hasData && <Loader />}
 
-            {/* Pass the entire result object to SortedTable */}
             {hasData && (
                 <SortedTable
                     data={result}
