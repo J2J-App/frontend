@@ -51,7 +51,7 @@ export default function Page() {
         "iiit-guwahati", "iiitm-gwalior", "iiit-kota", "iiit-surat", "iiit-sonepat", "iiit-una", "iiit-sri-city",
         "iiit-vadodara", "iiit-allahabad", "iiitdm-kancheepuram", "iiitdm-jabalpur", "iiit-manipur", "iiit-trichy",
         "iiit-dharwad", "iiitdm-kurnool", "iiit-ranchi", "iiit-nagpur", "iiit-pune", "iiit-kalyani", "iiit-lucknow",
-        "iiit-kottayam",
+        "iiit-kottayam","iiit-naya-raipur", 
 
         //GFTIs
         "bit-mesra", "bit-patna", "pec-chandigarh", "iiest-shibpur", "uoh-hyderabad", "tssot-silchar", "spa-bhopal",
@@ -137,6 +137,7 @@ export default function Page() {
             "iiit-kalyani": "IIIT Kalyani",
             "iiit-lucknow": "IIIT Lucknow",
             "iiit-kottayam": "IIIT Kottayam",
+            "iiit-naya-raipur": "IIIT Naya Raipur",
 
             "bit-mesra": "BIT Mesra",
             "bit-patna": "BIT Patna",

@@ -49,41 +49,59 @@ return (
         <p>{currentUniData.mode_of_admission.mode_of_admission}</p>
       </div>
 
-      <div className={styles.contentContainer}>
-        <h2 className={styles.h2}>Eligibility Criteria</h2>
-        <div className={styles.grid}>
-          <div className={styles.catg}>
-            <span>General</span>
-            <p>{currentUniData.eligibility.general}</p>
-          </div>
-          {uni !== "iiitd" ? (
-            <div className={styles.catg}>
-              <span>SC/ST/PWD</span>
-              <p>{currentUniData.eligibility.sc_st_pwd}</p>
-            </div>
-          ) : (
-            <div className={styles.catg}>
-              <span>SC/ST</span>
-              <p>{currentUniData.eligibility.sc_st}</p>
-            </div>
-          )}
-          <div className={styles.catg}>
-            <span>OBC NCL</span>
-            <p>{currentUniData.eligibility.obc_ncl}</p>
-          </div>
-          {uni !== "iiitd" ? (
-            <div className={styles.catg}>
-              <span>Defence</span>
-              <p>{currentUniData.eligibility.defence}</p>
-            </div>
-          ) : (
-            <div className={styles.catg}>
-              <span>Defence/PWD</span>
-              <p>{currentUniData.eligibility.defence_pwd}</p>
-            </div>
-          )}
+      {currentUniData?.eligibility && (
+  <div className={styles.contentContainer}>
+    <h2 className={styles.h2}>Eligibility Criteria</h2>
+    <div className={styles.grid}>
+      {currentUniData.eligibility.general && (
+        <div className={styles.catg}>
+          <span>General</span>
+          <p>{currentUniData.eligibility.general}</p>
         </div>
-      </div>
+      )}
+
+      {uni !== "iiitd" ? (
+        currentUniData.eligibility.sc_st_pwd && (
+          <div className={styles.catg}>
+            <span>SC/ST/PWD</span>
+            <p>{currentUniData.eligibility.sc_st_pwd}</p>
+          </div>
+        )
+      ) : (
+        currentUniData.eligibility.sc_st && (
+          <div className={styles.catg}>
+            <span>SC/ST</span>
+            <p>{currentUniData.eligibility.sc_st}</p>
+          </div>
+        )
+      )}
+
+      {currentUniData.eligibility.obc_ncl && (
+        <div className={styles.catg}>
+          <span>OBC NCL</span>
+          <p>{currentUniData.eligibility.obc_ncl}</p>
+        </div>
+      )}
+
+      {uni !== "iiitd" ? (
+        currentUniData.eligibility.defence && (
+          <div className={styles.catg}>
+            <span>Defence</span>
+            <p>{currentUniData.eligibility.defence}</p>
+          </div>
+        )
+      ) : (
+        currentUniData.eligibility.defence_pwd && (
+          <div className={styles.catg}>
+            <span>Defence/PWD</span>
+            <p>{currentUniData.eligibility.defence_pwd}</p>
+          </div>
+        )
+      )}
+    </div>
+  </div>
+)}
+
 
       <div className={styles.contentContainer}>
         <h2 className={styles.h2}>Fee Structure</h2>

@@ -15,6 +15,8 @@ function transformData(input: any[]) {
         "U2": "Upgradation 2",
         "S": "Spot Round 1",
         "s2": "Spot Round 2",
+        "S-1" : "Special Round 1",
+        "S-2" : "Special Round 2",
     };
 
     const result: any = {};
@@ -24,13 +26,13 @@ function transformData(input: any[]) {
         round: string;
         college: string;
         branch: string;
-        jee_rank: number;
+        rank: number;
         is_bonus?: boolean
     }) => {
-        const { year, round, college, branch, jee_rank, is_bonus } = entry;
+        const { year, round, college, branch, rank, is_bonus } = entry;
 
         // Skip invalid entries
-        if (!year || !round || !college || !branch || !jee_rank) return;
+        if (!year || !round || !college || !branch || !rank) return;
 
         if (!result[year]) result[year] = {};
 
@@ -43,7 +45,7 @@ function transformData(input: any[]) {
         result[year][roundLabel].push({
             uni: college,
             branch,
-            jee_rank,
+            rank,
             is_bonus: is_bonus || false,
         });
     });
@@ -68,9 +70,12 @@ function transformData(input: any[]) {
 
 const CutoffPage = () => {
     const uni = usePathname().split("/")[2]
+    const [counseling, setCounseling] = React.useState("");
+    const [collegeType, setCollegeType] = React.useState("");
     const [region, setRegion] = React.useState("");
     const [category, setCategory] = React.useState("");
     const [subCategory, setSubCategory] = React.useState("");
+    const [gender, setGender] = React.useState("M");
     const [result, setResult] = React.useState([]);
     const [apiError, setApiError] = React.useState<string | null>(null);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -79,41 +84,189 @@ const CutoffPage = () => {
         setIsLoading(true);
         setApiError(null);
 
-        const uniMap: any = {
-            "nsut": "NSUT",
-            "iiitd": "IIITD",
-            "dtu": "DTU",
-            "nsutw": "NSUT West Campus",
-            "nsute": "NSUT East Campus",
-            "igdtuw": "IGDTUW",
+    const map: { [key: string]: string } = {
+        "nit-jalandhar": "NIT Jalandhar",
+        "nit-jaipur": "MNIT Jaipur",
+        "nit-bhopal": "MANIT Bhopal",
+        "nit-allahabad": "MNNIT Allahabad",
+        "nit-agartala": "NIT Agartala",
+        "nit-calicut": "NIT Calicut",
+        "nit-delhi": "NIT Delhi",
+        "nit-durgapur": "NIT Durgapur",
+        "nit-goa": "NIT Goa",
+        "nit-hamirpur": "NIT Hamirpur",
+        "nit-surathkal": "NIT Surathkal",
+        "nit-meghalaya": "NIT Meghalaya",
+        "nit-patna": "NIT Patna",
+        "nit-puducherry": "NIT Puducherry",
+        "nit-raipur": "NIT Raipur",
+        "nit-sikkim": "NIT Sikkim",
+        "nit-arunachal-pradesh": "NIT Arunachal Pradesh",
+        "nit-jamshedpur": "NIT Jamshedpur",
+        "nit-kurukshetra": "NIT Kurukshetra",
+        "nit-mizoram": "NIT Mizoram",
+        "nit-rourkela": "NIT Rourkela",
+        "nit-silchar": "NIT Silchar",
+        "nit-srinagar": "NIT Srinagar",
+        "nit-trichy": "NIT Trichy",
+        "nit-uttarakhand": "NIT Uttarakhand",
+        "nit-warangal": "NIT Warangal",
+        "nit-surat": "SVNIT Surat",
+        "nit-nagpur": "VNIT Nagpur",
+        "nit-nagaland": "NIT Nagaland",
+        "nit-manipur": "NIT Manipur",
+
+        "iit-bhubaneswar": "IIT Bhubaneswar",
+        "iit-bombay": "IIT Bombay",
+        "iit-mandi": "IIT Mandi",
+        "iit-delhi": "IIT Delhi",
+        "iit-indore": "IIT Indore",
+        "iit-kharagpur": "IIT Kharagpur",
+        "iit-hyderabad": "IIT Hyderabad",
+        "iit-jodhpur": "IIT Jodhpur",
+        "iit-kanpur": "IIT Kanpur",
+        "iit-madras": "IIT Madras",
+        "iit-gandhinagar": "IIT Gandhinagar",
+        "iit-patna": "IIT Patna",
+        "iit-roorkee": "IIT Roorkee",
+        "iit-ism-dhanbad": "IIT (ISM) Dhanbad",
+        "iit-ropar": "IIT Ropar",
+        "iit-bhu-varanasi": "IIT BHU Varanasi",
+        "iit-guwahati": "IIT Guwahati",
+        "iit-bhilai": "IIT Bhilai",
+        "iit-goa": "IIT Goa",
+        "iit-palakkad": "IIT Palakkad",
+        "iit-tirupati": "IIT Tirupati",
+        "iit-jammu": "IIT Jammu",
+        "iit-dharwad": "IIT Dharwad",
+
+        "iiit-guwahati": "IIIT Guwahati",
+        "iiitm-gwalior": "IIITM Gwalior",
+        "iiit-kota": "IIIT Kota",
+        "iiit-surat": "IIIT Surat",
+        "iiit-sonepat": "IIIT Sonepat",
+        "iiit-una": "IIIT Una",
+        "iiit-sri-city": "IIIT Sri City",
+        "iiit-vadodara": "IIIT Vadodara",
+        "iiit-allahabad": "IIIT Allahabad",
+        "iiitdm-kancheepuram": "IIITDM Kancheepuram",
+        "iiitdm-jabalpur": "IIITDM Jabalpur",
+        "iiit-manipur": "IIIT Manipur",
+        "iiit-trichy": "IIIT Trichy",
+        "iiit-dharwad": "IIIT Dharwad",
+        "iiitdm-kurnool": "IIITDM Kurnool",
+        "iiit-ranchi": "IIIT Ranchi",
+        "iiit-nagpur": "IIIT Nagpur",
+        "iiit-pune": "IIIT Pune",
+        "iiit-kalyani": "IIIT Kalyani",
+        "iiit-lucknow": "IIIT Lucknow",
+        "iiit-kottayam": "IIIT Kottayam",
+
+        "bit-mesra": "BIT Mesra",
+        "bit-patna": "BIT Patna",
+        "pec-chandigarh": "PEC Chandigarh",
+        "iiest-shibpur": "IIEST Shibpur",
+        "uoh-hyderabad": "University of Hyderabad",
+        "tssot-silchar": "TSSOT Silchar",
+        "spa-bhopal": "SPA Bhopal",
+        "spa-delhi": "SPA Delhi",
+        "soe-tezpur": "SoE Tezpur University",
+        "ptu-puducherry": "PTU Puducherry",
+        "niftem-thanjavur": "NIFTEM Thanjavur",
+        "niamt-ranchi": "NIAMT Ranchi",
+        "jnu-delhi": "JNU Delhi",
+        "jkiapt-allahabad": "JKIAPT Allahabad",
+        "ict-ioc-bhubaneswar": "ICT-IOC Bhubaneswar",
+        "gkv-haridwar": "GKV Haridwar",
+        "iitram-ahmedabad": "IITRAM Ahmedabad",
+        "gsv-vadodara": "GSV Vadodara",
+
+        "dtu-delhi": "DTU Delhi",
+        "nsut-delhi-west-campus": "NSUT Delhi (West Campus)",
+        "nsut-delhi-east-campus": "NSUT Delhi (East Campus)",
+        "nsut-delhi": "NSUT Delhi",
+        "igdtuw-delhi": "IGDTUW Delhi",
+        "iiit-delhi": "IIIT Delhi"
+    };
+    
+    const iit = [
+        "iit-bhubaneswar", "iit-bombay", "iit-mandi", "iit-delhi", "iit-indore", "iit-kharagpur", "iit-hyderabad",
+        "iit-jodhpur", "iit-kanpur", "iit-madras", "iit-gandhinagar", "iit-patna", "iit-roorkee", "iit-ism-dhanbad",
+        "iit-ropar", "iit-bhu-varanasi", "iit-guwahati", "iit-bhilai", "iit-goa", "iit-palakkad", "iit-tirupati",
+        "iit-jammu", "iit-dharwad",
+    ];
+
+    const nit = [
+        "nit-jalandhar", "nit-jaipur", "nit-bhopal", "nit-allahabad", "nit-agartala", "nit-calicut", "nit-delhi",
+        "nit-durgapur", "nit-goa", "nit-hamirpur", "nit-surathkal", "nit-meghalaya", "nit-patna", "nit-puducherry",
+        "nit-raipur", "nit-sikkim", "nit-arunachal-pradesh", "nit-jamshedpur", "nit-kurukshetra", "nit-mizoram",
+        "nit-rourkela", "nit-silchar", "nit-srinagar", "nit-trichy", "nit-uttarakhand", "nit-warangal", "nit-surat",
+        "nit-nagpur", "nit-nagaland", "nit-manipur",
+    ]
+
+    const jac = [
+        "dtu-delhi", "nsut-delhi-west-campus", "nsut-delhi-east-campus", "nsut-delhI", "igdtuw-delhi", "iiit-delhi",
+    ]
+
+    const iiit = [
+        "iiit-guwahati", "iiitm-gwalior", "iiit-kota", "iiit-surat", "iiit-sonepat", "iiit-una", "iiit-sri-city",
+        "iiit-vadodara", "iiit-allahabad", "iiitdm-kancheepuram", "iiitdm-jabalpur", "iiit-manipur", "iiit-trichy",
+        "iiit-dharwad", "iiitdm-kurnool", "iiit-ranchi", "iiit-nagpur", "iiit-pune", "iiit-kalyani", "iiit-lucknow",
+        "iiit-kottayam",
+    ]
+
+    const gfti = [
+        "bit-mesra", "bit-patna", "pec-chandigarh", "iiest-shibpur", "uoh-hyderabad", "tssot-silchar", "spa-bhopal",
+        "spa-delhi", "soe-tezpur", "ptu-puducherry", "niftem-thanjavur", "niamt-ranchi", "jnu-delhi", "jkiapt-allahabad",
+        "ict-ioc-bhubaneswar", "gkv-haridwar", "iitram-ahmedabad", "gsv-vadodara",
+    ]
+
+    if (iit.includes(uni)) {
+        setCounseling("JOSAA");
+        setCollegeType("IIT");
+    } else if (nit.includes(uni)) {
+        setCounseling("JOSAA");
+        setCollegeType("NIT");
+    } else if (jac.includes(uni)) {
+        setCounseling("JAC");
+        setCollegeType("JAC");
+    }else if (iiit.includes(uni)) {
+        setCounseling("JOSAA");
+        setCollegeType("IIIT");
+    } else if (gfti.includes(uni)) {
+        setCounseling("JOSAA");
+        setCollegeType("GFTI");
+    }
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+        const response = await fetch(
+            "https://api.anmolcreates.tech/api/v2/cutoff",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    counseling: counseling,
+                    collegeType: collegeType,
+                    college: uni,
+                    domicile: region,
+                    category: category,
+                    gender: gender,
+                }),
+                signal: controller.signal
+            }
+        );
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
         }
 
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-            const response = await fetch(
-                "https://api.anmolcreates.tech/api/v1/getBranches",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        rank: 1, // Fixed rank value
-                        domicile: region,
-                        category: `${category} ${subCategory?.trim()}`.trim(),
-                    }),
-                    signal: controller.signal
-                }
-            );
-
-            clearTimeout(timeoutId);
-
-            if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
-            }
-
-            const data = await response.json();
-            setResult(data.data.filter((d: any) => { return  d.college === uniMap[uni] }) || []);
+        const data = await response.json();
+        setResult(data.data.filter((d: any) => { return  d.college === uniMap[uni] }) || []);
 
         } catch (err: any) {
             setApiError(err.message || "Failed to fetch cutoff data");
