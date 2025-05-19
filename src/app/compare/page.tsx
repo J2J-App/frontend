@@ -19,15 +19,7 @@ type DataType = {
 };
 =======
 
-type DataType = {
-    data: {
-        year: string;
-        data: {
-            uni: string;
-            branches: string[];
-        }[];
-    }[];
-};
+type DataType = any;
 >>>>>>> theirs
 
 export default function Page() {
