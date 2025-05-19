@@ -5,20 +5,7 @@ import SelectMenu from "@/components/select-menus/select-menu.tsx";
 import Combobox from "@/components/combobox/combobox";
 import Button from "@/components/buttons/button.tsx";
 import Loader from "@/components/loader/loader.tsx";
-<<<<<<< HEAD
-
-type DataType = {
-    data: {
-        year: string;
-        data: {
-            uni: string;
-            branches: string[];
-        }[];
-    }[];
-};
-=======
 type DataType = any
->>>>>>> e44d85ef23751f4fbb20f196eaf25e4e5a7af9df
 
 export default function Page() {
     const [data01, setData01] = useState<DataType | null>(null);
