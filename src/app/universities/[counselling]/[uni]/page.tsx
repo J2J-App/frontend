@@ -60,6 +60,13 @@ return (
         </div>
       )}
 
+      {currentUniData.eligibility.obc_general_obc_ncl && (
+        <div className={styles.catg}>
+          <span>General/OBC NCL/OBC</span>
+          <p>{currentUniData.eligibility.obc_ncl}</p>
+        </div>
+      )}
+
       {uni !== "iiitd" ? (
         currentUniData.eligibility.sc_st_pwd && (
           <div className={styles.catg}>
