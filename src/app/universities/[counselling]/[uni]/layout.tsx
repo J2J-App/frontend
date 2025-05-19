@@ -6,8 +6,10 @@ import UpperNav from "@/components/upper-nav/upper-nav";
 export default function Layout({children}: {
     children: React.ReactNode;
 }   ) {
-    const params = useParams();
-
+    const params: {
+        counselling: string;
+        uni: string;
+    } = useParams();
     return <div style={{
         padding: "0 18px",
     }}>
@@ -15,7 +17,7 @@ export default function Layout({children}: {
         style={{
             marginTop: "140px",
         }}>
-            <UpperNav params={{uni: params.uni as string}} />
+            <UpperNav params={params} />
         </div>
         <div>
             {children}
