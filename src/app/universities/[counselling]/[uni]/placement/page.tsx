@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import TabsPlacement from "@/app/universities/[uni]/placement/tabs-placement.tsx";
+import TabsPlacement from "./tabs-placement.tsx";
 import {MdWarning} from "react-icons/md";
 
 export const dynamic = "force-static";

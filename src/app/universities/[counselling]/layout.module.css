@@ -1,0 +1,19 @@
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 15px;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: 600;
+    border: 1px solid rgba(72, 72, 72, 0.36);
+    transition: all 0.2s ease-out;
+}
+
+.active {
+    background-color: rgba(37, 37, 37, 0.93);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.36);
+}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Tabs from "@/components/tabs/tabs.tsx";
-import styles from "@/app/universities/[uni]/placement/page.module.css";
+import styles from "./page.module.css";
 
 function PlacementCard({
     branch,

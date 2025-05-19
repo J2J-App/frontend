@@ -13,7 +13,7 @@ export default function BottomNav() {
         text: string,
         icon: any
     }) {
-        const href = `/${path[1]}/${path[2]}${link}`
+        const href = `/${path[1]}/${path[2]}/${path[3]}${link}`
         return <Link href={href}>
             <div className={pathname === href ? styles.active + " " + styles.link : styles.link}>
                 <div style={{
@@ -31,7 +31,7 @@ export default function BottomNav() {
         <div className={styles.links}>
             <Link style={{
                 width: "40px"
-            }} className={styles.link} href={"/universities"}>
+            }} className={styles.link} href={`/${path[1]}/${path[2]}}`}>
                 <div>
                     <div style={{
                         fontSize: "22px",

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import styles from "./upper-nav.module.css";
 import Image from "next/image";
 
-export default function UpperNav({ params }: { params: { uni: string } }) {
-    const { uni } = params;
+export default function UpperNav({ params }: { params: { uni: string, counselling: string } }) {
+    const { uni, counselling } = params;
 
     const [currentUniData, setCurrentUniData] = useState<any>(null);
 
