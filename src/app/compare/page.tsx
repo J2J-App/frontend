@@ -5,16 +5,7 @@ import SelectMenu from "@/components/select-menus/select-menu.tsx";
 import Combobox from "@/components/combobox/combobox";
 import Button from "@/components/buttons/button.tsx";
 import Loader from "@/components/loader/loader.tsx";
-
-type DataType = {
-    data: {
-        year: string;
-        data: {
-            uni: string;
-            branches: string[];
-        }[];
-    }[];
-};
+type DataType = any
 
 export default function Page() {
     const [data01, setData01] = useState<DataType | null>(null);
@@ -470,7 +461,7 @@ export default function Page() {
                                 <SelectMenu
                                     key={`first-branch-select-${firstUni}-${year}`}
                                     options={
-                                        data01?.data[year]?.map((branch) => ({
+                                        data01?.data[year]?.map((branch: string) => ({
                                             value: branch,
                                             label: branch,
                                         })) ?? []
@@ -585,7 +576,7 @@ export default function Page() {
                                 <SelectMenu
                                     key={`second-branch-select-${secondUni}-${year}`}
                                     options={
-                                        data02?.data[year]?.map((branch) => ({
+                                        data02?.data[year]?.map((branch: string) => ({
                                             value: branch,
                                             label: branch,
                                         })) ?? []
