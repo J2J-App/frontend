@@ -45,7 +45,6 @@ export default function Home() {
         }} className={styles.desktop} quality={100}/>
         <Image src={bgm} alt={"Background"} fill={true} style={{
             objectFit: "cover",
-            objectPosition: "bottom",
         }} className={styles.mobile} quality={100}/>
         <main className={styles.content}>
             <div className={styles.contentContainer}>

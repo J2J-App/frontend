@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import SelectMenu from "@/components/select-menus/select-menu.tsx";
 import SingleInput from "@/components/Inputs/SingleInput/singleInput.tsx";
+import Loader from "@/components/loader/loader.tsx";
 
 const collegeSequence: {
     [key: string]: (string[] | {
@@ -39,27 +40,12 @@ const collegeSequence: {
     }
 };
 
-export function getCollegeType(college: string): string | null {
-    for (const type in collegeSequence) {
-        if (Array.isArray(collegeSequence[type])) {
-            if (collegeSequence[type].includes(college)) {
-                return type;
-            }
-        } else {
-            for (const subtype in collegeSequence[type]) {
-                if (collegeSequence[type][subtype].includes(college)) {
-                    return subtype;
-                }
-            }
-        }
-    }
-    return null;
-}
 
 export default function Page() {
     const [collegeData, setCollegeData] = useState<Record<string, { logo: string, "college-pic": string }>>({});
     const [selectedUniType, setSelectedUniType] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState("");
+    const [isLoading, setIsLoading] = useState(true); // Add loading state
 
     const {
         counselling,
@@ -67,22 +53,50 @@ export default function Page() {
         counselling: string;
     } = useParams();
 
+    // Save clicked card ID before navigation
+    const handleCardClick = (collegeSlug: string) => {
+        localStorage.setItem('scrollTarget', collegeSlug);
+    };
+
+    // Restore scroll after content loads
+    useEffect(() => {
+        if (!isLoading) {
+            const targetSlug = localStorage.getItem('scrollTarget');
+            console.log("target",targetSlug)
+            if (targetSlug) {
+                requestAnimationFrame(() => {
+                    const targetElement = document.getElementById(`card-${targetSlug}`);
+                    targetElement?.scrollIntoView({
+                        behavior: 'auto',
+                        block: 'center',
+                        inline: 'nearest'
+                    });
+                    localStorage.removeItem('scrollTarget');
+                });
+            }
+        }
+    }, [isLoading]);
+
+
+
     useEffect(() => {
         async function fetchData() {
+            setIsLoading(true); // Set loading to true at the start of fetch
             try {
                 const response = await fetch("https://api.anmolcreates.tech/api/v2/about/photo", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                    }
+                    },
                 });
-
                 const result = await response.json();
                 if (result.statusCode === 200) {
                     setCollegeData(result.data);
                 }
             } catch (error) {
                 console.error("Error fetching college data:", error);
+            } finally {
+                setIsLoading(false); // Set loading to false after fetch completes (success or error)
             }
         }
 
@@ -93,8 +107,6 @@ export default function Page() {
             setSelectedUniType(Object.keys(collegeSequence[counselling] as object)[0]);
         }
     }, [counselling]);
-
-
 
     const getDisplayName = (slug: string): string => {
         const map: { [key: string]: string } = {
@@ -208,79 +220,96 @@ export default function Page() {
 
     return (
         <>
-            <div style={{
-                width: "calc(100% - 30px)",
-                maxWidth: "1000px",
-                marginTop: "20px"
-            }}>
-                <SingleInput
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    holder="Search universities"
-                    enabled={true}
-                />
-            </div>
-
-
-            <div style={{ marginTop: "10px" }}>
-                {Array.isArray(collegeSequence[counselling]) ? <div className={Styles.page}> {
-                    collegeSequence[counselling].filter((collegeSlug: string) =>
-                        getDisplayName(collegeSlug).toLowerCase().includes(searchQuery.toLowerCase())).map((collegeSlug: string) => {
-                        const data = collegeData[collegeSlug];
-                        if (!data) return null;
-
-                        return (
-                            <div key={collegeSlug} className={Styles.container}>
-                                <Link href={`/universities/${counselling}/${collegeSlug}`}>
-                                    <div className={Styles.cardContainer}>
-                                        <UniInfoCard
-                                            logo={data.logo}
-                                            banner={data["college-pic"]}
-                                            name={getDisplayName(collegeSlug)}
-                                            nirf=""
-                                        />
-                                    </div>
-                                </Link>
-                            </div>
-                        );
-                    })
-                }</div> : <div>
-                    <div className={Styles.selectContainer}>
-                        <SelectMenu
-                            options={Object.keys(collegeSequence[counselling] as object).map((type) => ({
-                                value: type,
-                                label: type.toUpperCase()
-                            }))}
-                            defaultValue={selectedUniType}
-                            onChange={(value) => setSelectedUniType(value)}
-                            placeholder="Select University Type"
+            {isLoading ? (
+                <div style={{
+                    width: "100%",
+                    height: "calc(100vh - 100px)",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <Loader />
+                </div>
+            ) : (
+                <>
+                    <div style={{
+                        width: "calc(100% - 40px)",
+                        maxWidth: "1000px",
+                        marginTop: "20px"
+                    }}>
+                        <SingleInput
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            holder="Search universities"
+                            enabled={true}
                         />
                     </div>
-                    <div className={Styles.page}>
-                        {selectedUniType && (collegeSequence[counselling] as Record<string, string[]>)[selectedUniType]?.filter((collegeSlug: string) =>
-                            getDisplayName(collegeSlug).toLowerCase().includes(searchQuery.toLowerCase())).map((collegeSlug: string) => {
-                            const data = collegeData[collegeSlug];
-                            if (!data) return null;
 
-                            return (
-                                <div key={collegeSlug} className={Styles.container}>
-                                    <Link href={`/universities/${counselling}/${collegeSlug}`}>
-                                        <div className={Styles.cardContainer}>
-                                            <UniInfoCard
-                                                logo={data.logo}
-                                                banner={data["college-pic"]}
-                                                name={getDisplayName(collegeSlug)}
-                                                nirf=""
-                                            />
+
+                    <div style={{ marginTop: "10px" }}>
+                        {Array.isArray(collegeSequence[counselling]) ? <div className={Styles.page}> {
+                            collegeSequence[counselling].filter((collegeSlug: string) =>
+                                getDisplayName(collegeSlug).toLowerCase().includes(searchQuery.toLowerCase())).map((collegeSlug: string) => {
+                                const data = collegeData[collegeSlug];
+                                if (!data) return null;
+
+                                return (
+                                    <div key={collegeSlug} className={Styles.container}>
+                                        <Link id={`card-${collegeSlug}`}
+                                              onClick={() => handleCardClick(collegeSlug)}
+                                              href={`/universities/${counselling}/${collegeSlug}`}>
+                                            <div className={Styles.cardContainer}>
+                                                <UniInfoCard
+                                                    logo={data.logo}
+                                                    banner={data["college-pic"]}
+                                                    name={getDisplayName(collegeSlug)}
+                                                    nirf=""
+                                                />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                );
+                            })
+                        }</div> : <div>
+                            <div className={Styles.selectContainer}>
+                                <SelectMenu
+                                    options={Object.keys(collegeSequence[counselling] as object).map((type) => ({
+                                        value: type,
+                                        label: type.toUpperCase()
+                                    }))}
+                                    defaultValue={selectedUniType}
+                                    onChange={(value) => setSelectedUniType(value)}
+                                    placeholder="Select University Type"
+                                />
+                            </div>
+                            <div className={Styles.page}>
+                                {selectedUniType && (collegeSequence[counselling] as Record<string, string[]>)[selectedUniType]?.filter((collegeSlug: string) =>
+                                    getDisplayName(collegeSlug).toLowerCase().includes(searchQuery.toLowerCase())).map((collegeSlug: string) => {
+                                    const data = collegeData[collegeSlug];
+                                    if (!data) return null;
+
+                                    return (
+                                        <div key={collegeSlug} className={Styles.container}>
+                                            <Link onClick={() => handleCardClick(collegeSlug)}
+                                                 id={`card-${collegeSlug}`} href={`/universities/${counselling}/${collegeSlug}`}>
+                                                <div className={Styles.cardContainer}>
+                                                    <UniInfoCard
+                                                        logo={data.logo}
+                                                        banner={data["college-pic"]}
+                                                        name={getDisplayName(collegeSlug)}
+                                                        nirf=""
+                                                    />
+                                                </div>
+                                            </Link>
                                         </div>
-                                    </Link>
-                                </div>
-                            );
-                        })}
+                                    );
+                                })}
+                            </div>
+                        </div>}
                     </div>
-                </div>}
-            </div>
+                </>
+            )}
         </>
     );
 }

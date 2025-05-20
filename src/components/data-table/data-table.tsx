@@ -208,7 +208,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                 }}>Bonus</span> : null}
                                 </div>
                                 <div className={styles.rankHolder + " " + styles.mobile}>
-                                    Closing Rank
+                                    Rank
                                     <span style={{
                                         background: "#0e0e0e",
                                         width: "100%",

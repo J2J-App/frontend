@@ -9,7 +9,7 @@ import Tabs from "@/components/tabs/tabs.tsx";
 import { SelectOption } from "@/components/select-menus/select-menu.tsx";
 import { useParams } from "next/navigation";
 import { counsellings } from "@/app/predictor/counsellings.ts";
-import {getCollegeType} from "@/app/universities/[counselling]/page.tsx";
+import getCollegeType from "@/lib/get-college-type.ts";
 
 function transformData(input: any[], year: string) {
     const normalizedRounds: any = {
@@ -191,15 +191,15 @@ const CutoffPage = () => {
                     defaultValue={defaultSubCategory}
                 />
 
-                <SelectMenu
+                {counselling !== "jac" && <SelectMenu
                     placeholder="Gender"
                     options={[
-                        { value: "M", label: "Gender Neutral" },
-                        { value: "F", label: "Female Only" },
+                        {value: "M", label: "Gender Neutral"},
+                        {value: "F", label: "Female Only"},
                     ]}
                     onChange={setGender}
                     defaultValue={"M"}
-                />
+                />}
             </div>
 
             <div style={{ margin: "35px 0", width: "100%", height: "1px", maxWidth: "820px", borderBottom: "1px solid #1c1c1c" }} />

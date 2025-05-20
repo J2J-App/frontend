@@ -7,13 +7,24 @@
     border-radius: 7px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    font-weight: 600;
+    font-weight: 300;
+    cursor: pointer;
     border: 1px solid rgba(72, 72, 72, 0.36);
     transition: all 0.2s ease-out;
 }
 
+.tab:hover {
+    background-color: rgba(37, 37, 37, 0.74);
+    border: 1px solid rgba(79, 79, 79, 0.18);
+}
+
+.tab:active {
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
 .active {
     background-color: rgba(37, 37, 37, 0.93);
-    cursor: pointer;
+    font-weight: 900;
     border: 1px solid rgba(79, 79, 79, 0.36);
 }

@@ -10,7 +10,7 @@ import Link from 'next/link';
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  onPageChange: any;
   showEllipsis?: boolean;
   urlParam?: string;
 };

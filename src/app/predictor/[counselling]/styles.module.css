@@ -88,12 +88,25 @@
     border-radius: 7px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    font-weight: 600;
+    font-weight: 300;
     border: 1px solid rgba(72, 72, 72, 0.36);
     transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.typeButton:hover {
+    background-color: rgba(37, 37, 37, 0.73);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.23);
+}
+
+.typeButton:active {
+    opacity: 0.7;
+    transform: scale(0.95);
 }
 
 .activeType {
+    font-weight: 900;
     background-color: rgba(37, 37, 37, 0.93);
     cursor: pointer;
     border: 1px solid rgba(79, 79, 79, 0.36);

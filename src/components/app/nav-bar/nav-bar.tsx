@@ -29,12 +29,10 @@ export default function NavBar() {
                 <div className={styles.centerBox}>
                     <Link className={checkUrl("/predictor") ? `${styles.link} ${styles.active}` : styles.link}
                           href="/predictor">Predictor</Link>
-                    <Link className={checkUrl("/universities/josaa") ? `${styles.link} ${styles.active}` : styles.link}
-                          href="/universities/josaa">Universities</Link>
+                    <Link className={checkUrl("/universities") ? `${styles.link} ${styles.active}` : styles.link}
+                          href="/universities">Universities</Link>
                     <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                           href="/compare">Compare</Link>
-                    <Link className={checkUrl("/rank") ? `${styles.link} ${styles.active}` : styles.link}
-                          href="/rank">Rank</Link>
                 </div>
                 <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.rightBox}>
                     <Image style={{
@@ -51,12 +49,10 @@ export default function NavBar() {
                     <div className={styles.linkList}>
                         <Link className={checkUrl("/predictor") ? `${styles.link} ${styles.active}` : styles.link}
                               href="/predictor" onClick={handleClick}>Predictor</Link>
-                        <Link className={checkUrl("/universities/josaa") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/universities/josaa" onClick={handleClick}>Universities</Link>
+                        <Link className={checkUrl("/universities") ? `${styles.link} ${styles.active}` : styles.link}
+                              href="/universities" onClick={handleClick}>Universities</Link>
                         <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                               href="/compare" onClick={handleClick}>Compare</Link>
-                        <Link className={checkUrl("/rank") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/rank" onClick={handleClick}>Rank</Link>
                     </div>
                     <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.discordIcon}>
                         <Image style={{

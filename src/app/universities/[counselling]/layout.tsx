@@ -43,7 +43,7 @@ export default function Layout({children}: {
                 marginTop: "20px",
                 marginBottom: "0px",
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "row-reverse",
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "10px"

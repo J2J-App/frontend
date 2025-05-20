@@ -56,7 +56,7 @@ export default function Page() {
                                 </p>
                             </div>
                         </Link>
-                    ))
+                    )).reverse()
                 }
             </div>
         </div>

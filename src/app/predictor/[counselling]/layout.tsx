@@ -27,7 +27,7 @@ function TabUI({params}: {
                         </h5>
                     </div>
                 </Link>
-            ))}
+            )).reverse()}
         </div>
     )
 }

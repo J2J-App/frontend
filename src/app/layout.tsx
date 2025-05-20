@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, M_PLUS_Rounded_1c } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 import NavBar from "@/components/app/nav-bar/nav-bar.tsx";
 import { Analytics } from "@vercel/analytics/react"
@@ -18,6 +19,10 @@ const round = M_PLUS_Rounded_1c({
     weight: ["100","300","400","500","700","800","900"],
     style: ["normal"]
 });
+
+const impact = localFont({
+    src: '../public/fonts/impact.ttf',
+})
 
 export const metadata: Metadata = {
     title: "JEEPedia",
@@ -42,7 +47,9 @@ export default function RootLayout({
     <Analytics/>
     <SpeedInsights/>
     <NavBar />
-        <div>
+        <div style={{
+            minHeight: "calc(100vh - 120px)",
+        }}>
             {children}
         </div>
         <FooterWrapper>
