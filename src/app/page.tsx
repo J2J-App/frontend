@@ -169,7 +169,7 @@ export default function Home() {
                                     </p>
                                 </div>
                             </div>
-                        ))
+                        )).reverse()
                     }
                 </div>
             </div>
