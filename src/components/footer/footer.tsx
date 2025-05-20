@@ -41,28 +41,8 @@ export default function Footer() {
                             fontSize: "16px",
                             fontWeight: "300",
                         }}>
-                            Your Data
-                        </h4>
-                        <Link className={styles.link} href={"/privacy"}>
-                            Privacy Policy
-                        </Link>
-                        <Link className={styles.link} href={"/terms"}>
-                            Terms of Service
-                        </Link>
-                    </div>
-                    <div className={styles.gridCon}>
-                        <h4 style={{
-                            color: "rgba(255,255,255,0.7)",
-                            fontFamily: '"Roboto", sans-serif',
-
-                            fontSize: "16px",
-                            fontWeight: "300",
-                        }}>
                             This Project
                         </h4>
-                        <Link className={styles.link} href={"/site-map"}>
-                            Site Map
-                        </Link>
                         <a className={styles.link} href={"mailto:jeepedia.in@gmail.com"} target={"_blank"}>
                             Mail
                         </a>

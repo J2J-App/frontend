@@ -61,7 +61,8 @@ export default function Pagination({
   return (
     <div className={styles.paginationContainer}>
       <Link
-      href={createPageUrl(Math.max(1,currentPage-1))}>
+      href={createPageUrl(Math.max(1,currentPage-1))}
+      scroll={false}>
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage <= 1}
@@ -98,7 +99,8 @@ export default function Pagination({
         );
       })}
       <Link
-      href={createPageUrl(Math.max(1,currentPage+1))}>
+      href={createPageUrl(Math.max(1,currentPage+1))}
+      scroll={false}>
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}

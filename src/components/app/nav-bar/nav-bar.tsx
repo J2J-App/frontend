@@ -29,8 +29,8 @@ export default function NavBar() {
                 <div className={styles.centerBox}>
                     <Link className={checkUrl("/predictor") ? `${styles.link} ${styles.active}` : styles.link}
                           href="/predictor">Predictor</Link>
-                    <Link className={checkUrl("/universities") ? `${styles.link} ${styles.active}` : styles.link}
-                          href="/universities">Universities</Link>
+                    <Link className={checkUrl("/universities/josaa") ? `${styles.link} ${styles.active}` : styles.link}
+                          href="/universities/josaa">Universities</Link>
                     <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                           href="/compare">Compare</Link>
                     <Link className={checkUrl("/rank") ? `${styles.link} ${styles.active}` : styles.link}
@@ -51,8 +51,8 @@ export default function NavBar() {
                     <div className={styles.linkList}>
                         <Link className={checkUrl("/predictor") ? `${styles.link} ${styles.active}` : styles.link}
                               href="/predictor" onClick={handleClick}>Predictor</Link>
-                        <Link className={checkUrl("/universities") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/universities" onClick={handleClick}>Universities</Link>
+                        <Link className={checkUrl("/universities/josaa") ? `${styles.link} ${styles.active}` : styles.link}
+                              href="/universities/josaa" onClick={handleClick}>Universities</Link>
                         <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                               href="/compare" onClick={handleClick}>Compare</Link>
                         <Link className={checkUrl("/rank") ? `${styles.link} ${styles.active}` : styles.link}

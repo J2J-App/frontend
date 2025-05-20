@@ -20,15 +20,101 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [results, setResults] = useState<any>(null);
 
-    const handleChange01 = (value: string) => {
-        setFirstUni(value);
-        setFirstBranch(null);
+    const collegeMap: { [key: string]: string } = {
+        "nit-jalandhar": "NIT Jalandhar",
+        "nit-allahabad": "MNNIT Allahabad",
+        "nit-calicut": "NIT Calicut",
+        "nit-delhi": "NIT Delhi",
+        "nit-durgapur": "NIT Durgapur",
+        "nit-goa": "NIT Goa",
+        "nit-hamirpur": "NIT Hamirpur",
+        "nit-surathkal": "NIT Surathkal",
+        "nit-meghalaya": "NIT Meghalaya",
+        "nit-patna": "NIT Patna",
+        "nit-puducherry": "NIT Puducherry",
+        "nit-raipur": "NIT Raipur",
+        "nit-sikkim": "NIT Sikkim",
+        "nit-arunachal-pradesh": "NIT Arunachal Pradesh",
+        "nit-jamshedpur": "NIT Jamshedpur",
+        "nit-kurukshetra": "NIT Kurukshetra",
+        "nit-mizoram": "NIT Mizoram",
+        "nit-silchar": "NIT Silchar",
+        "nit-srinagar": "NIT Srinagar",
+        "nit-trichy": "NIT Trichy",
+        "nit-uttarakhand": "NIT Uttarakhand",
+        "nit-warangal": "NIT Warangal",
+        "nit-surat": "SVNIT Surat",
+        "nit-nagpur": "VNIT Nagpur",
+        "iit-bombay": "IIT Bombay",
+        "iit-mandi": "IIT Mandi",
+        "iit-delhi": "IIT Delhi",
+        "iit-indore": "IIT Indore",
+        "iit-kharagpur": "IIT Kharagpur",
+        "iit-hyderabad": "IIT Hyderabad",
+        "iit-jodhpur": "IIT Jodhpur",
+        "iit-kanpur": "IIT Kanpur",
+        "iit-gandhinagar": "IIT Gandhinagar",
+        "iit-patna": "IIT Patna",
+        "iit-roorkee": "IIT Roorkee",
+        "iit-ism-dhanbad": "IIT (ISM) Dhanbad",
+        "iit-ropar": "IIT Ropar",
+        "iit-guwahati": "IIT Guwahati",
+        "iit-bhilai": "IIT Bhilai",
+        "iit-goa": "IIT Goa",
+        "iit-palakkad": "IIT Palakkad",
+        "iit-tirupati": "IIT Tirupati",
+        "iit-jammu": "IIT Jammu",
+        "iit-dharwad": "IIT Dharwad",
+        "iiit-guwahati": "IIIT Guwahati",
+        "iiitm-gwalior": "IIITM Gwalior",
+        "iiit-kota": "IIIT Kota",
+        "iiit-surat": "IIIT Surat",
+        "iiit-sonepat": "IIIT Sonepat",
+        "iiit-una": "IIIT Una",
+        "iiit-sri-city": "IIIT Sri City",
+        "iiit-allahabad": "IIIT Allahabad",
+        "iiitdm-kancheepuram": "IIITDM Kancheepuram",
+        "iiitdm-jabalpur": "IIITDM Jabalpur",
+        "iiit-manipur": "IIIT Manipur",
+        "iiit-trichy": "IIIT Trichy",
+        "iiit-dharwad": "IIIT Dharwad",
+        "iiitdm-kurnool": "IIITDM Kurnool",
+        "iiit-ranchi": "IIIT Ranchi",
+        "iiit-nagpur": "IIIT Nagpur",
+        "iiit-pune": "IIIT Pune",
+        "iiit-kalyani": "IIIT Kalyani",
+        "bit-mesra": "BIT Mesra",
+        "bit-patna": "BIT Patna",
+        "pec-chandigarh": "PEC Chandigarh",
+        "iiest-shibpur": "IIEST Shibpur",
+        "tssot-silchar": "TSSOT Silchar",
+        "soe-tezpur": "SoE Tezpur University",
+        "dtu-delhi": "DTU Delhi",
+        "nsut-delhi-west-campus": "NSUT Delhi (West Campus)",
+        "nsut-delhi-east-campus": "NSUT Delhi (East Campus)",
+        "nsut-delhi": "NSUT Delhi",
+        "igdtuw-delhi": "IGDTUW Delhi",
+        "iiit-delhi": "IIIT Delhi"
+    };
+
+    let option01 =  data01?.data[year]?.map((branch: string) => ({
+        value: branch,
+        label: branch,
+    })) ?? []
+
+    let option02 =  data02?.data[year]?.map((branch: string) => ({
+        value: branch,
+        label: branch,
+    })) ?? []
+
+    if (option01.length === 0) {
+        option01 = [ {value : `No Placement for this year` , label : `No Placement for this year`} ]
     }
 
-    const handleChange02 = (value: string) => {
-        setSecondUni(value);
-        setSecondBranch(null);
+    if (option02.length === 0) {
+        option02 = [ {value : `No Placement for this year` , label : `No Placement for this year`} ]
     }
+
 
     useEffect(() => {
         if (!firstUni) return;
@@ -460,12 +546,7 @@ export default function Page() {
                             {firstUni && (
                                 <SelectMenu
                                     key={`first-branch-select-${firstUni}-${year}`}
-                                    options={
-                                        data01?.data[year]?.map((branch: string) => ({
-                                            value: branch,
-                                            label: branch,
-                                        })) ?? []
-                                    }
+                                    options={option01}
                                     placeholder={"Branch..."}
                                     onChange={(v) => setFirstBranch(v)}
                                 />
@@ -575,12 +656,7 @@ export default function Page() {
                             {secondUni && (
                                 <SelectMenu
                                     key={`second-branch-select-${secondUni}-${year}`}
-                                    options={
-                                        data02?.data[year]?.map((branch: string) => ({
-                                            value: branch,
-                                            label: branch,
-                                        })) ?? []
-                                    }
+                                    options={option02}
                                     placeholder={"Branch..."}
                                     onChange={(v) => setSecondBranch(v)}
                                 />

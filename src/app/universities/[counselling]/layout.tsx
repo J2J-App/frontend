@@ -1,7 +1,7 @@
 "use client"
 import styles from "./layout.module.css"
 import {useParams, usePathname} from "next/navigation";
-import {counsellings} from "@/app/predictor/counsellings.ts";
+import {counsellings} from "@/app/predictor/counsellings";
 import Link from "next/link";
 
 export default function Layout({children}: {
@@ -15,9 +15,8 @@ export default function Layout({children}: {
 
     const counsellingNames = counsellings.map((counselling) => counselling.name)
 
-    if (pathname.split("/").length >= 4) return (<>{
-        children
-    }</>);
+    if (pathname.split("/").length >= 4) return (<>{children}</>);
+    
     return (
         <main style={{
             display: "flex",

@@ -178,7 +178,7 @@ export default async function Page({
                         }}>
                             Quota
                         </p>
-                        {quota=="" ? "Total Seats" : quota}
+                        {quota=="" ? "AI" : quota}
                     </div>
                 </div>
 
@@ -198,7 +198,6 @@ export default async function Page({
                         <h2 className={styles.h2}>
                             Seat Matrix
                         </h2>
-                    </div>
                     <div style={{
                         display: "grid",
                         maxWidth: "800px",
@@ -211,8 +210,9 @@ export default async function Page({
                             changeDirection={e.change_direction || ""}
                             department={e.department || ""}
                             seats={Number(e.no_of_seats)}
-                            quota={e.state_quota}
-                        />))}
+                            quota={e.state_quota ? e.state_quota : ""}
+                            />))}
+                    </div>
                     </div>
 
                 </div>

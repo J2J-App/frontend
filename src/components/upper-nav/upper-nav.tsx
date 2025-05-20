@@ -51,9 +51,9 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                 <Image
                     style={{
                         objectFit: "cover",
-                        objectPosition: "bottom",
+                        objectPosition: "center",
                         borderRadius: "18px",
-                        filter: "blur(25px)",
+                        filter: "blur(30px)",
                         transform: "scale(1, 1)",
                     }}
                     fill
@@ -63,7 +63,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                 <Image
                     style={{
                         objectFit: "cover",
-                        objectPosition: "bottom",
+                        objectPosition: "center",
                         borderRadius: "18px",
                     }}
                     fill
@@ -92,9 +92,9 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                     <span
                         style={{
                             fontWeight: "300",
-                            fontSize: "16px",
+                            fontSize: "20px",
                             fontFamily: "'Roboto', sans-serif",
-                            color: "#989898",
+                            color: "#ffffff",
                         }}
                     >
                         {currentUniData.overview["Institute Name"]}
