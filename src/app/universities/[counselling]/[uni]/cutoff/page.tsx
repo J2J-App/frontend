@@ -9,6 +9,7 @@ import Tabs from "@/components/tabs/tabs.tsx";
 import { SelectOption } from "@/components/select-menus/select-menu.tsx";
 import { useParams } from "next/navigation";
 import { counsellings } from "@/app/predictor/counsellings.ts";
+import {getCollegeType} from "@/app/universities/[counselling]/page.tsx";
 
 function transformData(input: any[], year: string) {
     const normalizedRounds: any = {
@@ -16,35 +17,61 @@ function transformData(input: any[], year: string) {
         "U2": "Upgradation 2",
         "S": "Spot Round 1",
         "s2": "Spot Round 2",
+        "S-1": "Spot Round 1",
+        "S-2": "Spot Round 2",
     };
 
     const result: any = {};
 
-    input.forEach((entry: {
-        year: number;
-        round: string;
-        college: string;
-        branch: string;
-        jee_rank: number;
-        is_bonus?: boolean
-    }) => {
-        const { round, college, branch, jee_rank, is_bonus } = entry;
-        if (!round || !college || !branch || !jee_rank) return;
+    if (input[0].rank) {
+        input.forEach((entry) => {
+            if (!entry) return;
+            const { round, college, branch, rank, icon,  is_bonus } = entry;
 
-        if (!result[year]) result[year] = {};
-        const roundLabel = normalizedRounds[round] || `Round ${round}`;
+            // Skip invalid entries
+            if (!round || !college || !branch || !rank) return;
 
-        if (!result[year][roundLabel]) {
-            result[year][roundLabel] = [];
-        }
+            if (!result[year]) result[year] = {};
 
-        result[year][roundLabel].push({
-            uni: college,
-            branch,
-            jee_rank,
-            is_bonus: is_bonus || false,
+            const roundLabel =  normalizedRounds[round] || `Round ${round}`;
+
+            if (!result[year][roundLabel]) {
+                result[year][roundLabel] = [];
+            }
+
+            result[year][roundLabel].push({
+                uni: college,
+                branch,
+                rank,
+                icon,
+                is_bonus: is_bonus || false,
+            });
         });
-    });
+    } else if(input[0].opening) {
+        input.forEach((entry) => {
+            if (!entry) return;
+            const { round, college, branch, opening, closing, icon } = entry;
+
+            // Skip invalid entries
+            if (!round || !college || !branch || opening === undefined || closing === undefined) return;
+
+            if (!result[year]) result[year] = {};
+
+            const roundLabel =  normalizedRounds[round] || `Round ${round}`;
+
+            if (!result[year][roundLabel]) {
+                result[year][roundLabel] = [];
+            }
+
+            result[year][roundLabel].push({
+                uni: college,
+                branch,
+                opening,
+                closing,
+                icon,
+            });
+        });
+    }
 
     return Object.entries(result)
         .map(([yearKey, roundsObj]: any) => ({
@@ -63,13 +90,13 @@ const CutoffPage = () => {
         uni: string;
     }>();
 
+    const clgType = getCollegeType(uni)
     const currentCounselling = counsellings.find(c => c.link === counselling);
-    const defaultRegion = currentCounselling?.regions?.[0]?.value || "false";
     const defaultCategory = currentCounselling?.categories?.[0]?.value || "General";
     const defaultSubCategory = currentCounselling?.subCategories?.[0]?.value || " ";
     const defaultYear = "2024";
 
-    const [region, setRegion] = React.useState(defaultRegion);
+    const [region, setRegion] = React.useState("false");
     const [category, setCategory] = React.useState(defaultCategory);
     const [subCategory, setSubCategory] = React.useState(defaultSubCategory);
     const [gender, setGender] = React.useState<string | null>("M");
@@ -95,11 +122,12 @@ const CutoffPage = () => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         counselling: counselling.toUpperCase(),
-                        domicile: region,
+                        domicile: region === "true",
                         category: category,
                         subcategory: subCategory.trim(),
-                        college: uni,
+                        college_name: uni,
                         gender: gender,
+                        college_type: clgType?.toUpperCase(),
                         year: Number(selectedYear)
                     }),
                     signal: controller.signal
@@ -126,7 +154,7 @@ const CutoffPage = () => {
     };
 
     useEffect(() => {
-        if (region && category && !result[year]) {
+        if (region && category) {
             fetchCutoffData(year);
         }
     }, [region, category, subCategory, gender, year]);
@@ -139,16 +167,6 @@ const CutoffPage = () => {
             </p>
 
             <div style={{ width: "100%", maxWidth: "820px", zIndex: "500" }}>
-                <SelectMenu
-                    placeholder="Year"
-                    options={[
-                        { value: "2024", label: "2024" },
-                        { value: "2023", label: "2023" },
-                        { value: "2022", label: "2022" }
-                    ]}
-                    onChange={setYear}
-                    defaultValue={defaultYear}
-                />
 
                 <SelectMenu
                     placeholder="Domicile"
@@ -156,7 +174,7 @@ const CutoffPage = () => {
                         { value: "true", label: "Home State" },
                         { value: "false", label: "All India" },]}
                     onChange={setRegion}
-                    defaultValue={defaultRegion}
+                    defaultValue={region}
                 />
 
                 <SelectMenu
@@ -176,11 +194,11 @@ const CutoffPage = () => {
                 <SelectMenu
                     placeholder="Gender"
                     options={[
-                        { value: "Male", label: "Gender Neutral" },
-                        { value: "Female", label: "Female Only" },
+                        { value: "M", label: "Gender Neutral" },
+                        { value: "F", label: "Female Only" },
                     ]}
                     onChange={setGender}
-                    defaultValue={null}
+                    defaultValue={"M"}
                 />
             </div>
 
@@ -215,7 +233,7 @@ const SortedTable = ({ data, year, setYear, fetchForYear, isLoading }: {
     isLoading: boolean;
 }) => {
     const [tab, setTab] = React.useState(0);
-
+    console.log("Ingest data:",data)
     const handleYearChange = async (selectedYear: string) => {
         setYear(selectedYear);
         setTab(0);
@@ -228,7 +246,7 @@ const SortedTable = ({ data, year, setYear, fetchForYear, isLoading }: {
         if (!data[year] || !Array.isArray(data[year])) return [];
         return transformData(data[year], year);
     }, [data, year]);
-
+    console.log(transformedData);
     const yearRanks = transformedData.find(r => r.year.toString() === year)?.ranks || [];
 
     const sortedRanks = yearRanks.sort((a: any, b: any) => {
