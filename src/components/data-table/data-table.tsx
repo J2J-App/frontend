@@ -4,10 +4,6 @@ import Combobox from "@/components/combobox/combobox.tsx";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import dtu_icon from "@/public/icons/uni/dtu_icon.png";
-import nsut_icon from "@/public/icons/uni/nsut_icon.png";
-import iiitd_icon from "@/public/icons/uni/iiitd_icon.jpg";
-import igdtuw_icon from "@/public/icons/uni/igdtuw_icon.png";
 import RangeSelector from "@/components/rank-selector/rank-selector.tsx";
 import Pagination from "@/components/pagination/pagination.tsx";
 import Button from "@/components/buttons/button.tsx";
@@ -202,7 +198,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                     {item.branch}
                                 </div>
                                 <div className={styles.rankHolder}>
-                                    {item.rank || item.closing} {item.is_bonus ? <span style={{
+                                    {item.rank || item.closing} {item.is_bonus === true ? <span style={{
                                         backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent",
@@ -222,7 +218,8 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                         marginLeft: "5px",
                                         fontWeight: "300",
                                     }}>
-                                        {item.rank || item.closing} {item.is_bonus ? <span style={{
+                                        {item.rank || item.closing} 
+                                    {item.is_bonus ? <span style={{
                                         backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent",
