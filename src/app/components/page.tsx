@@ -105,7 +105,7 @@ export default function Components() {    const router = useRouter();
     const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
   
     const handleChange = (value: string) => {
-        console.log(value);
+        // console.log(value);
     };
 
     const handleRadioGroupChange = (value: string) => {
@@ -118,12 +118,12 @@ export default function Components() {    const router = useRouter();
 
     const handleCheckboxChange = (checked: boolean) => {
         setChecked(checked);
-        console.log(checked);
+        // console.log(checked);
     };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-        console.log(`Page changed to ${page}`);
+        // console.log(`Page changed to ${page}`);
     };
 
     const handleCloseDialog = () => {
@@ -354,71 +354,6 @@ export default function Components() {    const router = useRouter();
                     <Badge text="Outline" varient="outline" width={60} />
                     <Badge text="Default" varient="default" width={60} />
                     <Badge text="Danger" varient="danger" width={60} />
-                </div>
-            )
-        },
-        {
-            title:"Data Tables",
-            content: (
-                <div key="data-tables">
-                    <h3 style={{
-                        paddingBottom: "12px",
-                    }}>Data Tables</h3>
-                    <DataTable
-                        data={[
-                            {
-                                "college": "DTU",
-                                "branch": "CSE",
-                                "jee_rank": 1200,
-                            },
-                            {
-                                "college": "NSUT",
-                                "branch": "IT",
-                                "jee_rank": 2100,
-                            },
-                            {
-                                "college": "IIIT-D",
-                                "branch": "CSAI",
-                                "jee_rank": 900,
-                            },
-                            {
-                                "college": "IGDTUW",
-                                "branch": "ECE",
-                                "jee_rank": 7500,
-                            },
-                            {
-                                "college": "DTU",
-                                "branch": "ME",
-                                "jee_rank": 15000,
-                            },
-                            {
-                                "college": "NSUT",
-                                "branch": "ECE",
-                                "jee_rank": 6500,
-                            },
-                            {
-                                "college": "IIIT-D",
-                                "branch": "CSE",
-                                "jee_rank": 1300,
-                            },
-                            {
-                                "college": "IGDTUW",
-                                "branch": "IT",
-                                "jee_rank": 5600,
-                            },
-                            {
-                                "college": "DTU",
-                                "branch": "BT",
-                                "jee_rank": 28000,
-                            },
-                            {
-                                "college": "NSUT",
-                                "branch": "CSAI",
-                                "jee_rank": 2500,
-                            }
-                        ]
-                        }
-                    />
                 </div>
             )
         },

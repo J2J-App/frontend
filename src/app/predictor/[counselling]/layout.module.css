@@ -1,0 +1,68 @@
+.tabUI {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: calc(100% - 40px);
+    max-width: 780px;
+    gap: 15px;
+
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: 600;
+    border: 1px solid rgba(72, 72, 72, 0.36);
+    transition: all 0.2s ease-out;
+}
+
+.tab:hover {
+    background-color: rgba(37, 37, 37, 0.93);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.36);
+}
+.tab.active {
+    background-color: rgba(37, 37, 37, 0.93);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.36);
+}
+
+.icons {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    overflow: clip;
+    background: rgb(255, 255, 255);
+}
+
+.head {
+    color: #e5e5e5;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.tab.active .head {
+    color: #fff;
+    font-weight: 900;
+}
+
+.container {
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.content {
+    width: 100vw;
+    max-width: 820px;
+}

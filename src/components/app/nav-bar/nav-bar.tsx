@@ -33,8 +33,6 @@ export default function NavBar() {
                           href="/universities">Universities</Link>
                     <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                           href="/compare">Compare</Link>
-                    <Link className={checkUrl("/rank") ? `${styles.link} ${styles.active}` : styles.link}
-                          href="/rank">Rank</Link>
                 </div>
                 <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.rightBox}>
                     <Image style={{
@@ -55,8 +53,6 @@ export default function NavBar() {
                               href="/universities" onClick={handleClick}>Universities</Link>
                         <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                               href="/compare" onClick={handleClick}>Compare</Link>
-                        <Link className={checkUrl("/rank") ? `${styles.link} ${styles.active}` : styles.link}
-                              href="/rank" onClick={handleClick}>Rank</Link>
                     </div>
                     <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.discordIcon}>
                         <Image style={{

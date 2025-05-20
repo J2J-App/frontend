@@ -4,10 +4,6 @@ import Combobox from "@/components/combobox/combobox.tsx";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import dtu_icon from "@/public/icons/uni/dtu_icon.png";
-import nsut_icon from "@/public/icons/uni/nsut_icon.png";
-import iiitd_icon from "@/public/icons/uni/iiitd_icon.jpg";
-import igdtuw_icon from "@/public/icons/uni/igdtuw_icon.png";
 import RangeSelector from "@/components/rank-selector/rank-selector.tsx";
 import Pagination from "@/components/pagination/pagination.tsx";
 import Button from "@/components/buttons/button.tsx";
@@ -16,7 +12,10 @@ import Dialog from "@/components/dialog-box/dialog-box.tsx";
 type UniData = {
     college: string,
     branch: string,
-    jee_rank: number,
+    icon: string,
+    rank: number,
+    opening: number,
+    closing: number,
     is_bonus?: boolean,
 };
 
@@ -24,6 +23,25 @@ type DataTable = {
     data: UniData[],
     pgup?: boolean,
 };
+
+function normalizeString(str: string) {
+    const withSpaces = str.replace(/-/g, " ");
+
+    const words = withSpaces.split(" ");
+
+    if (words.length === 0) {
+        return "";
+    }
+
+    const firstWord = words[0].toUpperCase();
+
+    const restWords = words.slice(1).map(word => {
+        if (word.length === 0) return "";
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+
+    return [firstWord, ...restWords].join(" ");
+}
 
 export default function DataTable({ data, pgup = false }: DataTable) {
     const [uniList, setUniList] = useState<string[]>([]);
@@ -39,16 +57,6 @@ export default function DataTable({ data, pgup = false }: DataTable) {
         min: null
     });
 
-    const icons = [
-        { college: "nsut", src: nsut_icon.src },
-        { college: "iiitd", src: iiitd_icon.src },
-        { college: "igdtuw", src: igdtuw_icon.src },
-        { college: "dtu", src: dtu_icon.src },
-        { college: "nsut west campus", src: nsut_icon.src },
-        { college: "nsut east campus", src: nsut_icon.src },
-
-    ];
-
     useEffect(() => {
         let filtered = data;
 
@@ -63,24 +71,23 @@ export default function DataTable({ data, pgup = false }: DataTable) {
         if (range.min !== null || range.max !== null) {
             filtered = filtered.filter(item => {
                 if (range.min !== null && range.max !== null) {
-                    return item.jee_rank >= range.min && item.jee_rank <= range.max;
+                    return (item.rank || item.closing) >= range.min && (item.rank || item.closing) <= range.max;
                 }
                 if (range.min !== null && range.max === null) {
-                    return item.jee_rank >= range.min;
+                    return (item.rank || item.closing) >= range.min;
                 }
                 if (range.min === null && range.max !== null) {
-                    return item.jee_rank <= range.max;
+                    return (item.rank || item.closing) <= range.max;
                 }
                 return true;
             });
         }
-
         setFilterData(filtered);
     }, [uniList, branchList, range, data]);
 
     function getUniqueUniversities(data: UniData[]) {
         const uniqueUnis = Array.from(new Set(data.map(entry => entry.college)));
-        return uniqueUnis.map(uni => ({ value: uni.toLowerCase().replace(/\s+/g, "-"), label: uni }));
+        return uniqueUnis.map(uni => ({ value: uni.toLowerCase().replace(/\s+/g, "-"), label: normalizeString(uni) }));
     }
 
     function getUniqueBranches(data: UniData[]) {
@@ -180,18 +187,18 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                         <Image
                                             style={{objectFit: "contain", objectPosition: "center"}}
                                             quality={100}
-                                            src={icons.find(i => i.college === item.college.toLowerCase())?.src || ""}
+                                            src={item.icon}
                                             alt={item.college}
                                             fill={true}
                                         />
                                     </div>
-                                    {item.college}
+                                    {normalizeString(item.college)}
                                 </div>
                                 <div className={styles.branchHolder}>
                                     {item.branch}
                                 </div>
                                 <div className={styles.rankHolder}>
-                                    {item.jee_rank} {item.is_bonus ? <span style={{
+                                    {item.rank || item.closing} {item.is_bonus === true ? <span style={{
                                         backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent",
@@ -211,7 +218,8 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                         marginLeft: "5px",
                                         fontWeight: "300",
                                     }}>
-                                        {item.jee_rank} {item.is_bonus ? <span style={{
+                                        {item.rank || item.closing} 
+                                    {item.is_bonus ? <span style={{
                                         backgroundImage: "linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%)",
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent",

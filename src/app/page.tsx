@@ -45,7 +45,6 @@ export default function Home() {
         }} className={styles.desktop} quality={100}/>
         <Image src={bgm} alt={"Background"} fill={true} style={{
             objectFit: "cover",
-            objectPosition: "bottom",
         }} className={styles.mobile} quality={100}/>
         <main className={styles.content}>
             <div className={styles.contentContainer}>
@@ -309,7 +308,7 @@ export default function Home() {
                     <h2 className={styles.head1}>
                         But Maybe You've<br />Still Got Questions
                     </h2>
-                    <a href="mailto:admin@jeepedia.in" className={styles.contactLink}>
+                    <a href="mailto:jeepedia.in@gmail.com" className={styles.contactLink}>
                         <MdMail /> Mail Us
                     </a>
                 </div>

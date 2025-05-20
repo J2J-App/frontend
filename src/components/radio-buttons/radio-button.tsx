@@ -8,7 +8,7 @@ type RadioButtonProps = {
   value: string;
   name: string;
   checked: boolean;
-  onChange: (value: string) => void;
+  onChange: any
 };
 
 export default function RadioButton({ 

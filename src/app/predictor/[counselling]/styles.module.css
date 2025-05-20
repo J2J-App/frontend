@@ -9,7 +9,7 @@
     position: relative;
     width: 100%;
     max-width: 400px;
-    height: 234px;
+    flex: 1;
     overflow: hidden;
     border-radius: 10px;
     display: flex;
@@ -42,22 +42,74 @@
     position: relative;
 }
 
+.rankInputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    z-index: 23;
+    gap: 5px;
+    position: relative;
+}
+
 .headContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 20px;
     width: 100%;
     position: relative;
     overflow: visible;
     flex-direction: row;
-    margin-top: 80px;
+    margin-top: 0;
 }
 
-@media (max-width: 900px) {
-    .headContainer {
-        margin-top: 30px;
-    }
+.headers {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    line-height: .8;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+
+.uniHead {
+    width: 100%;
+    max-width: 820px;
+    display: flex;
+    gap: 10px;
+}
+
+.typeButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: 300;
+    border: 1px solid rgba(72, 72, 72, 0.36);
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.typeButton:hover {
+    background-color: rgba(37, 37, 37, 0.73);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.23);
+}
+
+.typeButton:active {
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+.activeType {
+    font-weight: 900;
+    background-color: rgba(37, 37, 37, 0.93);
+    cursor: pointer;
+    border: 1px solid rgba(79, 79, 79, 0.36);
 }
 
 @media (max-width: 675px) {

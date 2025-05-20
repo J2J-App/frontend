@@ -1,11 +1,11 @@
-
 import Link from "next/link";
 import styles from "./footer.module.css";
 import Image from "next/image";
 import icon from "@/public/icons/navbar/j2jicon.png"
 
 export default function Footer() {
-
+    //TODO:
+    // 1. Fix on mobile
     return (
         <div className={styles.footerContainer}>
             <h3 className={styles.footerHead}>
@@ -42,12 +42,12 @@ export default function Footer() {
                         }}>
                             Your Data
                         </h4>
-                        <Link className={styles.link} href={"/privacy"}>
+                        <a className={styles.link} href={"/privacy"} target={"_blank"}>
                             Privacy Policy
-                        </Link>
-                        <Link className={styles.link} href={"/terms"}>
+                        </a>
+                        <a className={styles.link} href={"/tos"} target={"_blank"}>
                             Terms of Service
-                        </Link>
+                        </a>
                     </div>
                     <div className={styles.gridCon}>
                         <h4 style={{
@@ -59,10 +59,7 @@ export default function Footer() {
                         }}>
                             This Project
                         </h4>
-                        <Link className={styles.link} href={"/site-map"}>
-                            Site Map
-                        </Link>
-                        <a className={styles.link} href={"mailto:admin@jeepedia.in"} target={"_blank"}>
+                        <a className={styles.link} href={"mailto:jeepedia.in@gmail.com"} target={"_blank"}>
                             Mail
                         </a>
                         <a className={styles.link} href={"https://discord.gg/Z8s9JECw4C"} target={"_blank"}>
@@ -73,7 +70,7 @@ export default function Footer() {
                         </a>
                     </div>
                 </div>
-                <div  className={styles.lowerCon}>
+                <div className={styles.lowerCon}>
                     <p style={{
                         margin: "0",
                         fontFamily: '"Roboto", sans-serif',

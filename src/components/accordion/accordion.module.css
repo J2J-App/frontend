@@ -32,6 +32,10 @@
 .arrowContainer {
     width: 35px;
     height: 25px;
+    min-width: 35px;
+    min-height: 25px;
+    max-width: 35px;
+    max-height: 25px;
     background: rgb(30, 30, 30);
     border: solid 1px rgb(40, 40, 40);
     border-radius: 6px;
