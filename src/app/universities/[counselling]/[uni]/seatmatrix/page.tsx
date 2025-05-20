@@ -7,7 +7,7 @@ export default async function Page({
 }) {
     const { uni, counselling } = await params;
 
-    console.log(counselling);
+    // console.log(counselling);
     if (counselling=="jac") {
         const jacMap: {
             [key: string]: string
@@ -44,7 +44,7 @@ export default async function Page({
         const currentUniSeatData = seatData[jacMap[uni]];
         const currentTotalSeatsData = totalSeatsData[jacMap[uni].toUpperCase()];
         const categoryFullFormData = categoryData.category_descriptions;
-        console.log(currentUniSeatData,currentTotalSeatsData,categoryFullFormData)
+        // console.log(currentUniSeatData,currentTotalSeatsData,categoryFullFormData)
         return <div style={{
             margin: "10px 0",
             padding: "0",
@@ -198,12 +198,15 @@ export default async function Page({
                         <h2 className={styles.h2}>
                             Seat Matrix
                         </h2>
-                    <div style={{
-                        display: "grid",
-                        maxWidth: "800px",
-                        gap: "20px",
-                        gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-                    }}>
+                    <div
+                        className={counselling=="jac" ? "" : styles.grid}
+                        style={{
+                            display: "grid",
+                            maxWidth: "800px",
+                            gap: "20px",
+                            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+                        }}
+                    >
                         {seatData.map((e: any, i: number) => (<SeatMatrixData
                             key={i}
                             change={Number(e.change_from_last_year) || 0}

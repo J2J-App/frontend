@@ -171,7 +171,7 @@ export default function Page() {
 
 
     function DataCard({ data }: { data: any }) {
-        console.log(data);
+        // console.log(data);
         return (
             <div
                 style={{

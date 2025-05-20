@@ -304,7 +304,7 @@ function transformData(input: {
             });
         });
     }
-    console.log("middle:", result)
+    // console.log("middle:", result)
     // Format final structure
     return Object.entries(result)
         .map(([yearKey, roundsObj]: any) => {
@@ -330,7 +330,7 @@ function SortedTable({ data, year, setYear, fetchForYear, isLoading }: {
     isLoading: boolean;
 }) {
     const [tab, setTab] = React.useState(0);
-    console.log("pre transform:", data)
+    // console.log("pre transform:", data)
     // Handle year change with data fetching
     const handleYearChange = async (selectedYear: string) => {
         setYear(selectedYear);
@@ -349,7 +349,7 @@ function SortedTable({ data, year, setYear, fetchForYear, isLoading }: {
 
         return transformData(data[year], year);
     }, [data, year]);
-    console.log("transformer:", transformedData)
+    // console.log("transformer:", transformedData)
     const yearRanks = transformedData.length > 0
         ? transformedData.find(r => r.year.toString() === year)?.ranks || []
         : [];
@@ -738,7 +738,7 @@ export default function Page() {
 
     const handleTypeChange = async (index: number) => {
         const selectedType = typesList[index];
-        console.log("selt:",selectedType)
+        // console.log("selt:",selectedType)
         if (selectedType === collegeType) return;
         if (selectedType === "IIT" && !advEnabled) {
             setErrors(["Please enable Advanced Category Rank to fetch IIT data"]);

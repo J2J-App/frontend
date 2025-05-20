@@ -105,7 +105,7 @@ export default function Components() {    const router = useRouter();
     const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
   
     const handleChange = (value: string) => {
-        console.log(value);
+        // console.log(value);
     };
 
     const handleRadioGroupChange = (value: string) => {
@@ -118,12 +118,12 @@ export default function Components() {    const router = useRouter();
 
     const handleCheckboxChange = (checked: boolean) => {
         setChecked(checked);
-        console.log(checked);
+        // console.log(checked);
     };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-        console.log(`Page changed to ${page}`);
+        // console.log(`Page changed to ${page}`);
     };
 
     const handleCloseDialog = () => {

@@ -38,7 +38,7 @@ export const counsellings: {
         {value: "PWD", label: "PWD"},
         {value: "GC", label: "Girl Candidate"},
         {value: "SNG", label: "Single Girl Child"},
-        {value: "Defence", label: "Defence"}
+        {value: "DEF", label: "Defence"}
     ],
     "regions": [
         {value: "dl", label: "Delhi"},
