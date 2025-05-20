@@ -248,28 +248,41 @@ function transformData(input: {
     opening?: number;
     closing?: number;
     is_bonus?: boolean;
-}[], year: string | number){
+}[], year: string | number) {
     const result: any = {};
 
     if (!Array.isArray(input)) {
-        console.error("Expected array input in transformData but got:", input);
+        console.error("❌ Expected array input in transformData but got:", input);
         return [];
     }
-    if (input[0].rank) {
-        input.forEach((entry) => {
-            if (!entry) return;
-            const { round, college, branch, rank, icon,  is_bonus } = entry;
 
-            // Skip invalid entries
-            if (!round || !college || !branch || !rank) return;
+    if (!input.length) {
+        console.warn("⚠️ Empty input array passed to transformData");
+        return [];
+    }
+
+    const first = input[0];
+    if (!first) {
+        console.warn("⚠️ First entry in input is undefined or null:", first);
+        return [];
+    }
+
+    if ('rank' in first) {
+        input.forEach((entry, i) => {
+            if (!entry) {
+                console.warn(`⚠️ Skipping null/undefined entry at index ${i}`);
+                return;
+            }
+            const { round, college, branch, rank, icon, is_bonus } = entry;
+
+            if (!round || !college || !branch || rank === undefined) {
+                console.warn(`⚠️ Missing required fields in rank entry at index ${i}:`, entry);
+                return;
+            }
 
             if (!result[year]) result[year] = {};
-
             const roundLabel = `Round ${round}`;
-
-            if (!result[year][roundLabel]) {
-                result[year][roundLabel] = [];
-            }
+            if (!result[year][roundLabel]) result[year][roundLabel] = [];
 
             result[year][roundLabel].push({
                 uni: college,
@@ -279,21 +292,22 @@ function transformData(input: {
                 is_bonus: is_bonus || false,
             });
         });
-    } else if(input[0].opening) {
-        input.forEach((entry) => {
-            if (!entry) return;
+    } else if ('opening' in first && 'closing' in first) {
+        input.forEach((entry, i) => {
+            if (!entry) {
+                console.warn(`⚠️ Skipping null/undefined entry at index ${i}`);
+                return;
+            }
             const { round, college, branch, opening, closing, icon } = entry;
 
-            // Skip invalid entries
-            if (!round || !college || !branch || opening === undefined || closing === undefined) return;
+            if (!round || !college || !branch || opening === undefined || closing === undefined) {
+                console.warn(`⚠️ Missing required fields in opening/closing entry at index ${i}:`, entry);
+                return;
+            }
 
             if (!result[year]) result[year] = {};
-
             const roundLabel = `Round ${round}`;
-
-            if (!result[year][roundLabel]) {
-                result[year][roundLabel] = [];
-            }
+            if (!result[year][roundLabel]) result[year][roundLabel] = [];
 
             result[year][roundLabel].push({
                 uni: college,
@@ -303,9 +317,12 @@ function transformData(input: {
                 icon,
             });
         });
+    } else {
+        console.warn("⚠️ Input does not contain expected 'rank' or 'opening/closing' keys:", first);
+        return [];
     }
-    // console.log("middle:", result)
-    // Format final structure
+
+    // Final transformation
     return Object.entries(result)
         .map(([yearKey, roundsObj]: any) => {
             const ranks = Object.entries(roundsObj).map(([round, data]) => ({
@@ -1008,20 +1025,19 @@ export default function Page() {
                 </div>
             </div>
 
-            <ErrorMessages />
 
             {/* Only show loader here if no results are being displayed yet */}
 
-            {hasData && typesList && typesList.length > 0 && (
+            {typesList && typesList.length > 0 && (
                 <div className={Styles.uniHead}>
                     {typesList.map((type, index) => {
                         return (
                             <button
-                                key={type}
-                                onClick={() => {
-                                    handleTypeChange(index);
-                                }}
-                                className={index === activeIndex ? (Styles.activeType + " " + Styles.typeButton) : Styles.typeButton}
+                            key={type}
+                            onClick={() => {
+                                handleTypeChange(index);
+                            }}
+                            className={index === activeIndex ? (Styles.activeType + " " + Styles.typeButton) : Styles.typeButton}
                             >
                                 {type}
                             </button>
@@ -1030,6 +1046,8 @@ export default function Page() {
                 </div>
             )}
 
+            <ErrorMessages />
+            
             {isLoading && !hasData && <Loader />}
 
             {hasData && (
