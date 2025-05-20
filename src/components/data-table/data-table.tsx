@@ -245,7 +245,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                 borderRadius: "10px",
                 backgroundColor: "rgba(3,3,3,0.56)",
                 backdropFilter: "blur(10px)",
-                zIndex: "120",
+                zIndex: "1200",
                 display: "block"
             }}>
                 <Pagination

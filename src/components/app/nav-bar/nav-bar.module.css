@@ -265,13 +265,13 @@
         }
         .mobileLinkBox.activeMd {
             transform: scale(1);
-            height: 280px;
+            height: 240px;
             padding: 28px;
             margin-top: 60px;
         }
     }
     .mobileBg {
-        z-index: 1000;
+        z-index: 10000;
         position: fixed;
         top: 0;
         left: 0;
