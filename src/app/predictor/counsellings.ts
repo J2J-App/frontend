@@ -28,10 +28,10 @@ export const counsellings: {
     "ranks": ["MA"],
     "categories": [
         {value: "GEN", label: "General"},
+        {value: "EWS", label: "EWS"},
         {value: "OBC", label: "OBC"},
         {value: "SC", label: "SC"},
         {value: "ST", label: "ST"},
-        {value: "EWS", label: "EWS"},
     ],
     "subCategories": [
         {value: "NONE", label: "None"},
@@ -53,10 +53,10 @@ export const counsellings: {
     "ranks": ["MC", "AC"],
     "categories": [
         {value: "GEN", label: "General"},
+        {value: "EWS", label: "EWS"},
         {value: "OBC-NCL", label: "OBC-NCL"},
         {value: "SC", label: "SC"},
         {value: "ST", label: "ST"},
-        {value: "EWS", label: "EWS"},
     ],
     "subCategories": [
         {value: "NONE", label: "None"},
