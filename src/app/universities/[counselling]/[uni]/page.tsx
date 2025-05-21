@@ -110,7 +110,7 @@ return (
 )}
 
 
-      <div className={styles.contentContainer}>
+      {/* <div className={styles.contentContainer}> */}
         <h2 className={styles.h2}>Fee Structure</h2>
         <div style={{ marginBottom: "12px" }} className={styles.catg}>
           <span>Fees</span>
@@ -187,6 +187,5 @@ return (
       ) : null}
     </div>
     </div>
-  </div>
 );
 }
