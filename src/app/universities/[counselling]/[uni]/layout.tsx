@@ -13,6 +13,9 @@ export const generateMetadata = ({
     title: `${uni.toUpperCase()} Cutoff 2024 | Jeepedia`,
     description: `Explore ${uni.toUpperCase()}'s 2024 cutoff trends and counselling updates for ${counselling.toUpperCase()}.`,
     keywords: [
+      `${uni}`,
+      `${uni} ${counselling}`,
+      `${counselling} ${uni}`,
       `${uni} cutoff 2024`,
       `${uni} counselling cutoff`,
       `${counselling} ${uni} cutoff`,
