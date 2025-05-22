@@ -50,11 +50,11 @@ export default function Home() {
             <div className={styles.contentContainer}>
                 <h1 className={styles.header}>
                     <span className={styles.animation}>
-                        The no-bullshit tool
+                        JEE counselling tools
                     </span>
                     <br />
                     <span className={styles.animation2}>
-                        for JEE counselling
+                        Done right
                     </span>
                 </h1>
                 <p className={styles.lower}>
@@ -263,7 +263,7 @@ export default function Home() {
                         <b>JEEPedia</b> is an Open Source tool designed to help students with the complex process around selecting the right university.<br/>
                     </p>
                     <p>
-                        Our goal was to create something that's accurate while also being, as some distinguished individuals might say - "sexy".
+                        Our goal was to create something that's accurate while also having a UI that doesn't look like it was made in 2010.
                     </p>
                     <p>
                         Contributions are always welcome! As is engagement with our community.
