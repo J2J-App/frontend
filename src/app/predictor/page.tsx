@@ -1,3 +1,26 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "JEE Pedia | College Predictor",
+  description: "Find the best colleges for your JEE rank. Supports JoSAA, JAC, and more. Accurate cutoffs, branch predictions, and personalized insights.",
+  keywords: [
+    "JEE College Predictor",
+    "JoSAA Predictor",
+    "JAC Delhi",
+    "JEE Mains 2025",
+    "Engineering Cutoffs",
+    "College Comparison",
+    "JEE Rank Predictor"
+  ],
+  metadataBase: new URL("https://www.jeepedia.in/"), // adjust if domain is different
+  openGraph: {
+    title: "JEE Pedia | Accurate College Predictor for JEE Mains",
+    description: "Predict your college using your JEE rank. Real-time cutoffs, branch-wise trends, and tools for JoSAA, JAC and more.",
+    url: "https://www.jeepedia.in/predictor",
+    siteName: "JEEPedia",
+  }
+};
+
 import styles from "./page.module.css";
 import jac from "@/public/icons/counsellings/jac.jpg";
 import josaa from "@/public/icons/counsellings/josaa.png";
