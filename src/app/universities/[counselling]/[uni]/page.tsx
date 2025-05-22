@@ -110,7 +110,7 @@ return (
 )}
 
 
-      {/* <div className={styles.contentContainer}> */}
+      {/* <div className={styles.contentContainer}>
         <h2 className={styles.h2}>Fee Structure</h2>
         <div style={{ marginBottom: "12px" }} className={styles.catg}>
           <span>Fees</span>
@@ -159,7 +159,7 @@ return (
           </div>
         </div>
       
-      {/* {currentUniData.fee_structure["hostel_fee"] ? (
+      {currentUniData.fee_structure["hostel_fee"] ? (
           <div style={{ marginBottom: "12px" }} className={styles.catg}>
             <span>Hostel Fees</span>
             <div>
@@ -184,8 +184,9 @@ return (
               ))}
             </div>
           </div>
-      ) : null} */}
+      ) : null}
+    </div> */}
     </div>
-    </div>
+  </div>
 );
 }
