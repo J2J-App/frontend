@@ -42,7 +42,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr .7fr;
     gap: 20px;
     align-items: start;
 }
