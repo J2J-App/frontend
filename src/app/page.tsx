@@ -21,7 +21,7 @@ import Link from "next/link";
 import {TbBrandDiscordFilled} from "react-icons/tb";
 import {IoLogoDiscord} from "react-icons/io5";
 import {AiFillDiscord} from "react-icons/ai";
-import {SiDiscord, SiGithub} from "react-icons/si";
+import {SiDiscord, SiGithub, SiInstagram} from "react-icons/si";
 import {DiGithub} from "react-icons/di";
 import Accordion from "@/components/accordion/accordion.tsx";
 import {MdMail} from "react-icons/md";
@@ -273,10 +273,38 @@ export default function Home() {
                         gap: 16,
                         marginTop: 16,
                     }}>
-                        <a style={{
-                            color: "#5865F2",
-                        }} className={styles.linkOut} target="_blank" href="https://discord.gg/Z8s9JECw4C">
-                            <SiDiscord/> Discord
+                        <a
+                            className={styles.linkOut}
+                            target="_blank"
+                            href="https://www.instagram.com/jeepedia.in/"
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "8px",
+                            }}
+                        >
+                            <svg width="0" height="0">
+                                <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+                                    <stop stopColor="#f9ce34" offset="0%"/>
+                                    <stop stopColor="#ee2a7b" offset="50%"/>
+                                    <stop stopColor="#6228d7" offset="100%"/>
+                                </linearGradient>
+                            </svg>
+                            <SiInstagram
+                                style={{
+                                    fill: "url(#blue-gradient)",
+                                }}
+                            />
+                            <span
+                                style={{
+                                    background: "linear-gradient(20deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%)",
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                    fontWeight: 600,
+                                }}
+                            >
+                            Instagram
+                          </span>
                         </a>
                         <a style={{
                             color: "#ffffff",
@@ -292,8 +320,12 @@ export default function Home() {
                 </div>
             </div>
             <div className={styles.faqs}>
-                <Accordion title={"How much can I trust the data?"} content={"We run thorough checks on the data we provide and keep our databases updated regularly. If you are still doubtful, we recommend that you double-check the data with official sources."} width={"100%"}/>
-                <Accordion title={"Do you cover all the engineering universities?"} content={"We try to cover each and every university possible, we do cover all IITs, NITs, GFTIs, IIITs, Universities under state counselling boards, and even a decent number of Private Universities. However, there might be something that we still missed."} width={"100%"}/>
+                <Accordion title={"How much can I trust the data?"}
+                           content={"We run thorough checks on the data we provide and keep our databases updated regularly. If you are still doubtful, we recommend that you double-check the data with official sources."}
+                           width={"100%"}/>
+                <Accordion title={"Do you cover all the engineering universities?"}
+                           content={"We try to cover each and every university possible, we do cover all IITs, NITs, GFTIs, IIITs, Universities under state counselling boards, and even a decent number of Private Universities. However, there might be something that we still missed."}
+                           width={"100%"}/>
                 <Accordion title={"How accurate is the predictor?"} content={"The predictor on our site uses previous year data to give you an estimate on what all branches you might get based on your rank, category, sub-category, etc. So, it can be safely said that it's fairly accurate. However, it, or for that matter any predictor should not be trusted blindly - At the end of the day, it comes down to yearly variations which cannot be predicted."} width={"100%"}/>
                 <Accordion title={"Why does the placement data on this site show lower numbers for a large number of universities?"} content={"We want to make sure that any data we provide is accurate. In an effort to achieve this, we have tried to compile our data from RTI records only and not use publicly available figures. This can explain the lower numbers as compared to other sources."} width={"100%"}/>
                 <Accordion title={"Who's behind this project?"} content={"We are a small group of engineering students from many different universities across the nation."} width={"100%"}/>
