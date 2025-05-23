@@ -21,6 +21,7 @@ export default function Page() {
     const [results, setResults] = useState<any>(null);
 
     const collegeMap: { [key: string]: string } = {
+        /*
         "nit-jalandhar": "NIT Jalandhar",
         "nit-allahabad": "MNNIT Allahabad",
         "nit-calicut": "NIT Calicut",
@@ -45,6 +46,7 @@ export default function Page() {
         "nit-warangal": "NIT Warangal",
         "nit-surat": "SVNIT Surat",
         "nit-nagpur": "VNIT Nagpur",
+         */
         "iit-bombay": "IIT Bombay",
         "iit-mandi": "IIT Mandi",
         "iit-delhi": "IIT Delhi",
@@ -65,6 +67,7 @@ export default function Page() {
         "iit-tirupati": "IIT Tirupati",
         "iit-jammu": "IIT Jammu",
         "iit-dharwad": "IIT Dharwad",
+        /*
         "iiit-guwahati": "IIIT Guwahati",
         "iiitm-gwalior": "IIITM Gwalior",
         "iiit-kota": "IIIT Kota",
@@ -83,6 +86,7 @@ export default function Page() {
         "iiit-nagpur": "IIIT Nagpur",
         "iiit-pune": "IIIT Pune",
         "iiit-kalyani": "IIIT Kalyani",
+         */
         "bit-mesra": "BIT Mesra",
         "bit-patna": "BIT Patna",
         "pec-chandigarh": "PEC Chandigarh",
