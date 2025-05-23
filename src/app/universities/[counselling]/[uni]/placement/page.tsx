@@ -1,13 +1,20 @@
 import styles from "./page.module.css";
 import TabsPlacement from "./tabs-placement.tsx";
 import {MdWarning} from "react-icons/md";
+import {redirect} from "next/navigation";
 
 export const dynamic = "force-static";
 export const fetchCache = "force-cache";
 
-export default async function Page({ params }: { params: Promise<{ uni: string }> }) {
-    const { uni } = await params;
+export default async function Page({ params }: { params: Promise<{ uni: string, counselling: string }> }) {
+    const { uni, counselling } = await params;
+    if (uni.startsWith("nit")) {
+        return redirect("/universities/"+counselling+"/"+uni)
+    }
 
+    if (uni.startsWith("iiit")) {
+        return redirect("/universities/"+counselling+"/"+uni)
+    }
     const fetchData = async (year: number) => {
         try {
             const res = await fetch("https://api.anmolcreates.tech/api/v2/placement", {
