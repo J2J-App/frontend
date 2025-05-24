@@ -12,9 +12,6 @@ export default async function Page({ params }: { params: Promise<{ uni: string, 
         return redirect("/universities/"+counselling+"/"+uni)
     }
 
-    if (uni.startsWith("iiit")) {
-        return redirect("/universities/"+counselling+"/"+uni)
-    }
     const fetchData = async (year: number) => {
         try {
             const res = await fetch("https://api.anmolcreates.tech/api/v2/placement", {
