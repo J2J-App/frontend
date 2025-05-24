@@ -8,9 +8,6 @@ export const fetchCache = "force-cache";
 
 export default async function Page({ params }: { params: Promise<{ uni: string, counselling: string }> }) {
     const { uni, counselling } = await params;
-    if (uni.startsWith("nit")) {
-        return redirect("/universities/"+counselling+"/"+uni)
-    }
 
     const fetchData = async (year: number) => {
         try {
