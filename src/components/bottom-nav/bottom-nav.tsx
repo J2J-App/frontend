@@ -43,7 +43,7 @@ export default function BottomNav() {
             </Link>
             <ButtonLink link={""} text={"Home"} icon={<MdHome />} />
             <ButtonLink link={"/cutoff"} text={"Cut Offs"} icon={<MdAutoGraph />} />
-            {!(path[3].startsWith("nit")) && <ButtonLink link={"/placement"} text={"Placement"} icon={<MdMoney />} />}
+            {!(path[3].startsWith("nit") || path[3].startsWith("iiit")) && <ButtonLink link={"/placement"} text={"Placement"} icon={<MdMoney />} />}
             <ButtonLink link={"/seatmatrix"} text={"Seat Matrix"} icon={<MdChair />} />
         </div>
     </div>
