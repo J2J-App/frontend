@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import ClientLayout from "./clientLayout.tsx";
-import Head from "next/head";
 
 export const generateMetadata = ({
   params,

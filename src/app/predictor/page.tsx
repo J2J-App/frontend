@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     "JoSAA Predictor",
     "JAC Delhi",
     "JEE Mains 2025",
+    "JEE Mains 2026",
+    "college predictor",
     "Engineering Cutoffs",
     "College Comparison",
     "JEE Rank Predictor",
