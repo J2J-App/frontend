@@ -1,16 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Jeepedia – JEE Counselling Made Easy
 
-## Learn More
+![Jeepedia Screenshot](https://res.cloudinary.com/dqvwf3z2c/image/upload/v1750174048/image1_k9hyeb.jpg)
+<br>
 
-To learn more about Next.js, take a look at the following resources:
+<div align="center">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  <a href="https://jeepedia.in">
+    <img src="https://img.shields.io/badge/Live%20Demo-jeepedia.in-blue?style=flat-square" alt="Live Site" />
+  </a>
+  <a href="https://github.com/J2J-App">
+    <img src="https://img.shields.io/badge/GitHub-J2J--App-%23121011?style=flat-square&logo=github" alt="GitHub" />
+  </a>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+</div>
+<br>
 
-## Deploy on Vercel
+We were done switching between 7 websites, outdated PDFs, and advice from random seniors on the internet — just to make sense of JEE counselling.
+So we built something better.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧠 What is Jeepedia?
+
+Jeepedia is an open-source platform that makes **JEE counselling** simple, visual, and actually helpful.
+
+✨ Unlike your ex, we do give you clarity.
+
+---
+
+## 🌐 Live URL
+
+👉 [https://jeepedia.in](https://jeepedia.in)
+
+---
+
+## ⚙️ Features
+
+- 🎯 Predict colleges using **JoSAA + JAC Delhi** data  
+- 📊 View **cutoffs**, **seat matrices**, and **placement stats**  
+- 🔍 Compare colleges with real filters (not random Reddit advice)  
+- 🧼 No ads. No BS. No shady Telegram gyaan  
+- 🖥️ Clean UI + Fast performance  
+- 🔮 Upcoming: AI-powered predictor & comment section per college
+
+---
+
+## 📈 Impact (First Launch)
+
+- `44.6k+` impressions  
+- `8.13k` total visits  
+- `6.03k` unique visitors  
+- `4 min 9 sec` avg. session time  
+
+---
+
+## 👥 Meet the Team
+
+| Name              | Role                                     |
+|-------------------|------------------------------------------|
+| **Anmol Sharma**  | Frontend, UI, DevOps                     |
+| **Ayush Rawat**   | Backend, Data scraping, DB Management    |
+| **Satwik Shrey**  | Data Collection                          |
+| **Pratyush Kumar**| Data Scraping                            |
+| **Bhavya Yadav**  | Community, Support                       |
+| **Divasjot Singh**| Support                                  |
+| **Rudraksh Joshi**| Support, Memes & Chaos Control           |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js  
+- **Backend**: Node.js + Express  
+- **Database**: NeonDB (PostgreSQL)  
+- **Hosting**: Vercel  
+
+---
+
+## 📂 GitHub Repos
+
+All source code is available under our GitHub organization:  
+👉 [https://github.com/J2J-App](https://github.com/J2J-App)
+
+---
+
+## 🧪 Local Setup Instructions
+
+```bash
+# Clone the repo
+git clone https://github.com/J2J-App/frontend.git
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
