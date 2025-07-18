@@ -33,7 +33,8 @@ const fetchPredictorData = async ({
                                       currentType,
                                       setIsLoading,
                                       setApiError,
-                                      setResult
+                                      setResult,
+                                      setErrors
                                   }: {
     counselling: string;
     mainsCRLRank: string;
@@ -50,19 +51,28 @@ const fetchPredictorData = async ({
     setIsLoading: any;
     setApiError: any;
     setResult: any;
+    setErrors: any;
 }) => {
-    // Reset API error
+    // Reset API error and validation errors
     setApiError(null);
+    setErrors([]);
 
-    // Input validation based on counselling type
-    let isValid = false;
-    if (counselling === "jac") {
-        isValid = validateInput(mainsCRLRank);
-    } else if (counselling === "josaa") {
-        isValid = validateInput(mainsCATRank) && (!advEnabled || validateInput(advCATRank));
-    }
+    // Comprehensive field validation with specific error messages
+    const validationErrors = validateAllFields({
+        counselling,
+        mainsCRLRank,
+        mainsCATRank,
+        advCATRank,
+        advEnabled,
+        region,
+        category,
+        subCategory,
+        gender,
+        currentType
+    });
 
-    if (!isValid) {
+    if (validationErrors.length > 0) {
+        setErrors(validationErrors);
         return false;
     }
 
@@ -167,18 +177,22 @@ const fetchPredictorData = async ({
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                // Handle different HTTP error codes
+                // Handle different HTTP error codes with more specific messages
                 if (response.status === 404) {
                     throw new Error("Resource not found. The API endpoint may have changed.");
                 } else if (response.status === 400) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || "Invalid request data");
+                    try {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || "Invalid request data. Please check your input values.");
+                    } catch (parseError) {
+                        throw new Error("Invalid request data. Please check your input values.");
+                    }
                 } else if (response.status === 429) {
-                    throw new Error("Too many requests. Please try again later.");
+                    throw new Error("Too many requests. Please try again after a few minutes.");
                 } else if (response.status >= 500) {
-                    throw new Error("Fill all the fields correctly");
+                    throw new Error("Server error occurred. Please try again later.");
                 } else {
-                    throw new Error(`Server responded with status ${response.status}`);
+                    throw new Error(`Server responded with status ${response.status}. Please try again.`);
                 }
             }
 
@@ -186,7 +200,7 @@ const fetchPredictorData = async ({
 
             // Handle empty results
             if (dataObtained.data && dataObtained.data.length === 0) {
-                setApiError("No branches found matching your criteria");
+                setApiError("No colleges found matching your criteria. Try adjusting your search parameters.");
             } else if (!dataObtained.data) {
                 setApiError("Unexpected data format received from server");
             } else {
@@ -212,13 +226,13 @@ const fetchPredictorData = async ({
     } catch (err: any) {
         console.error("Error fetching data:", err);
 
-        // Handle specific error types
+        // Handle specific error types with improved messages
         if (err.name === 'AbortError') {
             setApiError("Request timed out. Please check your internet connection and try again.");
         } else if (err.message === 'Failed to fetch') {
-            setApiError("Network error. Please check your internet connection.");
+            setApiError("Network error. Please check your internet connection and try again.");
         } else {
-            setApiError(err.message || "An unexpected error occurred");
+            setApiError(err.message || "An unexpected error occurred. Please try again.");
         }
         return false;
     } finally {
@@ -236,6 +250,85 @@ const validateInput = (rankVal: string) => {
         return false;
     }
     return true;
+};
+
+// Enhanced validation function that provides field-specific error messages
+const validateAllFields = ({
+    counselling,
+    mainsCRLRank,
+    mainsCATRank,
+    advCATRank,
+    advEnabled,
+    region,
+    category,
+    subCategory,
+    gender,
+    currentType
+}: {
+    counselling: string;
+    mainsCRLRank: string;
+    mainsCATRank: string;
+    advCATRank: string;
+    advEnabled: boolean;
+    region: string | null;
+    category: string | null;
+    subCategory: string | null;
+    gender: string | null;
+    currentType: string | null;
+}) => {
+    const errors: string[] = [];
+
+    // Validate rank fields based on counselling type
+    if (counselling === "jac") {
+        if (!mainsCRLRank || mainsCRLRank.trim() === "") {
+            errors.push("Mains CRL Rank is required");
+        } else if (Number(mainsCRLRank) <= 0) {
+            errors.push("Mains CRL Rank must be greater than 0");
+        } else if (Number(mainsCRLRank) > 3000000) {
+            errors.push("Mains CRL Rank seems too high. Please verify your input");
+        }
+    } else if (counselling === "josaa") {
+        // For IIT, advanced rank is required
+        if (currentType === "IIT") {
+            if (!advEnabled) {
+                errors.push("Please enable Advanced Category Rank to access IIT data");
+            } else if (!advCATRank || advCATRank.trim() === "") {
+                errors.push("Advanced Category Rank is required for IIT colleges");
+            } else if (Number(advCATRank) <= 0) {
+                errors.push("Advanced Category Rank must be greater than 0");
+            } else if (Number(advCATRank) > 300000) {
+                errors.push("Advanced Category Rank seems too high. Please verify your input");
+            }
+        } else {
+            // For non-IIT colleges, mains category rank is required
+            if (!mainsCATRank || mainsCATRank.trim() === "") {
+                errors.push("Mains Category Rank is required");
+            } else if (Number(mainsCATRank) <= 0) {
+                errors.push("Mains Category Rank must be greater than 0");
+            } else if (Number(mainsCATRank) > 3000000) {
+                errors.push("Mains Category Rank seems too high. Please verify your input");
+            }
+        }
+    }
+
+    // Validate common required fields
+    if (!region) {
+        errors.push("Please select your domicile state");
+    }
+
+    if (!category) {
+        errors.push("Please select your category");
+    }
+
+    if (!subCategory) {
+        errors.push("Please select your sub-category");
+    }
+
+    if (!gender) {
+        errors.push("Please select your gender");
+    }
+
+    return errors;
 };
 
 
@@ -676,43 +769,9 @@ export default function Page() {
         localStorage.removeItem(counselling+"_result");
     };
 
-    // Validation function
-    const validateForm = (rankVal: string) => {
-        const newErrors = [];
-
-        if (rankVal === "" || rankVal === null) {
-            newErrors.push("Please enter a valid rank");
-        } else if (Number(rankVal) <= 0) {
-            newErrors.push("Rank must be greater than 0");
-        } else if (Number(rankVal) > 3000000) {
-            newErrors.push("Rank seems too high. Please verify your input");
-        }
-
-        setErrors(newErrors);
-        return newErrors.length === 0;
-    };
-
     // Main fetch function using our reusable function
     const handleSubmit = async () => {
-        // Reset previous errors
-        setErrors([]);
-        setApiError(null);
-
-        // Validate based on counselling type
-        if (counselling === "jac") {
-            if (!validateForm(mainsCRLRank)) {
-                return;
-            }
-        } else if (counselling === "josaa") {
-            if (!validateForm(mainsCATRank)) {
-                return;
-            }
-            if (advEnabled && !validateForm(advCATRank)) {
-                return;
-            }
-        }
-
-        // Call the reusable fetch function
+        // Call the reusable fetch function with enhanced validation
         await fetchPredictorData({
             counselling,
             mainsCRLRank,
@@ -728,7 +787,8 @@ export default function Page() {
             currentType: collegeType,
             setIsLoading,
             setApiError,
-            setResult
+            setResult,
+            setErrors
         });
     };
 
@@ -749,7 +809,8 @@ export default function Page() {
             currentType: collegeType,
             setIsLoading,
             setApiError,
-            setResult
+            setResult,
+            setErrors
         });
     };
 
@@ -758,7 +819,7 @@ export default function Page() {
         // console.log("selt:",selectedType)
         if (selectedType === collegeType) return;
         if (selectedType === "IIT" && !advEnabled) {
-            setErrors(["Please enable Advanced Category Rank to fetch IIT data"]);
+            setErrors(["Please enable Advanced Category Rank to access IIT data"]);
             return;
         }
 
@@ -791,7 +852,8 @@ export default function Page() {
                 currentType: selectedType,  // Use selectedType directly
                 setIsLoading,
                 setApiError,
-                setResult
+                setResult,
+                setErrors
             });
         } catch (error) {
             console.error("Error fetching data:", error);

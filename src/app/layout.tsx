@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, M_PLUS_Rounded_1c } from "next/font/google";
+// import { Roboto, M_PLUS_Rounded_1c } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
 import NavBar from "@/components/app/nav-bar/nav-bar.tsx";
@@ -8,17 +8,17 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import Footer from "@/components/footer/footer.tsx";
 import FooterWrapper from "@/components/footer/footer-wrapper.tsx";
 
-const roboto = Roboto({
-    subsets: ["latin"],
-  weight: ["100","200","300","400","500","600","700","800","900"],
-  style: ["italic","normal"]
-});
+// const roboto = Roboto({
+//     subsets: ["latin"],
+//   weight: ["100","200","300","400","500","600","700","800","900"],
+//   style: ["italic","normal"]
+// });
 
-const round = M_PLUS_Rounded_1c({
-    subsets: ["latin"],
-    weight: ["100","300","400","500","700","800","900"],
-    style: ["normal"]
-});
+// const round = M_PLUS_Rounded_1c({
+//     subsets: ["latin"],
+//     weight: ["100","300","400","500","700","800","900"],
+//     style: ["normal"]
+// });
 
 const impact = localFont({
     src: '../public/fonts/impact.ttf',
@@ -73,7 +73,7 @@ export default function RootLayout({
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6258466000437582"
      crossOrigin="anonymous"></script>
     </head>
-    <body className={roboto.className + " " + round.className}>
+    <body className={impact.className}>
     <Analytics/>
     <SpeedInsights/>
     <NavBar />
