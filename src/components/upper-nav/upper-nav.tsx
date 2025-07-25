@@ -12,7 +12,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
         async function fetchData() {
             try {
                 const res = await fetch(
-                "https://api.anmolcreates.tech/api/v2/about",
+                "https://api.jeepedia.in/api/v2/about",
                 {
                     method: "POST",
                     headers: {

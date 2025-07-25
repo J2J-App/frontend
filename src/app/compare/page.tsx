@@ -121,7 +121,7 @@ export default function Page() {
         const fetchData01 = async () => {
             try {
                 const response = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/about/placement-branches",
+                    "https://api.jeepedia.in/api/v2/about/placement-branches",
                     {
                         method: "POST",
                         headers: {
@@ -149,7 +149,7 @@ export default function Page() {
         const fetchBranchData = async (college: string, setter: (data: DataType) => void) => {
             try {
                 const response = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/about/placement-branches",
+                    "https://api.jeepedia.in/api/v2/about/placement-branches",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -266,7 +266,7 @@ export default function Page() {
             let response1, data1;
             try {
                 response1 = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/placement/getPlacement",
+                    "https://api.jeepedia.in/api/v2/placement/getPlacement",
                     {
                         method: "POST",
                         headers: {
@@ -298,7 +298,7 @@ export default function Page() {
             let response2, data2;
             try {
                 response2 = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/placement/getPlacement",
+                    "https://api.jeepedia.in/api/v2/placement/getPlacement",
                     {
                         method: "POST",
                         headers: {

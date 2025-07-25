@@ -169,7 +169,7 @@ export default function Page() {
         async function fetchData() {
             setIsLoading(true); // Set loading to true at the start of fetch
             try {
-                const response = await fetch("https://api.anmolcreates.tech/api/v2/about/photo", {
+                const response = await fetch("https://api.jeepedia.in/api/v2/about/photo", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: Promise<{ uni: string, 
 
     const fetchData = async (year: number) => {
         try {
-            const res = await fetch("https://api.anmolcreates.tech/api/v2/placement", {
+            const res = await fetch("https://api.jeepedia.in/api/v2/placement", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

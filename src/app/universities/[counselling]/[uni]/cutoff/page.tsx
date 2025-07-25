@@ -116,7 +116,7 @@ const CutoffPage = () => {
             const timeoutId = setTimeout(() => controller.abort(), 30000);
 
             const response = await fetch(
-                "https://api.anmolcreates.tech/api/v2/cutoff",
+                "https://api.jeepedia.in/api/v2/cutoff",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

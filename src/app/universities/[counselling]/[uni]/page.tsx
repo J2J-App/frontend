@@ -8,7 +8,7 @@ export default async function Page({
     const { uni } = await params;
 
     const uniDataRes = await fetch(
-    "https://api.anmolcreates.tech/api/v2/about",
+    "https://api.jeepedia.in/api/v2/about",
     {
         method: "POST",
         headers: {

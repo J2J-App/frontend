@@ -88,7 +88,7 @@ const fetchPredictorData = async ({
         if (counselling === "jac") {
             if (mainsCRLRank && region && category && subCategory) {
                 response = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/cutoff/predictor",
+                    "https://api.jeepedia.in/api/v2/cutoff/predictor",
                     {
                         method: "POST",
                         headers: {
@@ -111,7 +111,7 @@ const fetchPredictorData = async ({
         else if (counselling === "josaa") {
             if (mainsCATRank && region && category && subCategory && currentType !== "IIT") {
                 response = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/cutoff/predictor",
+                    "https://api.jeepedia.in/api/v2/cutoff/predictor",
                     {
                         method: "POST",
                         headers: {
@@ -132,7 +132,7 @@ const fetchPredictorData = async ({
                 );
             } else {
                 response = await fetch(
-                    "https://api.anmolcreates.tech/api/v2/cutoff/predictor",
+                    "https://api.jeepedia.in/api/v2/cutoff/predictor",
                     {
                         method: "POST",
                         headers: {
@@ -158,7 +158,7 @@ const fetchPredictorData = async ({
             // Optional analytics call
             try {
                 await fetch(
-                    "https://api.anmolcreates.tech/api/v1/postRank",
+                    "https://api.jeepedia.in/api/v1/postRank",
                     {
                         method: "POST",
                         headers: {
