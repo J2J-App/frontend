@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "JEE Pedia | Accurate College Predictor for JEE Mains",
     description:
       "Predict your college using your JEE rank. Real-time cutoffs, branch-wise trends, and tools for JoSAA, JAC and more.",
-    url: process.env.NEXT_PUBLIC_API_URL || "https://www.jeepedia.in/predictor", // Issue #19: URL is now loaded from an environment variable
+    url: `${process.env.NEXT_PUBLIC_API_URL || "https://www.jeepedia.in"}/predictor`, // Issue #19: URL is now loaded from an environment variable
     siteName: "JEEPedia",
   },
 };
