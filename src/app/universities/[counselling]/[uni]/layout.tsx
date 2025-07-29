@@ -8,6 +8,8 @@ export const generateMetadata = ({
 }): Metadata => {
   const { counselling, uni } = params;
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://www.jeepedia.in"; // Fallback URL if environment variable is not found
+
   return {
     title: `${uni.toUpperCase()} Cutoff 2024 | Jeepedia`,
     description: `Explore ${uni.toUpperCase()}'s 2024 cutoff trends and counselling updates for ${counselling.toUpperCase()}.`,
@@ -34,7 +36,7 @@ export const generateMetadata = ({
     openGraph: {
       title: `${uni.toUpperCase()} Cutoff 2024 | Jeepedia`,
       description: `Explore ${uni.toUpperCase()}'s 2024 cutoff trends and counselling updates for ${counselling.toUpperCase()}.`,
-      url: `https://www.jeepedia.in/universities/${counselling}/${uni}/cutoff`,
+      url: `${apiUrl}/universities/${counselling}/${uni}/cutoff`, // Issue #19: URL is now loaded from an environment variable
       siteName: "Jeepedia",
     },
     icons: {

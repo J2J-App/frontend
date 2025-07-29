@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     "College Comparison",
     "JEE Rank Predictor",
   ],
-  metadataBase: new URL("https://www.jeepedia.in/"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL || "https://www.jeepedia.in"), // Issue #19: URL is now loaded from an environment variable
   openGraph: {
     title: "JEE Pedia | Accurate College Predictor for JEE Mains",
     description:
       "Predict your college using your JEE rank. Real-time cutoffs, branch-wise trends, and tools for JoSAA, JAC and more.",
-    url: "https://www.jeepedia.in/predictor",
+    url: process.env.NEXT_PUBLIC_API_URL || "https://www.jeepedia.in/predictor", // Issue #19: URL is now loaded from an environment variable
     siteName: "JEEPedia",
   },
 };

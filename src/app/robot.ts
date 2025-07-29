@@ -1,6 +1,7 @@
 import { Metadata, MetadataRoute } from "next";
 
 export default function robot() : MetadataRoute.Robots {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://www.jeepedia.in"; // Fallback URL if environment variable is not found
     return {
         rules: [
             {
@@ -9,6 +10,6 @@ export default function robot() : MetadataRoute.Robots {
                 disallow: "/api/",
             },
         ],
-        sitemap: "https://www.jeepedia.in/sitemap.xml",
+        sitemap: `${apiUrl}/sitemap.xml` // Issue #19: URL is now loaded from an environment variable
     };
 }

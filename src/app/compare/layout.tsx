@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     openGraph: {
     title: 'The no-bullshit tool for JEE counselling',
     description: 'JEE Pedia is your ultimate guide to cracking Counselling – get real cutoffs, accurate placement data and branch comparisons all in one place.',
-    url: 'https://jeepedia.in',
+    url: process.env.NEXT_PUBLIC_API_URL || 'https://jeepedia.in', // Issue #19: URL is now loaded from an environment variable
     siteName: 'JEEPedia',
     images: [
       {

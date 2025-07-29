@@ -86,6 +86,12 @@ All source code is available under our GitHub organization:
 
 ## 🧪 Local Setup Instructions
 
+> ⚠️ **Warning:** You must create a `.env` file at the root of the project and set the following environment variable:
+>
+> ```plaintext
+> NEXT_PUBLIC_API_URL=https://www.jeepedia.in
+> ```
+
 ```bash
 # Clone the repo
 git clone https://github.com/J2J-App/frontend.git
