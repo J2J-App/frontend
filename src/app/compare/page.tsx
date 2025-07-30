@@ -5,6 +5,8 @@ import SelectMenu from "@/components/select-menus/select-menu.tsx";
 import Combobox from "@/components/combobox/combobox";
 import Button from "@/components/buttons/button.tsx";
 import Loader from "@/components/loader/loader.tsx";
+import API_URL from "@/config";
+
 type DataType = any
 
 export default function Page() {
@@ -121,7 +123,7 @@ export default function Page() {
         const fetchData01 = async () => {
             try {
                 const response = await fetch(
-                    "https://api.jeepedia.in/api/v2/about/placement-branches",
+                    `${API_URL}/v2/about/placement-branches`,
                     {
                         method: "POST",
                         headers: {
@@ -149,7 +151,7 @@ export default function Page() {
         const fetchBranchData = async (college: string, setter: (data: DataType) => void) => {
             try {
                 const response = await fetch(
-                    "https://api.jeepedia.in/api/v2/about/placement-branches",
+                    `${API_URL}/v2/about/placement-branches`,
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -266,7 +268,7 @@ export default function Page() {
             let response1, data1;
             try {
                 response1 = await fetch(
-                    "https://api.jeepedia.in/api/v2/placement/getPlacement",
+                    `${API_URL}/v2/placement/getPlacement`,
                     {
                         method: "POST",
                         headers: {
@@ -298,7 +300,7 @@ export default function Page() {
             let response2, data2;
             try {
                 response2 = await fetch(
-                    "https://api.jeepedia.in/api/v2/placement/getPlacement",
+                    `${API_URL}/v2/placement/getPlacement`,
                     {
                         method: "POST",
                         headers: {

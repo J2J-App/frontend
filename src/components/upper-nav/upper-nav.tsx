@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import styles from "./upper-nav.module.css";
 import Image from "next/image";
+import API_URL from "@/config";
 
 export default function UpperNav({ params }: { params: { uni: string, counselling: string } }) {
     const { uni, counselling } = params;
@@ -12,7 +13,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
         async function fetchData() {
             try {
                 const res = await fetch(
-                "https://api.jeepedia.in/api/v2/about",
+                `${API_URL}/v2/about`,
                 {
                     method: "POST",
                     headers: {
