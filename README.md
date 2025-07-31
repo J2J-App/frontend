@@ -63,8 +63,6 @@ Jeepedia is an open-source platform that makes **JEE counselling** simple, visua
 | **Satwik Shrey**  | Data Collection                          |
 | **Pratyush Kumar**| Data Scraping                            |
 | **Bhavya Yadav**  | Community, Support                       |
-| **Divasjot Singh**| Support                                  |
-| **Rudraksh Joshi**| Support, Memes & Chaos Control           |
 
 ---
 
