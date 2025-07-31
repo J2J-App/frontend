@@ -54,18 +54,6 @@ Jeepedia is an open-source platform that makes **JEE counselling** simple, visua
 
 ---
 
-## 👥 Meet the Team
-
-| Name              | Role                                     |
-|-------------------|------------------------------------------|
-| **Anmol Sharma**  | Frontend, UI, DevOps                     |
-| **Ayush Rawat**   | Backend, Data scraping, DB Management    |
-| **Satwik Shrey**  | Data Collection                          |
-| **Pratyush Kumar**| Data Scraping                            |
-| **Bhavya Yadav**  | Community, Support                       |
-
----
-
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js  
