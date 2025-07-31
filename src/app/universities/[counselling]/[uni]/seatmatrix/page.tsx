@@ -1,3 +1,4 @@
+import API_URL from "@/config";
 import styles from "./page.module.css";
 
 export default async function Page({
@@ -19,11 +20,11 @@ export default async function Page({
             "igdtuw-delhi": "igdtuw",
             "iiit-delhi": "iiitd",
         }
-        const uniSeatMatrixData = await fetch("https://api.jeepedia.in/api/v1/getSeatMatrix")
+        const uniSeatMatrixData = await fetch(`${API_URL}/v1/getSeatMatrix`)
 
-        const categoryFullForm = await fetch("https://api.jeepedia.in/api/v1/getSeatMatrix/categorydescription")
+        const categoryFullForm = await fetch(`${API_URL}/v1/getSeatMatrix/categorydescription`)
 
-        const uniTotalSeats = await fetch("https://api.jeepedia.in/api/v1/getSeatMatrix/totalseats")
+        const uniTotalSeats = await fetch(`${API_URL}/v1/getSeatMatrix/totalseats`)
 
         if (!uniSeatMatrixData.ok) {
             throw new Error("Failed to fetch data");
@@ -114,7 +115,7 @@ export default async function Page({
             </div>
         </div>
     } else {
-        const uniSeatMatrixData = await fetch("https://api.jeepedia.in/api/v2/about/seat-matrix", {
+        const uniSeatMatrixData = await fetch(`${API_URL}/v2/about/seat-matrix`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

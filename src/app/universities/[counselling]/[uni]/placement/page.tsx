@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import TabsPlacement from "./tabs-placement.tsx";
 import {MdWarning} from "react-icons/md";
 import {redirect} from "next/navigation";
+import API_URL from "@/config";
 
 export const dynamic = "force-static";
 export const fetchCache = "force-cache";
@@ -11,7 +12,8 @@ export default async function Page({ params }: { params: Promise<{ uni: string, 
 
     const fetchData = async (year: number) => {
         try {
-            const res = await fetch("https://api.jeepedia.in/api/v2/placement", {
+
+            const res = await fetch(`${API_URL}/v2/placement`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

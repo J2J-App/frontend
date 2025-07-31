@@ -10,6 +10,7 @@ import { SelectOption } from "@/components/select-menus/select-menu.tsx";
 import { useParams } from "next/navigation";
 import { counsellings } from "@/app/predictor/counsellings.ts";
 import getCollegeType from "@/lib/get-college-type.ts";
+import API_URL from "@/config";
 
 function transformData(input: any[], year: string) {
     const normalizedRounds: any = {
@@ -116,7 +117,7 @@ const CutoffPage = () => {
             const timeoutId = setTimeout(() => controller.abort(), 30000);
 
             const response = await fetch(
-                "https://api.jeepedia.in/api/v2/cutoff",
+                `${API_URL}/v2/cutoff`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

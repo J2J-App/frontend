@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import API_URL from "@/config";
 
 export default async function Page({
     params,
@@ -8,7 +9,7 @@ export default async function Page({
     const { uni } = await params;
 
     const uniDataRes = await fetch(
-    "https://api.jeepedia.in/api/v2/about",
+        `${API_URL}/v2/about`,
     {
         method: "POST",
         headers: {

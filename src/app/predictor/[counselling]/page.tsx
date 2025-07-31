@@ -16,6 +16,7 @@ import {useParams, useRouter} from "next/navigation";
 import {counsellings} from "@/app/predictor/counsellings.ts";
 import Switch from "@/components/switch/switch.tsx";
 import Checkbox from "@/components/check-boxes/check-boxes.tsx";
+import API_URL from "@/config";
 
 // Create a reusable fetch function that can be called from multiple places
 const fetchPredictorData = async ({
@@ -88,7 +89,7 @@ const fetchPredictorData = async ({
         if (counselling === "jac") {
             if (mainsCRLRank && region && category && subCategory) {
                 response = await fetch(
-                    "https://api.jeepedia.in/api/v2/cutoff/predictor",
+                    `${API_URL}/v2/cutoff/predictor`,
                     {
                         method: "POST",
                         headers: {
@@ -111,7 +112,7 @@ const fetchPredictorData = async ({
         else if (counselling === "josaa") {
             if (mainsCATRank && region && category && subCategory && currentType !== "IIT") {
                 response = await fetch(
-                    "https://api.jeepedia.in/api/v2/cutoff/predictor",
+                    `${API_URL}/v2/cutoff/predictor`,
                     {
                         method: "POST",
                         headers: {
@@ -132,7 +133,7 @@ const fetchPredictorData = async ({
                 );
             } else {
                 response = await fetch(
-                    "https://api.jeepedia.in/api/v2/cutoff/predictor",
+                    `${API_URL}/v2/cutoff/predictor`,
                     {
                         method: "POST",
                         headers: {
@@ -158,7 +159,7 @@ const fetchPredictorData = async ({
             // Optional analytics call
             try {
                 await fetch(
-                    "https://api.jeepedia.in/api/v1/postRank",
+                    `${API_URL}/v1/postRank`,
                     {
                         method: "POST",
                         headers: {

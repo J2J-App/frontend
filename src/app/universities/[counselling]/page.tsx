@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import SelectMenu from "@/components/select-menus/select-menu.tsx";
 import SingleInput from "@/components/Inputs/SingleInput/singleInput.tsx";
 import Loader from "@/components/loader/loader.tsx";
+import API_URL from "@/config";
 
 const collegeSequence: {
     [key: string]: (string[] | {
@@ -169,7 +170,7 @@ export default function Page() {
         async function fetchData() {
             setIsLoading(true); // Set loading to true at the start of fetch
             try {
-                const response = await fetch("https://api.jeepedia.in/api/v2/about/photo", {
+                const response = await fetch(`${API_URL}/v2/about/photo`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
