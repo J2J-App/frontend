@@ -45,6 +45,16 @@ Jeepedia is an open-source platform that makes **JEE counselling** simple, visua
 
 ---
 
+## ✨ Our Amazing Contributors
+
+A huge thank you to all the wonderful people who have contributed to jeepedia
+
+<a href="https://github.com/J2J-App/frontend/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=J2J-App/frontend" />
+</a>
+
+---
+
 ## 📈 Impact (First Launch)
 
 - `44.6k+` impressions  
