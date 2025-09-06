@@ -14,7 +14,7 @@
     border-radius: 10px;
     display: flex;
     padding: 15px;
-    align-items: end;
+    align-items: flex-end;
     justify-content: center;
     .textContainer {
         z-index: 20;

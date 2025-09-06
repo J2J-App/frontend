@@ -25,6 +25,7 @@ const impact = localFont({
 })
 
 export const metadata: Metadata = {
+    metadataBase: new URL('http://localhost:3000'),
     title: "JEEPedia",
     description: "The no-bullshit tool for JEE counselling",
     openGraph: {
