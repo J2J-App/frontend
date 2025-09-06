@@ -1,3 +1,484 @@
 .collegeLadderContainer {
   margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Search Section */
+.searchSection {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 48px 12px 16px;
+  border-radius: 8px;
+  background-color: rgba(15, 15, 15, 0.9);
+  border: 2px solid rgba(136, 132, 216, 0.3);
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #8884d8;
+  box-shadow: 0 0 0 3px rgba(136, 132, 216, 0.3);
+  background-color: rgba(25, 25, 25, 0.95);
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.clearButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.clearButton:hover {
+  color: #fff;
+  background: rgba(136, 132, 216, 0.2);
+}
+
+.searchInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.searchResults {
+  color: #8884d8;
+  font-weight: 500;
+}
+
+.searchResults strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.noResults {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* Empty State */
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.emptyState p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.emptyHint {
+  font-size: 14px !important;
+  color: #6b7280 !important;
+}
+
+/* Branch Name Styling */
+.branchName {
+  color: #8884d8;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.sectionTitle {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #8884d8;
+  padding-bottom: 8px;
+  margin: 0 0 16px 0;
+}
+
+.collegeList {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.collegeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(136, 132, 216, 0.3);
+}
+
+.collegeItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(136, 132, 216, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(136, 132, 216, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.collegeItem:hover,
+.collegeItem.hovered {
+  background: rgba(136, 132, 216, 0.25);
+  border-color: rgba(136, 132, 216, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(136, 132, 216, 0.3);
+}
+
+.collegeItem:focus {
+  outline: 2px solid #8884d8;
+  outline-offset: 2px;
+}
+
+.collegeItem.selected {
+  background: rgba(136, 132, 216, 0.4);
+  border-color: #8884d8;
+  box-shadow: 0 0 0 2px rgba(136, 132, 216, 0.5);
+}
+
+.collegeNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #8884d8, #6366f1);
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.collegeItem:hover .collegeNumber,
+.collegeItem.hovered .collegeNumber {
+  transform: scale(1.1);
+}
+
+.collegeInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.collegeName {
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.collegeDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.trend {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.trend.high {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.3));
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.trend.medium {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.3));
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.trend.low {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.3));
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.rank {
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.collegeItem:hover .rank,
+.collegeItem.hovered .rank {
+  color: #d1d5db;
+}
+
+/* Chart Section */
+.chartSection {
+  width: 100%;
+  margin-top: 32px;
+}
+
+.chartContainer {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgba(136, 132, 216, 0.2);
+}
+
+/* Custom Tooltip Styles */
+.customTooltip {
+  background: linear-gradient(135deg, #1f2937, #374151);
+  border: 1px solid rgba(136, 132, 216, 0.5);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  min-width: 200px;
+  backdrop-filter: blur(8px);
+}
+
+.tooltipHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.tooltipTitle {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.tooltipTrend {
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.tooltipContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tooltipRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.tooltipLabel {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.tooltipValue {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.tooltipValue.high {
+  color: #22c55e;
+}
+
+.tooltipValue.medium {
+  color: #fbbf24;
+}
+
+.tooltipValue.low {
+  color: #ef4444;
+}
+
+/* Custom scrollbar for the college grid */
+.collegeGrid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.collegeGrid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.collegeGrid::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(136, 132, 216, 0.6), rgba(136, 132, 216, 0.8));
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.collegeGrid::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(136, 132, 216, 0.8), #8884d8);
+}
+
+/* Loading and Animation States */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.collegeItem:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .collegeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .collegeGrid {
+    grid-template-columns: 1fr;
+    max-height: 300px;
+    padding: 8px;
+  }
+  
+  .collegeItem {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .collegeNumber {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+  
+  .collegeName {
+    font-size: 13px;
+  }
+  
+  .trend {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  
+  .rank {
+    font-size: 10px;
+  }
+  
+  .sectionTitle {
+    font-size: 16px;
+  }
+  
+  .chartContainer {
+    padding: 12px;
+  }
+  
+  .customTooltip {
+    min-width: 180px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .collegeDetails {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .customTooltip {
+    min-width: 160px;
+  }
+  
+  .tooltipRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .collegeItem {
+    border-width: 2px;
+  }
+  
+  .trend {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .collegeItem,
+  .collegeNumber,
+  .trend,
+  .rank {
+    transition: none;
+  }
+  
+  .collegeItem:hover {
+    transform: none;
+  }
 }

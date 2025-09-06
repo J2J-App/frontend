@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from "./accordion.module.css"
 import Image from 'next/image'
-import arrow from "@/public/arrow.svg"
 
 type AccordionProps = {
     title: string;
@@ -41,7 +40,7 @@ export default function Accordion({
             <div className={`${styles.accordionTitle} ${isOpen ? styles.active : ''}`} onClick={toggleAccordion}>
                 <span className={styles.titleText}>{title}</span>
                 <div className={styles.arrowContainer}>
-                    <Image src={arrow} alt="arrow" className={styles.arrow} />
+                    <Image src="/arrow.svg" alt="arrow" width={16} height={16} className={styles.arrow} />
                 </div>
             </div>
             <div

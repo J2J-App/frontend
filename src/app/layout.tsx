@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Roboto, M_PLUS_Rounded_1c } from "next/font/google";
-import localFont from 'next/font/local'
 import "./globals.css";
 import NavBar from "@/components/app/nav-bar/nav-bar.tsx";
 import { Analytics } from "@vercel/analytics/react"
@@ -20,9 +19,7 @@ const round = M_PLUS_Rounded_1c({
     style: ["normal"]
 });
 
-const impact = localFont({
-    src: '../public/fonts/impact.ttf',
-})
+
 
 export const metadata: Metadata = {
     metadataBase: new URL('http://localhost:3000'),

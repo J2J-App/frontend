@@ -1,9 +1,6 @@
-import jac from "@/public/icons/counsellings/jac.jpg";
-import josaa from "@/public/icons/counsellings/josaa.png";
-
 export const counsellings: {
     name: string;
-    icon: any;
+    icon: string;
     link: string;
     description: string;
     ranks: string[];
@@ -22,7 +19,7 @@ export const counsellings: {
     types: string[] | null;
 }[] = [{
     "name": "JAC",
-    "icon": jac,
+    "icon": "/jac.jpg",
     "link": "jac",
     "description": "Joint Admission Counselling",
     "ranks": ["MA"],
@@ -47,7 +44,7 @@ export const counsellings: {
     "types": null
 }, {
     "name": "JoSAA",
-    "icon": josaa,
+    "icon": "/josaa.png",
     "link": "josaa",
     "description": "Joint Seat Allocation Authority",
     "ranks": ["MC", "AC"],

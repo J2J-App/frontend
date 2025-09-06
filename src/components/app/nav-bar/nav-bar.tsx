@@ -1,13 +1,7 @@
 "use client"
 import styles from "./nav-bar.module.css";
 import Image from "next/image";
-import icon from "@/public/icons/navbar/j2jicon.png"
-import discord from "@/public/icons/navbar/discord.svg"
 import Link from "next/link";
-
-import menu from "@/public/icons/navbar/menu.svg"
-import cross from "@/public/icons/navbar/cross.svg"
-
 import {usePathname} from "next/navigation";
 import {useState} from "react";
 export default function NavBar() {
@@ -22,9 +16,20 @@ export default function NavBar() {
     return (<>
             <div className={styles.navBar}>
                 <Link href={"/"} className={path === "/" ? styles.leftBox + " " + styles.active : styles.leftBox}>
-                    <Image src={icon} alt={"Logo"} width={40} height={40} style={{
+                    <div style={{
+                        width: 40,
+                        height: 40,
+                        backgroundColor: "#333",
                         borderRadius: "8px",
-                    }}/>
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: "14px"
+                    }}>
+                        J2J
+                    </div>
                 </Link>
                 <div className={styles.centerBox}>
                     <Link className={checkUrl("/predictor") ? `${styles.link} ${styles.active}` : styles.link}
@@ -35,15 +40,48 @@ export default function NavBar() {
                           href="/compare">Compare</Link>
                 </div>
                 <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.rightBox}>
-                    <Image style={{
-                        opacity: 0.7
-                    }} src={discord} alt={"Discord"} width={20} height={20}/>
+                    <div style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: "#5865F2",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        fontSize: "10px",
+                        fontWeight: "bold"
+                    }}>
+                        D
+                    </div>
                 </a>
                 <div onClick={() => {
                     setIsOpen((v) => !v)
                 }} className={`${styles.mob} ${styles.rightBox} ${isOpen ? styles.menuActive : ""}`}>
-                    <Image className={styles.menuIcon} src={menu} alt={"Menu"} width={18} height={18}/>
-                    <Image className={styles.crossIcon} src={cross} alt={"Cross"} width={18} height={18}/>
+                    <div className={styles.menuIcon} style={{
+                        width: 18,
+                        height: 18,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-around",
+                        alignItems: "center"
+                    }}>
+                        <div style={{width: "100%", height: "2px", backgroundColor: "white"}}></div>
+                        <div style={{width: "100%", height: "2px", backgroundColor: "white"}}></div>
+                        <div style={{width: "100%", height: "2px", backgroundColor: "white"}}></div>
+                    </div>
+                    <div className={styles.crossIcon} style={{
+                        width: 18,
+                        height: 18,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        fontSize: "16px",
+                        fontWeight: "bold"
+                    }}>
+                        ×
+                    </div>
                 </div>
                 <div className={isOpen ? `${styles.mobileLinkBox} ${styles.activeMd}` : `${styles.mobileLinkBox}`}>
                     <div className={styles.linkList}>
@@ -55,9 +93,20 @@ export default function NavBar() {
                               href="/compare" onClick={handleClick}>Compare</Link>
                     </div>
                     <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.discordIcon}>
-                        <Image style={{
-                            opacity: 0.7
-                        }} src={discord} alt={"Discord"} width={20} height={20}/>
+                        <div style={{
+                            width: 20,
+                            height: 20,
+                            backgroundColor: "#5865F2",
+                            borderRadius: "50%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "white",
+                            fontSize: "10px",
+                            fontWeight: "bold"
+                        }}>
+                            D
+                        </div>
                     </a>
                 </div>
             </div>

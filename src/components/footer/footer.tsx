@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./footer.module.css";
 import Image from "next/image";
-import icon from "@/public/icons/navbar/j2jicon.png"
 
 export default function Footer() {
     //TODO:
@@ -87,12 +86,15 @@ export default function Footer() {
                         margin: "0",
                         borderRadius: 8,
                         border: "1px solid rgba(255,255,255,0.1)",
+                        backgroundColor: "#333",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: "12px"
                     }}>
-                        <Image style={{
-                            objectFit: "contain",
-                            borderRadius: "5px",
-                            filter: "drop-shadow(0 0 5px rgba(0,0,0,0.5))",
-                        }} src={icon} alt={"App Icon"} fill={true} />
+                        J2J
                     </div>
                 </div>
             </div>

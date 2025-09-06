@@ -1,22 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import bg from "@/public/backgrounds/j2j-bg.png"
-import bgm from "@/public/backgrounds/j2j-bg-m.png"
 
-import jac from "@/public/icons/counsellings/jac.jpg"
-import josaa from "@/public/icons/counsellings/josaa.png"
-
-import counsellingBg from "@/public/backgrounds/counsellings/bg1.png"
-
-import predictor from "@/public/backgrounds/tools/predictor.png"
-import uni from "@/public/backgrounds/tools/uni.png"
-import placements from "@/public/backgrounds/tools/placements.png"
-import contact from "@/public/backgrounds/tools/contact.png"
-
-import feathead from "@/public/backgrounds/tools/featcomp.png";
-
-
-import arrow from "@/public/icons/home/arrow.svg"
 import Link from "next/link";
 import {TbBrandDiscordFilled} from "react-icons/tb";
 import {IoLogoDiscord} from "react-icons/io5";
@@ -30,20 +14,20 @@ import Footer from "@/components/footer/footer.tsx";
 export default function Home() {
     const counsellings = [{
         "name": "JAC",
-        "icon": jac,
+        "icon": "/jac.jpg",
         "description": "Joint Admission Counselling",
     }, {
         "name": "JoSAA",
-        "icon": josaa,
+        "icon": "/josaa.png",
         "description": "Joint Seat Allocation Authority",
     }]
     return (
     <article className={styles.page}>
-        <Image src={bg} alt={"Background"} fill={true} style={{
+        <Image src="/j2j-bg.png" alt={"Background"} fill={true} style={{
             objectFit: "cover",
             objectPosition: "right",
         }} className={styles.desktop} quality={100}/>
-        <Image src={bgm} alt={"Background"} fill={true} style={{
+        <Image src="/j2j-bg-m.png" alt={"Background"} fill={true} style={{
             objectFit: "cover",
         }} className={styles.mobile} quality={100}/>
         <main className={styles.content}>
@@ -65,7 +49,7 @@ export default function Home() {
                         Launch
                     </p>
                     <div className={styles.linkImage}>
-                      <Image src={arrow} alt={"Arrow"} width={30} height={30} />
+                      <Image src="/arrow.svg" alt={"Arrow"} width={30} height={30} />
                     </div>
                 </Link>
             </div>
@@ -83,7 +67,7 @@ export default function Home() {
                     <Image style={{
                         objectFit: "cover",
                         objectPosition: "left",
-                    }} src={predictor} alt={"Predictor"} fill={true}/>
+                    }} src="/tools/predictor.png" alt={"Predictor"} fill={true}/>
                     <h3 style={{
                         top: "10px",
                         left: "10px",
@@ -98,7 +82,7 @@ export default function Home() {
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "bottom right",
-                        }} src={placements} alt={"Predictor"} fill={true}/>
+                        }} src="/tools/placements.png" alt={"Predictor"} fill={true}/>
                         <h3 style={{
                             bottom: "10px",
                             right: "10px",
@@ -110,7 +94,7 @@ export default function Home() {
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "top",
-                        }} src={uni} alt={"Universities"} fill={true}/>
+                        }} src="/tools/uni.png" alt={"Universities"} fill={true}/>
                         <h3 style={{
                             top: "10px",
                             right:  "10px",
@@ -130,7 +114,7 @@ export default function Home() {
                     }}>
                         Counsellings
                     </h3>
-                    <Image src={counsellingBg} alt={"Counselling Background"} fill={true} style={{
+                    <Image src="/bg1.png" alt={"Counselling Background"} fill={true} style={{
                         objectFit: "cover",
                         objectPosition: "center",
                         overflow: "hidden",
@@ -179,14 +163,14 @@ export default function Home() {
                 }}>
                     What Makes Us Different?
                 </h2>
-                <Image src={feathead} alt={"Feature Head"} fill={true} style={{
+                <Image src="/tools/featcomp.png" alt={"Feature Head"} fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
                     transform: "scale(1.1)",
                     filter: "blur(30px)",
                 }}/>
-                <Image src={feathead} alt={"Feature Head"} fill={true} style={{
+                <Image src="/tools/featcomp.png" alt={"Feature Head"} fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
@@ -331,7 +315,7 @@ export default function Home() {
                 <Accordion title={"Who's behind this project?"} content={"We are a small group of engineering students from many different universities across the nation."} width={"100%"}/>
             </div>
             <div className={styles.contactHead}>
-                <Image src={contact} alt={"contact"} fill={true} style={{
+                <Image src="/tools/contact.png" alt={"contact"} fill={true} style={{
                     objectFit: "cover",
                     objectPosition: "center",
                     zIndex: "1"

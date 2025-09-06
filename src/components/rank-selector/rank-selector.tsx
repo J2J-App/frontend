@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './rank-selector.module.css';
 import Image from 'next/image';
-import arrow from '@/public/arrows2.svg';
 import SingleInput from "@/components/Inputs/SingleInput/singleInput.tsx";
 
 type RangeSelectorProps = {
