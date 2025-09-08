@@ -155,74 +155,33 @@ const fetchPredictorData = async ({
             }
         }
 
+
         if (response) {
-            // Optional analytics call
-            try {
-                await fetch(
-                    `${API_URL}/v1/postRank`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            rank: mainsCRLRank,
-                        }),
-                    }
-                );
-            } catch (analyticsError) {
-                // Silently handle analytics error - don't interrupt main flow
-                console.warn("Analytics tracking failed:", analyticsError);
-            }
-
-            clearTimeout(timeoutId);
-
-            if (!response.ok) {
-                // Handle different HTTP error codes with more specific messages
-                if (response.status === 404) {
-                    throw new Error("Resource not found. The API endpoint may have changed.");
-                } else if (response.status === 400) {
-                    try {
-                        const errorData = await response.json();
-                        throw new Error(errorData.message || "Invalid request data. Please check your input values.");
-                    } catch (parseError) {
-                        throw new Error("Invalid request data. Please check your input values.");
-                    }
-                } else if (response.status === 429) {
-                    throw new Error("Too many requests. Please try again after a few minutes.");
-                } else if (response.status >= 500) {
-                    throw new Error("Server error occurred. Please try again later.");
+            if (response.ok) {
+                const data = await response.json();
+                if (data && Object.keys(data).length > 0) {
+                    // Optionally, set data to state here if needed
+                    return data;
                 } else {
-                    throw new Error(`Server responded with status ${response.status}. Please try again.`);
+                    setApiError("No data found for the given input.");
+                    return false;
                 }
-            }
-
-            const dataObtained = await response.json();
-
-            // Handle empty results
-            if (dataObtained.data && dataObtained.data.length === 0) {
-                setApiError("No colleges found matching your criteria. Try adjusting your search parameters.");
-            } else if (!dataObtained.data) {
-                setApiError("Unexpected data format received from server");
             } else {
-                // Proper immutable update with the current year as key
-                setResult((prevResult: {
-                    [key: string]: any,
-                }) => ({
-                    ...prevResult,
-                    [year]: dataObtained.data
-                }));
-
-                // Save to localStorage
-                const updatedResult = {
-                    ...JSON.parse(localStorage.getItem(counselling+"_result") || "{}"),
-                    [year]: dataObtained.data
-                };
-                localStorage.setItem(counselling+"_result", JSON.stringify(updatedResult));
-
-                return true; // Indicate successful fetch
+                // Try to parse error message from response
+                let errorMsg = "Failed to fetch data from server.";
+                try {
+                    const errorData = await response.json();
+                    if (errorData && errorData.message) {
+                        errorMsg = errorData.message;
+                    }
+                } catch (e) {
+                    // Ignore JSON parse errors
+                }
+                setApiError(errorMsg);
+                return false;
             }
         }
+        setApiError("No response from server.");
         return false; // No response or empty data
     } catch (err: any) {
         console.error("Error fetching data:", err);
