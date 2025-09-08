@@ -156,6 +156,32 @@ const fetchPredictorData = async ({
         }
 
 
+        if (response) {
+            if (response.ok) {
+                const data = await response.json();
+                if (data && Object.keys(data).length > 0) {
+                    // Optionally, set data to state here if needed
+                    return data;
+                } else {
+                    setApiError("No data found for the given input.");
+                    return false;
+                }
+            } else {
+                // Try to parse error message from response
+                let errorMsg = "Failed to fetch data from server.";
+                try {
+                    const errorData = await response.json();
+                    if (errorData && errorData.message) {
+                        errorMsg = errorData.message;
+                    }
+                } catch (e) {
+                    // Ignore JSON parse errors
+                }
+                setApiError(errorMsg);
+                return false;
+            }
+        }
+        setApiError("No response from server.");
         return false; // No response or empty data
     } catch (err: any) {
         console.error("Error fetching data:", err);
