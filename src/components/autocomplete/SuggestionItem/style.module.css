@@ -1,0 +1,182 @@
+.suggestionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  background-color: #0F0F0F;
+  border: none;
+  transition: all 0.2s ease;
+  min-height: 44px; /* Minimum touch target size for mobile */
+  color: #dadada;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.suggestionItem:hover {
+  background-color: #141414;
+}
+
+.suggestionItem.highlighted {
+  background-color: #1e1e1e;
+  border-left: 2px solid #505050;
+}
+
+.universityName {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.universityType {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #696969;
+  font-weight: 400;
+  margin-left: 12px;
+}
+
+.highlight {
+  background-color: #2B2B2B;
+  color: #ffffff;
+  padding: 1px 2px;
+  border-radius: 2px;
+  font-weight: 400;
+}
+
+/* Enhanced focus styles for keyboard navigation */
+.suggestionItem:focus {
+  outline: 2px solid #505050;
+  outline-offset: -2px;
+}
+
+/* Keyboard-only focus styles */
+body.keyboard-user .suggestionItem:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced highlighted state for better accessibility */
+.suggestionItem.highlighted {
+  background-color: #1e1e1e;
+  border-left: 3px solid #ffffff;
+  position: relative;
+}
+
+.suggestionItem.highlighted::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #ffffff, #cccccc);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .highlight {
+    background-color: Highlight;
+    color: HighlightText;
+    border: 1px solid ButtonText;
+  }
+  
+  .suggestionItem.highlighted {
+    border-left-color: Highlight;
+    background-color: Canvas;
+    color: CanvasText;
+  }
+  
+  .suggestionItem.highlighted::before {
+    background: Highlight;
+  }
+  
+  .suggestionItem:focus {
+    outline: 3px solid Highlight;
+    outline-offset: -3px;
+  }
+  
+  body.keyboard-user .suggestionItem:focus {
+    outline: 3px solid Highlight;
+    outline-offset: -3px;
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 255, 0.3);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .suggestionItem {
+    transition: none;
+  }
+}
+
+/* Mobile-specific styles */
+.mobileItem {
+  /* Ensure minimum touch target size */
+  min-height: 48px; /* Increased from 44px for better touch experience */
+  padding: 14px 16px; /* Slightly more padding for touch */
+  
+  /* Improve touch feedback */
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  touch-action: manipulation; /* Prevent double-tap zoom */
+}
+
+/* Mobile hover states (touch devices) */
+@media (hover: none) and (pointer: coarse) {
+  .suggestionItem:hover {
+    background-color: #0F0F0F; /* Reset hover on touch devices */
+  }
+  
+  .suggestionItem:active {
+    background-color: #1e1e1e; /* Touch feedback */
+    transform: scale(0.98); /* Subtle press effect */
+  }
+  
+  .mobileItem {
+    /* Larger touch targets on mobile */
+    min-height: 52px;
+    padding: 16px 20px;
+  }
+  
+  .universityName {
+    /* Better text handling on mobile */
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  
+  .universityType {
+    font-size: 13px;
+    margin-left: 16px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobileItem {
+    min-height: 44px; /* Reduce height in landscape to save space */
+    padding: 12px 16px;
+  }
+  
+  .universityName {
+    font-size: 14px;
+  }
+  
+  .universityType {
+    font-size: 12px;
+    margin-left: 12px;
+  }
+}
+
+/* High DPI displays (retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mobileItem {
+    /* Ensure crisp rendering on high DPI displays */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

@@ -1,0 +1,136 @@
+.h1 {
+    background : linear-gradient(135deg, rgb(216, 159, 248) 0%, rgba(143, 158, 246, 1) 50%, rgb(124, 232, 190) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    font-weight: 900;
+    font-family: "Roboto", sans-serif;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.h2 {
+    font-family: "Roboto", sans-serif;
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.h3 {
+    color: #bbb;
+    margin-top: 7px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.p {
+    color: #f3f3f3;
+    font-weight: 200;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.ul {
+    list-style-type: circle;
+    padding-left: 20px;
+    color: #ddd;
+}
+
+.ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    color: #ddd;
+}
+
+.li {
+    padding-bottom: 8px;
+    margin: 2px 0;
+    color: #ddd;
+}
+
+.a {
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    background-image: linear-gradient(135deg, rgb(40, 29, 45) 0%, rgb(32, 35, 54) 50%, rgb(20, 38, 31) 100%);
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.a::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+
+
+.a:hover {
+    color: #ffffff;
+}
+
+.a:hover::after {
+    opacity: 0.1;
+}
+
+.a:active {
+    opacity: 0.7;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pre {
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 16px;
+    font-family: monospace;
+}
+
+.code {
+    background-color: #2a2a2a;
+    color: #bdbdbd;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.blockquote {
+    border-left: 4px solid #2be290;
+    padding-left: 16px;
+    font-style: italic;
+    color: #da2525;
+    background-color: #1f1f1f;
+    margin: 16px 0;
+}
+
+.hr {
+    border-color: rgba(255, 255, 255, 0.22);
+    border-style: solid;
+    border-width: 1px;
+    margin: 8px 0 15px 0;
+    border-radius: 2px;
+}
+
+.toc {
+    margin: 24px 0;
+    color: #ffffff;
+    font-size: 24px;
+}

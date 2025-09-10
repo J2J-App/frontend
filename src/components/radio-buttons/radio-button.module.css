@@ -1,0 +1,95 @@
+.radioContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  letter-spacing: -.5px;
+  font-size: 14px;
+  color: #dadada;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.radioButton {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #0F0F0F;
+  border: 1px solid #282828;
+  display: inline-block;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+}
+
+.radioButton::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-image: linear-gradient(60deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  background-color: transparent;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.radioButton:hover {
+  background-color: #141414;
+  border: 1px solid #454545;
+}
+
+.radioButton.selected {
+  border: 1px solid #575757;
+  transition: all 0.2s ease;
+}
+
+.radioButton.selected + .radioLabel {
+  font-weight: 900;
+  transition: all 0.2s ease;
+
+}
+
+.radioButton.selected::after {
+  transform: translate(-50%, -50%) scale(1)
+}
+
+
+.radioButton:focus {
+  outline: 1px solid #2B2B2B;
+}
+
+.radioLabel {
+  color: #dadada;
+}
+
+.radioButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  opacity: 0;
+  background: linear-gradient(60deg, rgba(195, 84, 255, 1) 14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  transition: all 0.2s ease;
+  z-index: 2;
+
+}
+
+.radioButton.selected::before {
+  filter: blur(6px);
+  opacity: 1;
+}

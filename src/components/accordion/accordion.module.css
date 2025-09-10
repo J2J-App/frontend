@@ -1,0 +1,78 @@
+.accordionTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;/* Add cursor pointer for better UX */
+    transition: all 0.2s ease;
+}
+
+.accordionTitle:hover {
+    background-color: rgba(61, 61, 61, 0.41);
+}
+
+.accordionTitle:active {
+    background-color: rgba(44, 44, 44, 0.41);
+}
+
+.titleText {
+    font-size: small;
+    color: #fff;
+    font-weight: 500;
+    padding-left: 2px;
+}
+
+.accodionContainer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-bottom: rgba(37,37,37,1) 1px solid;
+}
+
+.arrowContainer {
+    width: 35px;
+    height: 25px;
+    min-width: 35px;
+    min-height: 25px;
+    max-width: 35px;
+    max-height: 25px;
+    background: rgb(30, 30, 30);
+    border: solid 1px rgb(40, 40, 40);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentWrapper {
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.87, 0, 0.13, 1),
+    opacity 0.3s ease-in-out;
+    opacity: 0;
+    max-height: 0;
+}
+
+.contentWrapper.open {
+    opacity: 1;
+}
+
+.contentText {
+    color: grey;
+    font-size: 12px;
+    padding-top: 12px;
+    padding-left: 2px;
+}
+
+.accordionTitle .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.accordionTitle.active .arrow {
+    transform: translate(-50%, -50%) rotate(180deg);
+}

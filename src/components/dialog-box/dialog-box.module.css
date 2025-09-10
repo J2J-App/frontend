@@ -1,0 +1,123 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease,
+    backdrop-filter 0.3s ease, background 0.3s ease;
+    pointer-events: none;
+}
+
+.backdrop.open {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.backdrop.closing {
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px) scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(50px) scale(0.7);
+        opacity: 0;
+    }
+}
+
+.dialog {
+    background: rgba(26,26,26,1);
+    padding-top: 1px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 90%;
+    width: 500px;
+    z-index: 10000;
+    border-style: Solid;
+    border-color: #333333;
+    border-width: 1px;
+    box-shadow: 0 0 50px rgb(45, 45, 45);
+}
+
+.dialog::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    right: 0px;
+    bottom: 1px;
+    background: linear-gradient(60deg,
+    rgba(195, 84, 255, 1) 14.93%,
+    rgba(106, 127, 246, 1) 50%,
+    rgba(92, 255, 192, 1) 92.16%);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.dialog::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(60deg,
+    rgba(195, 84, 255, 1) 14.93%,
+    rgba(106, 127, 246, 1) 50%,
+    rgba(92, 255, 192, 1) 92.16%);
+    z-index: -2;
+    filter: blur(50px);
+    border-radius: 10px;
+}
+
+.dialog.open {
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.dialog.closing {
+    animation: slideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.content {
+    position: relative;
+    background: rgba(26,26,26,1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+}
+
+.open .content {
+    opacity: 1;
+    transform: translateY(0);
+}
+

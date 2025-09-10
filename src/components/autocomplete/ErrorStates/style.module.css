@@ -1,0 +1,244 @@
+/* Error Message Styles */
+.errorMessage {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 4px 0;
+  color: #991b1b;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.errorContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+.errorText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.errorTitle {
+  font-weight: 600;
+  color: #7f1d1d;
+}
+
+.errorDescription {
+  color: #991b1b;
+  font-size: 13px;
+}
+
+.errorActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.retryButton {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background-color: #b91c1c;
+}
+
+.retryButton:focus {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+.dismissButton {
+  background: none;
+  border: none;
+  color: #991b1b;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.dismissButton:hover {
+  background-color: #fecaca;
+}
+
+.dismissButton:focus {
+  outline: 2px solid #dc2626;
+  outline-offset: 1px;
+}
+
+.fallbackNotice {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #fecaca;
+  font-size: 12px;
+  color: #7f1d1d;
+  font-style: italic;
+}
+
+/* Loading State Styles */
+.loadingState {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 4px 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.timeoutState {
+  background-color: #fef3c7;
+  border-color: #fbbf24;
+  color: #92400e;
+}
+
+.loadingContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loadingSpinner {
+  flex-shrink: 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e2e8f0;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.timeoutState .spinner {
+  border-color: #fbbf24;
+  border-top-color: #f59e0b;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.loadingMessage {
+  font-weight: 500;
+  color: #374151;
+}
+
+.timeoutState .loadingMessage {
+  color: #92400e;
+}
+
+.timeoutHint {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.timeoutState .timeoutHint {
+  color: #a16207;
+}
+
+.cancelButton {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.cancelButton:hover {
+  background-color: #4b5563;
+}
+
+.cancelButton:focus {
+  outline: 2px solid #6b7280;
+  outline-offset: 2px;
+}
+
+.timeoutState .cancelButton {
+  background-color: #f59e0b;
+}
+
+.timeoutState .cancelButton:hover {
+  background-color: #d97706;
+}
+
+/* Screen reader only content */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .errorMessage,
+  .loadingState {
+    padding: 10px;
+    font-size: 13px;
+  }
+  
+  .errorContent,
+  .loadingContent {
+    gap: 8px;
+  }
+  
+  .errorActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  
+  .retryButton,
+  .cancelButton {
+    width: 100%;
+    padding: 8px 12px;
+  }
+}

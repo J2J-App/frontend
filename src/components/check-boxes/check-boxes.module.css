@@ -1,0 +1,107 @@
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    gap: 8px;
+}
+
+.label {
+    color: #dadada;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    font-size: 14px;
+}
+
+.checkboxWrapper {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+/* Hide the default checkbox */
+.checkboxWrapper input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+/* Custom checkbox */
+.checkboxWrapper .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #0F0F0F;
+    border: 1px solid #282828;
+    border-radius: 4px;
+    overflow: clip;
+    z-index: -5;
+    transition: all 0.2s ease;
+
+}
+
+/* Hover state */
+.checkboxWrapper:hover .checkbox {
+    background-color: #1c1c1c;
+    border-color: #454545;
+}
+
+.checkboxWrapper input[type="checkbox"] + .checkbox + .checkmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all .3s cubic-bezier(0.87, 0, 0.13, 1);;
+    z-index: 5;
+}
+
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox + .checkmark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all .2s ease;
+    z-index: 5;
+}
+
+/* Active state */
+.checkboxWrapper input[type="checkbox"]:active + .checkbox {
+    background-color: #000000;
+}
+
+/* Checked state */
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox {
+    background-color: #0c0c0c;
+    border-color: #454545;
+}
+
+/* Checkmark (using ::after pseudo-element) */
+.checkboxWrapper input[type="checkbox"] + .checkbox::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+    width: 120%;
+    height: 100%;
+    background : linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+    filter: blur(4px);
+    opacity: 0;
+    z-index: 1;
+    transition: all .3s ease-in-out;
+}
+
+.checkboxWrapper input[type="checkbox"]:checked + .checkbox::after {
+    opacity: 0.9;
+
+}
+.checkboxWrapper input[type="checkbox"]:active + .checkbox::after {
+    opacity: 0.5;
+
+}

@@ -1,0 +1,290 @@
+@keyframes nav-bar-animation {
+    0% {
+        transform: translateY(-200px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes nav-bar-animation-c {
+    0% {
+        transform: translate(-50%,-200px);
+    }
+    100% {
+        transform:translate(-50%,0);
+    }
+}
+
+
+.navBar {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    width: 100%;
+    padding: 0 88px;
+    max-width: 1600px;
+    overflow: hidden;
+    z-index: 20000;
+    .leftBox {
+        position: relative;
+        color: white;
+        float: left;
+        transform: translateY(-200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        backdrop-filter: blur(20px);
+        padding: 4px;
+        border-radius: 10px;
+        border: 1px solid rgba(44, 44, 44, 0.43);
+        background-color: rgba(35, 35, 35, 0.61);
+        transition: all 0.2s ease;
+        animation: nav-bar-animation .7s cubic-bezier(0.87, 0, 0.13, 1) .2s forwards;
+    }
+    .leftBox:hover {
+        background-color: rgba(56, 56, 56, 0.61);
+    }
+    .leftBox:active {
+        opacity: 0.7;
+    }
+    .leftBox::after {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        opacity: 0;
+        background : linear-gradient(60deg, rgba(224, 166, 255, 1) 0%, rgba(143, 158, 246, 1) 50%, rgba(133, 255, 208, 1) 100%);
+        z-index: -1;
+        transition: opacity 1s ease;
+    }
+    .leftBox.active::after {
+        opacity: .2;
+    }
+    .centerBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%,-200px);
+        height: 50px;
+        border-radius: 10px;
+        border: 1px solid rgba(44, 44, 44, 0.43);
+        padding: 0 7px;
+        font-weight: 200;
+        background-color: rgba(35, 35, 35, 0.61);
+        backdrop-filter: blur(20px);
+        animation: nav-bar-animation-c .7s cubic-bezier(0.87, 0, 0.13, 1) .4s forwards;
+
+        .link {
+            position: relative;
+            font-size: 13px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+
+        }
+        .link::after {
+            content: "";
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            border-radius: 50px;
+            background : linear-gradient(90deg, rgba(224, 166, 255, 1) 0%, rgba(143, 158, 246, 1) 50%, rgba(133, 255, 208, 1) 100%);
+            transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+        }
+        .link:hover {
+            background-color: rgba(91, 91, 91, 0.22);
+        }
+        .link:active {
+            background-color: rgba(38, 38, 38, 0.61);
+            transform: scale(0.95);
+        }
+        .active {
+            font-weight: 800;
+        }
+        .active::after {
+            width: 40%;
+
+        }
+    }
+    .rightBox {
+        transform: translateY(-200px);
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        border: 1px solid rgba(44, 44, 44, 0.43);
+        padding: 0 7px;
+        font-weight: 200;
+        background-color: rgba(35, 35, 35, 0.61);
+        backdrop-filter: blur(20px);
+        transition: all 0.2s ease;
+        animation: nav-bar-animation .7s cubic-bezier(0.87, 0, 0.13, 1) .6s forwards;
+
+    }
+    .rightBox.mob {
+        display: none;
+    }
+    .rightBox:hover {
+        background-color: rgba(56, 56, 56, 0.61);
+    }
+    .rightBox:active {
+        opacity: 0.7;
+    }
+    .mobileLinkBox {
+        display: none;
+    }
+    .mobileBg {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .navBar {
+        padding: 0 20px;
+        top: 20px;
+        .rightBox {
+            display: none;
+        }
+        .rightBox.mob {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            .menuIcon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+            .crossIcon {
+                position: absolute;
+                top: 50%;
+                left: 150%;
+                transform: translate(-50%, -50%);
+                transition: all 0.4s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+        }
+        .rightBox.mob.menuActive {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            .menuIcon {
+                left: -150%;
+            }
+            .crossIcon {
+                left: 50%;
+            }
+        }
+        .centerBox {
+            display: none;
+        }
+        .mobileLinkBox {
+            display: block;
+            width: 100%;
+            height: 0px;
+            border-radius: 10px;
+            border: 1px solid rgba(44, 44, 44, 0.43);
+            background-color: rgba(35, 35, 35, 0.61);
+            backdrop-filter: blur(20px);
+            transform-origin: top right;
+            transform: scale(0);
+            transition: all 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+            .linkList {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                .link {
+                    font-family: "Roboto", sans-serif;
+                    color: white;
+                    text-decoration: none;
+                    font-size: 24px;
+                    font-weight: 200;
+                    border-radius: 6px;
+                    position: relative;
+                    width: fit-content;
+                    transition: all 0.2s ease;
+                }
+                .link::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 0;
+                    filter: blur(20px);
+                    background : linear-gradient(90deg, rgba(224, 166, 255, 1) 0%, rgba(143, 158, 246, 1) 50%, rgba(133, 255, 208, 1) 100%);
+                    width: 100%;
+                    height: 10px;
+                    opacity: 0;
+                    transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+                }
+                .link:active {
+                    opacity: 0.5;
+                }
+                .link.active:after {
+                    opacity: 1;
+                }
+                .link.active {
+                    font-weight: 800;
+                    letter-spacing: -1px;
+                }
+            }
+            .discordIcon {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #282828;
+                transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+            .discordIcon:active {
+                opacity: 0.8;
+                transform: scale(0.9);
+            }
+        }
+        .mobileLinkBox.activeMd {
+            transform: scale(1);
+            height: 240px;
+            padding: 28px;
+            margin-top: 60px;
+        }
+    }
+    .mobileBg {
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.68);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+    }
+    .mobileBg.open {
+        opacity: 1;
+        pointer-events: auto;
+
+    }
+}

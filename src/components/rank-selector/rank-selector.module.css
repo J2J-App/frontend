@@ -1,0 +1,118 @@
+/* Reuse most styles from your combobox.module.css */
+.comboboxContainer {
+    position: relative;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #dadada;
+    user-select: none;
+}
+
+.comboboxButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:rgba(28, 28, 28, 1);
+    border-style: solid;
+    border-color: rgb(45, 45, 45);
+    border-width: 1px;
+    border-radius: 7px;
+    height: 42px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+.displayText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 15, 15, 1);
+    border-radius: 6px;
+    padding: 4px 6px 4px 12px;
+    height: 40px;
+    width: calc(100% - 30px);
+}
+
+.displayText:hover {
+    background: rgba(23, 23, 23, 1);
+    border-style: Solid;
+    border-color: #242424;
+    border-color: rgba(36, 36, 36, 1);
+    border-width: 1px;
+}
+
+.displayText:active {
+    background-color: #000000 !important;
+    border-color: #454545;
+}
+
+.displayText.active {
+    background: rgba(23, 23, 23, 1);
+    border-style: Solid;
+    border-color: #242424;
+    border-color: rgba(36, 36, 36, 1);
+    border-width: 1px;
+}
+
+.comboboxButton .arrowContainer {
+    width: 34px;
+    height: 34px;
+    background:rgba(28, 28, 28, 1);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    border-style: solid;
+    border-color: rgba(38, 38, 38, 1);
+    border-width: 1px;
+    background: rgba(20, 20, 20, 1);
+    border-radius: 7px;
+    z-index: 10;
+    overflow: hidden;
+    transition: height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    height: 0;
+    transform: translateY(-10px);
+    transform-origin: top center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+
+
+/* New styles specific to range selector */
+.rangeContainer {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rangeInputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rangeLabel {
+    font-size: 14px;
+    font-weight: 400;
+    color: #dadada;
+    padding-left: 4px;
+}

@@ -1,0 +1,93 @@
+.placementCardContainer {
+    width: 300px;
+    height: 450px;
+    overflow: hidden;
+    background : rgba(15, 15, 15, 1);
+    border-style : Solid;
+    border-color : #212121;
+    border-width : 1px;
+    border-radius: 10px;
+    position: relative;
+    .topBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 76px;
+        border-bottom: 1px solid #212121;
+        background-color: #212121;
+        .branchBar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.66);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+        }
+    }
+    .bottomBar {
+        margin-top: 76px;
+        width: 100%;
+        height: calc(100% - 76px);
+        position: relative;
+        .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 220px;
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
+            color: white;
+            .tile1, .tile2, .tile3, .tile4 {
+                position: relative;
+                .tileContent {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    .top {
+                        font-family: "Impact", serif;
+                    }
+                    .bottom {
+                        font-weight: 100;
+                    }
+                }
+            }
+            .tile2 {
+                .tileContent {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                }
+            }
+            .tile3 {
+                .tileContent {
+                    display: flex;
+                    flex-direction: column-reverse;
+                }
+            }
+            .tile4 {
+                .tileContent {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: flex-end;
+                }
+            }
+        }
+    }
+}

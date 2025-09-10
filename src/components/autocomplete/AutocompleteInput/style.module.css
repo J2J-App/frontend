@@ -1,0 +1,261 @@
+.autocompleteContainer {
+  position: relative;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+  outline: none;
+}
+
+.loadingIndicator {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #454545;
+  border-top: 2px solid #dadada;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorMessage {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #2a1a1a;
+  border: 1px solid #8b0000;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 4px;
+  color: #ff6b6b;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.errorMessageContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  margin-top: 4px;
+}
+
+.loadingStateContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+/* Ensure dropdown appears above other elements */
+.autocompleteContainer {
+  z-index: 100;
+}
+
+/* Focus management styles */
+.inputWrapper:focus-within {
+  z-index: 101;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .spinner {
+    border-color: ButtonText;
+    border-top-color: ButtonFace;
+  }
+  
+  .errorMessage {
+    background-color: Canvas;
+    border-color: Mark;
+    color: MarkText;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
+/* Mobile-specific styles */
+.mobileContainer {
+  /* Enhanced mobile container */
+  position: relative;
+  z-index: 200; /* Higher z-index for mobile to ensure dropdown appears above everything */
+}
+
+.mobileInputWrapper {
+  /* Mobile input wrapper adjustments */
+  position: relative;
+  
+  /* Ensure input is accessible when virtual keyboard is open */
+  transition: transform 0.3s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .loadingIndicator {
+    right: 8px;
+  }
+  
+  .spinner {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .errorMessage {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+
+/* Touch device specific styles */
+@media (hover: none) and (pointer: coarse) {
+  .mobileContainer {
+    /* Ensure proper touch interaction */
+    touch-action: manipulation;
+  }
+  
+  .mobileInputWrapper {
+    /* Better touch targets */
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .loadingIndicator {
+    /* Larger touch-friendly loading indicator */
+    right: 12px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .spinner {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Virtual keyboard adjustments */
+@media (max-height: 500px) {
+  .mobileInputWrapper {
+    /* Compact mode when virtual keyboard is likely open */
+    min-height: 40px;
+  }
+  
+  .errorMessage {
+    /* Smaller error messages when space is limited */
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobileContainer {
+    /* Optimize for landscape mobile */
+    position: relative;
+  }
+  
+  .mobileInputWrapper {
+    min-height: 36px;
+  }
+  
+  .loadingIndicator {
+    right: 8px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .spinner {
+    width: 12px;
+    height: 12px;
+    border-width: 1.5px;
+  }
+}
+
+/* Safe area handling for devices with notches */
+@supports (padding: max(0px)) {
+  .mobileContainer {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Screen reader only content */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enhanced keyboard navigation styles */
+.inputContainer:focus-within {
+  outline: 2px solid #505050;
+  outline-offset: 2px;
+}
+
+/* Keyboard-only focus styles */
+body.keyboard-user .inputContainer:focus-within {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+/* High contrast mode enhancements */
+@media (prefers-contrast: high) {
+  .inputContainer:focus-within {
+    outline: 3px solid ButtonText;
+    outline-offset: 2px;
+  }
+  
+  body.keyboard-user .inputContainer:focus-within {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(0, 0, 255, 0.3);
+  }
+}
+
+/* High DPI mobile displays */
+@media (-webkit-min-device-pixel-ratio: 2) and (hover: none) {
+  .mobileContainer {
+    /* Ensure crisp rendering on retina mobile displays */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

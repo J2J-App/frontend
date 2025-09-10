@@ -1,0 +1,259 @@
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #0F0F0F;
+  border: 1px solid #2B2B2B;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 4px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.suggestionsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #dadada;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.loadingSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #2B2B2B;
+  border-top: 2px solid #dadada;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #696969;
+  font-size: 14px;
+  font-style: italic;
+  min-height: 44px; /* Maintain consistent height */
+}
+
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #ff6b6b;
+  font-size: 14px;
+  gap: 8px;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 6px;
+  margin: 8px;
+  min-height: 44px;
+}
+
+.errorIcon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.fallbackNotice {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+  font-size: 12px;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+  font-style: italic;
+}
+
+.fallbackIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Screen reader only content */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scrollbar styling for better UX */
+.dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: #0F0F0F;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #2B2B2B;
+  border-radius: 3px;
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Focus management */
+.dropdown:focus-within {
+  border-color: #505050;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .dropdown {
+    max-height: 300px; /* Smaller on mobile to preserve screen space */
+    border-radius: 6px;
+  }
+  
+  .loadingState,
+  .emptyState {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dropdown {
+    border-color: #ffffff;
+    background-color: #000000;
+  }
+  
+  .loadingState {
+    color: #ffffff;
+  }
+  
+  .loadingSpinner {
+    border-color: #ffffff;
+    border-top-color: #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .loadingSpinner {
+    animation: none;
+  }
+  
+  .dropdown {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Ensure proper positioning context */
+.dropdown {
+  /* Ensure dropdown appears above other content */
+  isolation: isolate;
+}
+
+/* Mobile dropdown styles */
+.mobileDropdown {
+  /* Enhanced mobile positioning and interaction */
+  position: fixed !important;
+  max-height: 50vh; /* Limit height on mobile */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  
+  /* Prevent scrolling issues on mobile */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  
+  /* Improve touch scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Handle touch interactions on mobile */
+@media (hover: none) and (pointer: coarse) {
+  .dropdown {
+    /* Increase touch target areas on mobile */
+    padding: 4px 0;
+  }
+  
+  .mobileDropdown {
+    /* Mobile-specific adjustments */
+    max-height: 40vh; /* Smaller on touch devices */
+    border-radius: 16px;
+    margin-top: 8px;
+    
+    /* Better touch scrolling */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Scrollbar styling for mobile */
+  .mobileDropdown::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .mobileDropdown::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobileDropdown {
+    max-height: 30vh; /* Even smaller in landscape */
+    border-radius: 8px;
+  }
+}
+
+/* Virtual keyboard adjustments */
+@media (max-height: 400px) {
+  .mobileDropdown {
+    max-height: 25vh; /* Accommodate virtual keyboard */
+    border-radius: 8px;
+  }
+  
+  .loadingState,
+  .emptyState {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+}
+
+/* High DPI mobile displays */
+@media (-webkit-min-device-pixel-ratio: 2) and (hover: none) {
+  .mobileDropdown {
+    /* Ensure crisp borders on retina displays */
+    border-width: 0.5px;
+  }
+}
+
+/* Safe area handling for devices with notches */
+@supports (padding: max(0px)) {
+  .mobileDropdown {
+    padding-left: max(4px, env(safe-area-inset-left));
+    padding-right: max(4px, env(safe-area-inset-right));
+  }
+}

@@ -1,0 +1,174 @@
+.button {
+  color: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: .5px;
+  resize: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.buttonContainer {
+  display: inline-block;
+  height: fit-content;
+  width: fit-content;
+  resize: none;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.buttonContainer:active {
+  transform: scale(0.93);
+  opacity: .7;
+}
+
+.Primary.buttonContainer {
+  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+}
+
+.Primary.buttonContainer::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  z-index: -2;
+  opacity: 0;
+  filter: blur(20px);
+  transition: all 0.2s ease-in-out;
+}
+.Primary.buttonContainer:active::after {
+  opacity: 0.7 !important;
+  filter: blur(10px) !important;
+}
+.Primary.buttonContainer:hover::after {
+  opacity: 1;
+  filter: blur(18px);
+}
+.Primary.button{
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  background-position-y: 150px;
+  background-repeat: no-repeat;
+  transition: background-position-y 0.6s cubic-bezier(0.87, 0, 0.13, 1),
+  background-color 0.2s ease;
+}
+.Primary.button::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
+  filter: blur(20px);
+  z-index: 1;
+  opacity: .7;
+  transition: all .3s ease-in-out;
+}
+.Primary.button::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border-radius: 7px;
+  background: black;
+  z-index: 1;
+  transition: all .3s ease;
+}
+
+.Secondary.buttonContainer {
+  background : rgba(26, 26, 26, 1);
+  border-style : Solid;
+  border-color : rgba(59, 59, 59, 1);
+  border-width : 1px;
+}
+.Secondary.buttonContainer:hover {
+  background : rgba(31, 31, 31, 1);
+  border-style : Solid;
+  border-color : rgba(77, 77, 77, 1);
+  border-width : 1px;
+}
+
+
+.Outline.buttonContainer {
+  background : rgba(0, 0, 0, 0);
+  border-style : Solid;
+  border-color : #313131;
+  border-width : 1px;
+}
+.Outline.buttonContainer:hover {
+  background : rgba(36, 36, 36, 1);
+  border-style : Solid;
+  border-color : rgba(77, 77, 77, 1);
+  border-width :1px;
+}
+
+.Danger.buttonContainer {
+  background : rgba(99, 52, 52, 1);
+  border-style : Solid;
+  border-color : rgba(181, 121, 121, 1);
+  border-width : 1px;
+}
+.Danger.buttonContainer:hover {
+  background : rgba(161, 84, 84, 1);
+  border-style : Solid;
+  border-color : rgba(204, 136, 136, 1);
+  border-width : 1px;
+}
+
+.Link.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Link.button {
+  height: fit-content;
+  width: fit-content;
+  position: relative;
+}
+
+.Link.button::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  height: 2px;
+  width: 70%;
+  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  transition: all 0.2s ease;
+}
+
+.Link.button:hover::after {
+  width: 100%;
+}
+
+.Link.button:active {
+  color: rgba(255, 255, 255, 0.8);
+}
+.Link.button:active::after {
+  width: 50%;
+}
