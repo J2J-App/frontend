@@ -62,8 +62,7 @@ export default function Home() {
                 The Only Tool<br/>You Need
             </h2>
             <div className={styles.toolContainer}>
-                <div className={styles.leftContainer}>
-
+                <Link href={"/predictor"} className={styles.leftContainer}>
                     <Image style={{
                         objectFit: "cover",
                         objectPosition: "left",
@@ -74,23 +73,22 @@ export default function Home() {
                     }} className={styles.toolName}>
                         Predictor
                     </h3>
-
-                </div>
+                </Link>
                 <div className={styles.rightContainer}>
-
-                    <div className={styles.topTool }>
+                    <Link href={"/compare"} className={styles.topTool }>
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "bottom right",
-                        }} src="/tools/placements.png" alt={"Predictor"} fill={true}/>
+}} src={placements ?? "/tools/placements.png"} alt="Placements" fill={true}/>
+
                         <h3 style={{
                             bottom: "10px",
                             right: "10px",
                         }} className={styles.toolName1}>
                             Placements
                         </h3>
-                    </div>
-                    <div className={styles.topTool}>
+                    </Link>
+                    <Link href={"universities/josaa"} className={styles.topTool}>
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "top",
@@ -101,7 +99,7 @@ export default function Home() {
                         }} className={styles.toolName}>
                             Universities
                         </h3>
-                    </div>
+                    </Link>
                 </div>
             </div>
             <div className={styles.conContainer}>
