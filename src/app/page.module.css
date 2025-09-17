@@ -427,7 +427,7 @@
   width: 40%;
   position: relative;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 10px;
   align-items: center;
   flex-direction: column-reverse;

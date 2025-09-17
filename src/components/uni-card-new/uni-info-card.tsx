@@ -5,13 +5,11 @@ import {MdArrowRight} from "react-icons/md";
 export default function UniInfoCard({
     name,
     logo,
-    banner,
-    nirf
+    banner
 }: {
     name: string,
     logo: string,
-    banner: string,
-    nirf: string
+    banner: string
 }) {
     return <div className={styles.cardContainer}>
         <div className={styles.bannerContainer}>

@@ -3,8 +3,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './combobox.module.css';
 import Image from 'next/image';
-import arrow from '@/public/arrows2.svg';
-import search from '@/public/search.svg';
 
 type ComboboxOption = {
     value: string;
@@ -33,38 +31,13 @@ export default function Combobox({
     const [selectedOptions, setSelectedOptions] = useState<ComboboxOption[]>(
         defaultValue ? options.filter(option => defaultValue.includes(option.value)) : []
     );
-    const [searchTerm, setSearchTerm] = useState('');
     const [isFocused, setIsFocused] = useState(false);
-    const [filteredOptions, setFilteredOptions] = useState(options);
 
     const comboboxRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
     const isInitialAnimation = useRef(true);
 
-    // Filter options without triggering re-renders
-    const filterOptions = useCallback((term: string) => {
-        if (term) {
-            return options.filter(option =>
-                option.label.toLowerCase().includes(term.toLowerCase())
-            );
-        }
-        return options;
-    }, [options]);
 
-    // Update filtered options without triggering animation
-    useEffect(() => {
-        if (isOpen) {
-            const newFilteredOptions = filterOptions(searchTerm);
-            setFilteredOptions(newFilteredOptions);
-
-            // Only adjust height after the initial animation
-            if (!isInitialAnimation.current && dropdownRef.current) {
-                // Set height to auto immediately for content changes
-                dropdownRef.current.style.height = 'auto';
-            }
-        }
-    }, [searchTerm, isOpen, filterOptions]);
 
     const handleOptionClick = (option: ComboboxOption) => {
         // Calculate new selection first
@@ -83,11 +56,7 @@ export default function Combobox({
         }
 
         // Handle focus and dropdown state
-        if (multiSelect) {
-            if (searchable && inputRef.current) {
-                inputRef.current;
-            }
-        } else {
+        if (!multiSelect) {
             closeDropdown();
         }
     };
@@ -108,16 +77,7 @@ export default function Combobox({
         setIsOpen(true);
         isInitialAnimation.current = true;
 
-        // Reset search when opening
-        setSearchTerm('');
-        setFilteredOptions(options);
 
-        // Focus on input if searchable
-        setTimeout(() => {
-            if (searchable && inputRef.current) {
-                inputRef.current;
-            }
-        }, 10);
     };
 
     const closeDropdown = () => {
@@ -133,7 +93,6 @@ export default function Combobox({
             setTimeout(() => {
                 setIsOpen(false);
                 setIsAnimating(false);
-                setSearchTerm('');
             }, 300); // Match this with your CSS transition duration
         }
     };
@@ -189,8 +148,8 @@ export default function Combobox({
             if (isOpen) closeDropdown();
         } else if (e.key === 'ArrowDown' && isOpen) {
             e.preventDefault();
-            if (filteredOptions.length > 0) {
-                const firstOption = filteredOptions[0];
+            if (options.length > 0) {
+                const firstOption = options[0];
                 if (!multiSelect) {
                     setSelectedOptions([firstOption]);
                 }
@@ -198,9 +157,7 @@ export default function Combobox({
         }
     };
 
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value);
-    };
+
 
     const getDisplayValue = () => {
         if (selectedOptions.length === 0) {
@@ -236,7 +193,7 @@ export default function Combobox({
                 </span>
                 <div className={styles.arrowContainer}>
                     <Image
-                        src={arrow}
+                        src="/arrows2.svg"
                         alt="arrow"
                         width={16}
                         height={16}
@@ -249,34 +206,12 @@ export default function Combobox({
                     className={`${styles.dropdown} ${isOpen ? styles.open : ''}`}
                     ref={dropdownRef}
                 >
-                    {searchable && (
-                        <div className={styles.searchWrapper}>
-                            <div className={styles.searchContainer}>
-                                <div className={styles.searchIconContainer}>
-                                    <Image
-                                        src={search}
-                                        alt="search"
-                                        width={15}
-                                        height={15}
-                                        className={styles.searchIcon}
-                                    />
-                                </div>
-                                <input
-                                    ref={inputRef}
-                                    type="search"
-                                    className={styles.searchInput}
-                                    value={searchTerm}
-                                    onChange={handleSearchChange}
-                                    onClick={(e) => e.stopPropagation()}
-                                />
-                            </div>
-                        </div>
-                    )}
+
                     <div className={styles.dropdownContent}>
-                        {filteredOptions.length === 0 ? (
-                            <div className={styles.noResults}>No results found</div>
+                        {options.length === 0 ? (
+                            <div className={styles.noResults}>No options available</div>
                         ) : (
-                            filteredOptions.map((option) => (
+                            options.map((option) => (
                                 <div
                                     key={option.value}
                                     className={`${styles.option} ${isOptionSelected(option) ? styles.selected : ''}`}
