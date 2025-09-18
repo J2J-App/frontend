@@ -39,6 +39,10 @@ export default function NavBar() {
                         opacity: 0.7
                     }} src={discord} alt={"Discord"} width={20} height={20}/>
                 </a>
+                {/* ✅ Instagram */}
+                <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.rightBox}>
+                <Image style={{ opacity: 0.7 }} src={instagram} alt={"Instagram"} width={20} height={20} />
+                </a>
                 <div onClick={() => {
                     setIsOpen((v) => !v)
                 }} className={`${styles.mob} ${styles.rightBox} ${isOpen ? styles.menuActive : ""}`}>
@@ -58,6 +62,10 @@ export default function NavBar() {
                         <Image style={{
                             opacity: 0.7
                         }} src={discord} alt={"Discord"} width={20} height={20}/>
+                    </a>
+                    {/* ✅ Instagram for mobile */}
+                    <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.discordIcon}>
+                    <Image style={{ opacity: 0.7 }} src={instagram} alt={"Instagram"} width={20} height={20} />
                     </a>
                 </div>
             </div>
