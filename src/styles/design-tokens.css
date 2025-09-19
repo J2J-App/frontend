@@ -1,0 +1,320 @@
+/**
+ * Design System - CSS Custom Properties
+ * 
+ * This file contains design tokens for consistent styling across the application.
+ * These variables should be used instead of hardcoded values in component CSS modules.
+ * 
+ * Usage: var(--color-surface-primary)
+ * 
+ * @author JEEPedia Team
+ * @version 1.0.0
+ */
+
+:root {
+  /* ===================
+   * COLOR SYSTEM
+   * =================== */
+
+  /* Primary Brand Colors */
+  --color-primary-start: rgba(195, 84, 255, 1);
+  --color-primary-middle: rgba(106, 127, 246, 1);
+  --color-primary-end: rgba(92, 255, 192, 1);
+  --color-primary-purple: rgba(195, 84, 255, 1);
+
+  /* Gradient Definitions */
+  --gradient-primary: linear-gradient(
+    90deg,
+    var(--color-primary-start) -14.93%,
+    var(--color-primary-middle) 50%,
+    var(--color-primary-end) 92.16%
+  );
+  --gradient-primary-60: linear-gradient(
+    60deg,
+    var(--color-primary-start) 14.93%,
+    var(--color-primary-middle) 50%,
+    var(--color-primary-end) 92.16%
+  );
+  --gradient-primary-135: linear-gradient(
+    135deg,
+    rgb(216, 159, 248) 0%,
+    var(--color-primary-middle) 50%,
+    rgb(124, 232, 190) 100%
+  );
+  --gradient-muted: linear-gradient(
+    135deg,
+    rgb(40, 29, 45) 0%,
+    rgb(32, 35, 54) 50%,
+    rgb(20, 38, 31) 100%
+  );
+
+  /* Surface Colors (Dark Theme) */
+  --color-surface-primary: rgba(15, 15, 15, 1);
+  --color-surface-secondary: rgba(20, 20, 20, 1);
+  --color-surface-tertiary: rgba(23, 23, 23, 1);
+  --color-surface-quaternary: rgba(28, 28, 28, 1);
+  --color-surface-elevated: rgba(35, 35, 35, 1);
+
+  /* Border Colors */
+  --color-border-primary: rgb(45, 45, 45);
+  --color-border-secondary: rgba(36, 36, 36, 1);
+  --color-border-tertiary: rgba(38, 38, 38, 1);
+  --color-border-muted: rgba(51, 51, 51, 0.5);
+  --color-border-subtle: rgba(55, 55, 55, 1);
+  --color-border-light: rgba(69, 69, 69, 1);
+  --color-border-white: rgba(255, 255, 255, 0.22);
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #dadada;
+  --color-text-muted: rgba(255, 255, 255, 0.66);
+  --color-text-subtle: rgba(255, 255, 255, 0.64);
+
+  /* Overlay Colors */
+  --color-overlay-light: rgba(0, 0, 0, 0.66);
+  --color-overlay-medium: rgba(0, 0, 0, 0.81);
+  --color-overlay-transparent: rgba(0, 0, 0, 0);
+
+  /* Glass/Backdrop Colors */
+  --color-glass-primary: rgba(35, 35, 35, 0.61);
+  --color-glass-secondary: rgba(56, 56, 56, 0.61);
+  --color-glass-tertiary: rgba(30, 30, 30, 0.5);
+  --color-glass-muted: rgba(52, 52, 52, 0.37);
+  --color-glass-subtle: rgba(61, 61, 61, 0.64);
+  --color-glass-light: rgba(59, 59, 59, 0.5);
+
+  /* ===================
+   * SPACING SYSTEM
+   * =================== */
+
+  /* Base spacing unit */
+  --space-unit: 4px;
+
+  /* Spacing Scale */
+  --space-1: calc(var(--space-unit) * 1); /* 4px */
+  --space-2: calc(var(--space-unit) * 2); /* 8px */
+  --space-3: calc(var(--space-unit) * 3); /* 12px */
+  --space-4: calc(var(--space-unit) * 4); /* 16px */
+  --space-5: calc(var(--space-unit) * 5); /* 20px */
+  --space-6: calc(var(--space-unit) * 6); /* 24px */
+  --space-8: calc(var(--space-unit) * 8); /* 32px */
+  --space-10: calc(var(--space-unit) * 10); /* 40px */
+  --space-12: calc(var(--space-unit) * 12); /* 48px */
+  --space-16: calc(var(--space-unit) * 16); /* 64px */
+  --space-20: calc(var(--space-unit) * 20); /* 80px */
+  --space-24: calc(var(--space-unit) * 24); /* 96px */
+
+  /* Common spacing values */
+  --space-xs: var(--space-1); /* 4px */
+  --space-sm: var(--space-2); /* 8px */
+  --space-md: var(--space-4); /* 16px */
+  --space-lg: var(--space-6); /* 24px */
+  --space-xl: var(--space-8); /* 32px */
+  --space-2xl: var(--space-12); /* 48px */
+  --space-3xl: var(--space-16); /* 64px */
+
+  /* ===================
+   * BORDER RADIUS SYSTEM
+   * =================== */
+
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 7px;
+  --radius-2xl: 8px;
+  --radius-3xl: 10px;
+  --radius-full: 9999px;
+
+  /* Common radius values */
+  --radius-button: var(--radius-xl);
+  --radius-card: var(--radius-3xl);
+  --radius-input: var(--radius-xl);
+
+  /* ===================
+   * TYPOGRAPHY SYSTEM
+   * =================== */
+
+  /* Font Families */
+  --font-primary: "Roboto", sans-serif;
+  --font-mono: monospace;
+  --font-impact: "Impact", serif;
+
+  /* Font Sizes */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 32px;
+  --text-5xl: 38px;
+
+  /* Font Weights */
+  --font-thin: 100;
+  --font-light: 200;
+  --font-normal: 300;
+  --font-medium: 400;
+  --font-semibold: 500;
+  --font-bold: 600;
+  --font-extrabold: 700;
+  --font-black: 900;
+
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.5px;
+  --tracking-normal: 0;
+  --tracking-wide: 0.5px;
+
+  /* ===================
+   * COMPONENT DIMENSIONS
+   * =================== */
+
+  /* Standard component heights */
+  --height-input: 42px;
+  --height-button: 34px;
+  --height-nav: 50px;
+
+  /* Component widths */
+  --width-sidebar: 280px;
+  --width-container: 1600px;
+
+  /* ===================
+   * SHADOW SYSTEM
+   * =================== */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0px 0px 40px white;
+  --shadow-button: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+
+  /* ===================
+   * ANIMATION SYSTEM
+   * =================== */
+
+  /* Timing Functions */
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Duration */
+  --duration-fast: 0.15s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+  --duration-slower: 0.7s;
+
+  /* Common transitions */
+  --transition-fast: all var(--duration-fast) ease;
+  --transition-normal: all var(--duration-normal) ease;
+  --transition-slow: all var(--duration-slow) ease;
+  --transition-spring: all var(--duration-normal) var(--ease-spring);
+
+  /* ===================
+   * Z-INDEX SYSTEM
+   * =================== */
+
+  --z-background: -1;
+  --z-base: 0;
+  --z-above: 1;
+  --z-dropdown: 10;
+  --z-sticky: 100;
+  --z-modal: 1000;
+  --z-nav: 20000;
+  --z-tooltip: 30000;
+
+  /* ===================
+   * BACKDROP FILTERS
+   * =================== */
+
+  --backdrop-blur-sm: blur(4px);
+  --backdrop-blur-md: blur(8px);
+  --backdrop-blur-lg: blur(20px);
+  --backdrop-blur-xl: blur(30px);
+
+  /* ===================
+   * RESPONSIVE BREAKPOINTS
+   * =================== */
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Legacy support (keep for now, migrate to new system) */
+  --default-height: var(--height-button);
+}
+
+/* ===================
+ * UTILITY CLASSES
+ * =================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for accessibility */
+.focus-ring {
+  outline: 2px solid var(--color-primary-middle);
+  outline-offset: 2px;
+}
+
+/* Common animation classes */
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--duration-normal) var(--ease-in-out);
+}
+
+/* ===================
+ * KEYFRAMES
+ * =================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
