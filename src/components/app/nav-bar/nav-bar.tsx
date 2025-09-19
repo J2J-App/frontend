@@ -59,15 +59,14 @@ export default function NavBar() {
                         <Link className={checkUrl("/compare") ? `${styles.link} ${styles.active}` : styles.link}
                               href="/compare" onClick={handleClick}>Compare</Link>
                     </div>
-                    <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.discordIcon}>
-                        <Image style={{
-                            opacity: 0.7
-                        }} src={discord} alt={"Discord"} width={20} height={20}/>
+                    <div className={styles.iconRow}>
+                    <a href="https://discord.gg/..." target="_blank" className={styles.discordIcon}>
+                        <Image src={discord} alt="Discord" width={20} height={20} />
                     </a>
-                    {/* ✅ Instagram for mobile */}
                     <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.instagramIcon}>
-                    <Image style={{ opacity: 0.7 }} src={instagram} alt={"Instagram"} width={20} height={20} />
+                        <Image src={instagram} alt="Instagram" width={20} height={20} />
                     </a>
+                    </div>
                 </div>
             </div>
             <div onClick={() => setIsOpen((v) => !v)}
