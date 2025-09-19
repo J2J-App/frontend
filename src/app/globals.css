@@ -1,8 +1,8 @@
+@import "../styles/design-tokens.css";
+
 :root {
   --default-height: 34px;
 }
-
-
 
 html,
 body {
@@ -23,7 +23,8 @@ body {
   margin: 0;
 }
 
-a, button {
+a,
+button {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -40,6 +41,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
