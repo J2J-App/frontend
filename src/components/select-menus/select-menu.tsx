@@ -160,7 +160,7 @@ export default function SelectMenu({
                 <div className={styles.arrowContainer}>
                     <Image
                         src={arrowDown}
-                        alt="arrow"
+                        alt="Expand dropdown"
                         width={13}
                         height={13}
                         className={styles.rotate}
