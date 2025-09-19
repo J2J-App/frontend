@@ -70,7 +70,7 @@ export default function Pagination({
         aria-label="Previous page"
       >
         <div className={styles.arrowContainer}>
-            <Image src={arrowDown} alt="arrow-left" fill className={styles.arrowLeft}/>
+            <Image src={arrowDown} alt="Previous page" fill className={styles.arrowLeft}/>
         </div>
         <span>Previous</span>
       </button>
@@ -109,7 +109,7 @@ export default function Pagination({
       >
         <span>Next</span>
         <div className={styles.arrowContainer}>
-            <Image fill={true} src={arrowDown} alt="arrow-right" className={styles.arrowRight}/>
+            <Image fill={true} src={arrowDown} alt="Next page" className={styles.arrowRight}/>
         </div>
       </button>
       </Link>

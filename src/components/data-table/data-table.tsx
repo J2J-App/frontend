@@ -188,7 +188,7 @@ export default function DataTable({ data, pgup = false }: DataTable) {
                                             style={{objectFit: "contain", objectPosition: "center"}}
                                             quality={100}
                                             src={item.icon}
-                                            alt={item.college}
+                                            alt={`${item.college} logo`}
                                             fill={true}
                                         />
                                     </div>
