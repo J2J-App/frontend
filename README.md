@@ -41,7 +41,6 @@ Jeepedia is an open-source platform that makes **JEE counselling** simple, visua
 - 🔍 Compare colleges with real filters (not random Reddit advice)  
 - 🧼 No ads. No BS. No shady Telegram gyaan  
 - 🖥️ Clean UI + Fast performance  
-- 🔮 Upcoming: AI-powered predictor & comment section per college
 
 ---
 

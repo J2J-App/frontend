@@ -138,7 +138,7 @@
         backdrop-filter: blur(20px);
         transition: all 0.2s ease;
         animation: nav-bar-animation .7s cubic-bezier(0.87, 0, 0.13, 1) .6s forwards;
-
+        margin-left: 8px;
     }
     .rightBox.mob {
         display: none;
@@ -262,13 +262,33 @@
                 opacity: 0.8;
                 transform: scale(0.9);
             }
+              .instagramIcon {
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #282828;
+                transition: all 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+            }
+
+            .iconRow {
+                display: flex;
+                gap: 12px; /* space between discord & instagram */
+            }
         }
         .mobileLinkBox.activeMd {
             transform: scale(1);
-            height: 240px;
+            height: auto;             /* remove fixed height */
+            max-height: 70vh;         /* limit max height */
+            overflow-y: auto;         /* add vertical scroll */
             padding: 28px;
             margin-top: 60px;
         }
+
     }
     .mobileBg {
         z-index: 10000;
