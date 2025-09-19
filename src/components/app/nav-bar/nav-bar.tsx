@@ -3,6 +3,7 @@ import styles from "./nav-bar.module.css";
 import Image from "next/image";
 import icon from "@/public/icons/navbar/j2jicon.png"
 import discord from "@/public/icons/navbar/discord.svg"
+import instagram from "@/public/icons/navbar/instagram.svg";
 import Link from "next/link";
 
 import menu from "@/public/icons/navbar/menu.svg"
@@ -64,7 +65,7 @@ export default function NavBar() {
                         }} src={discord} alt={"Discord"} width={20} height={20}/>
                     </a>
                     {/* ✅ Instagram for mobile */}
-                    <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.discordIcon}>
+                    <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.instagramIcon}>
                     <Image style={{ opacity: 0.7 }} src={instagram} alt={"Instagram"} width={20} height={20} />
                     </a>
                 </div>
