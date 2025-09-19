@@ -1,105 +1,94 @@
-import React from "react";
+# 🚀 Jeepedia – JEE Counselling Made Easy
 
-// JeepediaHero.jsx
-// Single-file React component (TailwindCSS) for the Jeepedia landing hero + features section.
-// Default export a React component so it can be dropped into any Next.js / CRA project.
+![Jeepedia Screenshot](https://res.cloudinary.com/dqvwf3z2c/image/upload/v1750174048/image1_k9hyeb.jpg)
+<br>
 
-export default function JeepediaHero() {
-  return (
-    <section className="max-w-6xl mx-auto px-6 py-16">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: Text */}
-        <div>
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            Jeepedia — <span className="text-blue-600">JEE counselling</span> made simple
-          </h1>
+<div align="center">
 
-          <p className="mt-6 text-lg text-slate-600">
-            Clear college predictions, real cutoffs, seat matrices and placement statistics — all
-            in one open-source place. No ads. No noise. Just useful data to help you make the
-            right decision.
-          </p>
+  <a href="https://jeepedia.in">
+    <img src="https://img.shields.io/badge/Live%20Demo-jeepedia.in-blue?style=flat-square" alt="Live Site" />
+  </a>
+  <a href="https://github.com/J2J-App">
+    <img src="https://img.shields.io/badge/GitHub-J2J--App-%23121011?style=flat-square&logo=github" alt="GitHub" />
+  </a>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://jeepedia.in"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-600 text-white font-medium shadow-lg hover:brightness-95"
-            >
-              Live demo
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+</div>
+<br>
 
-            <a
-              href="https://github.com/J2J-App"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-slate-200 bg-white font-medium shadow-sm hover:bg-slate-50"
-            >
-              View on GitHub
-            </a>
-          </div>
+We were done switching between 7 websites, outdated PDFs, and advice from random seniors on the internet — just to make sense of JEE counselling.
+So we built something better.
 
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-slate-500">
-            <div>
-              <div className="font-semibold text-slate-800">44.6k+</div>
-              <div>Impressions</div>
-            </div>
-            <div>
-              <div className="font-semibold text-slate-800">8.13k</div>
-              <div>Total visits</div>
-            </div>
-            <div>
-              <div className="font-semibold text-slate-800">6.03k</div>
-              <div>Unique visitors</div>
-            </div>
-            <div>
-              <div className="font-semibold text-slate-800">4m 9s</div>
-              <div>Avg. session</div>
-            </div>
-          </div>
-        </div>
+---
 
-        {/* Right: Screenshot card */}
-        <div className="flex items-center justify-center">
-          <div className="w-full max-w-md bg-gradient-to-br from-white to-slate-50 rounded-2xl shadow-2xl p-6">
-            <img
-              src="https://res.cloudinary.com/dqvwf3z2c/image/upload/v1750174048/image1_k9hyeb.jpg"
-              alt="Jeepedia screenshot"
-              className="rounded-xl border border-slate-100 shadow-inner"
-            />
+## 🧠 What is Jeepedia?
 
-            <div className="mt-4 text-center text-sm text-slate-500">
-              Predictive cutoffs · Seat matrix · Placement stats
-            </div>
-          </div>
-        </div>
-      </div>
+Jeepedia is an open-source platform that makes **JEE counselling** simple, visual, and actually helpful.
 
-      {/* Features list */}
-      <div className="mt-12 grid md:grid-cols-3 gap-6">
-        <Feature title="Real cutoffs" desc="JoSAA + JAC Delhi historical cutoffs, shown visually." />
-        <Feature title="Seat matrices" desc="Up-to-date seat availability and branch breakdowns." />
-        <Feature title="Compare colleges" desc="Filter, sort and compare colleges with meaningful metrics." />
-      </div>
-    </section>
-  );
-}
+✨ Unlike your ex, we do give you clarity.
 
-function Feature({ title, desc }) {
-  return (
-    <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-      <div className="font-semibold text-slate-800">{title}</div>
-      <div className="mt-2 text-sm text-slate-500">{desc}</div>
-    </div>
-  );
-}
+---
+
+## 🌐 Live URL
+
+👉 [https://jeepedia.in](https://jeepedia.in)
+
+---
+
+## ⚙️ Features
+
+- 🎯 Predict colleges using **JoSAA + JAC Delhi** data  
+- 📊 View **cutoffs**, **seat matrices**, and **placement stats**  
+- 🔍 Compare colleges with real filters (not random Reddit advice)  
+- 🧼 No ads. No BS. No shady Telegram gyaan  
+- 🖥️ Clean UI + Fast performance  
+
+---
+
+## ✨ Our Amazing Contributors
+
+A huge thank you to all the wonderful people who have contributed to jeepedia
+
+<a href="https://github.com/J2J-App/frontend/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=J2J-App/frontend" />
+</a>
+
+---
+
+## 📈 Impact (First Launch)
+
+- `44.6k+` impressions  
+- `8.13k` total visits  
+- `6.03k` unique visitors  
+- `4 min 9 sec` avg. session time  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js  
+- **Backend**: Node.js + Express  
+- **Database**: NeonDB (PostgreSQL)  
+- **Hosting**: Vercel  
+
+---
+
+## 📂 GitHub Repos
+
+All source code is available under our GitHub organization:  
+👉 [https://github.com/J2J-App](https://github.com/J2J-App)
+
+---
+
+## 🧪 Local Setup Instructions
+
+```bash
+# Clone the repo
+git clone https://github.com/J2J-App/frontend.git
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
