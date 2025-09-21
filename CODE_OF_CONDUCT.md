@@ -9,7 +9,8 @@
 - 🌈 Community Values  
 - 📌 Contribution Guidelines  
 - 🛡 Enforcement  
-- 🤫 Confidentiality & Non-Retaliation  
+- 🤫 Confidentiality & Non-Retaliation
+- 📢 How to Report
 - 📖 Enforcement Guidelines  
 - 📘 Further Reading  
 - 🌟 Conclusion  
@@ -105,6 +106,22 @@ Maintainers may take action if behavior is harmful, offensive, or inconsistent w
 
 ## 🤫 Confidentiality & Non-Retaliation
 All reports are confidential. Retaliation against anyone reporting a concern or participating in an investigation is strictly prohibited.  
+
+---
+
+## 📢 How to Report
+
+If you experience or witness any behavior that violates this Code of Conduct, we encourage you to report it as soon as possible.  
+
+You can report violations via email at: *jeepedia.in@gmail.com*  
+
+When reporting, please include:  
+- A clear description of the incident  
+- Names of individuals involved (if known)  
+- Date, time  of the incident  
+- Any supporting evidence (screenshots, links, etc.)  
+
+All reports will be treated confidentially, and the enforcement team will follow up with appropriate action. Your safety and privacy is our priority.
 
 ---
 
