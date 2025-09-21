@@ -1,28 +1,26 @@
 # 📜 Jeepedia Code of Conduct
 
-## 🗂 Table of Contents
-- 🌟 Purpose  
-- 🌟 Our Pledge  
-- 🚦 Standards of Behavior  
-- 👩‍⚖ Enforcement Responsibilities  
-- 🌐 Scope  
-- 🌈 Community Values  
-- 📌 Contribution Guidelines  
-- 🛡 Enforcement  
-- 🤫 Confidentiality & Non-Retaliation
-- 📢 How to Report
-- 📖 Enforcement Guidelines  
-- 📘 Further Reading  
-- 🌟 Conclusion  
+## Table of Contents
+- [Purpose](#purpose)
+- [Our Pledge](#our-pledge)  
+- [Standards of Behavior](#standards-of-behavior)  
+- [Enforcement Responsibilities](#enforcement-responsibilities)  
+- [Scope](#scope)  
+- [Community Values](#community-values)  
+- [Contribution Guidelines](#contribution-guidelines)  
+- [Enforcement](#enforcement)  
+- [Confidentiality & Non-Retaliation](#confidentiality--non-retaliation)
+- [How to Report](#how-to-report)
+- [Enforcement Guidelines](#enforcement-guidelines)  
+- [Further Reading](#further-reading)  
+- [Conclusion](#conclusion)  
 
----
 
-## 🌟 Purpose
+## Purpose
 This Code of Conduct ensures a welcoming, safe, and inclusive environment for all participants in Jeepedia. By following these guidelines, contributors, maintainers, and users can collaborate effectively, share knowledge, and provide JEE aspirants with the best experience.  
 
----
 
-## 🌟 Our Pledge
+## Our Pledge
 We, the contributors, maintainers, and participants of Jeepedia, pledge to foster a community that is respectful, supportive, and empowering.  
 
 We commit to:  
@@ -34,9 +32,8 @@ We commit to:
 
 Together, we aim to maintain a community where contributors feel empowered and JEE aspirants achieve their goals.  
 
----
 
-## 🚦 Standards of Behavior
+## Standards of Behavior
 
 ### Positive Contributions
 Positive contributions include:  
@@ -54,26 +51,23 @@ Unacceptable behavior includes:
 - ❌ Introducing harmful, plagiarized, or disruptive code  
 - ❌ Attempting to sabotage the project or community tools  
 
----
 
-## 👩‍⚖ Enforcement Responsibilities
+## Enforcement Responsibilities
 Maintainers uphold community standards and may act when behavior is harmful or inconsistent with this Code of Conduct.  
 Responsibilities include:  
 - Guiding contributors and users  
 - Reviewing code and facilitating discussions  
 - Maintaining a healthy, productive, and welcoming environment  
 
----
 
-## 🌐 Scope
+## Scope
 This Code of Conduct applies to:  
 - Contributors, maintainers, reviewers, and users of Jeepedia  
 - All repositories, issues, pull requests, and discussions  
 - Public communications and representation of Jeepedia  
 
----
 
-## 🌈 Community Values
+## Community Values
 Jeepedia thrives on these values:  
 - 🤝 Respect – Value every participant’s ideas  
 - 💡 Curiosity – Encourage questions, experimentation, and learning  
@@ -83,9 +77,8 @@ Jeepedia thrives on these values:
 - 🚀 Innovation – Propose creative solutions  
 - 🎓 User Focus – Prioritize JEE aspirants’ needs  
 
----
 
-## 📌 Contribution Guidelines
+## Contribution Guidelines
 All contributions should align with this Code of Conduct. Contributors should:  
 - 🚫 Avoid offensive, discriminatory, or harmful content  
 - 🤝 Accept feedback constructively and respond professionally  
@@ -94,9 +87,7 @@ All contributions should align with this Code of Conduct. Contributors should:
 - 📖 Focus on community-driven improvement  
 - 💡 Share knowledge, tips, and improvements for Jeepedia tools  
 
----
-
-## 🛡 Enforcement
+## Enforcement
 Maintainers may take action if behavior is harmful, offensive, or inconsistent with this Code of Conduct. Actions may include:  
 - Guidance or private discussion  
 - Warnings for repeated or severe violations  
@@ -104,12 +95,11 @@ Maintainers may take action if behavior is harmful, offensive, or inconsistent w
 
 ---
 
-## 🤫 Confidentiality & Non-Retaliation
+## Confidentiality & Non-Retaliation
 All reports are confidential. Retaliation against anyone reporting a concern or participating in an investigation is strictly prohibited.  
 
----
 
-## 📢 How to Report
+## How to Report
 
 If you experience or witness any behavior that violates this Code of Conduct, we encourage you to report it as soon as possible.  
 
@@ -123,22 +113,19 @@ When reporting, please include:
 
 All reports will be treated confidentially, and the enforcement team will follow up with appropriate action. Your safety and privacy is our priority.
 
----
 
-## 📖 Enforcement Guidelines
+## Enforcement Guidelines
 Project leaders determine consequences based on severity:  
 - ✏ Minor Issue – Private discussion and clarification; public apology if needed  
 - ⚠ Warning – Official warning; temporary restrictions if repeated  
 - ⏳ Temporary Restriction – Restricted contribution access due to sustained inappropriate behavior  
 - 🚫 Permanent Restriction – Permanent ban for severe or repeated violations  
 
----
 
-## 📘 Further Reading
+## Further Reading
 Refer to CONTRIBUTING.md for workflow, coding standards, issue reporting, and collaboration best practices. Together with this Code of Conduct, it ensures Jeepedia remains productive, respectful, and inclusive.  
 
----
 
-## 🌟 Conclusion
+## Conclusion
 By following this Code of Conduct, we collectively create a Jeepedia community where every contributor, user, and participant feels valued, respected, and empowered.  
 Let’s work together to make JEE counselling accessible, reliable, and supportive for all aspirants.
