@@ -23,7 +23,7 @@ export default function NavBar() {
     return (<>
             <div className={styles.navBar}>
                 <Link href={"/"} className={path === "/" ? styles.leftBox + " " + styles.active : styles.leftBox}>
-                    <Image src={icon} alt={"Logo"} width={40} height={40} style={{
+                    <Image src={icon} alt="JEEPedia homepage" width={40} height={40} style={{
                         borderRadius: "8px",
                     }}/>
                 </Link>
@@ -38,17 +38,17 @@ export default function NavBar() {
                 <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.rightBox}>
                     <Image style={{
                         opacity: 0.7
-                    }} src={discord} alt={"Discord"} width={20} height={20}/>
+                    }} src={discord} alt="Join JEEPedia Discord community" width={20} height={20}/>
                 </a>
                 {/* ✅ Instagram */}
                 <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.rightBox}>
-                <Image style={{ opacity: 0.7 }} src={instagram} alt={"Instagram"} width={20} height={20} />
+                <Image style={{ opacity: 0.7 }} src={instagram} alt="Follow JEEPedia on Instagram" width={20} height={20} />
                 </a>
                 <div onClick={() => {
                     setIsOpen((v) => !v)
                 }} className={`${styles.mob} ${styles.rightBox} ${isOpen ? styles.menuActive : ""}`}>
-                    <Image className={styles.menuIcon} src={menu} alt={"Menu"} width={18} height={18}/>
-                    <Image className={styles.crossIcon} src={cross} alt={"Cross"} width={18} height={18}/>
+                    <Image className={styles.menuIcon} src={menu} alt="Open mobile menu" width={18} height={18}/>
+                    <Image className={styles.crossIcon} src={cross} alt="Close mobile menu" width={18} height={18}/>
                 </div>
                 <div className={isOpen ? `${styles.mobileLinkBox} ${styles.activeMd}` : `${styles.mobileLinkBox}`}>
                     <div className={styles.linkList}>
@@ -61,10 +61,10 @@ export default function NavBar() {
                     </div>
                     <div className={styles.iconRow}>
                     <a href="https://discord.gg/..." target="_blank" className={styles.discordIcon}>
-                        <Image src={discord} alt="Discord" width={20} height={20} />
+                        <Image src={discord} alt="Join JEEPedia Discord community" width={20} height={20} />
                     </a>
                     <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.instagramIcon}>
-                        <Image src={instagram} alt="Instagram" width={20} height={20} />
+                        <Image src={instagram} alt="Follow JEEPedia on Instagram" width={20} height={20} />
                     </a>
                     </div>
                 </div>

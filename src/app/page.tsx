@@ -39,11 +39,11 @@ export default function Home() {
     }]
     return (
     <article className={styles.page}>
-        <Image src={bg} alt={"Background"} fill={true} style={{
+        <Image src={bg} alt="" fill={true} style={{
             objectFit: "cover",
             objectPosition: "right",
         }} className={styles.desktop} quality={100}/>
-        <Image src={bgm} alt={"Background"} fill={true} style={{
+        <Image src={bgm} alt="" fill={true} style={{
             objectFit: "cover",
         }} className={styles.mobile} quality={100}/>
         <main className={styles.content}>
@@ -65,7 +65,7 @@ export default function Home() {
                         Launch
                     </p>
                     <div className={styles.linkImage}>
-                      <Image src={arrow} alt={"Arrow"} width={30} height={30} />
+                      <Image src={arrow} alt="Launch predictor tool" width={30} height={30} />
                     </div>
                 </Link>
             </div>
@@ -82,7 +82,7 @@ export default function Home() {
                     <Image style={{
                         objectFit: "cover",
                         objectPosition: "left",
-                    }} src={predictor} alt={"Predictor"} fill={true}/>
+                    }} src={predictor} alt="College Predictor tool interface showing rank analysis" fill={true}/>
                     <h3 style={{
                         top: "10px",
                         left: "10px",
@@ -95,7 +95,7 @@ export default function Home() {
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "bottom right",
-                        }} src={placements} alt={"Placements"} fill={true}/>
+                        }} src={placements} alt="Placement statistics dashboard for engineering colleges" fill={true}/>
                         <h3 style={{
                             bottom: "10px",
                             right: "10px",
@@ -107,7 +107,7 @@ export default function Home() {
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "top",
-                        }} src={uni} alt={"Universities"} fill={true}/>
+                        }} src={uni} alt="Universities directory showing college information" fill={true}/>
                         <h3 style={{
                             top: "10px",
                             right:  "10px",
@@ -127,7 +127,7 @@ export default function Home() {
                     }}>
                         Counsellings
                     </h3>
-                    <Image src={counsellingBg} alt={"Counselling Background"} fill={true} style={{
+                    <Image src={counsellingBg} alt="" fill={true} style={{
                         objectFit: "cover",
                         objectPosition: "center",
                         overflow: "hidden",
@@ -143,7 +143,7 @@ export default function Home() {
                                         objectFit: "contain",
                                         objectPosition: "center",
                                         overflow: "hidden"
-                                    }} src={counselling.icon} alt={counselling.name} fill={true}/>
+                                    }} src={counselling.icon} alt={`${counselling.name} counselling logo`} fill={true}/>
                                 </div>
 
                                 <div>
@@ -176,14 +176,14 @@ export default function Home() {
                 }}>
                     What Makes Us Different?
                 </h2>
-                <Image src={feathead} alt={"Feature Head"} fill={true} style={{
+                <Image src={feathead} alt="" fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
                     transform: "scale(1.1)",
                     filter: "blur(30px)",
                 }}/>
-                <Image src={feathead} alt={"Feature Head"} fill={true} style={{
+                <Image src={feathead} alt="" fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
@@ -328,7 +328,7 @@ export default function Home() {
                 <Accordion title={"Who's behind this project?"} content={"We are a small group of engineering students from many different universities across the nation."} width={"100%"}/>
             </div>
             <div className={styles.contactHead}>
-                <Image src={contact} alt={"contact"} fill={true} style={{
+                <Image src={contact} alt="" fill={true} style={{
                     objectFit: "cover",
                     objectPosition: "center",
                     zIndex: "1"

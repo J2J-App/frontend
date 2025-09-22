@@ -92,7 +92,7 @@ export default function Footer() {
                             objectFit: "contain",
                             borderRadius: "5px",
                             filter: "drop-shadow(0 0 5px rgba(0,0,0,0.5))",
-                        }} src={icon} alt={"App Icon"} fill={true} />
+                        }} src={icon} alt="JEEPedia logo" fill={true} />
                     </div>
                 </div>
             </div>

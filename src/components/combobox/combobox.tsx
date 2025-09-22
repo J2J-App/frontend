@@ -237,7 +237,7 @@ export default function Combobox({
                 <div className={styles.arrowContainer}>
                     <Image
                         src={arrow}
-                        alt="arrow"
+                        alt="Expand dropdown"
                         width={16}
                         height={16}
                         className={`${styles.arrow} ${isOpen ? styles.rotated : ''}`}
@@ -255,7 +255,7 @@ export default function Combobox({
                                 <div className={styles.searchIconContainer}>
                                     <Image
                                         src={search}
-                                        alt="search"
+                                        alt="Search"
                                         width={15}
                                         height={15}
                                         className={styles.searchIcon}
