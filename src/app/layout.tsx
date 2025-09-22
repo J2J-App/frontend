@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Footer from "@/components/footer/footer.tsx";
 import FooterWrapper from "@/components/footer/footer-wrapper.tsx";
+import ScrollButton from "@/components/scroll-btn/scroll-button";
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -82,6 +83,7 @@ export default function RootLayout({
         }}>
             {children}
         </div>
+        <ScrollButton/>
         <FooterWrapper>
             <Footer />
         </FooterWrapper>
