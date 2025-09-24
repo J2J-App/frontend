@@ -1,18 +1,21 @@
 // app/sitemap.ts
 
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = SITE_URL;
+
   return [
-    { url: "https://www.jeepedia.in/" },
-    { url: "https://www.jeepedia.in/predictor" },
-    { url: "https://www.jeepedia.in/predictor/josaa" },
-    { url: "https://www.jeepedia.in/predictor/jac" },
-    { url: "https://www.jeepedia.in/universities" },
-    { url: "https://www.jeepedia.in/universities/josaa" },
-    { url: "https://www.jeepedia.in/universities/jac" },
-    { url: "https://www.jeepedia.in/compare" },
-    { url: "https://www.jeepedia.in/privacy" },
-    { url: "https://www.jeepedia.in/tos" },
+    { url: `${baseUrl}/` },
+    { url: `${baseUrl}/predictor` },
+    { url: `${baseUrl}/predictor/josaa` },
+    { url: `${baseUrl}/predictor/jac` },
+    { url: `${baseUrl}/universities` },
+    { url: `${baseUrl}/universities/josaa` },
+    { url: `${baseUrl}/universities/jac` },
+    { url: `${baseUrl}/compare` },
+    { url: `${baseUrl}/privacy` },
+    { url: `${baseUrl}/tos` },
   ];
 }
