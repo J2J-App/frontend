@@ -1,9 +1,8 @@
 "use client"
 
-import React, {useState, useRef, useEffect, use} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styles from './select-menu.module.css';
 import Image from 'next/image';
-import arrowDown from '@/public/arrow.svg';
 
 export type SelectOption = {
     value: string;
@@ -159,7 +158,7 @@ export default function SelectMenu({
                 <span>{selectedOption ? selectedOption.label : placeholder}</span>
                 <div className={styles.arrowContainer}>
                     <Image
-                        src={arrowDown}
+                        src="/arrow.svg"
                         alt="arrow"
                         width={13}
                         height={13}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25.33 25.33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        mask: url(#mask);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-4 {
+        filter: url(#luminosity-noclip);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0" y1="12.67" x2="25.33" y2="12.67" gradientUnits="userSpaceOnUse">
+      <stop offset=".16" stop-color="#c354ff"/>
+      <stop offset=".5" stop-color="#6a7ff6"/>
+      <stop offset=".79" stop-color="#5df6c4"/>
+      <stop offset=".86" stop-color="#5cffc0"/>
+    </linearGradient>
+    <filter id="luminosity-noclip" x="-2.69" y="-2.5" width="31" height="30" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <mask id="mask" x="-2.69" y="-2.5" width="31" height="30" maskUnits="userSpaceOnUse">
+      <g class="cls-4">
+        <image width="31" height="30" transform="translate(-2.69 -2.5)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeCAYAAADU8sWcAAAACXBIWXMAAAsSAAALEgHS3X78AAAC2ElEQVRIicWXW2viQBiGH3PUJkQUba4E7U2h+f+/pZQK1dwYA2pzwEliEvdiSTCeutu16wtDQL7MM+9kDq8tYM+dJN0LDKAc/zCZTLBtG9M00TQNRVGQJIlWq4UkXR9rWZaUZUlRFOR5TpqmxHGM7/vM5/Pr8JeXFxzHYTQa0e/3MU0TXdeRZRlJkhrwVqsFwH6/r5/7/b4GCyGIoojVasV8PkeSJD4+Ps7DJ5MJjuPgOA7j8ZjhcIhlWbTbbVRVbcAr8DG8cp6mKUIINpsNnuehqiphGF6G27bNaDRiPB7z9PSEbdtYltVwfgg9VuW8LEt2ux1JkrBerzEMgzzPCYIAz/N4e3s7hZumSb/fZzgcYts2j4+PGIaBqqoXgdcGkmUZmqYBEEURvu8zGAzOwzVNwzRNLMvCsqxvg+H3Z9F1HcuySNOUXq9Ht9vFNM1GXb2CFEVB13Xa7Ta6rn8bfChd1+l0OhiGwcPDw0mfNVySJGRZRlVVZFn+ZzD8ngFVVWszitLc2dJhYbWiv9rPfyNZlut2vGAbzqt2bVX/ra6Z+vHjtTJTtavwW7r+qk/pT4p+Sne91Rrw6oi8C/ynVJk6NnbW+S3dl2V5sU/puKh63hJeFEXdLsKLoqjv5FupChd5nl+GH0af3W53E/dFUZCmKdvtFiEEWZadh1fRRwhBkiQnhd9RFaWCICAMQ4QQ5+FpmhJFEZvNhvV6TRAEJEnyrRkoioI4jvn8/MT3fTzPY7FYsFwuG3X1HRfHMavVCs/zMAyjHlCn06mv2WsJ9jC5VkZ838d1XWazGdPptJFiGvAq3qqqSp7nRFFEr9fDMIyTHHd8DB8n1+12W2e22WzG6+srruueDLiGV/E2DEOCIMD3fbrdbp1AroXIc7E5DEMWiwXT6RTXdXl/fz95r8WZv0vPz88MBgNM06wTSDXll+BAvZezLEMIwXK5PJnqL+H/S3e91X4Bv3bLuC6Q/QkAAAAASUVORK5CYII="/>
+      </g>
+    </mask>
+    <linearGradient id="linear-gradient-2" x1="1.52" y1="23.82" x2="23.82" y2="1.52" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c354ff"/>
+      <stop offset=".5" stop-color="#6a7ff6"/>
+      <stop offset="1" stop-color="#5cffc0"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g>
+      <rect class="cls-3" x="0" y="0" width="25.33" height="25.33" rx="5.18" ry="5.18"/>
+      <g class="cls-2">
+        <rect class="cls-1" x="0" y="0" width="25.33" height="25.33" rx="5.18" ry="5.18"/>
+      </g>
+      <path d="M12.88,20.3h-.42c-1.05,0-1.91-.86-1.91-1.91v-7.21c0-1.05.86-1.91,1.91-1.91h.42c1.05,0,1.91.86,1.91,1.91v7.21c0,1.05-.86,1.91-1.91,1.91ZM17.97,20.3h-.42c-1.05,0-1.91-.86-1.91-1.91V6.94c0-1.05.86-1.91,1.91-1.91h.42c1.05,0,1.91.86,1.91,1.91v11.45c0,1.05-.86,1.91-1.91,1.91ZM7.79,20.3h-.42c-1.05,0-1.91-.86-1.91-1.91v-2.97c0-1.05.86-1.91,1.91-1.91h.42c1.05,0,1.91.86,1.91,1.91v2.97c0,1.05-.86,1.91-1.91,1.91Z"/>
+    </g>
+  </g>
+</svg>

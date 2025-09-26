@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './radio-button.module.css';
 
 type RadioButtonProps = {
@@ -18,9 +18,6 @@ export default function RadioButton({
   checked, 
   onChange 
 }: RadioButtonProps) {
-  const [, setIsHovered] = useState(false);
-  const [, setIsFocused] = useState(false);
-
   const handleChange = () => {
     onChange(value);
   };
@@ -28,8 +25,6 @@ export default function RadioButton({
   return (
     <label 
       className={styles.radioContainer}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <input
         type="radio"
@@ -38,8 +33,8 @@ export default function RadioButton({
         checked={checked}
         onChange={handleChange}
         className={styles.radioInput}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={() => {}}
+        onBlur={() => {}}
       />
       <span className={`
         ${styles.radioButton} 

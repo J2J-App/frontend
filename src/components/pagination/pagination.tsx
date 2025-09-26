@@ -3,7 +3,6 @@
 import React from 'react';
 import styles from './pagination.module.css';
 import Image from 'next/image';
-import arrowDown from '@/public/arrow.svg';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 

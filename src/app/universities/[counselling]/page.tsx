@@ -131,7 +131,6 @@ const collegeSequence: {
 export default function Page() {
     const [collegeData, setCollegeData] = useState<Record<string, { logo: string, "college-pic": string }>>({});
     const [selectedUniType, setSelectedUniType] = useState<string | null>(null);
-    const [searchQuery, setSearchQuery] = useState("");
     const [isLoading, setIsLoading] = useState(true); // Add loading state
 
     const {
@@ -319,25 +318,10 @@ export default function Page() {
                 </div>
             ) : (
                 <>
-                    <div style={{
-                        width: "calc(100% - 40px)",
-                        maxWidth: "1000px",
-                        marginTop: "20px"
-                    }}>
-                        <SingleInput
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            holder="Search universities"
-                            enabled={true}
-                        />
-                    </div>
-
 
                     <div style={{ marginTop: "10px" }}>
                         {Array.isArray(collegeSequence[counselling]) ? <div className={Styles.page}> {
-                            collegeSequence[counselling].filter((collegeSlug: string) =>
-                                getDisplayName(collegeSlug).toLowerCase().includes(searchQuery.toLowerCase())).map((collegeSlug: string) => {
+                            collegeSequence[counselling].map((collegeSlug: string) => {
                                 const data = collegeData[collegeSlug];
                                 if (!data) return null;
 
@@ -371,8 +355,7 @@ export default function Page() {
                                 />
                             </div>
                             <div className={Styles.page}>
-                                {selectedUniType && (collegeSequence[counselling] as Record<string, string[]>)[selectedUniType]?.filter((collegeSlug: string) =>
-                                    getDisplayName(collegeSlug).toLowerCase().includes(searchQuery.toLowerCase())).map((collegeSlug: string) => {
+                                {selectedUniType && (collegeSequence[counselling] as Record<string, string[]>)[selectedUniType]?.map((collegeSlug: string) => {
                                     const data = collegeData[collegeSlug];
                                     if (!data) return null;
 

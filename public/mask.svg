@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 232.48 127">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <path class="cls-1" d="M232.48,0v108.62c-34.26,11.7-73.94,18.38-116.24,18.38S34.26,120.32,0,108.62V0h232.48Z"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g class="cls-2">
+      <image width="936" height="526" transform="translate(-10.1 -7.5) scale(.27)" xlink:href="../../Documents/GitHub/frontend/src/public/nsut.jpg"/>
+    </g>
+  </g>
+</svg>
