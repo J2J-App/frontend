@@ -7,7 +7,11 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Footer from "@/components/footer/footer.tsx";
 import FooterWrapper from "@/components/footer/footer-wrapper.tsx";
+
+import { SITE_URL, CONTACT_EMAIL, DEV_TUNNEL_URL, ANALYTICS, FEATURES } from "@/config";
+
 import ScrollButton from "@/components/scroll-btn/scroll-button";
+
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -31,14 +35,14 @@ export const metadata: Metadata = {
     openGraph: {
     title: 'The no-bullshit tool for JEE counselling',
     description: 'JEE Pedia is your ultimate guide to cracking Counselling – get real cutoffs, accurate placement data and branch comparisons all in one place.',
-    url: 'https://jeepedia.in',
+    url: SITE_URL,
     siteName: 'JEEPedia',
     images: [
       {
-        url: 'https://7rfkcr7r-3000.inc1.devtunnels.ms/og-image.png', 
+        url: `${DEV_TUNNEL_URL || SITE_URL}/og-image.png`, 
         width: 1200,
         height: 630,
-        alt: 'Social image alt text',
+        alt: 'JEEPedia - JEE College Predictor and Counselling Guide',
       },
     ],
     locale: 'en_US',
@@ -46,8 +50,8 @@ export const metadata: Metadata = {
 },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Twitter Title',
-    description: 'Your Twitter Description',
+    title: 'JEEPedia - JEE College Predictor',
+    description: 'The no-bullshit tool for JEE counselling - get real cutoffs, accurate placement data and branch comparisons',
     images: ['/og-image.png'], 
   },
   keywords: [
@@ -69,10 +73,21 @@ export default function RootLayout({
   return (
     <html lang="en">
     <head>
-        <script async={true} defer={true} src="https://cloud.umami.is/script.js"
-                data-website-id="0a1d5446-18c9-41be-a368-21c9eb0ddee9"></script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6258466000437582"
-     crossOrigin="anonymous"></script>
+        {FEATURES.enableAnalytics && ANALYTICS.umamiWebsiteId && (
+          <script 
+            async={true} 
+            defer={true} 
+            src={ANALYTICS.umamiScriptUrl}
+            data-website-id={ANALYTICS.umamiWebsiteId}
+          />
+        )}
+        {FEATURES.enableAnalytics && ANALYTICS.googleAdsenseId && (
+          <script 
+            async 
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ANALYTICS.googleAdsenseId}`}
+            crossOrigin="anonymous"
+          />
+        )}
     </head>
     <body className={roboto.className + " " + round.className}>
     <Analytics/>
