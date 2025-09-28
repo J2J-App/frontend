@@ -26,6 +26,9 @@ import {DiGithub} from "react-icons/di";
 import Accordion from "@/components/accordion/accordion.tsx";
 import {MdMail} from "react-icons/md";
 import Footer from "@/components/footer/footer.tsx";
+// 🎯 ACTION 1: Import your new component
+import ContactForm from '../components/ContactForm'; 
+
 
 export default function Home() {
     const counsellings = [{
@@ -98,7 +101,7 @@ export default function Home() {
                         }} src={placements} alt={"Placements"} fill={true}/>
                         <h3 style={{
                             bottom: "10px",
-                            right: "10px",
+                            right:  "10px",
                         }} className={styles.toolName1}>
                             Placements
                         </h3>
@@ -301,7 +304,7 @@ export default function Home() {
                                 }}
                             >
                             Instagram
-                          </span>
+                         </span>
                         </a>
                         <a style={{
                             color: "#ffffff",
@@ -335,11 +338,11 @@ export default function Home() {
                 }} />
                 <div className={styles.contactText}>
                     <h2 className={styles.head1}>
-                        But Maybe You've<br />Still Got Questions
+                        But Maybe You've<br />
+                        Still Got Questions
                     </h2>
-                    <a href="mailto:jeepedia.in@gmail.com" className={styles.contactLink}>
-                        <MdMail /> Mail Us
-                    </a>
+                    {/* 🎯 ACTION 2: REPLACE the old mailto link with your new form */}
+                    <ContactForm />
                 </div>
 
             </div>
