@@ -32,7 +32,7 @@ export default function Checkbox({
                     onChange={handleChange}
                 />
                 <div className={styles.checkbox}></div>
-                <Image className={styles.checkmark} src={checkmark} alt="" width={10}/>
+                <Image className={styles.checkmark} src={checkmark} alt="Checked" width={10}/>
 
             </div>
             {label && <span className={styles.label}>{label}</span>}

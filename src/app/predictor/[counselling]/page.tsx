@@ -969,7 +969,7 @@ export default function Page() {
             }}
             fill
             src={headingbg}
-            alt=""
+            alt="Predictor page heading background"
           />
           <div className={Styles.textContainer}>
             <span

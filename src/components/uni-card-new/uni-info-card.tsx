@@ -18,7 +18,7 @@ export default function UniInfoCard({
       <div className={styles.bannerContainer}>
         <Image
           src={banner}
-          alt=""
+          alt={`${name} university blurred campus background`}
           fill={true}
           style={{
             objectFit: "cover",

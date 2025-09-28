@@ -39,11 +39,11 @@ export default function Home() {
     }]
     return (
     <article className={styles.page}>
-        <Image src={bg} alt="" fill={true} style={{
+        <Image src={bg} alt="JEEPedia abstract background" fill={true} style={{
             objectFit: "cover",
             objectPosition: "right",
         }} className={styles.desktop} quality={100}/>
-        <Image src={bgm} alt="" fill={true} style={{
+        <Image src={bgm} alt="JEEPedia mobile background" fill={true} style={{
             objectFit: "cover",
         }} className={styles.mobile} quality={100}/>
         <main className={styles.content}>
@@ -127,7 +127,7 @@ export default function Home() {
                     }}>
                         Counsellings
                     </h3>
-                    <Image src={counsellingBg} alt="" fill={true} style={{
+                    <Image src={counsellingBg} alt="Counsellings section background" fill={true} style={{
                         objectFit: "cover",
                         objectPosition: "center",
                         overflow: "hidden",
@@ -176,14 +176,14 @@ export default function Home() {
                 }}>
                     What Makes Us Different?
                 </h2>
-                <Image src={feathead} alt="" fill={true} style={{
+                <Image src={feathead} alt="Feature comparison background blur" fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
                     transform: "scale(1.1)",
                     filter: "blur(30px)",
                 }}/>
-                <Image src={feathead} alt="" fill={true} style={{
+                <Image src={feathead} alt="Feature comparison illustration" fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
@@ -328,7 +328,7 @@ export default function Home() {
                 <Accordion title={"Who's behind this project?"} content={"We are a small group of engineering students from many different universities across the nation."} width={"100%"}/>
             </div>
             <div className={styles.contactHead}>
-                <Image src={contact} alt="" fill={true} style={{
+                <Image src={contact} alt="Contact section background" fill={true} style={{
                     objectFit: "cover",
                     objectPosition: "center",
                     zIndex: "1"

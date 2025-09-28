@@ -32,7 +32,7 @@ export default function PlacementCard({ name, course, background, icon, max, avg
             </div>
             <Image style={{
                 objectFit: "cover",
-            }}  src={background} alt="" fill={true} />
+            }}  src={background} alt={`${name} ${course} department background`} fill={true} />
         </div>
         <div className={styles.bottomBar}>
             <span style={{
@@ -48,10 +48,10 @@ export default function PlacementCard({ name, course, background, icon, max, avg
             }}>
                 PACKAGES
             </span>
-            <Image src={circle} className={styles.circle} alt="" width={150} height={150} />
+            <Image src={circle} className={styles.circle} alt="Decorative circle graphic" width={150} height={150} />
             <Image style={{
                 filter: "blur(30px)",
-            }} src={circle} className={styles.circle} alt="" width={150} height={150} />
+            }} src={circle} className={styles.circle} alt="Decorative circle graphic" width={150} height={150} />
             <div className={styles.content}>
                 <div className={styles.tile1}>
                     <div className={styles.tileContent}>

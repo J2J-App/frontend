@@ -59,7 +59,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                     }}
                     fill
                     src={currentUniData.photos["college-pic"]}
-                    alt=""
+                    alt={`${uni} blurred campus background`}
                 />
                 <Image
                     style={{
