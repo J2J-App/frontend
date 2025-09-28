@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./scroll-button.module.css";
-import { MdKeyboardArrowUp } from "react-icons/md";
+import Image from "next/image";
+import arrowDown from '@/public/arrow.svg';
 
 export default function ScrollButton() {
   //state to control the visibilty
@@ -35,8 +36,13 @@ export default function ScrollButton() {
       className={`${styles.scrollBtn} ${isVisible ? styles.show : ""}`}
       onClick={scrollToTop}
     >
-      {/* Arrow button */}
-      <MdKeyboardArrowUp size={32} /> 
+      <Image
+          src={arrowDown}
+          alt="arrow"
+          width={16}
+          height={16}
+          className={`${styles.arrow}`}
+      />
     </button>
   );
 }
