@@ -92,3 +92,22 @@ npm install
 # Start the dev server
 npm run dev
 ```
+---
+## Contributing Guidelines 📑
+
+We welcome contributions from developers of all skill levels! Whether you're fixing bugs, adding features, creating new agents, or improving documentation, your help makes frontend better for everyone. 
+
+Check out the full guidelines here: [CONTRIBUTING.md](./CONTRIBUTING.md)  
+
+**Ways to Contribute:**
+- 🐛 Bug Fixes  
+- ✨ New Features  
+- 🤖 New Agents  
+- 📚 Documentation  
+- 🧪 Testing  
+- 🎨 UI/UX Improvements  
+---
+## License 📄
+
+This project is licensed under the [MIT License](./LICENSE).  
+Click the link to read the full license.
