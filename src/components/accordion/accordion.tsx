@@ -41,7 +41,7 @@ export default function Accordion({
             <div className={`${styles.accordionTitle} ${isOpen ? styles.active : ''}`} onClick={toggleAccordion}>
                 <span className={styles.titleText}>{title}</span>
                 <div className={styles.arrowContainer}>
-                    <Image src={arrow} alt="arrow" className={styles.arrow} />
+                    <Image src={arrow} alt="Expand section" className={styles.arrow} />
                 </div>
             </div>
             <div
