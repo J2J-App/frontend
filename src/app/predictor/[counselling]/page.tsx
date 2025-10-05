@@ -17,6 +17,11 @@ import { counsellings } from "@/app/predictor/counsellings.ts";
 import Switch from "@/components/switch/switch.tsx";
 import Checkbox from "@/components/check-boxes/check-boxes.tsx";
 import API_URL from "@/config";
+import {
+  safeGetLocalStorage,
+  safeSetLocalStorage,
+  safeRemoveLocalStorage,
+} from "@/lib/safe-localStorage";
 
 // Create a reusable fetch function that can be called from multiple places
 const fetchPredictorData = async ({
@@ -588,19 +593,26 @@ export default function Page() {
   // Load saved state from localStorage
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      // Load basic form values
-      const savedMARank = localStorage.getItem("mains_crl_rank");
-      const savedMCRank = localStorage.getItem("mains_cat_rank");
-      const savedACRank = localStorage.getItem("adv_cat_rank");
-      const enabledAdv = localStorage.getItem("adv_enabled");
-      const savedRegion = localStorage.getItem("region");
-      const savedCategory = localStorage.getItem("category");
-      const savedSubCategory = localStorage.getItem("subCategory");
-      const savedGender = localStorage.getItem("gender");
-      const savedSepCategory = localStorage.getItem(counselling + "_sepcat");
+      // Load basic form values using safe localStorage
+      const savedMARank = safeGetLocalStorage<string>("mains_crl_rank").data;
+      const savedMCRank = safeGetLocalStorage<string>("mains_cat_rank").data;
+      const savedACRank = safeGetLocalStorage<string>("adv_cat_rank").data;
+      const enabledAdv = safeGetLocalStorage<string>("adv_enabled").data;
+      const savedRegion = safeGetLocalStorage<string>("region").data;
+      const savedCategory = safeGetLocalStorage<string>("category").data;
+      const savedSubCategory = safeGetLocalStorage<string>("subCategory").data;
+      const savedGender = safeGetLocalStorage<string>("gender").data;
+      const savedSepCategory = safeGetLocalStorage<string>(
+        counselling + "_sepcat"
+      ).data;
 
-      const savedTypes = localStorage.getItem(counselling + "_types");
-      const savedType = localStorage.getItem(counselling + "_collegeType");
+      const savedTypesResult = safeGetLocalStorage<string[]>(
+        counselling + "_types"
+      );
+      const savedTypes = savedTypesResult.data;
+      const savedType = safeGetLocalStorage<string>(
+        counselling + "_collegeType"
+      ).data;
 
       // Load counselling-specific values if using separate categories
       if (savedMARank) setMainsCRLRank(savedMARank);
@@ -617,21 +629,23 @@ export default function Page() {
       if (savedSubCategory) setSubCategory(savedSubCategory);
       if (savedGender) setGender(savedGender);
       if (savedSepCategory) setSepCategory(savedSepCategory == "true");
+
       if (savedTypes) {
-        const parsedTypes = JSON.parse(savedTypes);
-        setTypesList(parsedTypes);
-        setActiveIndex(parsedTypes.indexOf(savedType));
+        setTypesList(savedTypes);
+        if (savedType) {
+          setActiveIndex(savedTypes.indexOf(savedType));
+        }
       }
       if (savedType) setCollegeType(savedType);
       if (!savedType && !savedTypes) {
         if (currentCounselling?.types) {
           setCollegeType(currentCounselling?.types[0]);
           setTypesList(currentCounselling?.types);
-          localStorage.setItem(
+          safeSetLocalStorage(
             counselling + "_types",
-            JSON.stringify(currentCounselling?.types)
+            currentCounselling?.types
           );
-          localStorage.setItem(
+          safeSetLocalStorage(
             counselling + "_collegeType",
             currentCounselling?.types[0]
           );
@@ -639,10 +653,12 @@ export default function Page() {
       }
 
       if (savedSepCategory == "true") {
-        const currentCategory = localStorage.getItem(counselling + "_category");
-        const currentSubCategory = localStorage.getItem(
+        const currentCategory = safeGetLocalStorage<string>(
+          counselling + "_category"
+        ).data;
+        const currentSubCategory = safeGetLocalStorage<string>(
           counselling + "_subCategory"
-        );
+        ).data;
         if (currentCategory)
           setCategory(
             currentCategory == "OBC-NCL" && counselling == "jac"
@@ -653,16 +669,24 @@ export default function Page() {
       }
 
       // Try to load saved results
-      try {
-        const savedResult = localStorage.getItem(counselling + "_result");
-        if (savedResult) {
+      const savedResultResult = safeGetLocalStorage(counselling + "_result");
+      if (savedResultResult.success && savedResultResult.data) {
+        try {
+          const parsedResult =
+            typeof savedResultResult.data === "string"
+              ? JSON.parse(savedResultResult.data)
+              : savedResultResult.data;
           setResult((prev) => ({
             ...prev,
-            ...JSON.parse(savedResult),
+            ...parsedResult,
           }));
+        } catch (e) {
+          console.error("Error parsing saved results:", e);
+          // Clean up corrupted data
+          safeRemoveLocalStorage(counselling + "_result");
         }
-      } catch (e) {
-        console.error("Error loading saved results:", e);
+      } else if (!savedResultResult.success) {
+        console.warn("Could not load saved results:", savedResultResult.error);
       }
 
       // Load college types
@@ -675,7 +699,7 @@ export default function Page() {
       "2023": [],
       "2022": [],
     });
-    localStorage.removeItem(counselling + "_result");
+    safeRemoveLocalStorage(counselling + "_result");
   }
 
   // Input handlers
@@ -686,7 +710,7 @@ export default function Page() {
 
     if (!isNaN(Number(value)) && !value.includes(" ")) {
       setMainsCRLRank(value ? value : "");
-      localStorage.setItem("mains_crl_rank", value);
+      safeSetLocalStorage("mains_crl_rank", value);
     }
     clearResults();
   };
@@ -698,7 +722,7 @@ export default function Page() {
 
     if (!isNaN(Number(value)) && !value.includes(" ")) {
       setMainsCATRank(value ? value : "");
-      localStorage.setItem("mains_cat_rank", value);
+      safeSetLocalStorage("mains_cat_rank", value);
     }
     clearResults();
   };
@@ -710,7 +734,7 @@ export default function Page() {
 
     if (!isNaN(Number(value)) && !value.includes(" ")) {
       setAdvCATRank(value ? value : "");
-      localStorage.setItem("adv_cat_rank", value);
+      safeSetLocalStorage("adv_cat_rank", value);
     }
     clearResults();
   };
@@ -718,7 +742,7 @@ export default function Page() {
   // Other form handlers
   const handleOnChangeOfRegion = (value: string) => {
     setRegion(value);
-    localStorage.setItem("region", value);
+    safeSetLocalStorage("region", value);
     setErrors([]);
     setApiError(null);
     clearResults();
@@ -727,9 +751,9 @@ export default function Page() {
   const handleOnChangeOfCategory = (value: string) => {
     setCategory(value);
     if (sepCategory) {
-      localStorage.setItem(counselling + "_category", value);
+      safeSetLocalStorage(counselling + "_category", value);
     } else {
-      localStorage.setItem("category", value);
+      safeSetLocalStorage("category", value);
     }
     setErrors([]);
     setApiError(null);
@@ -739,9 +763,9 @@ export default function Page() {
   const handleChangeSubCategory = (value: string) => {
     setSubCategory(value);
     if (sepCategory) {
-      localStorage.setItem(counselling + "_subCategory", value);
+      safeSetLocalStorage(counselling + "_subCategory", value);
     } else {
-      localStorage.setItem("subCategory", value);
+      safeSetLocalStorage("subCategory", value);
     }
     setErrors([]);
     setApiError(null);
@@ -750,7 +774,7 @@ export default function Page() {
 
   const handleGenderChange = (value: string) => {
     setGender(value);
-    localStorage.setItem("gender", value);
+    safeSetLocalStorage("gender", value);
     setErrors([]);
     setApiError(null);
     clearResults();
@@ -854,7 +878,7 @@ export default function Page() {
 
     // Update state using functional update to avoid stale closure
     setCollegeType((prevType) => {
-      localStorage.setItem(`${counselling}_collegeType`, selectedType);
+      safeSetLocalStorage(`${counselling}_collegeType`, selectedType);
       return selectedType;
     });
 
@@ -969,7 +993,7 @@ export default function Page() {
             }}
             fill
             src={headingbg}
-            alt="Predictor page heading background"
+            alt={"Heading Background"}
           />
           <div className={Styles.textContainer}>
             <span
@@ -1024,7 +1048,7 @@ export default function Page() {
                           checked={advEnabled}
                           onChange={(c) => {
                             setAdvEnabled(c);
-                            localStorage.setItem("adv_enabled", c.toString());
+                            safeSetLocalStorage("adv_enabled", c.toString());
                           }}
                         />
                       </div>
@@ -1086,12 +1110,12 @@ export default function Page() {
                 checked={sepCategory}
                 onChange={(c) => {
                   if (c) {
-                    const currentCategory = localStorage.getItem(
+                    const currentCategory = safeGetLocalStorage<string>(
                       counselling + "_category"
-                    );
-                    const currentSubCategory = localStorage.getItem(
+                    ).data;
+                    const currentSubCategory = safeGetLocalStorage<string>(
                       counselling + "_subCategory"
-                    );
+                    ).data;
                     if (currentCategory)
                       setCategory(
                         currentCategory == "OBC-NCL" && counselling == "jac"
@@ -1100,9 +1124,10 @@ export default function Page() {
                       );
                     if (currentSubCategory) setSubCategory(currentSubCategory);
                   } else {
-                    const savedCategory = localStorage.getItem("category");
+                    const savedCategory =
+                      safeGetLocalStorage<string>("category").data;
                     const savedSubCategory =
-                      localStorage.getItem("subCategory");
+                      safeGetLocalStorage<string>("subCategory").data;
                     if (savedCategory)
                       setCategory(
                         savedCategory == "OBC-NCL" && counselling == "jac"
@@ -1112,7 +1137,7 @@ export default function Page() {
                     if (savedSubCategory) setSubCategory(savedSubCategory);
                   }
                   setSepCategory(c);
-                  localStorage.setItem(counselling + "_sepcat", c.toString());
+                  safeSetLocalStorage(counselling + "_sepcat", c.toString());
                 }}
               />
 
