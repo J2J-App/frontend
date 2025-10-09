@@ -1,0 +1,204 @@
+<div id="jee-bot-toggle">J</div>
+<div id="jee-bot-panel">
+  <div id="jee-bot-header">
+    <span>🎓 JEE College Assistant</span>
+  </div>
+  <div id="jee-bot-messages"></div>
+  <div class="quick-replies">
+    <div class="quick-reply" data-reply="Show me around">Show me around</div>
+    <div class="quick-reply" data-reply="Predictor">Predictor</div>
+    <div class="quick-reply" data-reply="Compare">Compare</div>
+    <div class="quick-reply" data-reply="Universities">Universities</div>
+  </div>
+  <div id="jee-bot-input">
+    <input placeholder="Ask me anything about JEE colleges..." />
+    <button>➤</button>
+  </div>
+</div>
+
+<style>
+  /* --- Toggle Button --- */
+  #jee-bot-toggle {
+    position: fixed; bottom: 20px; right: 20px;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white; font-weight: bold; font-size: 28px;
+    border-radius: 50%; width: 65px; height: 65px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 9999;
+    box-shadow: 0 0 18px rgba(128, 128, 255, 0.7);
+    transition: all 0.3s ease;
+  }
+  #jee-bot-toggle:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 0 28px rgba(128, 128, 255, 0.9);
+  }
+
+  /* --- Chat Panel --- */
+  #jee-bot-panel {
+    position: fixed; bottom: 95px; right: 20px;
+    width: 360px; height: 470px;
+    background: #0e0e12; color: #e4e4e4;
+    border-radius: 20px;
+    display: none; flex-direction: column;
+    box-shadow: 0 0 35px rgba(80, 80, 255, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; z-index: 9999;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { 
+    from {opacity:0; transform: translateY(20px);} 
+    to {opacity:1; transform: translateY(0);} 
+  }
+
+  /* --- Header --- */
+  #jee-bot-header {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white; padding: 14px; text-align: center;
+    font-weight: 600; font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  /* --- Messages Area --- */
+  #jee-bot-messages {
+    flex: 1; padding: 12px; overflow-y: auto; font-size: 14px;
+    background: #141419;
+    display: flex; flex-direction: column;
+    scrollbar-width: thin; scrollbar-color: #4e54c8 #141419;
+  }
+  #jee-bot-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  #jee-bot-messages::-webkit-scrollbar-thumb {
+    background-color: #4e54c8; border-radius: 10px;
+  }
+
+  .msg {
+    max-width: 75%; padding: 10px 14px; margin: 8px 0;
+    border-radius: 14px; line-height: 1.5;
+    word-wrap: break-word;
+    animation: pop 0.2s ease;
+  }
+  @keyframes pop { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+  .bot {
+    background: #1e1e28; align-self: flex-start;
+    border: 1px solid rgba(100,100,255,0.3);
+    box-shadow: 0 0 10px rgba(100,100,255,0.1);
+  }
+  .user {
+    background: #4e54c8; align-self: flex-end;
+    color: white; box-shadow: 0 0 10px rgba(78,84,200,0.5);
+  }
+
+  /* --- Input Section --- */
+  #jee-bot-input {
+    display: flex; border-top: 1px solid #222; background: #111;
+  }
+  #jee-bot-input input {
+    flex: 1; border: none; padding: 12px; font-size: 14px;
+    outline: none; color: white; background: transparent;
+  }
+  #jee-bot-input button {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white; border: none; padding: 0 16px;
+    cursor: pointer; font-size: 18px; font-weight: bold;
+    border-radius: 0 0 20px 0; transition: 0.3s;
+  }
+  #jee-bot-input button:hover { opacity: 0.9; }
+
+  /* --- Quick Replies --- */
+  .quick-replies {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 10px;
+    background: #101014; border-top: 1px solid #1d1d1d;
+  }
+  .quick-reply {
+    background-color: #1e1e28; color: #e0e0ff;
+    padding: 5px 12px; border-radius: 15px;
+    font-size: 0.9rem; cursor: pointer;
+    transition: all 0.2s; border: 1px solid rgba(100,100,255,0.3);
+  }
+  .quick-reply:hover {
+    background-color: #4e54c8; color: #fff;
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById("jee-bot-toggle");
+  const panel = document.getElementById("jee-bot-panel");
+  const messages = document.getElementById("jee-bot-messages");
+  const input = document.querySelector("#jee-bot-input input");
+  const sendBtn = document.querySelector("#jee-bot-input button");
+  const quickReplies = document.querySelectorAll(".quick-reply");
+
+  function addMsg(text, from="bot"){
+      const el = document.createElement("div");
+      el.className = `msg ${from}`;
+      el.innerText = text;
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function askBot(question){
+      addMsg(question, "user");
+      const typingIndicator = document.createElement("div");
+      typingIndicator.className = "msg bot";
+      typingIndicator.id = "typing-indicator";
+      typingIndicator.innerHTML = "💬 Typing...";
+      messages.appendChild(typingIndicator);
+      messages.scrollTop = messages.scrollHeight;
+      await new Promise(resolve => setTimeout(resolve, 700 + Math.random() * 1000));
+      document.getElementById("typing-indicator")?.remove();
+      const response = generateResponse(question);
+      addMsg(response);
+  }
+
+  function generateResponse(question) {
+      question = question.toLowerCase();
+
+      if (question.includes('hello') || question.includes('hi')) {
+          return "👋 Hi there! I’m **JEE Assistant**, your guide for exploring colleges, predictions, and comparisons. What do you want to do first — Predict, Compare, or Explore Universities?";
+      }
+
+      if (question.includes('show') || question.includes('guide') || question.includes('around')) {
+          return "🚀 Let’s get you started:\n\n🎯 **Predictor** → Find possible colleges based on your JEE rank.\n⚖️ **Compare** → Compare colleges side by side (placement, fees, ranking).\n🏛️ **Universities** → Explore top colleges with full details.\n\nWhich one would you like to explore?";
+      }
+
+      if (question.includes('predictor') || question.includes('predict')) {
+          return "🎯 In **Predictor Mode**, just enter your JEE rank, category, and state quota. The system will suggest the most likely colleges for you!";
+      }
+
+      if (question.includes('compare')) {
+          return "⚖️ **Compare Mode** helps you see two or more colleges side by side — placements, fees, cutoff ranks, and NIRF ranking. Type *‘Compare IIT Delhi and NIT Trichy’* to try it!";
+      }
+
+      if (question.includes('universities') || question.includes('university')) {
+          return "🏛️ Explore universities and NITs/IITs with detailed data — cutoff trends, hostel, facilities, placements, and more. Try asking: *‘Tell me about IIT Bombay’* or *‘Show NITs in Maharashtra’*.";
+      }
+
+      if (question.includes('iit delhi')) {
+          return "🎓 **IIT Delhi** – Among India’s top 3 IITs. Strong in CSE, EE, and Mechanical. Avg CSE package ~₹25 LPA. Superb campus and research culture!";
+      }
+
+      if (question.includes('nit trichy')) {
+          return "🏫 **NIT Trichy** – Top-ranked NIT with 90%+ placement. Avg package ₹10–12 LPA. Famous for Civil, CSE, and Mechanical branches.";
+      }
+
+      if (question.includes('help') || question.includes('tips')) {
+          return "💡 You can try:\n• ‘Predictor’ – Check possible colleges\n• ‘Compare’ – Compare colleges easily\n• ‘Universities’ – Explore all universities\n• Or directly ask: *‘Show me IIT Delhi cutoff’*";
+      }
+
+      return "🤔 Hmm, I didn’t quite get that. Try asking about *Predictor*, *Compare*, or *Universities*, or type a college name like *IIT Bombay* or *BITS Pilani*.";
+  }
+
+  toggle.onclick = () => panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+  sendBtn.onclick = () => { if(input.value.trim()) { askBot(input.value); input.value=""; } };
+  input.onkeydown = (e) => { if(e.key === "Enter" && input.value.trim()) { askBot(input.value); input.value=""; } };
+  quickReplies.forEach(reply => {
+      reply.addEventListener('click', () => {
+          askBot(reply.getAttribute('data-reply'));
+      });
+  });
+
+  // Initial Greeting
+  addMsg("🌙 Hi! I'm **JEE College Assistant**. I can help you predict colleges, compare options, or explore universities. What would you like to start with?");
+</script>
