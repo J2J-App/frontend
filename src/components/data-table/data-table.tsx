@@ -106,10 +106,8 @@ export default function DataTable({ data, pgup = false }: DataTable) {
     const indexOfLastComponent = currentPage * componentsPerPage;
     const indexOfFirstComponent = indexOfLastComponent - componentsPerPage;
     const currentComponents = filterData.slice(indexOfFirstComponent, indexOfLastComponent);
-    console.log(currentComponents)
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-        console.log(`Page changed to ${page}`);
     };
 
     return (
