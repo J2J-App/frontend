@@ -48,7 +48,7 @@ export default function UniCard({ name, icon, background, description, location,
                 transform: "translateX(-50%)",
                 boxShadow: "0px 0px 40px white",
                 backgroundColor: "white",
-            }} src={icon} alt={"Uni Icon"} width={68} height={68} quality={100} 
+            }} src={icon} alt={`${name} university logo`} width={68} height={68} quality={100} 
             />
         </div>
         <div className={styles.contentContainer}>
@@ -61,7 +61,7 @@ export default function UniCard({ name, icon, background, description, location,
 
             <div className={styles.info}>
                 <div className={styles.infoBox}>
-                    <Image src={locationIcon} alt={"Location Icon"} width={40} height={40}/>
+                    <Image src={locationIcon} alt="Location" width={40} height={40}/>
                     <div className={styles.infoText}>
                         <span style={{
                             fontSize: '18px',
@@ -76,7 +76,7 @@ export default function UniCard({ name, icon, background, description, location,
                 </div>
 
                 <div className={styles.infoBox}>
-                    <Image src={nirficon} alt={"Location Icon"} width={40} height={40}/>
+                    <Image src={nirficon} alt="NIRF ranking" width={40} height={40}/>
                     <div className={styles.infoText}>
                         <span style={{
                             fontSize: '18px',
