@@ -1,6 +1,5 @@
 import styles from "./placement.module.css";
 import Image from "next/image";
-import circle from "@/public/circle.svg"
 
 export default function PlacementCard({ name, course, background, icon, max, avg, median, min }: {
     background: string;
@@ -48,10 +47,10 @@ export default function PlacementCard({ name, course, background, icon, max, avg
             }}>
                 PACKAGES
             </span>
-            <Image src={circle} className={styles.circle} alt="Decorative circle graphic" width={150} height={150} />
+            <Image src="/circle.svg" className={styles.circle} alt="Decorative circle graphic" width={150} height={150} />
             <Image style={{
                 filter: "blur(30px)",
-            }} src={circle} className={styles.circle} alt="Decorative circle graphic" width={150} height={150} />
+            }} src="/circle.svg" className={styles.circle} alt="Decorative circle graphic" width={150} height={150} />
             <div className={styles.content}>
                 <div className={styles.tile1}>
                     <div className={styles.tileContent}>

@@ -1,7 +1,5 @@
 import styles from "./uni-card.module.css";
 import Image from "next/image";
-import locationIcon from "@/public/locationicon.svg"
-import nirficon from "@/public/nirficon.svg"
 
 export default function UniCard({ name, icon, background, description, location, nirf }: {
     name: string;
@@ -61,7 +59,7 @@ export default function UniCard({ name, icon, background, description, location,
 
             <div className={styles.info}>
                 <div className={styles.infoBox}>
-                    <Image src={locationIcon} alt="Location" width={40} height={40}/>
+                    <Image src="/locationicon.svg" alt="Location" width={40} height={40}/>
                     <div className={styles.infoText}>
                         <span style={{
                             fontSize: '18px',
@@ -76,7 +74,7 @@ export default function UniCard({ name, icon, background, description, location,
                 </div>
 
                 <div className={styles.infoBox}>
-                    <Image src={nirficon} alt="NIRF ranking" width={40} height={40}/>
+                    <Image src="/nirficon.svg" alt="NIRF ranking" width={40} height={40}/>
                     <div className={styles.infoText}>
                         <span style={{
                             fontSize: '18px',
@@ -92,5 +90,4 @@ export default function UniCard({ name, icon, background, description, location,
             </div>
         </div>
     </div>
-
 }

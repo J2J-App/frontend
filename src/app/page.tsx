@@ -1,22 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import bg from "@/public/backgrounds/j2j-bg.png"
-import bgm from "@/public/backgrounds/j2j-bg-m.png"
 
-import jac from "@/public/icons/counsellings/jac.jpg"
-import josaa from "@/public/icons/counsellings/josaa.png"
-
-import counsellingBg from "@/public/backgrounds/counsellings/bg1.png"
-
-import predictor from "@/public/backgrounds/tools/predictor.png"
-import uni from "@/public/backgrounds/tools/uni.png"
-import placements from "@/public/backgrounds/tools/placements.png"
-import contact from "@/public/backgrounds/tools/contact.png"
-
-import feathead from "@/public/backgrounds/tools/featcomp.png";
-
-
-import arrow from "@/public/icons/home/arrow.svg"
 import Link from "next/link";
 import {TbBrandDiscordFilled} from "react-icons/tb";
 import {IoLogoDiscord} from "react-icons/io5";
@@ -27,14 +11,25 @@ import Accordion from "@/components/accordion/accordion.tsx";
 import {MdMail} from "react-icons/md";
 import Footer from "@/components/footer/footer.tsx";
 
+// Import images
+import bg from "/public/j2j-bg.png";
+import bgm from "/public/j2j-bg-m.png";
+import arrow from "/public/arrow.svg";
+import predictor from "/public/tools/predictor.png";
+import placements from "/public/tools/placements.png";
+import uni from "/public/tools/uni.png";
+import counsellingBg from "/public/bg1.png";
+import feathead from "/public/tools/featcomp.png";
+import contact from "/public/tools/contact.png";
+
 export default function Home() {
     const counsellings = [{
         "name": "JAC",
-        "icon": jac,
+        "icon": "/jac.jpg",
         "description": "Joint Admission Counselling",
     }, {
         "name": "JoSAA",
-        "icon": josaa,
+        "icon": "/josaa.png",
         "description": "Joint Seat Allocation Authority",
     }]
     return (

@@ -13,7 +13,6 @@ export default function BottomNav() {
         icon: any
     }) {
         const href = `/${path[1]}/${path[2]}/${path[3]}${link}`
-        console.log(href)
         return <Link href={href}
                      scroll={false}>
             <div className={pathname === href ? styles.active + " " + styles.link : styles.link}>

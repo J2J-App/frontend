@@ -3,15 +3,15 @@ import Image from "next/image";
 import { MdArrowRight } from "react-icons/md";
 
 export default function UniInfoCard({
-  name,
-  logo,
-  banner,
-  nirf,
+    name,
+    logo,
+    banner,
+    nirf,
 }: {
-  name: string;
-  logo: string;
-  banner: string;
-  nirf: string;
+    name: string;
+    logo: string;
+    banner: string;
+    nirf: string;
 }) {
   return (
     <div className={styles.cardContainer}>

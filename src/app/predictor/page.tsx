@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 import styles from "./page.module.css";
-import jac from "@/public/icons/counsellings/jac.jpg";
-import josaa from "@/public/icons/counsellings/josaa.png";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
@@ -35,13 +33,13 @@ export default function Page() {
   const counsellings = [
     {
       name: "JAC",
-      icon: jac,
+      icon: "/jac.jpg",
       link: "jac",
       description: "Joint Admission Counselling",
     },
     {
       name: "JoSAA",
-      icon: josaa,
+      icon: "/josaa.png",
       link: "josaa",
       description: "Joint Seat Allocation Authority",
     },

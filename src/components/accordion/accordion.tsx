@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from "./accordion.module.css"
 import Image from 'next/image'
-import arrow from "@/public/arrow.svg"
 
 type AccordionProps = {
     title: string;
@@ -13,11 +12,11 @@ type AccordionProps = {
 }
 
 export default function Accordion({
-                                      title,
-                                      content,
-                                      height,
-                                      width
-                                  }: AccordionProps) {
+    title,
+    content,
+    height,
+    width
+}: AccordionProps) {
     const [isOpen, setIsOpen] = useState(false)
     const contentRef = useRef<HTMLDivElement>(null)
     const [contentHeight, setContentHeight] = useState(0)
@@ -34,14 +33,14 @@ export default function Accordion({
 
     return (
         <div className={styles.accodionContainer}
-             style={{
-                 height : height ? `${height}` : 'auto',
-                 width : width ? `${width}` : '200px'
-             }}>
+            style={{
+                height: height ? `${height}` : 'auto',
+                width: width ? `${width}` : '200px'
+            }}>
             <div className={`${styles.accordionTitle} ${isOpen ? styles.active : ''}`} onClick={toggleAccordion}>
                 <span className={styles.titleText}>{title}</span>
                 <div className={styles.arrowContainer}>
-                    <Image src={arrow} alt="Expand section" className={styles.arrow} />
+                    <Image src="/arrow.svg" alt="Expand section" width={16} height={16} className={styles.arrow} />
                 </div>
             </div>
             <div

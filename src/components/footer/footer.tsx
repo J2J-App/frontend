@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FaDiscord, FaGithub } from 'react-icons/fa'; 
 import { AiOutlineMail } from 'react-icons/ai'; 
 
-
 export default function Footer() {
     const uniformLinkStyle = {
     fontFamily: '"Roboto", sans-serif',
@@ -115,6 +114,13 @@ export default function Footer() {
                         margin: "0",
                         borderRadius: 8,
                         border: "1px solid rgba(255,255,255,0.1)",
+                        backgroundColor: "#333",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: "12px"
                     }}>
                         <Image style={{
                             objectFit: "contain",
