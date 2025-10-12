@@ -76,7 +76,7 @@ export default function Page() {
                         overflow: "hidden",
                       }}
                       src={counselling.icon}
-                      alt={counselling.name}
+                      alt={`${counselling.name} counselling logo`}
                       fill={true}
                     />
                   </div>

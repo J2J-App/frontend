@@ -1,17 +1,18 @@
+@import "../styles/design-tokens.css";
+
 :root {
   --default-height: 34px;
 }
 
-
-
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  
 }
 
 body {
   background: black;
+  overflow-x: hidden;
   font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,7 +24,8 @@ body {
   margin: 0;
 }
 
-a, button {
+a,
+button {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -40,6 +42,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }

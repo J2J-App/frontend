@@ -1,13 +1,13 @@
 .button {
-  color: white;
+  color: var(--color-text-primary);
   height: 100%;
   width: 100%;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   border: 0;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: .5px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-normal);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
   resize: none;
   cursor: pointer;
   background-color: transparent;
@@ -18,59 +18,62 @@
   height: fit-content;
   width: fit-content;
   resize: none;
-  border-radius: 8px;
+  border-radius: var(--radius-2xl);
   position: relative;
-  transition: all 0.2s ease;
+  transition: var(--transition-normal);
 }
 
 .buttonContainer:active {
   transform: scale(0.93);
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .Primary.buttonContainer {
-  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  background-image: var(--gradient-primary);
 }
 
 .Primary.buttonContainer::after {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
-  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
-  z-index: -2;
+  top: var(--space-1);
+  left: var(--space-1);
+  right: var(--space-1);
+  bottom: var(--space-1);
+  background-image: var(--gradient-primary);
+  z-index: var(--z-background);
   opacity: 0;
   filter: blur(20px);
-  transition: all 0.2s ease-in-out;
+  transition: var(--transition-normal);
 }
+
 .Primary.buttonContainer:active::after {
   opacity: 0.7 !important;
   filter: blur(10px) !important;
 }
+
 .Primary.buttonContainer:hover::after {
   opacity: 1;
   filter: blur(18px);
 }
-.Primary.button{
+
+.Primary.button {
   position: relative;
-  border-radius: 8px;
+  border-radius: var(--radius-2xl);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #fff;
+  color: var(--color-text-primary);
   border: none;
   overflow: hidden;
   cursor: pointer;
-  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  background-image: var(--gradient-primary);
   background-position-y: 150px;
   background-repeat: no-repeat;
-  transition: background-position-y 0.6s cubic-bezier(0.87, 0, 0.13, 1),
-  background-color 0.2s ease;
+  transition: background-position-y 0.6s var(--ease-in-out),
+    background-color var(--duration-normal) ease;
 }
-.Primary.button::after{
+.Primary.button::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -79,11 +82,16 @@
   border-radius: 3px;
   width: 80%;
   height: 100%;
-  background: linear-gradient(90deg, rgb(152, 65, 201) -14.93%, rgb(80, 96, 189) 50%, rgb(74, 208, 156) 92.16%);
+  background: linear-gradient(
+    90deg,
+    rgb(152, 65, 201) -14.93%,
+    rgb(80, 96, 189) 50%,
+    rgb(74, 208, 156) 92.16%
+  );
   filter: blur(20px);
   z-index: 1;
-  opacity: .7;
-  transition: all .3s ease-in-out;
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
 }
 .Primary.button::before {
   content: "";
@@ -95,47 +103,46 @@
   border-radius: 7px;
   background: black;
   z-index: 1;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .Secondary.buttonContainer {
-  background : rgba(26, 26, 26, 1);
-  border-style : Solid;
-  border-color : rgba(59, 59, 59, 1);
-  border-width : 1px;
+  background: rgba(26, 26, 26, 1);
+  border-style: Solid;
+  border-color: rgba(59, 59, 59, 1);
+  border-width: 1px;
 }
 .Secondary.buttonContainer:hover {
-  background : rgba(31, 31, 31, 1);
-  border-style : Solid;
-  border-color : rgba(77, 77, 77, 1);
-  border-width : 1px;
+  background: rgba(31, 31, 31, 1);
+  border-style: Solid;
+  border-color: rgba(77, 77, 77, 1);
+  border-width: 1px;
 }
-
 
 .Outline.buttonContainer {
-  background : rgba(0, 0, 0, 0);
-  border-style : Solid;
-  border-color : #313131;
-  border-width : 1px;
+  background: rgba(0, 0, 0, 0);
+  border-style: Solid;
+  border-color: #313131;
+  border-width: 1px;
 }
 .Outline.buttonContainer:hover {
-  background : rgba(36, 36, 36, 1);
-  border-style : Solid;
-  border-color : rgba(77, 77, 77, 1);
-  border-width :1px;
+  background: rgba(36, 36, 36, 1);
+  border-style: Solid;
+  border-color: rgba(77, 77, 77, 1);
+  border-width: 1px;
 }
 
 .Danger.buttonContainer {
-  background : rgba(99, 52, 52, 1);
-  border-style : Solid;
-  border-color : rgba(181, 121, 121, 1);
-  border-width : 1px;
+  background: rgba(99, 52, 52, 1);
+  border-style: Solid;
+  border-color: rgba(181, 121, 121, 1);
+  border-width: 1px;
 }
 .Danger.buttonContainer:hover {
-  background : rgba(161, 84, 84, 1);
-  border-style : Solid;
-  border-color : rgba(204, 136, 136, 1);
-  border-width : 1px;
+  background: rgba(161, 84, 84, 1);
+  border-style: Solid;
+  border-color: rgba(204, 136, 136, 1);
+  border-width: 1px;
 }
 
 .Link.buttonContainer {
@@ -158,7 +165,12 @@
   border-radius: 10px;
   height: 2px;
   width: 70%;
-  background-image: linear-gradient(90deg, rgba(195, 84, 255, 1) -14.93%, rgba(106, 127, 246, 1) 50%, rgba(92, 255, 192, 1) 92.16%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(195, 84, 255, 1) -14.93%,
+    rgba(106, 127, 246, 1) 50%,
+    rgba(92, 255, 192, 1) 92.16%
+  );
   transition: all 0.2s ease;
 }
 

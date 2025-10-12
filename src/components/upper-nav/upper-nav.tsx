@@ -59,7 +59,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                     }}
                     fill
                     src={currentUniData.photos["college-pic"]}
-                    alt={uni}
+                    alt={`${uni} blurred campus background`}
                 />
                 <Image
                     style={{
@@ -69,7 +69,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                     }}
                     fill
                     src={currentUniData.photos["college-pic"]}
-                    alt={uni}
+                    alt={`${uni} campus view`}
                 />
             </div>
 
@@ -78,7 +78,7 @@ export default function UpperNav({ params }: { params: { uni: string, counsellin
                     style={{
                         backgroundColor: "White",
                     }}>
-                    <Image fill src={currentUniData.photos["logo"]} alt={uni} />
+                    <Image fill src={currentUniData.photos["logo"]} alt={`${uni} official logo`} />
                 </div>
                 <h1
                     style={{

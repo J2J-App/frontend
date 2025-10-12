@@ -178,7 +178,7 @@ export default function RangeSelector({
                 <div className={styles.arrowContainer}>
                     <Image
                         src={arrow}
-                        alt="arrow"
+                        alt="Expand dropdown"
                         width={16}
                         height={16}
                         className={`${styles.arrow} ${isOpen ? styles.rotated : ''}`}

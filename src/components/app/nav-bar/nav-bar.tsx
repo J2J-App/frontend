@@ -24,10 +24,7 @@ export default function NavBar() {
             <div className={styles.navBar}>
                 {/* Left Logo */}
                 <Link href={"/"} className={path === "/" ? styles.leftBox + " " + styles.active : styles.leftBox}>
-                    <div style={{
-                        width: 40,
-                        height: 40,
-                        backgroundColor: "#333",
+                    <Image src={icon} alt="JEEPedia homepage" width={40} height={40} style={{
                         borderRadius: "8px",
                         display: "flex",
                         alignItems: "center",
@@ -35,9 +32,7 @@ export default function NavBar() {
                         color: "white",
                         fontWeight: "bold",
                         fontSize: "14px"
-                    }}>
-                        J2J
-                    </div>
+                    }}/>
                 </Link>
 
                 {/* Center Links */}
@@ -52,10 +47,12 @@ export default function NavBar() {
 
                 {/* Right Icons */}
                 <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.rightBox}>
-                    <Image src={discord} alt="Discord" width={20} height={20} />
+                    <Image style={{
+                        opacity: 0.7
+                    }} src={discord} alt="Join JEEPedia Discord community" width={20} height={20}/>
                 </a>
                 <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.rightBox}>
-                    <Image style={{ opacity: 0.7 }} src={instagram} alt="Instagram" width={20} height={20} />
+                    <Image style={{ opacity: 0.7 }} src={instagram} alt="Follow JEEPedia on Instagram" width={20} height={20} />
                 </a>
 
                 {/* Mobile Menu Toggle */}
@@ -101,10 +98,10 @@ export default function NavBar() {
                     {/* Mobile Social Icons */}
                     <div className={styles.iconRow}>
                         <a href="https://discord.gg/Z8s9JECw4C" target="_blank" className={styles.discordIcon}>
-                            <Image src={discord} alt="Discord" width={20} height={20} />
+                            <Image src={discord} alt="Join JEEPedia Discord community" width={20} height={20} />
                         </a>
                         <a href="https://www.instagram.com/jeepedia.in" target="_blank" className={styles.instagramIcon}>
-                            <Image src={instagram} alt="Instagram" width={20} height={20} />
+                            <Image src={instagram} alt="Follow JEEPedia on Instagram" width={20} height={20} />
                         </a>
                     </div>
                 </div>

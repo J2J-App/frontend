@@ -17,11 +17,11 @@ type SelectMenuProps = {
 };
 
 export default function SelectMenu({
-                                       options,
-                                       defaultValue,
-                                       onChange,
-                                       placeholder = "Select"
-                                   }: SelectMenuProps) {
+    options,
+    defaultValue,
+    onChange,
+    placeholder = "Select"
+}: SelectMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const [selectedOption, setSelectedOption] = useState<SelectOption | null>(
@@ -159,7 +159,7 @@ export default function SelectMenu({
                 <div className={styles.arrowContainer}>
                     <Image
                         src="/arrow.svg"
-                        alt="arrow"
+                        alt="Expand dropdown"
                         width={13}
                         height={13}
                         className={styles.rotate}

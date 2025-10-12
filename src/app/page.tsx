@@ -11,6 +11,17 @@ import Accordion from "@/components/accordion/accordion.tsx";
 import {MdMail} from "react-icons/md";
 import Footer from "@/components/footer/footer.tsx";
 
+// Import images
+import bg from "/public/j2j-bg.png";
+import bgm from "/public/j2j-bg-m.png";
+import arrow from "/public/arrow.svg";
+import predictor from "/public/tools/predictor.png";
+import placements from "/public/tools/placements.png";
+import uni from "/public/tools/uni.png";
+import counsellingBg from "/public/bg1.png";
+import feathead from "/public/tools/featcomp.png";
+import contact from "/public/tools/contact.png";
+
 export default function Home() {
     const counsellings = [{
         "name": "JAC",
@@ -23,11 +34,11 @@ export default function Home() {
     }]
     return (
     <article className={styles.page}>
-        <Image src="/j2j-bg.png" alt={"Background"} fill={true} style={{
+        <Image src={bg} alt="JEEPedia abstract background" fill={true} style={{
             objectFit: "cover",
             objectPosition: "right",
         }} className={styles.desktop} quality={100}/>
-        <Image src="/j2j-bg-m.png" alt={"Background"} fill={true} style={{
+        <Image src={bgm} alt="JEEPedia mobile background" fill={true} style={{
             objectFit: "cover",
         }} className={styles.mobile} quality={100}/>
         <main className={styles.content}>
@@ -49,7 +60,7 @@ export default function Home() {
                         Launch
                     </p>
                     <div className={styles.linkImage}>
-                      <Image src="/arrow.svg" alt={"Arrow"} width={30} height={30} />
+                      <Image src={arrow} alt="Launch predictor tool" width={30} height={30} />
                     </div>
                 </Link>
             </div>
@@ -66,7 +77,7 @@ export default function Home() {
                     <Image style={{
                         objectFit: "cover",
                         objectPosition: "left",
-                    }} src="/tools/predictor.png" alt={"Predictor"} fill={true}/>
+                    }} src={predictor} alt="College Predictor tool interface showing rank analysis" fill={true}/>
                     <h3 style={{
                         top: "10px",
                         left: "10px",
@@ -79,8 +90,7 @@ export default function Home() {
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "bottom right",
-}} src={placements ?? "/tools/placements.png"} alt="Placements" fill={true}/>
-
+                        }} src={placements} alt="Placement statistics dashboard for engineering colleges" fill={true}/>
                         <h3 style={{
                             bottom: "10px",
                             right: "10px",
@@ -92,7 +102,7 @@ export default function Home() {
                         <Image style={{
                             objectFit: "cover",
                             objectPosition: "top",
-                        }} src="/tools/uni.png" alt={"Universities"} fill={true}/>
+                        }} src={uni} alt="Universities directory showing college information" fill={true}/>
                         <h3 style={{
                             top: "10px",
                             right:  "10px",
@@ -112,7 +122,7 @@ export default function Home() {
                     }}>
                         Counsellings
                     </h3>
-                    <Image src="/bg1.png" alt={"Counselling Background"} fill={true} style={{
+                    <Image src={counsellingBg} alt="Counsellings section background" fill={true} style={{
                         objectFit: "cover",
                         objectPosition: "center",
                         overflow: "hidden",
@@ -128,7 +138,7 @@ export default function Home() {
                                         objectFit: "contain",
                                         objectPosition: "center",
                                         overflow: "hidden"
-                                    }} src={counselling.icon} alt={counselling.name} fill={true}/>
+                                    }} src={counselling.icon} alt={`${counselling.name} counselling logo`} fill={true}/>
                                 </div>
 
                                 <div>
@@ -161,14 +171,14 @@ export default function Home() {
                 }}>
                     What Makes Us Different?
                 </h2>
-                <Image src="/tools/featcomp.png" alt={"Feature Head"} fill={true} style={{
+                <Image src={feathead} alt="Feature comparison background blur" fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
                     transform: "scale(1.1)",
                     filter: "blur(30px)",
                 }}/>
-                <Image src="/tools/featcomp.png" alt={"Feature Head"} fill={true} style={{
+                <Image src={feathead} alt="Feature comparison illustration" fill={true} style={{
                     objectFit: "contain",
                     objectPosition: "center",
                     overflow: "hidden",
@@ -313,7 +323,7 @@ export default function Home() {
                 <Accordion title={"Who's behind this project?"} content={"We are a small group of engineering students from many different universities across the nation."} width={"100%"}/>
             </div>
             <div className={styles.contactHead}>
-                <Image src="/tools/contact.png" alt={"contact"} fill={true} style={{
+                <Image src={contact} alt="Contact section background" fill={true} style={{
                     objectFit: "cover",
                     objectPosition: "center",
                     zIndex: "1"
