@@ -1,6 +1,6 @@
 "use client";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
 import SelectMenu from "@/components/select-menus/select-menu.tsx";
 import Combobox from "@/components/combobox/combobox";
 import Button from "@/components/buttons/button.tsx";
@@ -17,8 +17,12 @@ export default function Page() {
     const [firstUni, setFirstUni] = useState<string | null>(null);
     const [secondBranch, setSecondBranch] = useState<string | null>(null);
     const [secondUni, setSecondUni] = useState<string | null>(null);
-    const [errors, setErrors] = useState<string[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    
+    // 🔑 State for form validation errors and API/network errors
+    const [validationErrors, setValidationErrors] = useState<string[]>([]);
+    const [apiError, setApiError] = useState<string | null>(null); 
+    
+    const [isLoading, setIsLoading] = useState<boolean>(false); // 🔑 Loading State
     const [results, setResults] = useState<any>(null);
 
     const collegeMap: { [key: string]: string } = {
@@ -98,77 +102,60 @@ export default function Page() {
         "iiit-delhi": "IIIT Delhi"
     };
 
-    let option01 =  data01?.data[year]?.map((branch: string) => ({
+    let option01 = data01?.data[year]?.map((branch: string) => ({
         value: branch,
         label: branch,
     })) ?? []
 
-    let option02 =  data02?.data[year]?.map((branch: string) => ({
+    let option02 = data02?.data[year]?.map((branch: string) => ({
         value: branch,
         label: branch,
     })) ?? []
 
     if (option01.length === 0) {
-        option01 = [ {value : `No Placement for this year` , label : `No Placement for this year`} ]
+        option01 = [{ value: `No Placement for this year`, label: `No Placement for this year` }]
     }
 
     if (option02.length === 0) {
-        option02 = [ {value : `No Placement for this year` , label : `No Placement for this year`} ]
+        option02 = [{ value: `No Placement for this year`, label: `No Placement for this year` }]
     }
 
-
-    useEffect(() => {
-        if (!firstUni) return;
-
-        const fetchData01 = async () => {
-            try {
-                const response = await fetch(
-                    `${API_URL}/v2/about/placement-branches`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ college: firstUni }),
-                    }
-                );
-
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
+    // Branch data fetch for college options (runs on firstUni/secondUni change)
+    const fetchBranchData = useCallback(async (college: string, setter: (data: DataType) => void) => {
+        try {
+            const response = await fetch(
+                `${API_URL}/v2/about/placement-branches`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ college }),
                 }
-
-                const result: DataType = await response.json();
-                setData01(result);
-            } catch (error) {
-                console.error("Error fetching data01:", error);
+            );
+            
+            // Note: This fetch only populates the SelectMenu options, so failing silently is okay.
+            if (!response.ok) {
+                console.error(`Failed to fetch branches for ${college}. Status: ${response.status}`);
+                setter({ data: {} }); 
+                return;
             }
-        };
-
-        fetchData01();
-    }, [firstUni]);
+            
+            const result: DataType = await response.json();
+            setter(result);
+        } catch (error) {
+            console.error(`Error fetching data for ${college}:`, error);
+            setter({ data: {} }); 
+        }
+    }, []);
 
     useEffect(() => {
-        const fetchBranchData = async (college: string, setter: (data: DataType) => void) => {
-            try {
-                const response = await fetch(
-                    `${API_URL}/v2/about/placement-branches`,
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ college }),
-                    }
-                );
-                if (!response.ok) throw new Error("Network error");
-                const result: DataType = await response.json();
-                setter(result);
-            } catch (error) {
-                console.error(`Error fetching data for ${college}:`, error);
-            }
-        };
-
         if (firstUni) fetchBranchData(firstUni, setData01);
+        else setData01(null);
+    }, [firstUni, fetchBranchData]);
+
+    useEffect(() => {
         if (secondUni) fetchBranchData(secondUni, setData02);
-    }, [firstUni, secondUni]);
+        else setData02(null);
+    }, [secondUni, fetchBranchData]);
 
 
     function DataCard({ data }: { data: any }) {
@@ -250,107 +237,92 @@ export default function Page() {
         setYear(e);
     }
 
+    // 🔑 MODIFIED: Refactored fetch with centralized try/catch
     async function handleClick() {
-        // Clear previous errors and results
-        setErrors([]);
+        // 🔑 Reset errors and start loading
+        setValidationErrors([]);
+        setApiError(null);
         setResults(null);
 
-        // Validate inputs
+        // Client-side validation
         if (!firstUni || !firstBranch || !secondUni || !secondBranch) {
-            setErrors(["Please select all options"]);
+            setValidationErrors(["Please select all options for both University/College slots."]);
             return;
         }
 
         setIsLoading(true);
 
         try {
-            // First college/branch fetch
-            let response1, data1;
-            try {
-                response1 = await fetch(
+            const fetchSinglePlacement = async (uni: string, branch: string) => {
+                const response = await fetch(
                     `${API_URL}/v2/placement/getPlacement`,
                     {
                         method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             year: Number(year),
-                            branch: firstBranch,
-                            college: firstUni,
+                            branch,
+                            college: uni,
                         }),
                     }
                 );
 
-                if (!response1.ok) {
-                    throw new Error(
-                        `Failed to fetch data for ${firstUni}: ${response1.status} ${response1.statusText}`
-                    );
-                }
+                if (!response.ok) {
+                    // 🔑 Specific API Error Message
+                    const statusText = response.statusText || "Server Error";
+                    let message = `Request failed for ${collegeMap[uni] || uni}. Status: ${response.status}.`;
 
-                data1 = await response1.json();
-                if (!data1.data) {
-                    throw new Error(`No data available for ${firstUni} - ${firstBranch}`);
-                }
-            } catch (error: any) {
-                throw new Error(`Error fetching data for ${firstUni}: ${error.message}`);
-            }
-
-            // Second college/branch fetch
-            let response2, data2;
-            try {
-                response2 = await fetch(
-                    `${API_URL}/v2/placement/getPlacement`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            year: Number(year),
-                            branch: secondBranch,
-                            college: secondUni,
-                        }),
+                    if (response.status === 404) {
+                        message = `No placement record found for ${collegeMap[uni] || uni} in ${year}.`;
+                    } else if (response.status >= 500) {
+                        message = `Server is unavailable. Please retry.`;
                     }
-                );
-
-                if (!response2.ok) {
-                    throw new Error(
-                        `Failed to fetch data for ${secondUni}: ${response2.status} ${response2.statusText}`
-                    );
+                    throw new Error(message);
                 }
 
-                data2 = await response2.json();
-                if (!data2.data) {
-                    throw new Error(
-                        `No data available for ${secondUni} - ${secondBranch}`
-                    );
+                const data = await response.json();
+                if (!data.data) {
+                    // 🔑 No Data Error Message
+                    throw new Error(`No data available for ${collegeMap[uni] || uni} - ${branch} in ${year}.`);
                 }
-            } catch (error: any) {
-                throw new Error(
-                    `Error fetching data for ${secondUni}: ${error.message}`
-                );
-            }
+                return data.data;
+            };
+
+            // Execute both fetches concurrently using Promise.all
+            const [data1, data2] = await Promise.all([
+                fetchSinglePlacement(firstUni!, firstBranch!),
+                fetchSinglePlacement(secondUni!, secondBranch!),
+            ]);
 
             // Construct result object
             const data = {
                 first: {
-                    name: collegeMap[firstUni] || firstUni,
+                    name: collegeMap[firstUni!] || firstUni,
                     branch: firstBranch,
-                    data: data1.data,
+                    data: data1,
                 },
                 second: {
-                    name: collegeMap[secondUni] || secondUni,
+                    name: collegeMap[secondUni!] || secondUni,
                     branch: secondBranch,
-                    data: data2.data,
+                    data: data2,
                 },
             };
 
             setResults(data);
+
         } catch (error: any) {
-            setErrors([error.message || "An unexpected error occurred"]);
-            console.error("Compare error:", error);
+            // 🔑 Catch all network/custom API errors
+            console.error("Compare fetch error:", error);
+            
+            // Set user-friendly error messages
+            if (error.message.includes("Failed to fetch")) {
+                setApiError("A network connection error occurred. Please check your internet connection and try the retry button.");
+            } else {
+                setApiError(error.message || "An unexpected error occurred during comparison.");
+            }
+
         } finally {
+            // 🔑 Stop loading
             setIsLoading(false);
         }
     }
@@ -362,7 +334,71 @@ export default function Page() {
         setSecondUni(null);
         setIsLoading(false);
         setResults(null);
+        setValidationErrors([]);
+        setApiError(null); // Clear API error on 'Compare Again'
         setYear("2024");
+    }
+
+    // 🔑 NEW COMPONENT: Unified Error Display and Retry Button
+    function ErrorDisplay() {
+        // Only show if there are form errors OR an API error
+        if (validationErrors.length === 0 && !apiError) return null;
+
+        return (
+            <div 
+                className={styles.errorContainer}
+                style={{
+                    backgroundColor: "#131313",
+                    border: "1px solid #FFCCC7",
+                    borderRadius: "8px",
+                    padding: "15px 20px",
+                    marginTop: "20px",
+                    width: "100%",
+                    maxWidth: "600px",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+                    color: '#FF6347'
+                }}
+            >
+                {/* Display Validation Errors */}
+                {validationErrors.map((error, index) => (
+                    <p key={index} style={{ margin: "4px 0", fontSize: "14px" }}>
+                        • {error}
+                    </p>
+                ))}
+
+                {/* Display API/Network Error */}
+                {apiError && (
+                    <>
+                        <p style={{ margin: "4px 0", fontSize: "16px", fontWeight: 'bold' }}>
+                            Error: {apiError}
+                        </p>
+                        
+                        {/* 🔑 RETRY MECHANISM: Button calls handleClick */}
+                        <button
+                            onClick={handleClick}
+                            style={{
+                                marginTop: '15px',
+                                padding: '8px 16px',
+                                backgroundColor: isLoading ? '#5a6268' : '#32CD32', // Use a friendly color
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: isLoading ? 'default' : 'pointer',
+                                fontSize: '15px',
+                                fontWeight: '600',
+                                transition: 'background-color 0.2s',
+                            }}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? 'Retrying...' : 'Click to Retry Comparison'}
+                        </button>
+                    </>
+                )}
+            </div>
+        );
     }
 
     return (
@@ -418,23 +454,19 @@ export default function Page() {
                     help you make an informed decision about your future.
                 </p>
             </div>
+            
+            {/* 🔑 INTEGRATE ERROR DISPLAY HERE */}
+            <ErrorDisplay />
+
+            {/* 🔑 MAIN INPUT FORM */}
             {!isLoading && !results && (
                 <div className={styles.compareContainer}>
                     <SelectMenu
                         key="year-select"
                         options={[
-                            {
-                                value: "2024",
-                                label: "2024",
-                            },
-                            {
-                                value: "2023",
-                                label: "2023",
-                            },
-                            {
-                                value: "2022",
-                                label: "2022",
-                            },
+                            { value: "2024", label: "2024" },
+                            { value: "2023", label: "2023" },
+                            { value: "2022", label: "2022" },
                         ]}
                         defaultValue={"2024"}
                         placeholder={"Year..."}
@@ -443,10 +475,7 @@ export default function Page() {
                     <div className={styles.compareConts}>
                         <div className={styles.cont}>
                             <h4
-                                style={{
-                                    width: "100%",
-                                    textAlign: "right",
-                                }}
+                                style={{ width: "100%", textAlign: "right" }}
                                 className={styles.head}
                             >
                                 Left
@@ -454,7 +483,7 @@ export default function Page() {
                             <Combobox
                                 multiSelect={false}
                                 key="first-uni-select"
-                               options={[
+                                options={[
                                     // Popular IITs
                                     { value: "iit-bombay", label: "IIT Bombay" },
                                     { value: "iit-delhi", label: "IIT Delhi" },
@@ -475,8 +504,8 @@ export default function Page() {
                                     { value: "nit-delhi", label: "NIT Delhi" },
 
                                     // Top IIITs
-                                    { value: "iiit-hyderabad", label: "IIIT Hyderabad" }, // Add if missing
-                                    {value:  "iiit-bangalore", label: "IIIT Bangalore"},
+                                    { value: "iiit-hyderabad", label: "IIIT Hyderabad" },
+                                    { value: "iiit-bangalore", label: "IIIT Bangalore" },
                                     { value: "iiit-delhi", label: "IIIT Delhi" },
                                     { value: "iiit-allahabad", label: "IIIT Allahabad" },
                                     { value: "iiitm-gwalior", label: "IIITM Gwalior" },
@@ -539,7 +568,7 @@ export default function Page() {
                                     { value: "nit-uttarakhand", label: "NIT Uttarakhand" },
                                     { value: "soe-tezpur", label: "SoE Tezpur University" },
                                     { value: "tssot-silchar", label: "TSSOT Silchar" }
-                                    ]}
+                                ]}
 
                                 placeholder={"University..."}
                                 onChange={(v) => setFirstUni(Array.isArray(v) ? v[0] : v)}
@@ -555,9 +584,7 @@ export default function Page() {
                         </div>
                         <div className={styles.cont}>
                             <h4
-                                style={{
-                                    width: "100%",
-                                }}
+                                style={{ width: "100%" }}
                                 className={styles.head}
                             >
                                 Right
@@ -565,7 +592,7 @@ export default function Page() {
                             <Combobox
                                 multiSelect={false}
                                 key="second-uni-select"
-                                    options={[
+                                options={[
                                     // Popular IITs
                                     { value: "iit-bombay", label: "IIT Bombay" },
                                     { value: "iit-delhi", label: "IIT Delhi" },
@@ -586,8 +613,8 @@ export default function Page() {
                                     { value: "nit-delhi", label: "NIT Delhi" },
 
                                     // Top IIITs
-                                    { value: "iiit-hyderabad", label: "IIIT Hyderabad" }, // Add if missing
-                                    {value:  "iiit-banglore", label: "IIIT Bangalore"},
+                                    { value: "iiit-hyderabad", label: "IIIT Hyderabad" },
+                                    { value: "iiit-banglore", label: "IIIT Bangalore" },
                                     { value: "iiit-delhi", label: "IIIT Delhi" },
                                     { value: "iiit-allahabad", label: "IIIT Allahabad" },
                                     { value: "iiitm-gwalior", label: "IIITM Gwalior" },
@@ -673,22 +700,28 @@ export default function Page() {
                             marginTop: "10px",
                         }}
                     >
-                        <Button text={"Compare"} onClick={handleClick} variant={"Outline"} />
+                        {/* 🔑 Submit button calls the handler */}
+                        <Button text={"Compare"} onClick={handleClick} variant={"Outline"} disabled={isLoading} />
                     </div>
                 </div>
             )}
-            {isLoading && (
+            
+            {/* 🔑 LOADING STATE DISPLAY */}
+            {isLoading && !results && (
                 <div
                     style={{
                         width: "100%",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
+                        marginTop: '20px'
                     }}
                 >
                     <Loader height={400} />
                 </div>
             )}
+            
+            {/* RESULTS DISPLAY */}
             {!isLoading && results && (
                 <>
                     <div className={styles.resultsContainer}>

@@ -337,8 +337,12 @@ export default function Home() {
                     <h2 className={styles.head1}>
                         But Maybe You've<br />Still Got Questions
                     </h2>
-                    <a href="mailto:jeepedia.in@gmail.com" className={styles.contactLink}>
-                        <MdMail /> Mail Us
+                    <a 
+                    href="mailto:jeepedia&#46;in&#64;gmail&#46;com" 
+                    className={styles.contactLink}
+                     aria-label="Send an email to JEEPedia"
+                    >
+                    <MdMail /> Mail Us
                     </a>
                 </div>
 
