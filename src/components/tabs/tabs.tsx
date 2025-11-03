@@ -19,7 +19,6 @@ export default function Tabs({
     activeIndex,
     setActiveIndex
 }: TabsProps) {
-    console.log(tabs);
 
     if (tabs.length === 0) {
         return <div>No data available</div>
